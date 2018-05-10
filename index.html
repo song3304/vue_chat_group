@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>聊天</title>
+    <link rel="stylesheet" href="dist/css/index.css"" />
+    <link rel="stylesheet" href="dist/css/font-awesome.min.css"" />
+    <link rel="stylesheet" href="dist/css/leftnav.css" />
+</head>
+<body>
+	
+<!--//右下角按钮-->
+<div id="chitchat">
+	<p></p>
+	<span>私信<br>聊天</span>
+</div>
+
+<!--//好友列表-->
+<div id="friend">	
+	<div class="m-search">
+		<input type="text" id="search"  placeholder="查找联系人"/>
+		<div></div>
+		<p><span></span></p>
+	</div>	
+	<div class="account-l fl">
+		<!--切换-->
+		<ul class="m_lei">
+			<li class="m_lei_yi m-active"><img src="dist/images/m-chat.png"/></li>
+			<li class="m_lei_er"><img src="dist/images/group.png"/></li>
+			<div class="m-add">
+				<p>+</p>
+				<ul>
+					<li class="fen-active">创建新组</li>
+					<li>创建群发组</li>
+				</ul>
+			</div>
+			
+		</ul>
+		<!--个人组-->
+		<ul id="accordion" class="accordion qie_div">
+			<li v-for="first in menu">
+				<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
+				<ul class="submenu submenu_ul">
+					<li v-for="second in first.name" class="submenu-name" >
+						<div class="m-touxiang touxiang">
+							<img src="dist/images/default.png" alt="" /><!--class="gray"-->
+							<!--//不在线，添加class=gray-->
+						</div>
+						<a>{{second}}</a>
+						<span class="m-phone-img"></span>
+						<input class="m-phone-input" type="text" v-model="message" placeholder="{{second}}"/>
+					</li>
+				</ul>
+			</li>
+		</ul>	
+		<!--//群组-->
+		<div id="qun-fen" class="accordion qie_div">
+			<div class="qunfen_yi">
+				<p>创建新组</p>
+				<ul>
+					<li v-for="first in menu">
+						<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
+						<ul class="submenu submenu_ul">
+							<li v-for="second in first.name" class="submenu-name" >
+								<div class="m-touxiang touxiang">
+									<img src="dist/images/default.png" alt="" /><!--class="gray"-->
+									<!--//不在线，添加class=gray-->
+								</div>
+								<a>{{second}}</a>
+								<span class="m-phone-img"></span>
+								<input class="m-phone-input" type="text" v-model="message" placeholder="{{second}}"/>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="qunfen_er">
+				<p>创建群发组</p>
+				<ul>
+					<li v-for="first in menu">
+						<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
+						<ul class="submenu submenu_ul">
+							<li v-for="second in first.name" class="submenu-name" >
+								<div class="m-touxiang touxiang">
+									<img src="dist/images/default.png" alt="" /><!--class="gray"-->
+									<!--//不在线，添加class=gray-->
+								</div>
+								<a>{{second}}</a>
+								<span class="m-phone-img"></span>
+								<input class="m-phone-input" type="text" v-model="message" placeholder="{{second}}"/>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<!--//对话框-->
+<div id="chat"></div>
+
+<!--历史记录-->
+<div id="history">
+	<div class=his-guan>
+		<span>小王</span>
+		<p class="his-hide"><img src="dist/images/baise-x.png" alt="" /></p>
+	</div>
+	<ul class="his-main">
+		<div class="baoliu">为您保留一周的聊天记录</div>
+		<!--//时间-->
+		<div class="title">
+            <p class="title-text"><span>2018-05-07</span></p>
+            </div>
+		<!--对方信息-->
+		<li class="opposite">
+			<p class="oppo-title">小王 14:20:20</p>
+			<p class="oppo-xiang">我是小王</p>
+		</li>
+		<!--自己信息-->
+		<li class="oneself">
+			<p class="one-title">自己 14:33:20</p>
+			<p class="one-xiang">这是我自己说的话</p>
+		</li>
+		<div class="baoliu">已经到底了</div>
+	</ul>
+</div>
+<!--//创建分组-->
+
+<div class="fen_zu">
+	<div class="fen_zu_title">
+		<span>创建分组</span>
+		<p class="fen_zu_tiyi"><span></span></p>
+	</div>
+	<div class="fenzu_left accordion">
+		<input type="text" class="fenzu_left_input" placeholder="搜索"/>
+		<ul class="fenzu_left_ul">
+			<li v-for="first in menu">
+				<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
+				<ul class="submenu">
+					<li v-for="second in first.name" class="submenu-name" >
+						<div class="m-touxiang">
+							<img src="dist/images/default.png" alt="" /><!--class="gray"-->
+							<!--//不在线，添加class=gray-->
+						</div>
+						<a>{{second}}</a>
+						<input type="checkbox" id="" value="" v-model=""/>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="fenzu_right">
+		<p>已选择<span>0</span>个联系人</p>
+		<ul class="fenzu_right_ul">
+			
+		</ul>
+	</div>
+	<br clear="all"/>
+	<div class="fenzu_footer">
+		<button>确认</button>
+		<span class="fen_zu_tiyi">取消</span>
+	</div>
+	<!--//设置组名称-->
+	<div class="fenzu_name">
+		<div class="fen_zu_title">
+			<span>设置组名称</span>
+			<p class="fen_zu_tier"><span></span></p>
+		</div>
+		<p class="fenzu_name_na">请输入组名称：</p>
+		<input type="text"/>
+		<div class="fenzu_name_footer">
+			<button>确认</button>
+			<span class="fen_zu_tier">取消</span>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="dist/js/jquery.min.js"></script>
+<script src="dist/js/vue.js"></script>
+<script src="dist/js/main.js"></script>
+<script type="text/javascript" src='dist/js/leftnav.js'></script>
+<script type="text/javascript" src='dist/js/jump.js'></script>
+<script type="text/javascript">
+//如果有新消息,私信聊天执行这个
+setInterval("clock()",1500);			
+function clock(){
+	$("#chitchat p").each(function(k,img){
+		new JumpObj(img,8);
+	});	
+};
+//头像抖动
+setInterval("photo()",1500);
+function photo(){
+	$(".touxiang").each(function(k,img){
+		new JumpObj(img,4);
+	});	
+}
+
+</script>
+</body>
+</html>
