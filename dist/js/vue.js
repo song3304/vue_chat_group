@@ -9428,7 +9428,7 @@
     if (window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
       window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit('init', Vue);
     } else if (/Chrome\/\d+/.test(navigator.userAgent)) {
-      console.log('Download the Vue Devtools for a better development experience:\n' + 'https://github.com/vuejs/vue-devtools');
+      
     }
   }
 

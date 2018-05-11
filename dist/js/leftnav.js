@@ -31,15 +31,12 @@ $(function() {
 	
 	//点击修改名字
 	$(document).on('click','.m-phone-img',function(){
-		$(this).parent().children('a').hide();
-		$(this).parent().children('span').hide();
-		$(this).parent().children('input').show();
+		$(this).next().css('display','block');
 		return false;
 	});
-	$(document).on('click','body',function(){
-		$('.m-phone-img').parent().children('a').show();
-		$('.m-phone-img').parent().children('span').css('display','inline-block');
-		$('.m-phone-img').parent().children('input').hide();
+	$(document).on('mouseleave','.submenu-name',function(){
+		$('.m-phone-img').next().css('display','none');
+		return false;
 	});
 	$(document).on('click','input',function(){
 		return false;
@@ -138,19 +135,7 @@ $(document).on('click','.m-list li',function(){
 	leftname();
 });
 
-//点击删除聊天对象
-$(document).on('click','.delet-li-er',function(){
-	
-})
-//列表消息淡入淡出
-var scrollTip = document.querySelector('#accordion li .link');
-scrollTip.classList.add('animate');//页面载入时，给它执行一次	
-scrollTip.addEventListener('animationend',function(){//监听动画是否结束		
-	scrollTip.classList.remove('animate');//动画结束，移除动画的样式类	
-	setTimeout(function(){//延时1秒，再将动画加入
-	 	scrollTip.classList.add('animate');
-	},1000)
-})
+
 //点击好友、群组切换
 $(document).on('click','.m_lei>li',function(){
 	var index=$('.m_lei>li').index(this);
@@ -195,28 +180,52 @@ var fenzu = new Vue({
       'title': '易商通',
       'name': [ '小潘']
     }], 
-  },
-  methods: {  
-	 
-	} 
+    selected:[]
+  } 
 });
 //点击追加
 var num;
 $(function() {
-    $(".submenu").children("li").click(function() {
-    	
-        var clone = $(this).clone();
-        clone.append("<span></span>")
-            .find("span").click(function () {
-            $(this).parent().remove("li");
-            num=$('.fenzu_right_ul li').length;
-            $('.fenzu_right p span').text(num);
-        });
+    $(".submenu li i").click(function() {    	
+    	if($(this).is('.checkbox_bg_check')){
+    		$(this).removeClass('checkbox_bg_check');
+    	}else{     		
+			$(this).addClass('checkbox_bg_check');
+    		var clone = $(this).parent().clone();          
+	        clone.append("<span></span>").find("span").click(function () {
+	            $(this).parent().remove("li");
+	            num=$('.fenzu_right_ul li').length;
+	            $('.fenzu_right p span').text(num);
+	        });
+	        $(".fenzu_right_ul").append(clone);
+	        num=$('.fenzu_right_ul li').length;
+	    	$('.fenzu_right p span').text(num);
+	    	$('.fenzu_right_ul li i').remove();
+    	};    			        
+    });
+});
+$(document).on('click','.check-all',function(){	
+	if($(this).is('.remove-all')||$(this).prev().children().children('i').is('.checkbox_bg_check')){
+		$(this).prev().children().children('i').removeClass('checkbox_bg_check');
+		$(this).removeClass('remove-all');
+	}else{
+		$(this).addClass('remove-all');
+		$(this).prev().children().children('i').addClass('checkbox_bg_check');
+		var clone = $(this).prev().children().clone();          
+	    clone.append("<span></span>").find("span").click(function () {
+	        $(this).parent().remove("li");
+	        num=$('.fenzu_right_ul li').length;
+	        $('.fenzu_right p span').text(num);
+	    });
         $(".fenzu_right_ul").append(clone);
         num=$('.fenzu_right_ul li').length;
     	$('.fenzu_right p span').text(num);
-    });
-});
+    	$('.fenzu_right_ul li i').remove();
+	}
+	
+	
+	
+})
 //创建分组后,提交
 $(document).on('click','.fenzu_footer button',function(){
 	$('.fenzu_name').show()

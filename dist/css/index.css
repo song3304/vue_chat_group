@@ -127,6 +127,11 @@ header{display: none;}
 		rgba(42, 42, 42, 0.11);
 	display: none;
 }
+.input-search{
+	position: absolute;
+	top:50px;
+	left: 0;
+}
 .m-touxiang{
 	width: 34px;
 	height: 34px;
@@ -146,9 +151,12 @@ header{display: none;}
 	display: none;
 	margin-top:15px;
 	margin-left: 10px;
+	position: absolute;
+	top: 0;
+	left:45px;
 }
 .m-phone-img{
-	display: inline-block;
+	display:none;
 	width: 12px;
 	height: 12px;
 	background: url(../images/qie_tu.png) -4px -106px;
@@ -255,8 +263,8 @@ header{display: none;}
 	background:#EEEEEE url(../images/qie_tu.png) -3px -21px;
 }
 .submenu-name{cursor: pointer;}
-/*.submenu-name .m-phone-img{display: none;}
-.submenu-name:hover .m-phone-img{display: inline-block!important;}*/
+/*.submenu-name .m-phone-img{display: none;}*/
+.submenu-name:hover .m-phone-img{display: inline-block;}
 /*历史记录*/
 #history{
 	width: 550px;
@@ -366,15 +374,20 @@ header{display: none;}
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    
-    filter: grayscale(100%);
-	
+    -o-filter: grayscale(100%);    
+    filter: grayscale(100%);	
     filter: gray;
 }
 /*列表来信息,动画*/
-#accordion li{
-	
+.accordion_li{
+	animation:fadetoggle 1s infinite linear;
+	-webkit-animation:fadetoggle 1s infinite linear;
+	-moz-animation:fadetoggle 1s infinite linear;;
+}
+@-webkit-keyframes fadetoggle {
+	0%{ opacity: 1;}  
+	50%{opacity: 0;}
+	100%{ opacity: 1;}
 }
 
 /*切换*/
@@ -567,4 +580,50 @@ header{display: none;}
 	color: #FFFFFF;
 	margin-left:140px;
 }
-.fenzu_right_ul li>input{display: none;}
+/*.fenzu_right_ul li>input{display: none;}*/
+input[type='radio'],input[type='checkbox']{
+	width: 20px;
+	height: 20px;
+	vertical-align:middle;
+	opacity: 0;
+
+}
+.input_style{
+	background: url(../images/green.png) no-repeat;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+}
+.radio_bg{
+	background-position: -118px 0 ;
+}
+.checkbox_bg{
+	background-position:-120px 0;
+	float: right;
+	margin: 15px 10px 0 0;
+}
+.radio_bg_check{
+	background-position: -166px 0 ;
+}
+.checkbox_bg_check{
+	background-position: -168px 0;
+}
+.submenu-name-div{display: inline-block;}
+.fenzu_left_ul>li{position: relative;}
+.fenzu_left_ul>li>.check-all{
+	width: 15px;
+	height: 15px;
+	border: solid 1px #999999;
+	border-radius: 50%;
+	position: absolute;
+	top:5px;
+	right:14px;
+	text-align: center;
+	line-height:10px;
+	display: none;
+}
+.fenzu_left_ul>li:hover .check-all{
+	display: block;
+}
+
+

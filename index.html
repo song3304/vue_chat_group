@@ -38,17 +38,17 @@
 		</ul>
 		<!--个人组-->
 		<ul id="accordion" class="accordion qie_div">
-			<li v-for="first in menu">
+			<li v-for="first in menu"><!--如果有新消息   :class="{'accordion_li': first.status == 1}"    添加到标签里面-->
 				<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
 				<ul class="submenu submenu_ul">
 					<li v-for="second in first.name" class="submenu-name" >
-						<div class="m-touxiang touxiang">
+						<div class="m-touxiang"> <!--有消息头像动加类名 touxiang-->
 							<img src="dist/images/default.png" alt="" /><!--class="gray"-->
 							<!--//不在线，添加class=gray-->
 						</div>
 						<a>{{second}}</a>
 						<span class="m-phone-img"></span>
-						<input class="m-phone-input" type="text" v-model="message" placeholder="{{second}}"/>
+						<input class="m-phone-input" type="text" v-model="second" placeholder="{{second}}"/>
 					</li>
 				</ul>
 			</li>
@@ -62,13 +62,13 @@
 						<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
 						<ul class="submenu submenu_ul">
 							<li v-for="second in first.name" class="submenu-name" >
-								<div class="m-touxiang touxiang">
+								<div class="m-touxiang"><!--有消息头像动加类名 touxiang-->
 									<img src="dist/images/default.png" alt="" /><!--class="gray"-->
 									<!--//不在线，添加class=gray-->
 								</div>
 								<a>{{second}}</a>
 								<span class="m-phone-img"></span>
-								<input class="m-phone-input" type="text" v-model="message" placeholder="{{second}}"/>
+								<input class="m-phone-input" type="text" v-model="second" placeholder="{{second}}"/>
 							</li>
 						</ul>
 					</li>
@@ -81,13 +81,13 @@
 						<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
 						<ul class="submenu submenu_ul">
 							<li v-for="second in first.name" class="submenu-name" >
-								<div class="m-touxiang touxiang">
+								<div class="m-touxiang"><!--有消息头像动加类名 touxiang-->
 									<img src="dist/images/default.png" alt="" /><!--class="gray"-->
 									<!--//不在线，添加class=gray-->
 								</div>
 								<a>{{second}}</a>
 								<span class="m-phone-img"></span>
-								<input class="m-phone-input" type="text" v-model="message" placeholder="{{second}}"/>
+								<input class="m-phone-input" type="text" v-model="second" placeholder="{{second}}"/>
 							</li>
 						</ul>
 					</li>
@@ -95,6 +95,18 @@
 			</div>
 		</div>
 	</div>	
+	<!--搜索页面-->
+	<div class="input-search">
+		<ul class="submenu submenu_ul">
+			<li  class="submenu-name" >
+				<div class="m-touxiang"> <!--有消息头像动加类名 touxiang-->
+					<img src="dist/images/default.png" alt="" /><!--class="gray"-->
+					<!--//不在线，添加class=gray-->
+				</div>
+				<a></a>
+			</li>
+		</ul>
+	</div>
 </div>
 
 <!--//对话框-->
@@ -136,19 +148,23 @@
 		<input type="text" class="fenzu_left_input" placeholder="搜索"/>
 		<ul class="fenzu_left_ul">
 			<li v-for="first in menu">
-				<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>
+				<div class="link"><i class="fa fa-caret-right"></i><span class="first_title">{{first.title}}</span><span>5/6</span></div>				
 				<ul class="submenu">
 					<li v-for="second in first.name" class="submenu-name" >
-						<div class="m-touxiang">
-							<img src="dist/images/default.png" alt="" /><!--class="gray"-->
-							<!--//不在线，添加class=gray-->
-						</div>
-						<a>{{second}}</a>
-						<input type="checkbox" id="" value="" v-model=""/>
+						<div class="submenu-name-div">
+							<div class="m-touxiang">
+								<img src="dist/images/default.png" alt="" /><!--class="gray"-->
+								<!--//不在线，添加class=gray-->
+							</div>
+							<a>{{second}}</a>
+						</div>						
+						<i class='input_style checkbox_bg'><input type="checkbox" name="{{second}}" id="" value="{{second}}" v-model="selected" ></i>						
 					</li>
 				</ul>
+				<p class="check-all">+</p>
 			</li>
 		</ul>
+		<pre>{{ selected | json }}</pre>
 	</div>
 	<div class="fenzu_right">
 		<p>已选择<span>0</span>个联系人</p>
@@ -195,6 +211,7 @@ function photo(){
 		new JumpObj(img,4);
 	});	
 }
+
 
 </script>
 </body>
