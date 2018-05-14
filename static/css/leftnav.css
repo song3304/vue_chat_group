@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fff;
+    font: 12px Microsoft YaHei, arial, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: #f39800;
+    text-decoration: none;
+}
+
+/** =======================
+ * Contenedor Principal
+ ===========================*/
+.list-title{
+    display: inline-block;
+    width: 100%;
+    max-width: 200px;
+    border-top: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    background: #FFF;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    color: #f39800;
+    cursor: pointer;
+}
+h1 {
+    color: #FFF;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 80px;
+}
+h1 a {
+    color: #f39800;
+    font-size: 16px;
+}
+.accordion {
+    width: 100%;
+}
+.accordion .link {
+    cursor: pointer;
+    display: block;
+    padding:3px 15px 3px 35px;
+    color: #333333;
+    font-size: 14px;
+    position: relative;
+    height: 23px;
+    /*-webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;*/
+}
+.accordion li:last-child .link {
+    border-bottom: 0;
+}
+.accordion li div i {
+    position: absolute;
+    top:2px;
+    left: 12px;
+    font-size: 18px;
+    color: #595959;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.accordion li i.fa-caret-right {
+    font-size:20px;
+    color: #a4a4a4;
+}
+.accordion li.open i.fa-caret-right {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    color:#666666;
+}
+/**
+ * Submenu
+ -----------------------------*/
+.submenu {
+    display: none;
+    font-size: 14px;
+}
+
+.submenu li {
+    height: 50px;
+    position: relative;
+}
+
+.submenu a{
+    display: inline-block;
+    text-decoration: none;
+    color: #666;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    margin:15px 0 0 10px;
+    float: left;
+}
+
+.submenu li:hover ,.submenu li.current{
+    background-color: #E6E6E6;
+    color: #666666;
+}
+
+/*http://www.jq22.com*/
+.accordion .link:hover{
+	background-color: #e6e6e6;
+}
+.accordion .link span{
+	font-size: 10px;
+	padding-left:5px;
+	float: left;
+	margin-top: 3px;	
+}
