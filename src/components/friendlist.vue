@@ -8,8 +8,8 @@
 	    <div class="account-l fl">
 	      <!--切换-->
 	      <ul class="m_lei">
-	        <li class="m_lei_yi {current_active == 'company'?' m-active':''}" @click="choose('company')"><img src="../images/m-chat.png" /></li>
-	        <li class="m_lei_er {current_active == 'group'?' m-active':''}" @click="choose('group')"><img src="../images/group.png" /></li>
+	        <li class=" {current_active == 'company'?' m-active':''}" @click="choose('company')"><img src="../images/m-chat.png" /></li>
+	        <li class=" {current_active == 'group'?' m-active':''}" @click="choose('group')"><img src="../images/group.png" /></li>
 	        <div class="m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
@@ -82,8 +82,11 @@ components: { companyPanel,groupPanel,searchDialog},
         is_friend_show: false,
         is_dialog_show: false,
         is_history_show: false,
-        is_group_show: false
-      })
+        is_group_show: false,
+      });
+      this.panelShow.searchShow = false;
+      this.panelShow.groupShow = false;
+      this.panelShow.companyShow = true;
     },
     // 切换
     choose: function(type) {
@@ -92,6 +95,7 @@ components: { companyPanel,groupPanel,searchDialog},
         this.panelShow.companyShow = true;
         this.panelShow.groupShow = false;
         this.panelShow.searchShow = false;
+       	
       } else {
         this.panelShow.companyShow = false;
         this.panelShow.groupShow = true;
@@ -100,12 +104,14 @@ components: { companyPanel,groupPanel,searchDialog},
     },
     // 创建组事件
     createGroup: function(type) {
-      this.panelShow.groupShow = false;
+//    this.panelShow.groupShow = false;
       this.$emit('openGroupEvent', type);
+      this.groupShow=false;
     },
     toggle(){
     	this.groupShow=!this.groupShow;
-    }
+    },
+    
   }
 }
 

@@ -36,7 +36,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'mai': resolve('static/js/mai.js'),
+      'main': resolve('static/js/main.js'),
 //    配置
       
       
@@ -101,7 +101,7 @@ module.exports = {
 		     $: "jquery"  
 		 },{
 //		 	写你的插件,
-					mai:"mai",
+					main:"main",
 		 })
 		]
 }

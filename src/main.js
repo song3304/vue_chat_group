@@ -5,8 +5,18 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 // import VueSocketio from 'vue-socket.io'
-import store from './js/store'
+import 'font-awesome/css/font-awesome.css'
 
+import './js/leftnav.js'
+
+Vue.config.productionTip = false
+
+
+import store from './js/store'
+import friendList from './components/FriendList'
+import chatdialog from './components/ChatDialog'
+import historylist from './components/HistoryList'
+import groupdialog from './components/GroupDialog'
 import './css/index.css'
 import './css/leftnav.css'
 
@@ -16,8 +26,7 @@ Vue.config.productionTip = false
 let serverData = store.fetch()
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
+  el: '#chat_app',
   data: {
     // 控制面板是否显示
     panel_show: {
@@ -39,7 +48,7 @@ new Vue({
     // 历史记录列表
     historyList: serverData.historyList,
     // 当前历史记录用户id
-  	historyUid: 0,
+    historyUid: 0,
     // 搜索key
     search: '',
     // 选中的会话Index
@@ -54,8 +63,15 @@ new Vue({
   //   }
   // 发送emit用:this.$scoket.emit(key,val)
   // },
-components: { App }, // 
-  template: '<App/>',
+  components: {friendList, chatdialog, historylist, groupdialog},
+  template: `<div id="chat_app"><div id="chitchat" @click="firstopen()">
+		      <p></p>
+		      <span>私信<br>聊天</span>
+		    </div>
+		     <friendList v-show="panel_show.is_friend_show" v-bind:user="user" v-bind:userList="userList" v-bind:companyList="companyList" v-bind:groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" ></friendList>
+		    <chatdialog v-show="panel_show.is_dialog_show" v-bind:user="user" v-bind:sessionList="sessionList"></chatdialog>
+		    <historylist v-show="panel_show.is_history_show" v-bind:user="user" v-bind:historyList="historyList" v-bind:historyUid="historyUid"></historylist>
+				<groupdialog v-show="panel_show.is_group_show" v-bind:user="user" v-bind:userList="userList" v-bind:companyList="companyList" v-bind:groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
     // 初始化数据
   },
@@ -78,6 +94,10 @@ components: { App }, //
     openTalk: function (data) {},
     closePanel: function (data) {
       this.panel_show = data
+    },
+    //私信聊天打开好友列表
+    firstopen:function(){
+    		this.panel_show.is_friend_show = true
     }
   }
 })
