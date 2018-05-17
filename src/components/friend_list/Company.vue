@@ -4,7 +4,7 @@ import $ from 'jquery'
 export default {
   props: ['user', 'userList', 'companyList'],
   computed: {
-    'companyAllList': function() {
+    companyAllList: function() {
       var companyUserList = []
       for (var i = 0, lg = this.companyList.length; i < lg; i++) {
         var item = this.companyList[i]
@@ -51,14 +51,14 @@ export default {
     <li v-for="companyItem in companyList" :class="{'accordion_li': companyItem.isCalling}">
         <div class=" link "><i class="fa fa-caret-right "></i><span class="first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
         <ul class="submenu submenu_ul ">
-          <li v-for="userItem in userList" class="submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" >
+          <li v-for="userItem in companyItem.userList" class="submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" >
             <div class="m-touxiang {userItem.isCalling? ' touxiang': ''} "> <!--有消息头像动加类名 touxiang-->
               <img :src="userItem.img" alt=" " class="{ 'gray':!userItem.isOnline} "/><!--class="gray "-->
               <!--//不在线，添加class=gray-->
             </div>
             <a>{{userItem.name}}</a>
-            <span class="m-phone-img " @click="changeName "></span>
-            <input class="m-phone-input " type="text " v-model="userItem.name "  @blur="modifyUserName "/> <!--data-uid="{{userItem.id}} "  placeholder="{{userItem.name}} "-->
+            <span class="m-phone-img " @click="changeName"></span>
+            <input class="m-phone-input" type="text" v-model="userItem.name"  @blur="modifyUserName"/> <!--data-uid="{{userItem.id}} "  placeholder="{{userItem.name}} "-->
           </li>
         </ul>
       </li>

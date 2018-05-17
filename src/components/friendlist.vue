@@ -8,13 +8,17 @@
 	    <div class="account-l fl">
 	      <!--切换-->
 	      <ul class="m_lei">
-	        <li class=" {current_active == 'company'?' m-active':''}" @click="choose('company')"><img src="../images/m-chat.png" /></li>
-	        <li class=" {current_active == 'group'?' m-active':''}" @click="choose('group')"><img src="../images/group.png" /></li>
+	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" :class="{'m-active':index == activeIndex}">
+				<img v-show="index!=activeIndex" :src="item.imgSrc" alt="" />
+				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />				
+			</li>
+	        <!--<li class=" {current_active == 'company'?'m-active':''}" @click="choose('company');clickTab(index)"><img src="../images/m-chat.png" /><img src="../images/chat.png" /></li>
+	        <li class=" {current_active == 'group'?'m-active':''}" @click="choose('group');clickTab(index)"><img src="../images/group.png" /><img src="../images/m-group.png" /></li>-->
 	        <div class="m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
 	            <li class="fen-active" @click="createGroup('common')">创建新组</li>
-	            <li @click="createGroup('group')">创建群发组</li>
+	            <li @click="createGroup('group')">创建群发组</li>	            
 	          </ul>
 	        </div>
 	      </ul>
@@ -46,15 +50,25 @@ export default {
   props: ['user', 'userList', 'companyList', 'groupList'],
   data: function() {
     return {
+    	activeIndex:0,
       panelShow: {
         companyShow: true, //公司分组面板默认显示
         groupShow: false, //群分组面板是否显示
         searchShow: false //搜索面板是否显示
       },
-      current_active: 'company',
+      current_active: 0,
       groupShow: false,
       seachKey: '',
-      searchList: []
+      searchList: [],
+      tabData:[{
+		imgSrc:require('../images/chat.png'),			
+		activeImgSrc:require('../images/m-chat.png'),			
+	  },
+	  {
+		imgSrc:require('../images/group.png'),				
+		activeImgSrc:require('../images/m-group.png')
+		
+	  }]
     }
   },
 components: { companyPanel,groupPanel,searchDialog},
@@ -70,10 +84,23 @@ components: { companyPanel,groupPanel,searchDialog},
     }
   },
   methods: {
+  	// 切换
+	clickTab:function(index){
+		this.activeIndex=index;
+		if(index==0){
+			this.panelShow.companyShow = true;
+	        this.panelShow.groupShow = false;
+	        this.panelShow.searchShow = false;
+		}else{
+			this.panelShow.companyShow = false;
+	        this.panelShow.groupShow = true;
+	        this.panelShow.searchShow = false;
+		}
+	},
     // 搜索事件
     search: function(event) {
-      this.panelShow.companyShow = false;
-      this.panelShow.groupShow = false;
+//    this.panelShow.companyShow = false;
+//    this.panelShow.groupShow = false;
       this.panelShow.searchShow = true;
     },
     // 关闭事件
@@ -85,23 +112,23 @@ components: { companyPanel,groupPanel,searchDialog},
         is_group_show: false,
       });
       this.panelShow.searchShow = false;
-      this.panelShow.groupShow = false;
-      this.panelShow.companyShow = true;
+//    this.panelShow.groupShow = false;
+//    this.panelShow.companyShow = true;
     },
     // 切换
-    choose: function(type) {
-      this.current_active = type;
-      if (type == 'company') {
-        this.panelShow.companyShow = true;
-        this.panelShow.groupShow = false;
-        this.panelShow.searchShow = false;
-       	
-      } else {
-        this.panelShow.companyShow = false;
-        this.panelShow.groupShow = true;
-        this.panelShow.searchShow = false;
-      }
-    },
+//  choose: function(type) {
+//    this.current_active = type;
+//    if (type == 'company') {
+//      this.panelShow.companyShow = true;
+//      this.panelShow.groupShow = false;
+//      this.panelShow.searchShow = false;
+//     	
+//    } else {
+//      this.panelShow.companyShow = false;
+//      this.panelShow.groupShow = true;
+//      this.panelShow.searchShow = false;
+//    }
+//  },
     // 创建组事件
     createGroup: function(type) {
 //    this.panelShow.groupShow = false;
