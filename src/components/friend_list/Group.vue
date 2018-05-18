@@ -5,15 +5,7 @@ export default {
   props: ['user', 'userList', 'companyList', 'group_type'],
   computed: {
     companyAllList : function() {
-      var companyUserList = []
-      for (var i = 0, lg = this.companyList.length; i < lg; i++) {
-        var item = this.companyList[i]
-        item.userList = []
-        for (var j = 0, item_lg = item.userIds.length; j < item_lg; j++) {
-          item.userList.push(this.userList[item.userIds[j]])
-        }
-      }
-      return companyUserList
+     return [];
     }
   },
   methods: {
