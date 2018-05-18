@@ -44,13 +44,11 @@
             card,list,test,message
         },
         methods:{
-		    close: function(event) {
-			    this.$emit('closeEvent', {
-			        is_friend_show: false,
-			        is_dialog_show: false,
-			        is_history_show: false,
-			        is_group_show: false,
-			    });
+		    close: function() {
+		      this.$emit('closeEvent', {
+		        is_dialog_show: false,
+		        is_history_show: false,
+		      });
 		    },
         }
     };
