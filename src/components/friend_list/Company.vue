@@ -12,6 +12,7 @@ export default {
         for (var j = 0, item_lg = item.userIds.length; j < item_lg; j++) {
           item.userList.push(this.userList[item.userIds[j]])
         }
+        companyUserList.push(item)
       }
       return companyUserList
     }
@@ -52,7 +53,7 @@ export default {
 </script>
 <template>
   <ul id="accordion" class="accordion qie_div">
-    <li v-for="companyItem in companyList" :class="{'accordion_li': companyItem.isCalling}">
+    <li v-for="companyItem in companyAllList" :class="{'accordion_li': companyItem.isCalling}">
         <div class=" link "><i class="fa fa-caret-right "></i><span class="first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
         <ul class="submenu submenu_ul ">
           <li v-for="userItem in companyItem.userList" class="submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" >

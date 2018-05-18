@@ -31,8 +31,8 @@ new Vue({
     // 控制面板是否显示
     panel_show: {
       is_friend_show: false,
-      is_dialog_show: true,
-      is_history_show: true,
+      is_dialog_show: false,
+      is_history_show: false,
       is_group_show: false
     },
     // 登录用户
@@ -97,7 +97,7 @@ new Vue({
     },
     //私信聊天打开好友列表
     firstopen:function(){
-    		this.panel_show.is_friend_show = true
+    	this.panel_show.is_friend_show = true
     }
   }
 })
