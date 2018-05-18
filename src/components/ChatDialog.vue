@@ -42,22 +42,34 @@
         },
         components: {
             card,list,test,message
+        },
+        methods:{
+		    close: function(event) {
+			    this.$emit('closeEvent', {
+			        is_friend_show: false,
+			        is_dialog_show: false,
+			        is_history_show: false,
+			        is_group_show: false,
+			    });
+		    },
         }
     };
 
 </script>
 
 <template>
+ <div class="m-chat">
     <div id="chat">
         <div class="sidebar">
             <card :user="user" :search.sync="search"></card>
             <list :user-list="userList" :session="session" :session-index.sync="sessionIndex" :search="search"></list>
         </div>
-        <div class="m-na"><span class="m-na-name">小张</span><div class="m-guan"><p><span></span></p></div></div>
+        <div class="m-na"><span class="m-na-name">小张</span><div class="m-guan" @click="close"><p><span></span></p></div></div>
         <div class="m-main">       	
             <message :session="session" :user="user" :user-list="userList"></message> 
             <test :session="session"></test>
         </div>
+    </div>
     </div>
 </template>
 

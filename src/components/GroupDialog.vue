@@ -1,4 +1,5 @@
 <template>
+	<div class="v-xuan-fen">
 	<div class="fen_zu">
 		<div class="fen_zu_title">
 			<span>{{groupType == "common"?'创建分组':'创建群发组'}}</span>
@@ -52,6 +53,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </template>
 
 <script>

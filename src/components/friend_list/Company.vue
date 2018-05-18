@@ -17,6 +17,7 @@ export default {
     }
   },
   methods: {
+  	
     mouseOver: function(event) {
       var el = event.currentTarget
       $('.m-phone-img', $(el)).show()
@@ -36,7 +37,10 @@ export default {
       // 回传提交保存
 
       $(el).hide()
-    }
+    },
+  },
+  mounted(){
+  	this.userIds=this.userList
   }
   // filters: {
   //     search (list) {

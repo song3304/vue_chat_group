@@ -3,7 +3,6 @@
 }
 body, html {
     height: 100%;
-    overflow: hidden;
 }
 body, ul {
     margin: 0;
@@ -19,9 +18,16 @@ ul {
     list-style: none;
 }
 #chat {
+	position: fixed;
+	left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    top: 5%;
     margin: 20px auto;
     width:670px;
 	height:540px;
+	    z-index: 10;
 }
 #chat .sidebar{
 	background: #EEEEEE;
@@ -126,6 +132,7 @@ header{display: none;}
 	background-color: #ffffff;
 	box-shadow: -1px -1px 3px 0px 
 		rgba(42, 42, 42, 0.11);
+	z-index: 10;
 }
 .input-search{
 	position: absolute;
@@ -309,6 +316,7 @@ header{display: none;}
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
 	top:5%;
+	z-index: 10;
 }
 .his-guan{
 	margin-top:10px;
@@ -524,6 +532,7 @@ header{display: none;}
 	transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
+	    z-index: 10;
 }
 .fen_zu_title{
 	height: 30px;
@@ -655,5 +664,10 @@ input[type='radio'],input[type='checkbox']{
 .fenzu_left_ul>li:hover .check-all{
 	display: block;
 }
-
+#chat_app{width: 100%;height: 100%;}
+.v-xuan-fen,.m-chat{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.2);
+}
 
