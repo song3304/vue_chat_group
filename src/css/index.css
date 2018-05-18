@@ -27,7 +27,7 @@ ul {
     margin: 20px auto;
     width:670px;
 	height:540px;
-	    z-index: 10;
+	z-index: 1000;
 }
 #chat .sidebar{
 	background: #EEEEEE;
@@ -132,7 +132,7 @@ header{display: none;}
 	background-color: #ffffff;
 	box-shadow: -1px -1px 3px 0px 
 		rgba(42, 42, 42, 0.11);
-	z-index: 10;
+	z-index: 1000;
 }
 .input-search{
 	position: absolute;
@@ -316,7 +316,7 @@ header{display: none;}
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
 	top:5%;
-	z-index: 10;
+	z-index: 1000;
 }
 .his-guan{
 	margin-top:10px;
@@ -532,7 +532,7 @@ header{display: none;}
 	transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
 	-moz-transform: translateX(-50%);
-	    z-index: 10;
+	    z-index: 1000;
 }
 .fen_zu_title{
 	height: 30px;

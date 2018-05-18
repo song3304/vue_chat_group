@@ -11,18 +11,19 @@
 				<li v-for="companyItem in companyList" :class="{'accordion_li': companyItem.isCalling}">
 			        <div class="link"><i class="fa fa-caret-right"></i><span class="first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
 			        <ul class="submenu submenu_ul ">
-			          <li v-for="userItem in companyItem.userIds " class="submenu-name " @mouseover="mouseOver " @mouseout="mouseOut ">
-			            <div class="m-touxiang {userList[userItem].isCalling? ' touxiang': ''} "> <!--有消息头像动加类名 touxiang-->
+			          <li v-for="userItem in companyItem.userIds " class="submenu-name" >
+			            <div class="m-touxiang"> <!--有消息头像动加类名 touxiang-->
 			              <img :src="userList[userItem].img" alt=" " class="{ 'gray':!userList[userItem].isOnline} "/><!--class="gray "-->
 			              <!--//不在线，添加class=gray-->
 			            </div>
 			            <a>{{userList[userItem].name}}</a>
-			            <span class="m-phone-img" @click="changeName "></span>
-			            <input class="m-phone-input" type="text" v-model="userList[userItem].name" :data-uid="userList[userItem].id"  :placeholder="userList[userItem].name" @blur="modifyUserName "/>
+			            <!--<span class="m-phone-img" @click="changeName "></span>
+			            <input class="m-phone-input" type="text" v-model="userList[userItem].name" :data-uid="userList[userItem].id"  :placeholder="userList[userItem].name" @blur="modifyUserName "/>-->
+			            <i class='input_style checkbox_bg' @click="addname" v-clipboard:copy="sysAppIds" v-clipboard:success="onCopy" v-clipboard:error="onError"><input type="checkbox" name="userList[userItem].name" id="" value="userList[userItem].name"  ></i>	
 			          </li>
 			        </ul>
-			      </li>
-				
+			        <p class="check-all">+</p>
+			      </li>			
 			</ul>
 		</div>
 	

@@ -6,6 +6,7 @@ import router from './router'
 import $ from 'jquery'
 // import VueSocketio from 'vue-socket.io'
 import 'font-awesome/css/font-awesome.css'
+import VueClipboard from 'vue-clipboard2'
 
 import './js/leftnav.js'
 
