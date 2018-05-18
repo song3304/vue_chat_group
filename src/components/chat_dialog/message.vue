@@ -35,13 +35,13 @@
 </script>
 
 <template>
-    <div class="m-message" v-scroll-bottom="session.messages">
+    <div class="v-m-message" v-scroll-bottom="session.messages">
         <ul>
             <li v-for="item in session.messages">
-                <p class="time"><span>{{item.date | time}}</span></p>
-                <div class="main" :class="{ self: item.self }">
-                    <img class="avatar" width="30" height="30" :src="item | avatar" />
-                    <div class="text">{{item.text}}</div>
+                <p class="v-time"><span>{{item.date | time}}</span></p>
+                <div class="v-main" :class="{ self: item.self }">
+                    <img class="v-avatar" width="30" height="30" :src="item | avatar" />
+                    <div class="v-text">{{item.text}}</div>
                     <br clear="all"/>
                 </div>
             </li>
@@ -50,18 +50,18 @@
 </template>
 
 <style>
-.m-message {
+.v-m-message {
     padding: 10px 15px;
     overflow-y: scroll;
 }    
-.m-message li {
+.v-m-message li {
     margin-bottom: 15px;
 }
-.m-message  .time {
+.v-m-message  .v-time {
     margin: 7px 0;
     text-align: center;
 }    
-.m-message  .time> span {
+.v-m-message  .v-time> span {
     display: inline-block;
     padding: 0 18px;
     font-size: 12px;
@@ -69,12 +69,12 @@
     border-radius: 2px;
     background-color: #dcdcdc;
 }   
-.m-message .avatar {
+.v-m-message .v-avatar {
     float: left;
     margin: 0 10px 0 0;
     border-radius: 3px;
 }
-.m-message .text {
+.v-m-message .v-text {
     display: inline-block;
     position: relative;
     padding: 0 10px;
@@ -88,9 +88,9 @@
     border-radius: 4px;
     
 }  
-.main .text{float: left;}
-.self .text{float: right!important;}
-.m-message .text:before {
+.v-main .v-text{float: left;}
+.v-self .v-text{float: right!important;}
+.v-m-message .v-text:before {
     content: " ";
     position: absolute;
     top: 9px;
@@ -99,17 +99,17 @@
     border-right-color: #FFFFFF;
 }
        
-.m-message .self {
+.v-m-message .v-self {
     text-align: right;
 }    
-.m-message .self .avatar {
+.v-m-message .v-self .v-avatar {
     float: right;
     margin: 0 0 0 10px;
 }
-.m-message .self .text {
+.v-m-message .v-self .v-text {
     background-color: #2089ff;
 }    
-.m-message .self .text:before {
+.v-m-message .v-self .v-text:before {
     right: inherit;
     left: 100%;
     border-right-color: transparent;

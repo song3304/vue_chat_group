@@ -20,18 +20,18 @@
 </script>
 
 <template>
-    <div class="m-text">
+    <div class="v-m-text">
         <textarea placeholder="" v-model="text"></textarea>
-        <span class="send" @click="inputing">发送</span><span class="history">历史记录<p></p></span>
+        <span class="v-send" @click="inputing">发送</span><span class="v-history">历史记录<p></p></span>
     </div>
 </template>
 
 <style>
-.m-text {
+.v-m-text {
     height: 140px;
     border-top: solid 1px #ddd;
 }    
-.m-text textarea {
+.v-m-text textarea {
     padding: 10px;
     height: 100%;
     width: 100%;

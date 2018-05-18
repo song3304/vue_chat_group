@@ -5,30 +5,30 @@
 </script>
 
 <template>
-    <div class="m-card">
-        <input class="search" type="text" placeholder="搜索"  ><!--v-model="search"-->
+    <div class="v-m-card">
+        <input class="v-search" type="text" placeholder="搜索"  ><!--v-model="search"-->
     </div>
 </template>
 
 <style>
-.m-card {
+.v-m-card {
     padding: 9px;
 }    
-.m-card  footer {
+.v-m-card  footer {
     margin-top:0;
 }    
-.m-card .avatar, .name {
+.v-m-card .v-avatar, .v-name {
     vertical-align: middle;
 }
-.m-card  .avatar {
+.v-m-card  .v-avatar {
     border-radius: 2px;
 }
-.m-card  .name {
+.v-m-card  .v-name {
     display: inline-block;
     margin: 0 0 0 15px;
     font-size: 16px;
 }
-.m-card .search {
+.v-m-card .v-search {
     padding: 0 10px;
     width: 100%;
     font-size: 12px;

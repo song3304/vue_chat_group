@@ -56,14 +56,14 @@
 </script>
 
 <template>
- <div class="m-chat">
-    <div id="chat">
-        <div class="sidebar">
+ <div class="v-m-chat">
+    <div id="v-chat">
+        <div class="v-sidebar">
             <card :user="user" :search.sync="search"></card>
             <list :user-list="userList" :session="session" :session-index.sync="sessionIndex" :search="search"></list>
         </div>
-        <div class="m-na"><span class="m-na-name">小张</span><div class="m-guan" @click="close"><p><span></span></p></div></div>
-        <div class="m-main">       	
+        <div class="v-m-na"><span class="v-m-na-name">小张</span><div class="v-m-guan" @click="close"><p><span></span></p></div></div>
+        <div class="v-m-main">       	
             <message :session="session" :user="user" :user-list="userList"></message> 
             <test :session="session"></test>
         </div>
@@ -72,11 +72,11 @@
 </template>
 
 <style >
-    #chat {
+    #v-chat {
         overflow: hidden;
         border-radius: 3px;
     }           
-   #chat .sidebar {
+   #v-chat .v-sidebar {
         float: left;
         width: 220px;
         color: #f4f4f4;
@@ -84,19 +84,19 @@
         height:540px;
         position: relative;
     }
-   #chat .m-main {
+   #v-chat .v-m-main {
         position: relative;
         overflow: hidden;   
         background-color: #F6F6F6;
         height: 490px;
     }
-   #chat .m-text {
+   #v-chat .v-m-text {
         position: absolute;
         width: 100%;
         bottom: 0;
         left: 0;
     }
-   #chat .m-message {
+   #v-chat .v-m-message {
         height:350px;
     }
    

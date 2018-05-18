@@ -17,7 +17,7 @@ body {
 ul {
     list-style: none;
 }
-#chat {
+#v-chat {
 	position: fixed;
 	left: 50%;
     transform: translateX(-50%);
@@ -29,31 +29,31 @@ ul {
 	height:540px;
 	z-index: 1000;
 }
-#chat .sidebar{
+#v-chat .v-sidebar{
 	background: #EEEEEE;
 }
-.m-text textarea{
+.v-m-text textarea{
 	background: #F6F6F6;
 }
-#chat .m-message{
+#v-chat .v-m-message{
 	background: #F6F6F6;
 }
-.m-message .self .text{
+.v-m-message .v-self .v-text{
 	color: #FFFFFF;
 }
-.m-na{
+.v-m-na{
 	height:49px;
 	border-bottom: 1px solid #DDDDDD;
 	background:#F6F6F6;		
 }
-.m-na-name{
+.v-m-na-name{
 	display: inline-block;
 	line-height: 49px;
 	padding-left:20px;
 	font-size: 16px;
 	float: left;
 }
-.send{
+.v-send{
 	position: absolute;
 	bottom:15px;
 	right:25px;
@@ -66,7 +66,7 @@ ul {
 	cursor: pointer;
 }
 header{display: none;}
-.history{
+.v-history{
 	position: absolute;	
 	top: 8px;
 	right: 15px;
@@ -77,10 +77,10 @@ header{display: none;}
 	font-size: 12px;
 	cursor: pointer;
 }
-.history:hover,.history:active,.history:focus{
+.v-history:hover,.v-history:active,.v-history:focus{
 	background-color: #dddddd;
 }
-.history p{
+.v-history p{
 	display:inline;
 	 width: 0;
     height: 0;
@@ -91,7 +91,7 @@ header{display: none;}
     padding: 0;
     margin:4px 5px 4px  0;
 }
-#chitchat{
+#v-chitchat{
 	position: fixed;
 	bottom:80px;
 	right: 0;
@@ -105,17 +105,17 @@ header{display: none;}
 	text-align: center;
 	cursor: pointer;
 }
-#chitchat p{
+#v-chitchat p{
 	width: 22px;
 	height: 17px;
 	background: url(../images/qie_tu.png) 0 -158px;
 	margin:15px 0 5px 9px;
 }
-#chitchat span{
+#v-chitchat span{
 	font-size: 12px;
 	color: #ffffff;
 }
-.account-l{
+.v-account-l{
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
@@ -123,7 +123,7 @@ header{display: none;}
 	box-shadow: -1px -1px 3px 0px 
 		rgba(42, 42, 42, 0.11);
 }
-#friend{
+#v-friend{
 	position: fixed;
 	bottom: 0;
 	right: 0;
@@ -134,7 +134,7 @@ header{display: none;}
 		rgba(42, 42, 42, 0.11);
 	z-index: 1000;
 }
-.input-search{
+.v-input-search{
 	position: absolute;
 	top:50px;
 	left: 0;
@@ -142,7 +142,7 @@ header{display: none;}
 	height: 100%;
 	background: #F6F6F6;
 }
-.m-touxiang{
+.v-m-touxiang{
 	width: 34px;
 	height: 34px;
 	background-color: #cccccc;
@@ -152,12 +152,12 @@ header{display: none;}
 	margin-top:7px;
 	margin-left:15px;
 }
-.m-touxiang img{
+.v-m-touxiang img{
 	border-radius: 50%;	
 	width: 100%;
 	height: 100%;
 }
-.m-phone-input{
+.v-m-phone-input{
 	display: none;
 	margin-top:15px;
 	margin-left: 10px;
@@ -165,14 +165,14 @@ header{display: none;}
 	top: 0;
 	left:45px;
 }
-.m-phone-img{
+.v-m-phone-img{
 	display:none;
 	width: 12px;
 	height: 12px;
 	background: url(../images/qie_tu.png) -4px -106px;
 	cursor: pointer;
 }
-#search{
+#v-search{
 	width: 146px;
 	height: 26px;
 	border: solid 1px #cccccc;
@@ -181,20 +181,20 @@ header{display: none;}
 	background: #5c6d9d;
 	color: #CCCCCC;
 }
-#search::-webkit-input-placeholder { /* WebKit browsers */ 
+#v-search::-webkit-input-placeholder { /* WebKit browsers */ 
 		color: #CCCCCC; 
 	} 
-#search:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+#v-search:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
 		color: #CCCCCC; 
 	} 
-#search::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+#v-search::-moz-placeholder { /* Mozilla Firefox 19+ */ 
 		color: #CCCCCC; 
 	} 
-#search:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+#v-search:-ms-input-placeholder { /* Internet Explorer 10+ */ 
 		color: #CCCCCC; 
 	} 
 
-.m-search div{
+.v-m-search div{
 	position: absolute;
 	top: 12px;
 	right:100px;
@@ -203,40 +203,40 @@ header{display: none;}
 	background:url(../images/qie_tu.png) -4px -79px  no-repeat;
 	cursor: pointer;
 }
-.m-search{
+.v-m-search{
 	height: 50px;
 	border-bottom:1px solid #eeeeee;
 	position: relative;
 	background: #5c6d9d;
 }
-.m-guan{float: right;margin-top: 10px;}
-.m-search p,.m-guan p{float:right;width: 20px;height: 20px;cursor: pointer;text-align: center;margin: 10px 10px 0 0;}
-.m-search span,.m-guan span{
+.v-m-guan{float: right;margin-top: 10px;}
+.v-m-search p,.v-m-guan p{float:right;width: 20px;height: 20px;cursor: pointer;text-align: center;margin: 10px 10px 0 0;}
+.v-m-search span,.v-m-guan span{
 	display: inline-block;
 	width:15px;
 	height:15px;
 	background: url(../images/qie_tu.png) -4px -131px;
 }
-.fa-chevron-down:before{
+.v-fa-chevron-down:before{
 	color: #a4a4a4;
 }
 
-.m-list .avatar{
+.v-m-list .v-avatar{
 	width: 40px;
 	height: 40px;
 	border-radius: 50%!important;
 	float: left;
 	margin:5px 0 0 10px;
 }
-.m-list .name{margin:7px 0 0 5px;font-size: 14px;text-align: left;color: #333333;}
-.m-list li{position: relative;height: 50px;cursor: pointer;}
-.m-list li:hover .delet-li{
+.v-m-list .v-name{margin:7px 0 0 5px;font-size: 14px;text-align: left;color: #333333;}
+.v-m-list li{position: relative;height: 50px;cursor: pointer;}
+.v-m-list li:hover .v-delet-li{
 	display: block;
 }
-.m-list img{
+.v-m-list img{
 	float: left;
 }
-.m-list-del{
+.v-m-list-del{
 	float: left;
 	position: relative;
 	margin-top:8px;
@@ -244,8 +244,8 @@ header{display: none;}
 	height:35px;
 	text-align: center;
 }
-.m-list-del p{height: 15px;color: #999999;}
-.m-list-del .m-list-del-num{
+.v-m-list-del p{height: 15px;color: #999999;}
+.v-m-list-del .v-m-list-del-num{
 	margin-top:5px;
 	display: inline-block;
     border-radius: 50%;
@@ -256,8 +256,8 @@ header{display: none;}
     height: 14px;
     line-height: 13px;
 }
-.m-cs-cs{float: left;width: 100px;}
-.m-xiang{
+.v-m-cs-cs{float: left;width: 100px;}
+.v-m-xiang{
 	margin:3px 0 0 5px;
 	width:124px;
 	text-align: left;
@@ -266,14 +266,14 @@ header{display: none;}
 	white-space: nowrap;
 	color: #999999;
 }
-.m-time{
+.v-m-time{
 	position: absolute;
 	right:10px;
 	top:15px;
 	font-size: 12px;
 	color: #999999;
 }
-.m-num{
+.v-m-num{
 	position: absolute;
 	right:10px;
 	top:39px;
@@ -286,7 +286,7 @@ header{display: none;}
 	height: 14px;
     line-height:13px;
 }
-.delet-li{
+.v-delet-li{
 	position: absolute;
 	right:12px;
 	top:20px;
@@ -297,14 +297,14 @@ header{display: none;}
 	display:none;
 	z-index: 3;
 }
-.delet-li:hover{
+.v-delet-li:hover{
 	background:#EEEEEE url(../images/qie_tu.png) -3px -21px;
 }
-.submenu-name{cursor: pointer;}
+.v-submenu-name{cursor: pointer;}
 /*.submenu-name .m-phone-img{display: none;}*/
-.submenu-name:hover .m-phone-img{display: inline-block;}
+.v-submenu-name:hover .v-m-phone-img{display: inline-block;}
 /*历史记录*/
-#history{
+#v-history{
 	width: 550px;
 	height: 680px;
 	background-color: #f6f6f6;
@@ -318,22 +318,22 @@ header{display: none;}
 	top:5%;
 	z-index: 1000;
 }
-.his-guan{
+.v-his-guan{
 	margin-top:10px;
 	padding: 0 10px;
 	font-size: 14px;
 	color: #999999;
 }
-.his-guan p{float:right;width:30px;height: 20px;cursor: pointer;text-align: center;margin:-5px 10px 0 0;background: red;}
-.his-guan img{
+.v-his-guan p{float:right;width:30px;height: 20px;cursor: pointer;text-align: center;margin:-5px 10px 0 0;background: red;}
+.v-his-guan img{
 	margin-top:6px;
 }
-.his-main{
+.v-his-main{
 	margin-top: 10px;
 	height:640px;
 	overflow-y:scroll;
 }
-.title-text span {
+.v-title-text span {
     display: block;      /*设置为块级元素会独占一行形成上下居中的效果*/
     position: relative;  /*定位横线（当横线的父元素）*/
     color: #666666;      /*居中文字的颜色*/
@@ -341,7 +341,7 @@ header{display: none;}
     font-size: 12px;
     font-size: 10px;
 } 
-.title-text span:before, .title-text span:after { 
+.v-title-text span:before, .v-title-text span:after { 
     content: ''; 
     position: absolute;   /*定位背景横线的位置*/
     top: 50%; 
@@ -349,37 +349,37 @@ header{display: none;}
     width: 30%;            /*单侧横线的长度*/
     height: 1px; 
 } 
-.title-text span:before { 
+.v-title-text span:before { 
     left:8%;              /*调整背景横线的左右距离*/
 } 
-.title-text span:after { 
+.v-title-text span:after { 
     right:8%; 
 }
-.his-main li{
+.v-his-main li{
 	padding-left:23px;
 	margin-top:10px;
 	text-align:left;
 	padding-left: 45px;
 }
-.oppo-title{
+.v-oppo-title{
 	font-size: 12px;
 	color: #24a846;
 }
-.oppo-xiang{
+.v-oppo-xiang{
 	margin-top:3px;
 	font-size: 14px;
 	color: #333333;
 }
-.one-title{
+.v-one-title{
 	font-size: 12px;
 	color: #2089ff;
 }
-.one-xiang{
+.v-one-xiang{
 	margin-top:3px;
 	font-size: 14px;
 	color: #333333;
 }
-.baoliu{
+.v-baoliu{
 	text-align: center;
 	margin:20px auto 20px auto;
 	width:416px;
@@ -389,29 +389,29 @@ header{display: none;}
 	background:#e8e8e8;
 	line-height: 22px;
 }
-.m-list{
+.v-m-list{
 	height: 490px;
 	width: 220px;
 	overflow: auto;
 }
-.outer-container,.content {
+.v-outer-container,.v-content {
     width:220px;
 }
-.outer-container {
+.v-outer-container {
     position: relative;
 }
-.m-list {
+.v-m-list {
     position: absolute; left: 0;
     overflow-x: hidden;
     overflow-y: scroll;
 }
  
  /* for Chrome */
-.m-list::-webkit-scrollbar {
+.v-m-list::-webkit-scrollbar {
     display: none;
 }
 /*滤镜*/
-.gray { 
+.v-gray { 
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
@@ -420,7 +420,7 @@ header{display: none;}
     filter: gray;
 }
 /*列表来信息,动画*/
-.accordion_li{
+.v-accordion_li{
 	animation:fadetoggle 1s infinite linear;
 	-webkit-animation:fadetoggle 1s infinite linear;
 	-moz-animation:fadetoggle 1s infinite linear;;
@@ -432,39 +432,39 @@ header{display: none;}
 }
 
 /*切换*/
-.active{
+.v-active{
     background: #DDDDDD;
 }
-.tabs{
+.v-tabs{
     width: 200px;
     height: 20px;
     font:0;
     padding:0;
 }
-.li-tab{
+.v-li-tab{
     width: 50%;
     height: 100%;
     display:inline-block;
     text-align: center;
 }
-.divTab{
+.v-divTab{
     width: 200px;height: 300px;
 }
 /*列表来消息动画*/
-#accordion li .link{position: relative;}
-#accordion li .link.animate{animation: ani 800ms;}
+#v-accordion li .v-link{position: relative;}
+#v-accordion li .v-link.v-animate{animation: ani 800ms;}
 @keyframes ani{
     0% {opacity:1;}
    	70% {opacity:0;}
 }
 /*分组切换*/
-.m_lei{
+.v-m_lei{
 	height: 30px;
 	border-bottom: 1px solid #CCCCCC;
 	margin: 0 10px;
 	position: relative;
 }
-.m_lei>li{
+.v-m_lei>li{
 	float: left;
 	width: 70px;
 	text-align: center;
@@ -472,15 +472,15 @@ header{display: none;}
 	height: 30px;
 	cursor: pointer;
 }
-.m-active{
+.v-m-active{
 	border-bottom: 1px solid #1a517d;
 }
-.m-add{
+.v-m-add{
 	position: absolute;
 	top:5px;
 	right:10px;
 }
-.m-add p{
+.v-m-add p{
 	width: 18px;
 	height: 18px;
 	background-color: #dddddd;
@@ -489,7 +489,7 @@ header{display: none;}
 	line-height:16px;
 	cursor: pointer;
 }
-.m-add ul{
+.v-m-add ul{
 	position: absolute;
 	top:20px;
 	right:-20px;
@@ -500,27 +500,27 @@ header{display: none;}
 		rgba(42, 42, 42, 0.2);
 	z-index: 2;
 }
-.m-add ul li{
+.v-m-add ul li{
 	padding-left: 10px;
 	height:23px;
 	line-height: 23px;
 	cursor:pointer;
 }
-.m-add ul .fen-active{
+.v-m-add ul .v-fen-active{
 	background-color: #40b1ec;
 	color: #FFFFFF;
 }
-#qun-fen>div{
+#v-qun-fen>div{
 	background: #FFFFFF;
 	margin: 10px 5px 0 5px;
 	text-align: left;
 }
-#qun-fen>div p{
+#v-qun-fen>div p{
 	color: #1a517d;
 	padding:5px 0 5px 12px;
 }
 /*创建分组弹窗*/
-.fen_zu{
+.v-fen_zu{
 	width: 490px;
 	height: 410px;
 	background-color: #f6f6f6;
@@ -534,26 +534,26 @@ header{display: none;}
 	-moz-transform: translateX(-50%);
 	    z-index: 1000;
 }
-.fen_zu_title{
+.v-fen_zu_title{
 	height: 30px;
 	background-color: #5c6d9d;
 }
-.fen_zu_title>span{font-size: 13px;color: #ffffff;display: inline-block;line-height: 30px;padding-left: 10px;}
-.fen_zu_title p{float:right;width: 30px;height: 30px;cursor: pointer;}
-.fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -131px;text-align: center;margin-top: 7px;}
-.fenzu_left{width: 250px!important;height: 350px;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
-.fenzu_left>ul{
+.v-fen_zu_title>span{font-size: 13px;color: #ffffff;display: inline-block;line-height: 30px;padding-left: 10px;}
+.v-fen_zu_title p{float:right;width: 30px;height: 30px;cursor: pointer;}
+.v-fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -131px;text-align: center;margin-top: 7px;}
+.v-fenzu_left{width: 250px!important;height: 350px;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
+.v-fenzu_left>ul{
 	width: 270px;
 	overflow-y: scroll;
 	overflow-x:hidden;
 	height: 350px;
 }
-.fenzu_right{width: 240px;float: right;height: 350px;overflow:hidden;}
-.fenzu_left_input{width: 170px;height: 21px;border: solid 1px #e9e9e9;margin:10px 0 12px 30px;padding-left: 20px;background:#ffffff url(../images/qie_tu.png) -1px -82px no-repeat;}
-.fenzu_right_ul{width:240px;height: 315px;overflow-y: scroll;}
-.fenzu_right_ul li{height:45px;}
-.fenzu_right_ul li a{display: inline-block;margin:16px 0 0 10px;color: #666666;}
-.fenzu_right_ul li span{
+.v-fenzu_right{width: 240px;float: right;height: 350px;overflow:hidden;}
+.v-fenzu_left_input{width: 170px;height: 21px;border: solid 1px #e9e9e9;margin:10px 0 12px 30px;padding-left: 20px;background:#ffffff url(../images/qie_tu.png) -1px -82px no-repeat;}
+.v-fenzu_right_ul{width:240px;height: 315px;overflow-y: scroll;}
+.v-fenzu_right_ul li{height:45px;}
+.v-fenzu_right_ul li a{display: inline-block;margin:16px 0 0 10px;color: #666666;}
+.v-fenzu_right_ul li span{
 	display: inline-block;
 	width: 14px;
 	height: 14px;
@@ -561,15 +561,15 @@ header{display: none;}
 	float: right;
 	margin:20px 20px 0 0;
 }
-.fenzu_right>p{
+.v-fenzu_right>p{
 	color: #999999;
 	padding:15px 0 5px 15px;
 }
-.fenzu_footer,.fenzu_name_footer{
+.v-fenzu_footer,.v-fenzu_name_footer{
 	height: 30px;
 	background-color: #e4e4e4;
 }
-.fenzu_footer span,.fenzu_footer button,.fenzu_name_footer span ,.fenzu_name_footer button{
+.v-fenzu_footer span,.v-fenzu_footer button,.v-fenzu_name_footer span ,.v-fenzu_name_footer button{
 	text-align: center;
 	line-height:24px;
 	margin-top:3px;
@@ -577,24 +577,24 @@ header{display: none;}
 	width: 70px;
 	height: 24px;
 }
-.fenzu_footer button{
+.v-fenzu_footer button{
 	background-color: #40b1ec;
 	border: solid 1px #dddddd;
 	color: #FFFFFF;
 	margin-left: 300px;
 }
-.fenzu_footer button:hover,.fenzu_name_footer button:hover{
+.v-fenzu_footer button:hover,.v-fenzu_name_footer button:hover{
 	background-color:#2ca0dc;
 }
-.fenzu_footer span,.fenzu_name_footer span{
+.v-fenzu_footer span,.v-fenzu_name_footer span{
 	display: inline-block;	
 	background-color: #f6f6f6;
 	border: solid 1px #dddddd;
 	color: #666666;
 	margin-left:20px;
 }
-.fenzu_footer span:hover,.fenzu_name_footer span:hover{background-color: #eaeaea;}
-.fenzu_name{
+.v-fenzu_footer span:hover,.v-fenzu_name_footer span:hover{background-color: #eaeaea;}
+.v-fenzu_name{
 	width: 330px;
 	height: 152px;
 	background-color: #f6f6f6;
@@ -605,15 +605,15 @@ header{display: none;}
 	left:60px;
 	display: none;
 }
-.fenzu_name .fenzu_name_na{color: #666666;padding: 20px 0 5px 25px;}
-.fenzu_name input{
+.v-fenzu_name .v-fenzu_name_na{color: #666666;padding: 20px 0 5px 25px;}
+.v-fenzu_name input{
 	width: 280px;
 	height: 26px;
 	background-color: #eeeeee;
 	border: solid 1px #dddddd;
 	margin: 0 0 25px 25px;
 }
-.fenzu_name_footer button{
+.v-fenzu_name_footer button{
 	background-color: #40b1ec;
 	border: solid 1px #dddddd;
 	color: #FFFFFF;
@@ -627,29 +627,29 @@ input[type='radio'],input[type='checkbox']{
 	opacity: 0;
 
 }
-.input_style{
+.v-input_style{
 	background: url(../images/green.png) no-repeat;
 	width: 20px;
 	height: 20px;
 	display: inline-block;
 }
-.radio_bg{
+.v-radio_bg{
 	background-position: -118px 0 ;
 }
-.checkbox_bg{
+.v-checkbox_bg{
 	background-position:-120px 0;
 	float: right;
 	margin: 15px 10px 0 0;
 }
-.radio_bg_check{
+.v-radio_bg_check{
 	background-position: -166px 0 ;
 }
-.checkbox_bg_check{
+.v-checkbox_bg_check{
 	background-position: -168px 0;
 }
-.submenu-name-div{display: inline-block;}
-.fenzu_left_ul>li{position: relative;}
-.fenzu_left_ul>li>.check-all{
+.v-submenu-name-div{display: inline-block;}
+.v-fenzu_left_ul>li{position: relative;}
+.v-fenzu_left_ul>li>.v-check-all{
 	width: 15px;
 	height: 15px;
 	border: solid 1px #999999;
@@ -661,11 +661,11 @@ input[type='radio'],input[type='checkbox']{
 	line-height:10px;
 	display: none;
 }
-.fenzu_left_ul>li:hover .check-all{
+.v-fenzu_left_ul>li:hover .v-check-all{
 	display: block;
 }
-#chat_app{width: 100%;height: 100%;}
-.v-xuan-fen,.m-chat{
+#v-chat_app{width: 100%;height: 100%;}
+.v-xuan-fen,.v-m-chat{
 	width: 100%;
 	height: 100%;
 	background: rgba(0,0,0,0.2);

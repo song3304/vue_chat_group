@@ -1,23 +1,23 @@
 <template>
-	<div id="friend">
-	    <div class="m-search">
-	      <input type="text" id="search" placeholder="查找联系人" @keyup.enter="search" />
+	<div id="v-friend">
+	    <div class="v-m-search">
+	      <input type="text" id="v-search" placeholder="查找联系人" @keyup.enter="search" />
 	      <div @click="search"></div>
 	      <p><span @click="close"></span></p>
 	    </div>
-	    <div class="account-l fl">
+	    <div class="v-account-l v-fl">
 	      <!--切换-->
-	      <ul class="m_lei">
-	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" :class="{'m-active':index == activeIndex}">
+	      <ul class="v-m_lei">
+	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" :class="{'v-m-active':index == activeIndex}">
 				<img v-show="index!=activeIndex" :src="item.imgSrc" alt="" />
 				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />				
 			</li>
 	        <!--<li class=" {current_active == 'company'?'m-active':''}" @click="choose('company');clickTab(index)"><img src="../images/m-chat.png" /><img src="../images/chat.png" /></li>
 	        <li class=" {current_active == 'group'?'m-active':''}" @click="choose('group');clickTab(index)"><img src="../images/group.png" /><img src="../images/m-group.png" /></li>-->
-	        <div class="m-add">
+	        <div class="v-m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
-	            <li class="fen-active" @click="createGroup('common')">创建新组</li>
+	            <li class="v-fen-active" @click="createGroup('common')">创建新组</li>
 	            <li @click="createGroup('group')">创建群发组</li>	            
 	          </ul>
 	        </div>
@@ -25,12 +25,12 @@
 	      <!--个人组-->
 	      <companyPanel v-show="panelShow.companyShow" :user="user" :userList="userList" :companyList="companyList"></companyPanel>
 	      <!--//群组-->
-	      <div id="qun-fen" class="accordion qie_div" v-show="panelShow.groupShow">
-	        <div class="qunfen_yi">
+	      <div id="v-qun-fen" class="v-accordion qie_div" v-show="panelShow.groupShow">
+	        <div class="v-qunfen_yi">
 	          <p>普通组</p>
 	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common"></groupPanel>
 	        </div>
-	        <div class="qunfen_er">
+	        <div class="v-qunfen_er">
 	          <p>群发组</p>
 	          <groupPanel group_type="group" :user="user" :userList="userList" :companyList="groupList.groupHair"></groupPanel>
 	        </div>
@@ -90,7 +90,7 @@ export default {
     search: function(event) {
 //    this.panelShow.companyShow = false;
 //    this.panelShow.groupShow = false;
-	  var searchKey = $('#search').val()
+	  var searchKey = $('#v-search').val()
 	  if(searchKey == '') return
 	  for(var uid in this.userList){
         var item = this.userList[uid]

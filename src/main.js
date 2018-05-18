@@ -6,7 +6,6 @@ import router from './router'
 import $ from 'jquery'
 // import VueSocketio from 'vue-socket.io'
 import 'font-awesome/css/font-awesome.css'
-import VueClipboard from 'vue-clipboard2'
 
 import './js/leftnav.js'
 
@@ -65,7 +64,7 @@ new Vue({
   // 发送emit用:this.$scoket.emit(key,val)
   // },
   components: {friendList, chatdialog, historylist, groupdialog},
-  template: `<div id="chat_app"><div id="chitchat" @click="firstopen()">
+  template: `<div id="chat_app"><div id="v-chitchat" @click="firstopen()">
 		      <p></p>
 		      <span>私信<br>聊天</span>
 		    </div>
