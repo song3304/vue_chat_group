@@ -56,6 +56,7 @@
 </script>
 
 <template>
+ <div class="m-chat">
     <div id="chat">
         <div class="sidebar">
             <card :user="user" :search.sync="search"></card>
@@ -66,6 +67,7 @@
             <message :session="session" :user="user" :user-list="userList"></message> 
             <test :session="session"></test>
         </div>
+    </div>
     </div>
 </template>
 
