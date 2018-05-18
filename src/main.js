@@ -91,7 +91,9 @@ new Vue({
       // 通过sockectio,提交过去
     },
     // 打开对话框
-    openTalk: function (data) {},
+    openTalk: function (uid) {
+      this.panel_show.is_dialog_show = true
+    },
     closePanel: function (data) {
       this.panel_show = data
     },

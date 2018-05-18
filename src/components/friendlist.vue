@@ -23,16 +23,16 @@
 	        </div>
 	      </ul>
 	      <!--个人组-->
-	      <companyPanel v-show="panelShow.companyShow" :user="user" :userList="userList" :companyList="companyList"></companyPanel>
+	      <companyPanel v-show="panelShow.companyShow" :user="user" :userList="userList" :companyList="companyList" @openChartEvent="openChat"></companyPanel>
 	      <!--//群组-->
 	      <div id="qun-fen" class="accordion qie_div" v-show="panelShow.groupShow">
 	        <div class="qunfen_yi">
 	          <p>普通组</p>
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common"></groupPanel>
+	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat"></groupPanel>
 	        </div>
 	        <div class="qunfen_er">
 	          <p>群发组</p>
-	          <groupPanel group_type="group" :user="user" :userList="userList" :companyList="groupList.groupHair"></groupPanel>
+	          <groupPanel group_type="group" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat"></groupPanel>
 	        </div>
 	      </div>
 	    </div>
@@ -91,14 +91,17 @@ export default {
 //    this.panelShow.companyShow = false;
 //    this.panelShow.groupShow = false;
 	  var searchKey = $('#search').val()
-	  if(searchKey == '') return
-	  for(var uid in this.userList){
+	  if(searchKey == ''){
+	  	this.panelShow.searchShow = false
+	  }else{
+	  	for(var uid in this.userList){
         var item = this.userList[uid]
         if (item.name.indexOf(searchKey) > -1) {
           this.searchList.push(item);
         }
       }
-      this.panelShow.searchShow = true;
+      this.panelShow.searchShow = true
+	  }
     },
     // 关闭事件
     close: function(event) {
@@ -109,8 +112,6 @@ export default {
         is_group_show: false,
       });
       this.panelShow.searchShow = false;
-//    this.panelShow.groupShow = false;
-//    this.panelShow.companyShow = true;
     },
     // 切换
 //  choose: function(type) {
@@ -131,6 +132,9 @@ export default {
 //    this.panelShow.groupShow = false;
       this.$emit('openGroupEvent', type);
       this.groupShow=false;
+    },
+    openChat: function(uid) {
+    	this.$emit('openTalkEvent', uid);  	
     },
     toggle(){
     	this.groupShow=!this.groupShow;

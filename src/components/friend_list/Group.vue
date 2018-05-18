@@ -23,6 +23,9 @@ export default {
       //回传提交保存
 
       $(el).hide()
+    },
+    openChat: function(uid) {
+      this.$emit('openChartEvent', uid);
     }
   }
   // filters: {
@@ -38,8 +41,8 @@ export default {
     <li v-for="companyItem in companyList" :class="{'accordion_li': companyItem.isCalling}">
         <div class="link"><i class="fa fa-caret-right"></i><span class="first_title ">{{companyItem.groupName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
         <ul class="submenu submenu_ul ">
-          <li v-for="userItem in companyItem.userIds" class="submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" >
-            <div :class="{'m-touxiang':!userItem.isCalling,'m-touxiang touxiang':userItem.isCalling}"> <!--有消息头像动加类名 touxiang-->
+          <li v-for="userItem in companyItem.userIds" class="submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)">
+            <div :class="{'m-touxiang':!userList[userItem].isCalling,'m-touxiang touxiang':userList[userItem].isCalling}"> <!--有消息头像动加类名 touxiang-->
               <img :src="userList[userItem].img" alt=" " class="{ 'gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               <!--//不在线，添加class=gray-->
             </div>
