@@ -11,14 +11,14 @@
 				<li v-for="companyItem in companyList" :class="{'accordion_li': companyItem.isCalling}">
 			        <div class="link"><i class="fa fa-caret-right"></i><span class="first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
 			        <ul class="submenu submenu_ul ">
-			          <li v-for="userItem in companyItem.userList " class="submenu-name " @mouseover="mouseOver " @mouseout="mouseOut ">
-			            <div class="m-touxiang {userItem.isCalling? ' touxiang': ''} "> <!--有消息头像动加类名 touxiang-->
-			              <img :src="userItem.img" alt=" " ：class="{ 'gray':!userItem.isOnline} "/><!--class="gray "-->
+			          <li v-for="userItem in companyItem.userIds " class="submenu-name " @mouseover="mouseOver " @mouseout="mouseOut ">
+			            <div class="m-touxiang {userList[userItem].isCalling? ' touxiang': ''} "> <!--有消息头像动加类名 touxiang-->
+			              <img :src="userList[userItem].img" alt=" " class="{ 'gray':!userList[userItem].isOnline} "/><!--class="gray "-->
 			              <!--//不在线，添加class=gray-->
 			            </div>
-			            <a>{{userItem.name}}</a>
+			            <a>{{userList[userItem].name}}</a>
 			            <span class="m-phone-img" @click="changeName "></span>
-			            <input class="m-phone-input" type="text" v-model="userItem.name" data-uid="userItem.id"  placeholder="userItem.name" @blur="modifyUserName "/>
+			            <input class="m-phone-input" type="text" v-model="userList[userItem].name" :data-uid="userList[userItem].id"  :placeholder="userList[userItem].name" @blur="modifyUserName "/>
 			          </li>
 			        </ul>
 			      </li>
