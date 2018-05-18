@@ -31,8 +31,8 @@ new Vue({
     // 控制面板是否显示
     panel_show: {
       is_friend_show: false,
-      is_dialog_show: false,
-      is_history_show: false,
+      is_dialog_show: true,
+      is_history_show: true,
       is_group_show: false
     },
     // 登录用户
@@ -69,8 +69,8 @@ new Vue({
 		      <span>私信<br>聊天</span>
 		    </div>
 		     <friendList v-show="panel_show.is_friend_show" v-bind:user="user" v-bind:userList="userList" v-bind:companyList="companyList" v-bind:groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" ></friendList>
-		    <chatdialog v-show="panel_show.is_dialog_show" v-bind:user="user" v-bind:sessionList="sessionList"></chatdialog>
-		    <historylist v-show="panel_show.is_history_show" v-bind:user="user" v-bind:historyList="historyList" v-bind:historyUid="historyUid"></historylist>
+		    <chatdialog v-show="panel_show.is_dialog_show" v-bind:user="user" v-bind:sessionList="sessionList" @closeEvent="closePanel"></chatdialog>
+		    <historylist v-show="panel_show.is_history_show" v-bind:user="user" v-bind:historyList="historyList" v-bind:historyUid="historyUid" ></historylist>
 				<groupdialog v-show="panel_show.is_group_show" v-bind:user="user" v-bind:userList="userList" v-bind:companyList="companyList" v-bind:groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
     // 初始化数据

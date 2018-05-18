@@ -1,8 +1,8 @@
 <template>
-	<div id="history">
+	<div id="history" >
 		<div class=his-guan>
 			<span>小王</span>
-			<p class="his-hide"><img src="../images/baise-x.png" alt="" /></p>
+			<p class="his-hide" ><img src="../images/baise-x.png" alt="" /></p>
 		</div>
 		<ul class="his-main">
 			<div class="baoliu">为您保留一周的聊天记录</div>
@@ -30,8 +30,12 @@ export default {
   name: 'HistoryList',
   data () {
     return {
+    	
       //msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  methods:{
+	    
+	}
 }
 </script>

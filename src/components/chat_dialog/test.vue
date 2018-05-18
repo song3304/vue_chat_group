@@ -13,7 +13,8 @@
 					date: new Date,
 					self: !0
 				}), this.text = ""
-			}
+			},
+			
         }
     };
 </script>

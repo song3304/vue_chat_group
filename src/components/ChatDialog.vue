@@ -42,6 +42,14 @@
         },
         components: {
             card,list,test,message
+        },
+        methods:{
+		    close: function() {
+		      this.$emit('closeEvent', {
+		        is_dialog_show: false,
+		        is_history_show: false,
+		      });
+		    },
         }
     };
 
@@ -53,7 +61,7 @@
             <card :user="user" :search.sync="search"></card>
             <list :user-list="userList" :session="session" :session-index.sync="sessionIndex" :search="search"></list>
         </div>
-        <div class="m-na"><span class="m-na-name">小张</span><div class="m-guan"><p><span></span></p></div></div>
+        <div class="m-na"><span class="m-na-name">小张</span><div class="m-guan" @click="close"><p><span></span></p></div></div>
         <div class="m-main">       	
             <message :session="session" :user="user" :user-list="userList"></message> 
             <test :session="session"></test>
