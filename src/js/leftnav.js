@@ -4,7 +4,7 @@ $(function() {
 		this.multiple = multiple || false;
 
 		// Variables privadas
-		var links = this.el.find('.v-link');
+		var links = this.el.find('.vu_link');
 		// Evento
 		links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
 	};
@@ -15,63 +15,63 @@ $(function() {
 		var	$next = $this.next(); 
 
 		$next.slideToggle();
-		$this.parent().toggleClass('v-open');
+		$this.parent().toggleClass('vu_open');
 
 		if (!e.data.multiple) {
-			$el.find('.v-submenu').not($next).slideUp().parent().removeClass('v-open');
+			$el.find('.vu_submenu').not($next).slideUp().parent().removeClass('vu_open');
 		}
 	};
-	var accordion = new Accordion($('#v-accordion'), false);
-	var accordi = new Accordion($('#v-qun-fen'), false);
-	var accor = new Accordion($('.v-fenzu_left'), false);
+	var accordion = new Accordion($('#vu_accordion'), false);
+	var accordi = new Accordion($('#vu_qun-fen'), false);
+	var accor = new Accordion($('.vu_fenzu_left'), false);
 	$('.submenu li').click(function () {
-		$(this).addClass('current').siblings('li').removeClass('v-current');
+		$(this).addClass('current').siblings('li').removeClass('vu_current');
 	});
 });
-$(document).on('click','.v-m-add ul li',function(){
+$(document).on('click','.vu_m-add ul li',function(){
 	var va=$(this).text();
-	$('.v-fen_zu_title>span').text(va);
-	$('.v-m-add ul li').attr('class','');
-	$(this).attr('class','v-fen-active');	
+	$('.vu_fen_zu_title>span').text(va);
+	$('.vu_m-add ul li').attr('class','');
+	$(this).attr('class','vu_fen-active');	
 });	
 var num;
 $(function() {
-    $(".v-submenu li i").click(function() {
+    $(".vu_submenu li i").click(function() {
     	
-    	if($(this).is('.v-checkbox_bg_check')){
-    		$(this).removeClass('v-checkbox_bg_check');
+    	if($(this).is('.vu_checkbox_bg_check')){
+    		$(this).removeClass('vu_checkbox_bg_check');
     	}else{     		
-			$(this).addClass('v-checkbox_bg_check');
+			$(this).addClass('vu_checkbox_bg_check');
     		var clone = $(this).parent().clone();          
 	        clone.append("<span></span>").find("span").click(function () {
 	            $(this).parent().remove("li");
-	            num=$('.v-fenzu_right_ul li').length;
-	            $('.v-fenzu_right p span').text(num);
+	            num=$('.vu_fenzu_right_ul li').length;
+	            $('.vu_fenzu_right p span').text(num);
 	        });
-	        $(".v-fenzu_right_ul").append(clone);
-	        num=$('.v-fenzu_right_ul li').length;
-	    	$('.v-fenzu_right p span').text(num);
-	    	$('.v-fenzu_right_ul li i').remove();
+	        $(".vu_fenzu_right_ul").append(clone);
+	        num=$('.vu_fenzu_right_ul li').length;
+	    	$('.vu_fenzu_right p span').text(num);
+	    	$('.vu_fenzu_right_ul li i').remove();
     	};    			        
     });
 });
-$(document).on('click','.v-check-all',function(){	
-	if($(this).is('.v-remove-all')||$(this).prev().children().children('i').is('.v-checkbox_bg_check')){
-		$(this).prev().children().children('i').removeClass('v-checkbox_bg_check');
-		$(this).removeClass('v-remove-all');
+$(document).on('click','.vu_check-all',function(){	
+	if($(this).is('.vu_remove-all')||$(this).prev().children().children('i').is('.vu_checkbox_bg_check')){
+		$(this).prev().children().children('i').removeClass('vu_checkbox_bg_check');
+		$(this).removeClass('vu_remove-all');
 	}else{
-		$(this).addClass('v-remove-all');
-		$(this).prev().children().children('i').addClass('v-checkbox_bg_check');
+		$(this).addClass('vu_remove-all');
+		$(this).prev().children().children('i').addClass('vu_checkbox_bg_check');
 		var clone = $(this).prev().children().clone();          
 	    clone.append("<span></span>").find("span").click(function () {
 	        $(this).parent().remove("li");
-	        num=$('.v-fenzu_right_ul li').length;
-	        $('.v-fenzu_right p span').text(num);
+	        num=$('.vu_fenzu_right_ul li').length;
+	        $('.vu_fenzu_right p span').text(num);
 	    });
-        $(".v-fenzu_right_ul").append(clone);
-        num=$('.v-fenzu_right_ul li').length;
-    	$('.v-fenzu_right p span').text(num);
-    	$('.v-fenzu_right_ul li i').remove();
+        $(".vu_fenzu_right_ul").append(clone);
+        num=$('.vu_fenzu_right_ul li').length;
+    	$('.vu_fenzu_right p span').text(num);
+    	$('.vu_fenzu_right_ul li i').remove();
 	}
 	
 	

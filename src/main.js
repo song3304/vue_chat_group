@@ -7,6 +7,7 @@ import $ from 'jquery'
 // import VueSocketio from 'vue-socket.io'
 import 'font-awesome/css/font-awesome.css'
 
+
 import './js/leftnav.js'
 
 Vue.config.productionTip = false
@@ -64,7 +65,7 @@ new Vue({
   // 发送emit用:this.$scoket.emit(key,val)
   // },
   components: {friendList, chatdialog, historylist, groupdialog},
-  template: `<div id="chat_app"><div id="v-chitchat" @click="firstopen()">
+  template: `<div id="chat_app"><div id="vu_chitchat" @click="firstopen()">
 		      <p></p>
 		      <span>私信<br>聊天</span>
 		    </div>
@@ -91,7 +92,9 @@ new Vue({
       // 通过sockectio,提交过去
     },
     // 打开对话框
-    openTalk: function (data) {},
+    openTalk: function (uid) {
+      this.panel_show.is_dialog_show = true
+    },
     closePanel: function (data) {
       this.panel_show = data
     },

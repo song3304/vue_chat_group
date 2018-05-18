@@ -1,26 +1,26 @@
 <template>
-	<div id="v-history" v-show="hisopen">
-		<div class="v-his-guan">
+	<div id="vu_history" v-show="hisopen">
+		<div class="vu_his-guan">
 			<span>小王</span>
-			<p class="v-his-hide" @click="close"><img src="../images/baise-x.png" alt="" /></p>
+			<p class="vu_his-hide" @click="close"><img src="../images/baise-x.png" alt="" /></p>
 		</div>
-		<ul class="v-his-main">
-			<div class="v-baoliu">为您保留一周的聊天记录</div>
+		<ul class="vu_his-main">
+			<div class="vu_baoliu">为您保留一周的聊天记录</div>
 			<!--//时间-->
-			<div class="v-title">
-	            <p class="v-title-text"><span>2018-05-07</span></p>
+			<div class="vu_title">
+	            <p class="vu_title-text"><span>2018-05-07</span></p>
 	            </div>
 			<!--对方信息-->
-			<li class="v-opposite">
-				<p class="v-oppo-title">小王 14:20:20</p>
-				<p class="v-oppo-xiang">我是小王</p>
+			<li class="vu_opposite">
+				<p class="vu_oppo-title">小王 14:20:20</p>
+				<p class="vu_oppo-xiang">我是小王</p>
 			</li>
 			<!--自己信息-->
-			<li class="v-oneself">
-				<p class="v-one-title">自己 14:33:20</p>
-				<p class="v-one-xiang">这是我自己说的话</p>
+			<li class="vu_oneself">
+				<p class="vu_one-title">自己 14:33:20</p>
+				<p class="vu_one-xiang">这是我自己说的话</p>
 			</li>
-			<div class="v-baoliu">已经到底了</div>
+			<div class="vu_baoliu">已经到底了</div>
 		</ul>
 	</div>
 </template>

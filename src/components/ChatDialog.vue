@@ -56,14 +56,14 @@
 </script>
 
 <template>
- <div class="v-m-chat">
-    <div id="v-chat">
-        <div class="v-sidebar">
+ <div class="vu_m-chat">
+    <div id="vu_chat">
+        <div class="vu_sidebar">
             <card :user="user" :search.sync="search"></card>
             <list :user-list="userList" :session="session" :session-index.sync="sessionIndex" :search="search"></list>
         </div>
-        <div class="v-m-na"><span class="v-m-na-name">小张</span><div class="v-m-guan" @click="close"><p><span></span></p></div></div>
-        <div class="v-m-main">       	
+        <div class="vu_m-na"><span class="vu_m-na-name">小张</span><div class="vu_m-guan" @click="close"><p><span></span></p></div></div>
+        <div class="vu_m-main">       	
             <message :session="session" :user="user" :user-list="userList"></message> 
             <test :session="session"></test>
         </div>
@@ -72,11 +72,11 @@
 </template>
 
 <style >
-    #v-chat {
+    #vu_chat {
         overflow: hidden;
         border-radius: 3px;
     }           
-   #v-chat .v-sidebar {
+   #vu_chat .vu_sidebar {
         float: left;
         width: 220px;
         color: #f4f4f4;
@@ -84,19 +84,19 @@
         height:540px;
         position: relative;
     }
-   #v-chat .v-m-main {
+   #vu_chat .vu_m-main {
         position: relative;
         overflow: hidden;   
         background-color: #F6F6F6;
         height: 490px;
     }
-   #v-chat .v-m-text {
+   #vu_chat .vu_m-text {
         position: absolute;
         width: 100%;
         bottom: 0;
         left: 0;
     }
-   #v-chat .v-m-message {
+   #vu_chat .vu_m-message {
         height:350px;
     }
    

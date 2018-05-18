@@ -1,38 +1,38 @@
 <template>
-	<div id="v-friend">
-	    <div class="v-m-search">
-	      <input type="text" id="v-search" placeholder="查找联系人" @keyup.enter="search" />
+	<div id="vu_friend">
+	    <div class="vu_m-search">
+	      <input type="text" id="vu_search" placeholder="查找联系人" @keyup.enter="search" />
 	      <div @click="search"></div>
 	      <p><span @click="close"></span></p>
 	    </div>
-	    <div class="v-account-l v-fl">
+	    <div class="vu_account-l vu_fl">
 	      <!--切换-->
-	      <ul class="v-m_lei">
-	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" :class="{'v-m-active':index == activeIndex}">
+	      <ul class="vu_m_lei">
+	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" :class="{'vu_m-active':index == activeIndex}">
 				<img v-show="index!=activeIndex" :src="item.imgSrc" alt="" />
 				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />				
 			</li>
 	        <!--<li class=" {current_active == 'company'?'m-active':''}" @click="choose('company');clickTab(index)"><img src="../images/m-chat.png" /><img src="../images/chat.png" /></li>
 	        <li class=" {current_active == 'group'?'m-active':''}" @click="choose('group');clickTab(index)"><img src="../images/group.png" /><img src="../images/m-group.png" /></li>-->
-	        <div class="v-m-add">
+	        <div class="vu_m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
-	            <li class="v-fen-active" @click="createGroup('common')">创建新组</li>
+	            <li class="vu_fen-active" @click="createGroup('common')">创建新组</li>
 	            <li @click="createGroup('group')">创建群发组</li>	            
 	          </ul>
 	        </div>
 	      </ul>
 	      <!--个人组-->
-	      <companyPanel v-show="panelShow.companyShow" :user="user" :userList="userList" :companyList="companyList"></companyPanel>
+	      <companyPanel v-show="panelShow.companyShow" :user="user" :userList="userList" :companyList="companyList" @openChartEvent="openChat"></companyPanel>
 	      <!--//群组-->
-	      <div id="v-qun-fen" class="v-accordion qie_div" v-show="panelShow.groupShow">
-	        <div class="v-qunfen_yi">
+	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.groupShow">
+	        <div class="vu_qunfen_yi">
 	          <p>普通组</p>
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common"></groupPanel>
+	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat"></groupPanel>
 	        </div>
-	        <div class="v-qunfen_er">
+	        <div class="vu_qunfen_er">
 	          <p>群发组</p>
-	          <groupPanel group_type="group" :user="user" :userList="userList" :companyList="groupList.groupHair"></groupPanel>
+	          <groupPanel group_type="group" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat"></groupPanel>
 	        </div>
 	      </div>
 	    </div>
@@ -90,15 +90,18 @@ export default {
     search: function(event) {
 //    this.panelShow.companyShow = false;
 //    this.panelShow.groupShow = false;
-	  var searchKey = $('#v-search').val()
-	  if(searchKey == '') return
-	  for(var uid in this.userList){
+	  var searchKey = $('#vu_search').val()
+	  if(searchKey == ''){
+	  	this.panelShow.searchShow = false
+	  }else{
+	  	for(var uid in this.userList){
         var item = this.userList[uid]
         if (item.name.indexOf(searchKey) > -1) {
           this.searchList.push(item);
         }
       }
-      this.panelShow.searchShow = true;
+      this.panelShow.searchShow = true
+	  }
     },
     // 关闭事件
     close: function(event) {
@@ -109,8 +112,6 @@ export default {
         is_group_show: false,
       });
       this.panelShow.searchShow = false;
-//    this.panelShow.groupShow = false;
-//    this.panelShow.companyShow = true;
     },
     // 切换
 //  choose: function(type) {
@@ -131,6 +132,9 @@ export default {
 //    this.panelShow.groupShow = false;
       this.$emit('openGroupEvent', type);
       this.groupShow=false;
+    },
+    openChat: function(uid) {
+    	this.$emit('openTalkEvent', uid);  	
     },
     toggle(){
     	this.groupShow=!this.groupShow;

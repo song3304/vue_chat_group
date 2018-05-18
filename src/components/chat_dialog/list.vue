@@ -20,18 +20,18 @@
 </script>
 
 <template>
-    <div class="v-m-list">
+    <div class="vu_m-list">
         <ul>
             <li v-for="item in userList" :class="{ active: session.userId === item.id }" @click="select(item)">
-                <img class="v-avatar"  width="30" height="30" :alt="item.name" :src="item.img">
-                <div class="v-m-cs-cs">
-                	<p class="v-name">{{item.name}}</p>
-                	<p class="v-m-xiang">这是一条消息</p>
+                <img class="vu_avatar"  width="30" height="30" :alt="item.name" :src="item.img">
+                <div class="vu_m-cs-cs">
+                	<p class="vu_name">{{item.name}}</p>
+                	<p class="vu_m-xiang">这是一条消息</p>
                 </div>   
-                <div class="v-m-list-del">
+                <div class="vu_m-list-del">
                 	<p>17:15</p>
-                	<p class="v-m-list-del-num">6</p>
-                	<div class="v-delet-li"  @click="deletePerson($index)"></div>
+                	<p class="vu_m-list-del-num">6</p>
+                	<div class="vu_delet-li"  @click="deletePerson($index)"></div>
                 </div>
             </li>
         </ul>
@@ -39,7 +39,7 @@
 </template>
 
 <style>
-    .v-m-list {
+    .vu_m-list {
         li {
             padding: 12px 15px;
             cursor: pointer;
@@ -52,13 +52,13 @@
                 background-color: rgba(255, 255, 255, 0.1);
             }
         }
-        .v-avatar, .v-name {
+        .vu_avatar, .vu_name {
             vertical-align: middle;
         }
-        .v-avatar {
+        .vu_avatar {
             border-radius: 2px;
         }
-        .v-name {
+        .vu_name {
             display: inline-block;
             margin: 0 0 0 15px;
         }

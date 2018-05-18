@@ -23,7 +23,7 @@ a {
 /** =======================
  * Contenedor Principal
  ===========================*/
-.v-list-title{
+.vu_list-title{
     display: inline-block;
     width: 100%;
     max-width: 200px;
@@ -48,10 +48,10 @@ h1 a {
     color: #f39800;
     font-size: 16px;
 }
-.v-accordion {
+.vu_accordion {
     width: 100%;
 }
-.v-accordion .v-link {
+.vu_accordion .vu_link {
     cursor: pointer;
     display: block;
     padding:2px 15px 3px 25px;
@@ -60,10 +60,10 @@ h1 a {
     position: relative;
     text-align: left;
 }
-.v-accordion li:last-child .v-link {
+.vu_accordion li:last-child .vu_link {
     border-bottom: 0;
 }
-.v-accordion li div i {
+.vu_accordion li div i {
     position: absolute;
     top:2px;
     left: 12px;
@@ -74,11 +74,11 @@ h1 a {
     transition: all 0.4s ease;
 }
 
-.v-accordion li i.fa-caret-right {
+.vu_accordion li i.fa-caret-right {
     font-size:20px;
     color: #a4a4a4;
 }
-.v-accordion li.v-open i.fa-caret-right {
+.vu_accordion li.vu_open i.fa-caret-right {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
@@ -88,18 +88,18 @@ h1 a {
 /**
  * Submenu
  -----------------------------*/
-.v-submenu {
+.vu_submenu {
     font-size: 14px;
     display: none;
 }
 
-.v-submenu li {
+.vu_submenu li {
     height: 50px;
     position: relative;
     text-align: left;
 }
 
-.v-submenu a{
+.vu_submenu a{
     display: inline-block;
     text-decoration: none;
     color: #666;
@@ -109,16 +109,16 @@ h1 a {
     margin:15px 0 0 10px;
 }
 
-.v-submenu li:hover ,.v-submenu li.v-current{
+.vu_submenu li:hover ,.vu_submenu li.vu_current{
     background-color: #E6E6E6;
     color: #666666;
 }
 
 /*http://www.jq22.com*/
-.v-accordion .v-link:hover{
+.vu_accordion .vu_link:hover{
 	background-color: #e6e6e6;
 }
-.v-accordion .v-link span{
+.vu_accordion .vu_link span{
 	font-size: 10px;
 	padding-left:5px;
 }

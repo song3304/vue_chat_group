@@ -5,30 +5,30 @@
 </script>
 
 <template>
-    <div class="v-m-card">
-        <input class="v-search" type="text" placeholder="搜索"  ><!--v-model="search"-->
+    <div class="vu_m-card">
+        <input class="vu_search" type="text" placeholder="搜索"  ><!--vu_model="search"-->
     </div>
 </template>
 
 <style>
-.v-m-card {
+.vu_m-card {
     padding: 9px;
 }    
-.v-m-card  footer {
+.vu_m-card  footer {
     margin-top:0;
 }    
-.v-m-card .v-avatar, .v-name {
+.vu_m-card .vu_avatar, .vu_name {
     vertical-align: middle;
 }
-.v-m-card  .v-avatar {
+.vu_m-card  .vu_avatar {
     border-radius: 2px;
 }
-.v-m-card  .v-name {
+.vu_m-card  .vu_name {
     display: inline-block;
     margin: 0 0 0 15px;
     font-size: 16px;
 }
-.v-m-card .v-search {
+.vu_m-card .vu_search {
     padding: 0 10px;
     width: 100%;
     font-size: 12px;
