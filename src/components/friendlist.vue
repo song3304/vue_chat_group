@@ -1,7 +1,7 @@
 <template>
 	<div id="friend">
 	    <div class="m-search">
-	      <input type="text" id="search" placeholder="查找联系人" v-model="seachKey" />
+	      <input type="text" id="search" placeholder="查找联系人" @keyup.enter="search" />
 	      <div @click="search"></div>
 	      <p><span @click="close"></span></p>
 	    </div>
@@ -37,7 +37,7 @@
 	      </div>
 	    </div>
 	    <!--搜索页面-->
-	    <searchDialog v-show="panelShow.searchShow" :serchList="searchList"></searchDialog>
+	    <searchDialog v-show="panelShow.searchShow" :searchList="searchList"></searchDialog>
 	</div>
 </template>
 <script>
@@ -50,7 +50,7 @@ export default {
   props: ['user', 'userList', 'companyList', 'groupList'],
   data: function() {
     return {
-    	activeIndex:0,
+      activeIndex:0,
       panelShow: {
         companyShow: true, //公司分组面板默认显示
         groupShow: false, //群分组面板是否显示
@@ -58,7 +58,6 @@ export default {
       },
       current_active: 0,
       groupShow: false,
-      seachKey: '',
       searchList: [],
       tabData:[{
 		imgSrc:require('../images/chat.png'),			
@@ -71,18 +70,8 @@ export default {
 	  }]
     }
   },
-components: { companyPanel,groupPanel,searchDialog},
-  watch: {
-    searchKey: function(newValue) {
-      this.searchList = [];
-      for (var i = 0, lg = this.userList.length; i < lg; i++) {
-        var item = this.userList[i];
-        if (tem.name.indexOf(newValue) > -1) {
-          this.searchList.push(item);
-        }
-      }
-    }
-  },
+  components: { companyPanel,groupPanel,searchDialog},
+  watch: { },
   methods: {
   	// 切换
 	clickTab:function(index){
@@ -101,6 +90,14 @@ components: { companyPanel,groupPanel,searchDialog},
     search: function(event) {
 //    this.panelShow.companyShow = false;
 //    this.panelShow.groupShow = false;
+	  var searchKey = $('#search').val()
+	  if(searchKey == '') return
+	  for(var uid in this.userList){
+        var item = this.userList[uid]
+        if (item.name.indexOf(searchKey) > -1) {
+          this.searchList.push(item);
+        }
+      }
       this.panelShow.searchShow = true;
     },
     // 关闭事件

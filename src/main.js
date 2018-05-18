@@ -84,7 +84,7 @@ new Vue({
     // 打开新建分组
     openGroup: function (type) {
       this.panel_show.is_group_show = true
-      this.groupType = 'common'
+      this.groupType = type
     },
     // 创建分组
     createGroup: function (data) {
