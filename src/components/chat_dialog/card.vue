@@ -1,22 +1,32 @@
 <script>
-    export default {
-        props: ['user', 'search']
-    };
+export default {
+  props: ['user', 'search'],
+  data: function () {
+    return {
+      search_key: ''
+    }
+  },
+  methods: {
+    searchResult: function () {
+      this.$emit('update:search', this.search_key)
+    }
+  }
+}
 </script>
 
 <template>
     <div class="vu_m-card">
-        <input class="vu_search" type="text" placeholder="搜索"  ><!--vu_model="search"-->
+        <input class="vu_search" type="text" placeholder="搜索" @keyup.enter="searchResult" v-model="search_key"><!--vu_model="search"-->
     </div>
 </template>
 
 <style>
 .vu_m-card {
     padding: 9px;
-}    
+}
 .vu_m-card  footer {
     margin-top:0;
-}    
+}
 .vu_m-card .vu_avatar, .vu_name {
     vertical-align: middle;
 }

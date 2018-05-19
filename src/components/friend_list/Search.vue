@@ -2,8 +2,8 @@
 export default {
   props: ['searchList'],
   methods: {
-    openChat: function(uid) {
-      this.$emit('openChartEvent', uid);
+    openChat: function (uid) {
+      this.$emit('openChartEvent', uid)
     }
   }
 }
@@ -21,10 +21,13 @@ export default {
         <a>{{userItem.name}}</a>
       </li>
     </ul>
+    <ul v-if="searchList.length < 1">
+      <li class="vu_submenu-name">没有搜索到任何人,请得新搜索!</li>
+    </ul>
   </div>
 </template>
 <style>
 .vu_input-search .vu_submenu{
-	display: block;
+  display: block;
 }
 </style>

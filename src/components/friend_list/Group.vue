@@ -4,36 +4,35 @@ import $ from 'jquery'
 export default {
   props: ['user', 'userList', 'companyList', 'group_type'],
   methods: {
-    mouseOver: function(event) {
+    mouseOver: function (event) {
       var el = event.currentTarget
       $('.vu_m-phone-img', $(el)).show()
     },
-    mouseOut: function(event) {
+    mouseOut: function (event) {
       var el = event.currentTarget
       $('.vu_m-phone-img', $(el)).hide()
     },
-    changeName: function(event) {
+    changeName: function (event) {
       var el = event.currentTarget
-      $(e1).hide().next().show()
+      $(el).hide().next().show()
     },
-    modifyUserName: function(event) {
+    modifyUserName: function (event) {
       var el = event.currentTarget
       var userId = $(el).data('uid')
       var userName = $(el).val()
-      //回传提交保存
+      if (userName !== '') {
+        this.userList[userId].name = userName
+        this.$emit('changeUserNameEvent', {userId: userId, userName: userName})
+      }
+      // 回传提交保存
 
       $(el).hide()
     },
-    openChat: function(uid) {
+    openChat: function (uid) {
       this.$emit('openChartEvent', uid);
     }
   }
-  // filters: {
-  //     search (list) {
-  //         return list.filter(item => item.name.indexOf(this.search) > -1);
-  //     }
-  // }
-};
+}
 
 </script>
 <template>
@@ -48,7 +47,7 @@ export default {
             </div>
             <a>{{userList[userItem].name}}</a>
             <span class="vu_m-phone-img " @click="changeName"></span>
-            <input class="vu_m-phone-input" type="text" v-model="userList[userItem].name"  @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
+            <input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
           </li>
         </ul>
       </li>

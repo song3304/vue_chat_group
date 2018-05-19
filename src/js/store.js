@@ -9,21 +9,21 @@ if (!localStorage.getItem(key)) {
     user: {
       id: 1,
       name: 'Coffce',
-      img: '../images/1.jpg'
+      img: '/src/images/1.jpg'
     },
     // 用户列表
     userList: {
       2: {
         id: 2,
         name: '小张',
-        img: '../images/2.jpg',
+        img: '/src/images/2.jpg',
         isOnline: false, // 是否在线
         isCalling: false // 是否来消息
       },
       3: {
         id: 3,
         name: '小王',
-        img: '../../../images/1.jpg',
+        img: '/src/images/1.jpg',
         isOnline: true, // 是否在线
         isCalling: false // 是否来消息
       }
@@ -93,15 +93,15 @@ if (!localStorage.getItem(key)) {
       {
         userId: 3,
         messages: [
-        {
-            text: 'Hello',
+          {
+            text: 'the world!',
             date: now,
             is_read: false
           },
           {
             text: '我是小王',
             date: now,
-            is_read: false
+            is_read: true
           }]
       }
     ],

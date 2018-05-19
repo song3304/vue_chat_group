@@ -1,18 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import router from './router'
-import $ from 'jquery'
 // import VueSocketio from 'vue-socket.io'
 import 'font-awesome/css/font-awesome.css'
-
-
 import './js/leftnav.js'
-
-Vue.config.productionTip = false
-
-
 import store from './js/store'
 import friendList from './components/FriendList'
 import chatdialog from './components/ChatDialog'
@@ -69,10 +60,10 @@ new Vue({
 		      <p></p>
 		      <span>私信<br>聊天</span>
 		    </div>
-		     <friendList v-show="panel_show.is_friend_show" v-bind:user="user" v-bind:userList="userList" v-bind:companyList="companyList" v-bind:groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" ></friendList>
-		    <chatdialog v-show="panel_show.is_dialog_show" v-bind:user="user" v-bind:sessionList="sessionList" @closeEvent="closePanel"></chatdialog>
-		    <historylist v-show="panel_show.is_history_show" v-bind:user="user" v-bind:historyList="historyList" v-bind:historyUid="historyUid" ></historylist>
-				<groupdialog v-show="panel_show.is_group_show" v-bind:user="user" v-bind:userList="userList" v-bind:companyList="companyList" v-bind:groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
+		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>
+		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel"></chatdialog>
+		    <historylist v-show="panel_show.is_history_show" :user="user" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel"></historylist>
+				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
     // 初始化数据
   },
@@ -89,18 +80,33 @@ new Vue({
     },
     // 创建分组
     createGroup: function (data) {
-      // 通过sockectio,提交过去
+      // this.$sockect.emit('createGroup',data)
     },
     // 打开对话框
     openTalk: function (uid) {
       this.panel_show.is_dialog_show = true
     },
     closePanel: function (data) {
-      this.panel_show = data
+      if (data.hasOwnProperty('is_friend_show')) {
+        this.panel_show.is_friend_show = data.is_friend_show
+      }
+      if (data.hasOwnProperty('is_dialog_show')) {
+        this.panel_show.is_dialog_show = data.is_dialog_show
+      }
+      if (data.hasOwnProperty('is_history_show')) {
+        this.panel_show.is_history_show = data.is_history_show
+      }
+      if (data.hasOwnProperty('is_group_show')) {
+        this.panel_show.is_group_show = data.is_group_show
+      }
     },
-    //私信聊天打开好友列表
-    firstopen:function(){
-    	this.panel_show.is_friend_show = true
+    // 私信聊天打开好友列表
+    firstopen: function () {
+      this.panel_show.is_friend_show = true
+    },
+    // 修改用户名
+    changeUserName: function (data) {
+      // this.$sockect.emit('changeUserName',data)
     }
   }
 })
