@@ -327,13 +327,13 @@ header{display: none;}
 	padding: 0 10px;
 	font-size: 14px;
 	color: #999999;
+	height: 19px;
 }
 .vu_his-guan p{float:right;width:30px;height: 20px;cursor: pointer;text-align: center;margin:-5px 10px 0 0;background: red;}
 .vu_his-guan img{
 	margin-top:6px;
 }
 .vu_his-main{
-	margin-top: 10px;
 	height:640px;
 	overflow-y:scroll;
 }
@@ -392,6 +392,7 @@ header{display: none;}
 	color: #a9a9a9;
 	background:#e8e8e8;
 	line-height: 22px;
+	cursor: pointer;
 }
 .vu_m-list{
 	height: 490px;

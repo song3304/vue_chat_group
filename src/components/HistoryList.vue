@@ -3,9 +3,9 @@
   <div id="vu_history" @mousedown="drag">
     <div class="vu_his-guan">
       <span>{{historyUid!=0?userList[historyUid].name:''}}</span>
-      <p class="vu_his-hide" @click="close"><img src="../images/baise-x.png" alt="" /></p>
+      <p class="vu_his-hide" @click="close" @mousedown="jinzhi"><img src="../images/baise-x.png" alt="" /></p>
     </div>
-    <ul class="vu_his-main">
+    <ul class="vu_his-main" @mousedown="jinzhi">
       <div class="vu_baoliu">为您保留一周的聊天记录</div>
       <!--//时间-->
       <div class="vu_title">
@@ -21,7 +21,8 @@
         <p class="vu_one-title">自己 14:33:20</p>
         <p class="vu_one-xiang">这是我自己说的话</p>
       </li>
-      <div class="vu_baoliu">已经到底了</div>
+      <div class="vu_baoliu" v-on:click='loadMore'>查看更多</div>
+      <!--<div class="vu_baoliu">已经到底了</div>-->
     </ul>
   </div>
 </template>
@@ -79,6 +80,12 @@ export default {
       }
       oDiv.setCapture && oDiv.setCapture()
       return false
+    },
+    jinzhi:function(ev){
+		ev.stopPropagation();
+	},
+	loadMore:function(){//	查看更多
+        
     }
   }
 }

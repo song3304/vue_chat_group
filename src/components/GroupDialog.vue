@@ -3,9 +3,9 @@
     <div class="vu_fen_zu" @mousedown="drag" id="vu_div">
       <div class="vu_fen_zu_title">
         <span>{{groupType == "common"?'创建分组':'创建群发组'}}</span>
-        <p class="vu_fen_zu_tiyi"  @click="close"><span></span></p>
+        <p class="vu_fen_zu_tiyi"  @click="close" @mousedown="jinzhi"><span></span></p>
       </div>
-      <div class="vu_fenzu_left vu_accordion">
+      <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi">
         <!--input type="text" class="vu_fenzu_left_input" placeholder="搜索" @keyup.enter="search" @click="search" vu_model="seachKey"/-->
         <ul class="vu_fenzu_left_ul">
           <li v-for="companyItem in companyList" :class="{'vu_accordion_li': companyItem.isCalling}">
@@ -26,7 +26,7 @@
           </li>
         </ul>
       </div>
-      <div class="vu_fenzu_right">
+      <div class="vu_fenzu_right" @mousedown="jinzhi">
         <p>已选择<span>{{formData.userIds.length}}</span>个联系人</p>
         <ul class="vu_fenzu_right_ul">
           <li v-for="uid in formData.userIds" class="vu_submenu-name"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span></span></li>
@@ -34,11 +34,11 @@
       </div>
       <br clear="all"/>
       <div class="vu_fenzu_footer">
-        <button @click="submitUser">确认</button>
-        <span class="vu_fen_zu_tiyi" @click="close">取消</span>
+        <button @click="submitUser" @mousedown="jinzhi">确认</button>
+        <span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>
       </div>
       <!--//设置组名称-->
-      <div class="vu_fenzu_name" v-show="panelShow.setGroupShow">
+      <div class="vu_fenzu_name" v-show="panelShow.setGroupShow" @mousedown="jinzhi">
         <div class="vu_fen_zu_title">
           <span>设置组名称</span>
           <p class="vu_fen_zu_tier"><span></span></p>
@@ -162,8 +162,10 @@ export default {
 			};
 			oDiv.setCapture && oDiv.setCapture();
 			return false;
-		}
-			   
+		},
+		jinzhi:function(ev){
+			ev.stopPropagation();
+		},   
   }
 }
 </script>

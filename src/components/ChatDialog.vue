@@ -38,7 +38,7 @@ export default {
       this.$emit('closeEvent', {
         is_dialog_show: false,
         is_history_show: false
-      })
+      });      
     },
     toRead: function (value) {
       var msgIds = []
@@ -73,8 +73,12 @@ export default {
 				document.onmouseup=document.onmousemove=null;	
 				oDiv.releaseCapture && oDiv.releaseCapture();
 			};
+			
 			oDiv.setCapture && oDiv.setCapture();
 			return false;
+		},
+		jinzhi:function(ev){
+			ev.stopPropagation();
 		},
     openHistory: function (uid) {
       this.$emit('openHistoryEvent', uid)
@@ -89,12 +93,12 @@ export default {
 <template>
  <div class="vu_m-chat">
     <div id="vu_chat" @mousedown="drag">
-        <div class="vu_sidebar">
+        <div class="vu_sidebar" @mousedown="jinzhi">
             <card :user="user" :search.sync="search"></card>
             <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead"></list>
         </div>
-        <div class="vu_m-na"><span class="vu_m-na-name">{{userList[session.userId].name}}</span><div class="vu_m-guan" @click="close"><p><span></span></p></div></div>
-        <div class="vu_m-main">
+        <div class="vu_m-na" id="tuo"><span class="vu_m-na-name">{{userList[session.userId].name}}</span><div class="vu_m-guan" @click="close" @mousedown="jinzhi"><p><span></span></p></div></div>
+        <div class="vu_m-main" @mousedown="jinzhi">
             <message :session="session" :user="user" :user-list="userList"></message>
             <send :session="session" @openHistoryEvent="openHistory"></send>
         </div>
