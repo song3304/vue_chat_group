@@ -67,7 +67,7 @@ export default {
                 </div>
                 <div class="vu_m-list-del">
                 	<p>{{item|lastTime}}</p>
-                	<p class="vu_m-list-del-num">{{item|noReadCnt}}</p>
+                	<p class="vu_m-list-del-num" v-show="item|noReadCnt">{{item|noReadCnt}}</p>
                 	<div class="vu_delet-li"  @click="deletePerson(index)"></div>
                 </div>
             </li>

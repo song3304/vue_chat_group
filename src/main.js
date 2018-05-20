@@ -84,6 +84,16 @@ new Vue({
     },
     // 打开对话框
     openTalk: function (uid) {
+      if (this.sessionList.some(function (item) { return item.userId === uid })) {
+        this.sessionList.sort(function (first, second) { if (first.userId === uid) { return -1 } else if (second.userId === uid) { return 1 } else { return 0 } })
+      } else {
+        var addSessionData = {
+          userId: uid,
+          messages: []
+        }
+        this.sessionList.unshift(addSessionData)
+      }
+      this.sessionIndex = 0
       this.panel_show.is_dialog_show = true
     },
     closePanel: function (data) {
