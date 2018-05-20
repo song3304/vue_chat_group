@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-    <div class="vu_m-text">
+    <div class="vu_m-text" v-if="session!=null">
         <textarea placeholder="" v-model="text"></textarea>
         <span class="vu_send" @click="inputing">发送</span><span class="vu_history" @click="openHistoryDialog(session.userId)">历史记录<p></p></span>
     </div>

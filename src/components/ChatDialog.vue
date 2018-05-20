@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     session: function () {
-      return this.sessionList[this.sessionIndex]
+      return this.sessionList.hasOwnProperty(this.sessionIndex) ? this.sessionList[this.sessionIndex] : null
     }
   },
   // watch: {
@@ -38,7 +38,7 @@ export default {
       this.$emit('closeEvent', {
         is_dialog_show: false,
         is_history_show: false
-      });      
+      });
     },
     toRead: function (value) {
       var msgIds = []
@@ -65,15 +65,15 @@ export default {
 				if(t<50) t=0;
 				if(t>document.documentElement.clientHeight-oDiv.offsetHeight-50)
 					t=document.documentElement.clientHeight-oDiv.offsetHeight;
-				
+
 				oDiv.style.left=l+'px';	//使用
-				oDiv.style.top=t+'px';	
+				oDiv.style.top=t+'px';
 			};
 			document.onmouseup=function(){
-				document.onmouseup=document.onmousemove=null;	
+				document.onmouseup=document.onmousemove=null;
 				oDiv.releaseCapture && oDiv.releaseCapture();
 			};
-			
+
 			oDiv.setCapture && oDiv.setCapture();
 			return false;
 		},
@@ -85,6 +85,9 @@ export default {
     },
     updateIndex: function (index) {
       this.$emit('updateIndexEvent', index)
+    },
+    delSession: function (index) {
+      this.$emit('delSessionEvent', index)
     }
   }
 }
@@ -95,9 +98,9 @@ export default {
     <div id="vu_chat" @mousedown="drag">
         <div class="vu_sidebar" @mousedown="jinzhi">
             <card :user="user" :search.sync="search"></card>
-            <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead"></list>
+            <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession"></list>
         </div>
-        <div class="vu_m-na" id="tuo"><span class="vu_m-na-name">{{userList[session.userId].name}}</span><div class="vu_m-guan" @click="close" @mousedown="jinzhi"><p><span></span></p></div></div>
+        <div class="vu_m-na" id="tuo"><span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span><div class="vu_m-guan" @click="close" @mousedown="jinzhi"><p><span></span></p></div></div>
         <div class="vu_m-main" @mousedown="jinzhi">
             <message :session="session" :user="user" :user-list="userList"></message>
             <send :session="session" @openHistoryEvent="openHistory"></send>

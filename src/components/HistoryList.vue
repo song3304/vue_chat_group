@@ -66,11 +66,13 @@ export default {
         var t = oEvt.clientY - disY
         // 限定
         if (l < 50) l = 0
-        if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50)
+        if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
           l = document.documentElement.clientWidth - oDiv.offsetWidth
+        }
         if (t < 50) t = 0
-        if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50)
+        if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
           t = document.documentElement.clientHeight - oDiv.offsetHeight
+        }
         oDiv.style.left = l + 'px'
         oDiv.style.top = t + 'px'
       }

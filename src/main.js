@@ -61,7 +61,7 @@ new Vue({
 		      <span>私信<br>聊天</span>
 		    </div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>
-		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex"></chatdialog>
+		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex"></chatdialog>
 		    <historylist v-show="panel_show.is_history_show" :user="user" :userList="userList" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
@@ -130,6 +130,11 @@ new Vue({
     // 更新索引
     updateIndex: function (index) {
       this.sessionIndex = index
+    },
+    delSession: function (index) {
+      this.sessionList.splice(index, 1)
+      this.sessionIndex = 0
+      store.save({user: this.user, userList: this.userList, companyList: this.companyList, groupList: this.groupList, sessionList: this.sessionList, historyList: this.historyList})
     }
   }
 })

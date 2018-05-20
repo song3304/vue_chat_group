@@ -26,7 +26,8 @@ export default {
       this.$emit('toReadEvent', value)
     },
     deletePerson: function (index) {
-      this.sessionList.splice(index, 1)
+      this.$emit('delSessionEvent', index)
+      // this.sessionList.splice(index, 1)
     }
   },
   filters: {
@@ -58,7 +59,7 @@ export default {
 
 <template>
     <div class="vu_m-list">
-        <ul>
+        <ul v-if="session!=null">
             <li v-for="(item,index) in searchData" :class="{ active: session.userId === item.userId }" @click="select(item,$event)">
                 <img class="vu_avatar"  width="30" height="30" :alt="userList[item.userId].name" :src="userList[item.userId].img">
                 <div class="vu_m-cs-cs">
@@ -67,7 +68,7 @@ export default {
                 </div>
                 <div class="vu_m-list-del">
                 	<p>{{item|lastTime}}</p>
-                	<p class="vu_m-list-del-num" v-show="item|noReadCnt">{{item|noReadCnt}}</p>
+                	<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{item|noReadCnt}}</p>
                 	<div class="vu_delet-li"  @click="deletePerson(index)"></div>
                 </div>
             </li>
