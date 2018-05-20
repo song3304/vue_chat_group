@@ -48,6 +48,12 @@ export default {
         }
       })
       this.$emit('toReadEvent', msgIds)
+    },
+    openHistory: function (uid) {
+      this.$emit('openHistoryEvent', uid)
+    },
+    updateIndex: function (index) {
+      this.$emit('updateIndexEvent', index)
     }
   }
 }
@@ -58,12 +64,12 @@ export default {
     <div id="vu_chat">
         <div class="vu_sidebar">
             <card :user="user" :search.sync="search"></card>
-            <list :user-list="userList" :session="session" :sessionList="sessionList" :session-index.sync="sessionIndex" :search="search" @toReadEvent="toRead"></list>
+            <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead"></list>
         </div>
         <div class="vu_m-na"><span class="vu_m-na-name">{{userList[session.userId].name}}</span><div class="vu_m-guan" @click="close"><p><span></span></p></div></div>
         <div class="vu_m-main">
             <message :session="session" :user="user" :user-list="userList"></message>
-            <send :session="session"></send>
+            <send :session="session" @openHistoryEvent="openHistory"></send>
         </div>
     </div>
     </div>

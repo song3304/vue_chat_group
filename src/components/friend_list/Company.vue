@@ -28,11 +28,9 @@ export default {
 
       $(el).hide()
     },
-    openChat: function(uid) {
-      this.$emit('openChartEvent', uid);
+    openChat: function (uid) {
+      this.$emit('openChartEvent', uid)
     }
-  },
-  mounted(){
   }
 }
 

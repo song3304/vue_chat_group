@@ -82,12 +82,14 @@ if (!localStorage.getItem(key)) {
             messageId: 3,
             text: 'Hello',
             date: now,
+            self: false,
             is_read: false
           },
           {
             messageId: 4,
             text: '测试',
             date: now,
+            self: true,
             is_read: false
           }
         ]
@@ -99,12 +101,14 @@ if (!localStorage.getItem(key)) {
             messageId: 5,
             text: 'the world!',
             date: now,
+            self: true,
             is_read: false
           },
           {
             messageId: 6,
             text: '我是小王',
             date: now,
+            self: false,
             is_read: true
           }]
       }
@@ -119,14 +123,14 @@ if (!localStorage.getItem(key)) {
             items: [
               {
                 messageId: 3,
-                userId: 2,
+                self: false,
                 userName: '小王',
                 createTime: '2018-05-14 11:08:00',
                 content: '我是小五'
               },
               {
                 messageId: 4,
-                userId: 1,
+                self: true,
                 userName: '小明',
                 createTime: '2018-05-14 11:01:20',
                 content: '这是自己说的话'
@@ -137,7 +141,7 @@ if (!localStorage.getItem(key)) {
             date: '2018-05-13',
             items: [{
               messageId: 3,
-              userId: 1,
+              self: false,
               userName: '小王',
               createTime: '2018-05-13 11:08:00',
               content: '我是小五'
