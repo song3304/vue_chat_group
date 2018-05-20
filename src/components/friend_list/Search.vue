@@ -22,7 +22,7 @@ export default {
       </li>
     </ul>
     <ul v-if="searchList.length < 1">
-      <li class="vu_submenu-name">没有搜索到任何人,请得新搜索!</li>
+      <li class="vu_submenu-name">没有搜索到任何人,请重新搜索!</li>
     </ul>
   </div>
 </template>
