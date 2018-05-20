@@ -9,9 +9,8 @@ body, ul {
     padding: 0;
 }
 body {
-    color: #4d4d4d;
     font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
-    background-size: cover;
+    /*background-size: cover;*/
     font-smoothing: antialiased;
 }
 ul {
@@ -248,7 +247,7 @@ header{display: none;}
 	height:35px;
 	text-align: center;
 }
-.vu_m-list-del p{height: 15px;color: #999999;}
+.vu_m-list-del p{height: 15px;color: #999999;margin: 0;}
 .vu_m-list-del .vu_m-list-del-num{
 	margin-top:5px;
 	display: inline-block;
@@ -305,6 +304,7 @@ header{display: none;}
 	background:#EEEEEE url(../images/qie_tu.png) -3px -21px;
 }
 .vu_submenu-name{cursor: pointer;}
+.vu_submenu-none{height: 50px;text-align: center;line-height: 50px;border-bottom: 1px solid #cccccc;font-size: 14px;color: #333333;}
 /*.submenu-name .m-phone-img{display: none;}*/
 .vu_submenu-name:hover .vu_m-phone-img{display: inline-block;}
 /*历史记录*/
@@ -331,7 +331,7 @@ header{display: none;}
 }
 .vu_his-guan p{float:right;width:30px;height: 20px;cursor: pointer;text-align: center;margin:-5px 10px 0 0;background: red;}
 .vu_his-guan img{
-	margin-top:6px;
+	/*margin-top:6px;*/
 }
 .vu_his-main{
 	height:640px;
@@ -544,7 +544,7 @@ header{display: none;}
 	background-color: #5c6d9d;
 }
 .vu_fen_zu_title>span{font-size: 13px;color: #ffffff;display: inline-block;line-height: 30px;padding-left: 10px;}
-.vu_fen_zu_title p{float:right;width: 30px;height: 30px;cursor: pointer;}
+.vu_fen_zu_title p{float:right;width: 30px;height: 30px;cursor: pointer;margin: 0;}
 .vu_fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -131px;text-align: center;margin-top: 7px;}
 .vu_fenzu_left{width: 250px!important;height: 350px;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
 .vu_fenzu_left>ul{
@@ -568,7 +568,7 @@ header{display: none;}
 }
 .vu_fenzu_right>p{
 	color: #999999;
-	padding:15px 0 5px 15px;
+	padding:5px 0 0 15px;
 }
 .vu_fenzu_footer,.vu_fenzu_name_footer{
 	height: 30px;
@@ -616,6 +616,7 @@ header{display: none;}
 	background-color: #eeeeee;
 	border: solid 1px #dddddd;
 	margin: 0 0 25px 25px;
+	padding-left: 10px;
 }
 .vu_fenzu_name_footer button{
 	background-color: #40b1ec;
@@ -664,14 +665,19 @@ input[type='radio'],input[type='checkbox']{
 	text-align: center;
 	line-height:10px;
 	display: none;
+	cursor: pointer;
 }
 .vu_fenzu_left_ul>li:hover .vu_check-all{
 	display: block;
 }
 #vu_chat_app{width: 100%;height: 100%;}
 .vu_xuan-fen,.vu_m-chat{
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 	background: rgba(0,0,0,0.2);
+	z-index: 100;
 }
 
