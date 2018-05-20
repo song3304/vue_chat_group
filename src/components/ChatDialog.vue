@@ -39,6 +39,15 @@ export default {
         is_dialog_show: false,
         is_history_show: false
       })
+    },
+    toRead: function (value) {
+      var msgIds = []
+      value.messages.forEach(function (item) {
+        if (!item.is_read) {
+          msgIds.push(item.messageId)
+        }
+      })
+      this.$emit('toReadEvent', msgIds)
     }
   }
 }
@@ -49,7 +58,7 @@ export default {
     <div id="vu_chat">
         <div class="vu_sidebar">
             <card :user="user" :search.sync="search"></card>
-            <list :user-list="userList" :session="session" :sessionList="sessionList" :session-index.sync="sessionIndex" :search="search"></list>
+            <list :user-list="userList" :session="session" :sessionList="sessionList" :session-index.sync="sessionIndex" :search="search" @toReadEvent="toRead"></list>
         </div>
         <div class="vu_m-na"><span class="vu_m-na-name">{{userList[session.userId].name}}</span><div class="vu_m-guan" @click="close"><p><span></span></p></div></div>
         <div class="vu_m-main">

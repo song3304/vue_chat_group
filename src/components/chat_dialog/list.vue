@@ -1,4 +1,5 @@
 <script>
+import $ from 'jquery'
 export default {
   props: ['userList', 'sessionIndex', 'session', 'search', 'sessionList'],
   data: function () {
@@ -16,12 +17,16 @@ export default {
     }
   },
   methods: {
-    select (value) {
+    select (value, event) {
       this.currentIndex = this.sessionList.indexOf(value)
       this.$emit('update:sessionIndex', this.currentIndex)
+      // 已读处理
+      var el = event.currentTarget
+      $('.vu_m-list-del .vu_m-list-del-num', el).hide()
+      this.$emit('toReadEvent', value)
     },
     deletePerson: function (index) {
-      return []
+      this.sessionList.splice(index, 1)
     }
   },
   filters: {
@@ -54,7 +59,7 @@ export default {
 <template>
     <div class="vu_m-list">
         <ul>
-            <li v-for="(item,index) in searchData" :class="{ active: session.userId === item.userId }" @click="select(item)">
+            <li v-for="(item,index) in searchData" :class="{ active: session.userId === item.userId }" @click="select(item,$event)">
                 <img class="vu_avatar"  width="30" height="30" :alt="userList[item.userId].name" :src="userList[item.userId].img">
                 <div class="vu_m-cs-cs">
                 	<p class="vu_name">{{userList[item.userId].name}}</p>
@@ -79,7 +84,6 @@ export default {
             padding: 12px 15px;
             cursor: pointer;
             transition: background-color .1s;
-
             &:hover {
                 background-color: rgba(255, 255, 255, 0.03);
             }

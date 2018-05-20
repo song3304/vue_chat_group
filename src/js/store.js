@@ -79,11 +79,13 @@ if (!localStorage.getItem(key)) {
         userId: 2,
         messages: [
           {
+            messageId: 3,
             text: 'Hello',
             date: now,
             is_read: false
           },
           {
+            messageId: 4,
             text: '测试',
             date: now,
             is_read: false
@@ -94,11 +96,13 @@ if (!localStorage.getItem(key)) {
         userId: 3,
         messages: [
           {
+            messageId: 5,
             text: 'the world!',
             date: now,
             is_read: false
           },
           {
+            messageId: 6,
             text: '我是小王',
             date: now,
             is_read: true
