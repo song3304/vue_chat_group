@@ -42,7 +42,7 @@ export default {
     padding: 0 10px;
     width: 100%;
     font-size: 12px;
-    color: #fff;
+    color: #999999;
     height: 30px;
     line-height: 30px;
     border: solid 1px #dddddd;

@@ -41,7 +41,7 @@
       <div class="vu_fenzu_name" v-show="panelShow.setGroupShow" @mousedown="jinzhi">
         <div class="vu_fen_zu_title">
           <span>设置组名称</span>
-          <p class="vu_fen_zu_tier"><span></span></p>
+          <p class="vu_fen_zu_tier" @click="closeGroup"><span></span></p>
         </div>
         <p class="vu_fenzu_name_na">请输入组名称：</p>
         <input type="text" name="groupName" v-model="formData.groupName" :placeholder="placeholder" />
