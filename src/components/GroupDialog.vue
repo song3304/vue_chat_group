@@ -29,7 +29,7 @@
       <div class="vu_fenzu_right" @mousedown="jinzhi">
         <p>已选择<span>{{formData.userIds.length}}</span>个联系人</p>
         <ul class="vu_fenzu_right_ul">
-          <li v-for="uid in formData.userIds" class="vu_submenu-name"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span></span></li>
+          <li v-for="uid in formData.userIds" class="vu_submenu-name"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
         </ul>
       </div>
       <br clear="all"/>
@@ -136,6 +136,9 @@ export default {
       }
       return false
     },
+    delUser: function (uid) {
+      this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
+    },
     drag:function(ev){
 			var oDiv=document.getElementById('vu_div');
 			var oEvt=ev||event;
@@ -152,12 +155,12 @@ export default {
 				if(t<50) t=0;
 				if(t>document.documentElement.clientHeight-oDiv.offsetHeight-50)
 					t=document.documentElement.clientHeight-oDiv.offsetHeight;
-				
+
 				oDiv.style.left=l+'px';	//使用
-				oDiv.style.top=t+'px';	
+				oDiv.style.top=t+'px';
 			};
 			document.onmouseup=function(){
-				document.onmouseup=document.onmousemove=null;	
+				document.onmouseup=document.onmousemove=null;
 				oDiv.releaseCapture && oDiv.releaseCapture();
 			};
 			oDiv.setCapture && oDiv.setCapture();
@@ -165,7 +168,7 @@ export default {
 		},
 		jinzhi:function(ev){
 			ev.stopPropagation();
-		},   
+		},
   }
 }
 </script>
