@@ -1,7 +1,7 @@
 <template>
   <div id="vu_history">
     <div class="vu_his-guan">
-      <span>{{userList[historyUid].name}}</span>
+      <span>{{historyUid!=0?userList[historyUid].name:''}}</span>
       <p class="vu_his-hide" @click="close"><img src="../images/baise-x.png" alt="" /></p>
     </div>
     <ul class="vu_his-main">
@@ -32,12 +32,26 @@ export default {
   data () {
     return {
       // 最早一次时间
-      lastTime: ''
+      // lastTime: ''
+    }
+  },
+  computed: {
+    lastTime: function () {
+      if (this.historyList.hasOwnProperty(this.historyUid)) {
+        var theOldItme = this.historyList[this.historyUid].contents.pop()
+        var theOldMsg = theOldItme.items.pop()
+        return theOldMsg.createTime
+      } else {
+        return ''
+      }
     }
   },
   methods: {
     close: function () {
       this.$emit('closeEvent', {is_history_show: false})
+    },
+    getMoreMsg: function () {
+      this.$emit('getMoreMsgEvent', {historyUid: this.historyUid, lastTime: this.lastTime})
     }
   }
 }

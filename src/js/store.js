@@ -143,7 +143,7 @@ if (!localStorage.getItem(key)) {
               messageId: 3,
               self: false,
               userName: '小王',
-              createTime: '2018-05-13 11:08:00',
+              createTime: '2018-05-13 11:05:00',
               content: '我是小五'
             }]
           }
