@@ -1,6 +1,6 @@
 <template>
-  <div class="vu_xuan-fen">
-    <div class="vu_fen_zu">
+  <div class="vu_xuan-fen" >
+    <div class="vu_fen_zu" @mousedown="drag" id="vu_div">
       <div class="vu_fen_zu_title">
         <span>{{groupType == "common"?'创建分组':'创建群发组'}}</span>
         <p class="vu_fen_zu_tiyi"  @click="close"><span></span></p>
@@ -69,7 +69,7 @@ export default {
         userIds: [],
         groupName: ''
       },
-      placeholder: '请输入分组名称'
+      placeholder: '请输入分组名称',
       // seachKey: '',
       // searchList: []
     }
@@ -135,7 +135,35 @@ export default {
         }
       }
       return false
-    }
+    },
+    drag:function(ev){
+			var oDiv=document.getElementById('vu_div');
+			var oEvt=ev||event;
+			var disX=oEvt.clientX-oDiv.offsetLeft;
+			var disY=oEvt.clientY-oDiv.offsetTop;
+			document.onmousemove=function(ev){
+				var oEvt=ev||event;
+				var l=oEvt.clientX-disX;//计算
+				var t=oEvt.clientY-disY;
+				//限定
+				if(l<50) l=0;
+				if(l>document.documentElement.clientWidth-oDiv.offsetWidth-50)
+					l=document.documentElement.clientWidth-oDiv.offsetWidth;
+				if(t<50) t=0;
+				if(t>document.documentElement.clientHeight-oDiv.offsetHeight-50)
+					t=document.documentElement.clientHeight-oDiv.offsetHeight;
+				
+				oDiv.style.left=l+'px';	//使用
+				oDiv.style.top=t+'px';	
+			};
+			document.onmouseup=function(){
+				document.onmouseup=document.onmousemove=null;	
+				oDiv.releaseCapture && oDiv.releaseCapture();
+			};
+			oDiv.setCapture && oDiv.setCapture();
+			return false;
+		}
+			   
   }
 }
 </script>
