@@ -33,7 +33,7 @@ export default {
 
 <template>
     <div class="vu_m-message" id = "chat_message_main">
-        <ul>
+        <ul v-if="session!=null">
             <li v-for="item in session.messages">
                 <p class="vu_time"><span>{{item.date | time}}</span></p>
                 <div class="vu_main" :class="{ vu_self: item.self }">

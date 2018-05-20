@@ -2,6 +2,7 @@ const key = 'VUE-CHAT-ENEGY-V1'
 
 // 虚拟数据
 if (!localStorage.getItem(key)) {
+// if (true) {
   let now = new Date()
 
   let data = {
@@ -9,21 +10,21 @@ if (!localStorage.getItem(key)) {
     user: {
       id: 1,
       name: 'Coffce',
-      img: '/src/images/1.jpg'
+      img: '/static/img/chat/1.jpg'
     },
     // 用户列表
     userList: {
       2: {
         id: 2,
         name: '小张',
-        img: '/src/images/2.jpg',
+        img: '/static/img/chat/2.jpg',
         isOnline: false, // 是否在线
         isCalling: false // 是否来消息
       },
       3: {
         id: 3,
         name: '小王',
-        img: '/src/images/1.jpg',
+        img: '/static/img/chat/default.png',
         isOnline: true, // 是否在线
         isCalling: false // 是否来消息
       }
@@ -130,7 +131,7 @@ if (!localStorage.getItem(key)) {
               },
               {
                 messageId: 4,
-                self: true,
+                self: false,
                 userName: '小明',
                 createTime: '2018-05-14 11:01:20',
                 content: '这是自己说的话'
@@ -141,9 +142,9 @@ if (!localStorage.getItem(key)) {
             date: '2018-05-13',
             items: [{
               messageId: 3,
-              self: false,
+              userId: 1,
               userName: '小王',
-              createTime: '2018-05-13 11:05:00',
+              createTime: '2018-05-13 11:08:00',
               content: '我是小五'
             }]
           }
