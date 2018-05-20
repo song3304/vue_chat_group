@@ -69,7 +69,7 @@ export default {
                 <div class="vu_m-list-del">
                 	<p>{{item|lastTime}}</p>
                 	<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{item|noReadCnt}}</p>
-                	<div class="vu_delet-li"  @click="deletePerson(index)"></div>
+                	<div class="vu_delet-li"  @click.stop="deletePerson(index)"></div>
                 </div>
             </li>
           <li v-if="searchData.length < 1" style="color:#000;">
