@@ -19,7 +19,7 @@ export default {
   methods: {
     select (value, event) {
       this.currentIndex = this.sessionList.indexOf(value)
-      this.$emit('update:sessionIndex', this.currentIndex)
+      this.$emit('updateIndexEvent', this.currentIndex)
       // 已读处理
       var el = event.currentTarget
       $('.vu_m-list-del .vu_m-list-del-num', el).hide()
@@ -40,7 +40,7 @@ export default {
     lastTime: function (item) {
       if (item.messages.length > 0) {
         var date = new Date(item.messages[0].date)
-        return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+        return date.getHours() + ':' + date.getMinutes() // + ':' + date.getSeconds()
       } else {
         return ''
       }
@@ -72,7 +72,7 @@ export default {
                 </div>
             </li>
           <li v-if="searchData.length < 1" style="color:#000;">
-            没有搜索到相应用户
+
           </li>
         </ul>
     </div>

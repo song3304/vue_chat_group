@@ -61,8 +61,8 @@ new Vue({
 		      <span>私信<br>聊天</span>
 		    </div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>
-		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @toReadEvent="toRead"></chatdialog>
-		    <historylist v-show="panel_show.is_history_show" :user="user" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel"></historylist>
+		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex"></chatdialog>
+		    <historylist v-show="panel_show.is_history_show" :user="user" :userList="userList" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
     // 初始化数据
@@ -111,6 +111,15 @@ new Vue({
     // 更新已读
     toRead: function ($msgIds) {
       // this.$sockect.emit('toReadMsg', $msgIds)
+    },
+    // 打开历史记录
+    openHistory: function (uid) {
+      this.historyUid = uid
+      this.panel_show.is_history_show = true
+    },
+    // 更新索引
+    updateIndex: function (index) {
+      this.sessionIndex = index
     }
   }
 })
