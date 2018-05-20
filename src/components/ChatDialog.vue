@@ -33,6 +33,14 @@ export default {
   components: {
     card, list, send, message
   },
+  watch: {
+    sessionList: {
+      deep: true,
+      handler () {
+        this.sessionList.length < 1 && this.close()
+      }
+    }
+  },
   methods: {
     close: function () {
       this.$emit('closeEvent', {
