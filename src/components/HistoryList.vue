@@ -3,7 +3,7 @@
   <div id="vu_history" @mousedown="drag">
     <div class="vu_his-guan">
       <span>{{historyUid!=0?userList[historyUid].name:''}}</span>
-      <p class="vu_his-hide" @click="close" @mousedown="jinzhi"><img src="../images/baise-x.png" alt="" /></p>
+      <p class="vu_his-hide" @click="close" @mousedown="jinzhi"><span></span></p>
     </div>
     <ul class="vu_his-main" @mousedown="jinzhi">
       <div class="vu_baoliu">为您保留一周的聊天记录</div>

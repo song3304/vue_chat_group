@@ -38,7 +38,7 @@ export default {
 <template>
   <ul id="vu_accordion" class="vu_accordion vu_qie_div">
     <li v-for="companyItem in companyList" :class="{'accordion_li': companyItem.isCalling}">
-        <div class=" vu_link "><i class="fa fa-caret-right "></i><span class="first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
+        <div class=" vu_link "><i class="fa fa-caret-right "></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
         <ul class="vu_submenu vu_submenu_ul ">
           <li v-for="userItem in companyItem.userIds" class="vu_submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)">
             <div :class="{'vu_m-touxiang':!userItem.isCalling,'vu_m-touxiang vu_touxiang':userItem.isCalling}"> <!--有消息头像动加类名 touxiang-->

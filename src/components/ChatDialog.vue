@@ -117,33 +117,6 @@ export default {
     </div>
 </template>
 
-<style >
-    #vu_chat {
-        overflow: hidden;
-        border-radius: 3px;
-    }
-   #vu_chat .vu_sidebar {
-        float: left;
-        width: 220px;
-        color: #f4f4f4;
-        background-color: #eeeeee;
-        height:540px;
-        position: relative;
-    }
-   #vu_chat .vu_m-main {
-        position: relative;
-        overflow: hidden;
-        background-color: #F6F6F6;
-        height: 490px;
-    }
-   #vu_chat .vu_m-text {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        left: 0;
-    }
-   #vu_chat .vu_m-message {
-        height:350px;
-    }
+<style >   
 
 </style>

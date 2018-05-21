@@ -11,7 +11,7 @@
           <li v-for="companyItem in companyList" :class="{'vu_accordion_li': companyItem.isCalling}">
             <div class="vu_link"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
             <ul class="vu_submenu vu_submenu_ul ">
-              <li v-for="userItem in companyItem.userIds " class="vu_submenu-name" >
+              <li v-for="userItem in companyItem.userIds " class="vu_submenu-name vu_submenu-newname" >
                 <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
                   <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
                   <!--//不在线，添加class=gray-->
@@ -22,14 +22,14 @@
                 <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
               </li>
             </ul>
-            <p class="vu_check-all" @click="checkAll($event,companyItem.userIds)">+</p>
+            <p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p>
           </li>
         </ul>
       </div>
       <div class="vu_fenzu_right" @mousedown="jinzhi">
         <p>已选择<span>{{formData.userIds.length}}</span>个联系人</p>
         <ul class="vu_fenzu_right_ul">
-          <li v-for="uid in formData.userIds" class="vu_submenu-name"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+          <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
         </ul>
       </div>
       <br clear="all"/>

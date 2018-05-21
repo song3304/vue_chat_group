@@ -60,7 +60,7 @@ export default {
 <template>
     <div class="vu_m-list">
         <ul v-if="session!=null">
-            <li v-for="(item,index) in searchData" :class="{ active: session.userId === item.userId }" @click="select(item,$event)">
+            <li v-for="(item,index) in searchData" :class="{ vu_active: session.userId === item.userId }" @click="select(item,$event)">
                 <img class="vu_avatar"  width="30" height="30" :alt="userList[item.userId].name" :src="userList[item.userId].img">
                 <div class="vu_m-cs-cs">
                 	<p class="vu_name">{{userList[item.userId].name}}</p>
@@ -80,27 +80,5 @@ export default {
 </template>
 
 <style>
-    .vu_m-list {
-        li {
-            padding: 12px 15px;
-            cursor: pointer;
-            transition: background-color .1s;
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.03);
-            }
-            &.active {
-                background-color: rgba(255, 255, 255, 0.1);
-            }
-        }
-        .vu_avatar, .vu_name {
-            vertical-align: middle;
-        }
-        .vu_avatar {
-            border-radius: 2px;
-        }
-        .vu_name {
-            display: inline-block;
-            margin: 0 0 0 15px;
-        }
-    }
+    
 </style>

@@ -9,8 +9,8 @@ import friendList from './components/FriendList'
 import chatdialog from './components/ChatDialog'
 import historylist from './components/HistoryList'
 import groupdialog from './components/GroupDialog'
-import './css/index.css'
-import './css/leftnav.css'
+import './css/chat_index.css'
+import './css/chat_leftnav.css'
 
 Vue.config.productionTip = false
 

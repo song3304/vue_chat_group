@@ -27,7 +27,5 @@ export default {
   </div>
 </template>
 <style>
-.vu_input-search .vu_submenu{
-  display: block;
-}
+
 </style>

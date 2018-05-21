@@ -17,14 +17,14 @@ if (!localStorage.getItem(key)) {
       2: {
         id: 2,
         name: '小张',
-        img: '/static/img/chat/2.jpg',
+        img: require('../images/2.jpg'),
         isOnline: false, // 是否在线
         isCalling: false // 是否来消息
       },
       3: {
         id: 3,
         name: '小王',
-        img: '/static/img/chat/default.png',
+        img: require('../images/default.png'),
         isOnline: true, // 是否在线
         isCalling: false // 是否来消息
       }
