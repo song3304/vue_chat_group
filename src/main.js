@@ -55,9 +55,9 @@ new Vue({
   //   }
   // 发送emit用:this.$scoket.emit(key,val)
   // },
-  components: {friendList, chatdialog, historylist, groupdialog},
+  components: {friendList, chatdialog, historylist, groupdialog},  
   template: `<div id="chat_app"><div id="vu_chitchat" @click="firstopen()">
-		      <p></p>
+		      <p class="vu_jump"></p>
 		      <span>私信<br>聊天</span>
 		    </div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>

@@ -108,6 +108,7 @@ h1 a {
     -o-transition: all 0.25s ease;
     transition: all 0.25s ease;
     margin:15px 0 0 10px;
+    float: left;
 }
 
 .vu_submenu li:hover ,.vu_submenu li.vu_current{
