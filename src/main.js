@@ -46,7 +46,9 @@ new Vue({
     // 选中的会话Index
     sessionIndex: 0,
     // 默认创建分组
-    groupType: 'common'
+    groupType: 'common',
+    // socket
+    socket: null
   },
   // sockets: {
   // 所有sockect 事件放在这
@@ -55,7 +57,7 @@ new Vue({
   //   }
   // 发送emit用:this.$scoket.emit(key,val)
   // },
-  components: {friendList, chatdialog, historylist, groupdialog},  
+  components: {friendList, chatdialog, historylist, groupdialog},
   template: `<div id="chat_app"><div id="vu_chitchat" @click="firstopen()">
 		      <p class="vu_jump"></p>
 		      <span>私信<br>聊天</span>
@@ -65,12 +67,54 @@ new Vue({
 		    <historylist v-show="panel_show.is_history_show" :user="user" :userList="userList" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
-    // 初始化数据
+    // 初始化数据 套接字
+    if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined') {
+      this.socket = socketChat(this, _chat_user)
+    }
   },
   mounted: function () {
     this.$nextTick(function () {
       // 初始化样式
     })
+  },
+  watch: {
+    // 每当数据发生改变时，保存到localStorage中
+    user: {
+      deep: true,
+      handler () {
+        store.update({user: this.user})
+      }
+    },
+    userList: {
+      deep: true,
+      handler () {
+        store.update({userList: this.userList})
+      }
+    },
+    sessionList: {
+      deep: true,
+      handler () {
+        store.update({sessionList: this.sessionList})
+      }
+    },
+    companyList: {
+      deep: true,
+      handler () {
+        store.update({companyList: this.companyList})
+      }
+    },
+    groupList: {
+      deep: true,
+      handler () {
+        store.update({groupList: this.groupList})
+      }
+    },
+    historyList: {
+      deep: true,
+      handler () {
+        store.update({historyList: this.historyList})
+      }
+    }
   },
   methods: {
     // 打开新建分组
@@ -134,7 +178,27 @@ new Vue({
     delSession: function (index) {
       this.sessionList.splice(index, 1)
       this.sessionIndex = 0
-      store.save({user: this.user, userList: this.userList, companyList: this.companyList, groupList: this.groupList, sessionList: this.sessionList, historyList: this.historyList})
+      store.update({sessionList: this.sessionList})
+    },
+    updateData: function (data) {
+      if (data.hasOwnProperty('user')) {
+        this.user = data.user
+      }
+      if (data.hasOwnProperty('userList')) {
+        this.userList = data.userList
+      }
+      if (data.hasOwnProperty('companyList')) {
+        this.companyList = data.companyList
+      }
+      if (data.hasOwnProperty('groupList')) {
+        this.groupList = data.groupList
+      }
+      if (data.hasOwnProperty('sessionList')) {
+        this.sessionList = data.sessionList
+      }
+      if (data.hasOwnProperty('historyList')) {
+        this.historyList = data.historyList
+      }
     }
   }
 })

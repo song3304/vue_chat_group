@@ -160,5 +160,27 @@ export default {
   },
   save (store) {
     localStorage.setItem(key, JSON.stringify(store))
+  },
+  update (store) {
+    var oldData = JSON.parse(localStorage.getItem(key))
+    if (store.hasOwnProperty('user')) {
+      oldData.user = store.user
+    }
+    if (store.hasOwnProperty('userList')) {
+      oldData.userList = store.userList
+    }
+    if (store.hasOwnProperty('companyList')) {
+      oldData.companyList = store.companyList
+    }
+    if (store.hasOwnProperty('groupList')) {
+      oldData.groupList = store.groupList
+    }
+    if (store.hasOwnProperty('sessionList')) {
+      oldData.sessionList = store.sessionList
+    }
+    if (store.hasOwnProperty('historyList')) {
+      oldData.historyList = store.historyList
+    }
+    localStorage.setItem(key, JSON.stringify(oldData))
   }
 }
