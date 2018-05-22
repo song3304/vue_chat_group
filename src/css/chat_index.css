@@ -160,7 +160,7 @@ ul {
 .vu_account-l{
 	width: 100%;
 	height: 100%;
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
 	background-color: #f6f6f6;
 	box-shadow: -1px -1px 3px 0px 
 		rgba(42, 42, 42, 0.11);
@@ -616,7 +616,7 @@ ul {
 }
 #vu_qun-fen>div{
 	background: #FFFFFF;
-	margin: 10px 5px 0 5px;
+	margin:0 5px 0 5px;
 	text-align: left;
 	padding-bottom: 10px;
 }
@@ -869,8 +869,25 @@ ul {
     }
 }
 .vu_m-message {
-    padding: 10px 15px;
+    padding:15px 15px 10px 15px;
     overflow-y: scroll;
+    position: relative;
+}
+.vu_seemore{
+	position: absolute;
+	top: 2px;
+	left: 185px;
+	text-align: center;
+	cursor: pointer;
+}
+.vu_seemore span{font-size: 10px;color: #2089ff;float: left;}
+.vu_seemore p{
+	display: inline-block;
+	width: 18px;
+	height: 12px;
+	background: url(../images/qie_tu.png) -4px -64px;
+	float: left;
+	margin-top: 2px;
 }
 .vu_m-message li {
     margin-bottom: 15px;

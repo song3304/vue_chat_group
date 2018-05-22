@@ -39,6 +39,9 @@ export default {
 
 <template>
     <div class="vu_m-message" id = "chat_message_main">
+    		<div class="vu_seemore">
+    				<p></p><span>查看更多</span>
+    		</div>
         <ul v-if="session!=null">
             <li v-for="item in session.messages">
                 <p class="vu_time"><span>{{item.date | time}}</span></p>
@@ -48,7 +51,7 @@ export default {
                     <br clear="all"/>
                 </div>
             </li>
-        </ul>
+        </ul>        
     </div>
 </template>
 
