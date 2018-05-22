@@ -186,7 +186,7 @@ ul {
 }
 .vu_m-touxiang{
 	position: relative;
-	top: 10px;
+	top:7px;
 	left: 0;
 	width: 34px;
 	height: 34px;
@@ -201,7 +201,7 @@ ul {
 	animation:toujump .6s infinite linear;
 	-webkit-animation:toujump .6s infinite linear;
 	-moz-animation:toujump .6s infinite linear;
-	-ms-animation:jump .6s infinite linear;
+	-ms-animation:toujump .6s infinite linear;
 }
 @-moz-keyframes toujump{
 	0%{top:7px}
@@ -342,7 +342,7 @@ ul {
     height: 14px;
     line-height: 13px;
 }
-.vu_m-cs-cs{float: left;width: 120px;}
+.vu_m-cs-cs{float: left;width: 110px;}
 .vu_m-xiang{
 	margin:3px 0 0 5px;
 	width:124px;
@@ -491,7 +491,7 @@ ul {
 }
 .vu_m-list{
 	height: 490px;
-	width: 220px;
+	width: 240px;
 	overflow: auto;
 }
 .vu_outer-container,.vu_content {
@@ -616,13 +616,14 @@ ul {
 }
 #vu_qun-fen>div{
 	background: #FFFFFF;
-	margin:0 5px 0 5px;
+	margin:0 5px 10px 5px;
 	text-align: left;
 	padding-bottom: 10px;
 }
 #vu_qun-fen>div>p{
 	color: #1a517d;
 	padding:5px 0 10px 12px;
+	margin: 0;
 }
 /*创建分组弹窗*/
 .vu_fen_zu{
@@ -795,7 +796,7 @@ ul {
     width: 220px;
     color: #f4f4f4;
     background-color: #eeeeee;
-    height:540px;
+    height:539px;
     position: relative;
 }
 #vu_chat .vu_m-main {

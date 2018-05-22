@@ -156,7 +156,12 @@ new Vue({
     },
     // 私信聊天打开好友列表
     firstopen: function () {
-      this.panel_show.is_friend_show = true
+    		this.panel_show.is_friend_show = true    
+    		for (var uid in this.userList) {
+       		if(this.userList[uid].isCalling){
+       			this.panel_show.is_dialog_show = true 
+       		}
+     		}
     },
     // 修改用户名
     changeUserName: function (data) {

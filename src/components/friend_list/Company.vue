@@ -30,6 +30,9 @@ export default {
     },
     openChat: function (uid) {
       this.$emit('openChartEvent', uid)
+      if(this.userList[uid].isCalling == true){
+      	this.userList[uid].isCalling=false
+      }
     },
     isCalling (userIds, userList) {
       return userIds.some(uid => userList[uid].isCalling)
@@ -48,7 +51,7 @@ export default {
 <template>
   <ul id="vu_accordion" class="vu_accordion vu_qie_div">
     <li v-for="companyItem in companyList">
-        <div class="vu_link" :class="{'vu_accordion_li': isCalling(companyItem.userIds, userList)}"><i class="fa fa-caret-right "></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
+        <div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_link vu_accordion_li': isCalling(companyItem.userIds, userList)}"><i class="fa fa-caret-right "></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
         <ul class="vu_submenu vu_submenu_ul ">
           <li v-for="userItem in companyItem.userIds" class="vu_submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)">
             <div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"> <!--有消息头像动加类名 vu_touxiang-->
