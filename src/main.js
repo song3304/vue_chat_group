@@ -63,13 +63,13 @@ new Vue({
 		      <span>私信<br>聊天</span>
 		    </div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>
-		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex"></chatdialog>
-		    <historylist v-show="panel_show.is_history_show" :user="user" :userList="userList" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel"></historylist>
+		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg"></chatdialog>
+		    <historylist v-show="panel_show.is_history_show" :user="user" :userList="userList" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
     // 初始化数据 套接字
     if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined') {
-      this.socket = socketChat(this, _chat_user)
+      this.socket = new socketChat(this, _chat_user)
     }
   },
   mounted: function () {
@@ -156,12 +156,12 @@ new Vue({
     },
     // 私信聊天打开好友列表
     firstopen: function () {
-    		this.panel_show.is_friend_show = true    
-    		for (var uid in this.userList) {
-       		if(this.userList[uid].isCalling){
-       			this.panel_show.is_dialog_show = true 
-       		}
-     		}
+      this.panel_show.is_friend_show = true
+      for (var uid in this.userList) {
+        if (this.userList[uid].isCalling) {
+          this.panel_show.is_dialog_show = true
+        }
+      }
     },
     // 修改用户名
     changeUserName: function (data) {
@@ -175,6 +175,7 @@ new Vue({
     // 打开历史记录
     openHistory: function (uid) {
       this.historyUid = uid
+      this.getMoreMsg(uid)
       this.panel_show.is_history_show = true
     },
     // 更新索引
@@ -211,6 +212,74 @@ new Vue({
       }
       if (data.hasOwnProperty('historyList')) {
         this.historyList = data.historyList
+      }
+    },
+    // 格式化时间
+    _format: function (date, format) {
+      var o = {
+        'M+': date.getMonth() + 1,
+        'd+': date.getDate(),
+        'h+': date.getHours(),
+        'm+': date.getMinutes(),
+        's+': date.getSeconds(),
+        'q+': Math.floor((date.getMonth() + 3) / 3), // quarter
+        'S': date.getMilliseconds() // millisecond
+      }
+      if (/(y+)/.test(format)) {
+        format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+      }
+      for (var k in o) {
+        if (new RegExp('(' + k + ')').test(format)) {
+          format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length))
+        }
+      }
+      return format
+    },
+    // 获取今天数据
+    todayMsg: function (uid) {
+      if (this.socket !== null) {
+        // 判断当天历史记录是否有当天的
+        var today = this._format(new Date(), 'yyyy-MM-dd')
+        if (this.historyList.hasOwnProperty(uid) && this.historyList[uid].contents.some(item => item.date === today)) {
+          var index = this.historyList[uid].contents.findIndex(item => item.date === today)
+          var todayMsgs = this.historyList[uid].contents[index].items
+          var sessIndex = this.sessionList.findIndex(item => item.userId === uid)
+          if (sessIndex < 0) {
+            // 没找到
+            this.sessionList.push({
+              userId: uid,
+              has_send_today: true,
+              messages: todayMsgs.map(item => {
+                return {messageId: item.messageId, text: item.content, date: item.createTime, self: item.self, is_read: item.is_read}
+              })})
+          } else {
+            this.sessionList[sessIndex].has_send_today = true
+            var userSessionList = todayMsgs.map(item => {
+              return {messageId: item.messageId, text: item.content, date: item.createTime, self: item.self, is_read: item.is_read}
+            })
+            // 合并
+            this.sessionList[sessIndex].messages.forEach(function (item) {
+              if (userSessionList.messages.every(i => i.messageId !== item.messageId)) {
+                userSessionList.messages.push(item)
+              }
+            })
+            this.sessionList[sessIndex].messages = userSessionList.messages.sort(function (a, b) { return Date.parse(a.date) - Date.parse(b.date) })
+          }
+        } else {
+          this.socket._getTodayMsg(uid)
+        }
+      }
+    },
+    // 获取历史数据
+    getMoreMsg: function (uid) {
+      if (this.historyList.hasOwnProperty(uid)) {
+        if (!this.historyList[uid].is_all) {
+          this.socket._getHistoryMsg(uid, this.historyList[uid].page + 1)
+        }
+      } else {
+        // 初始化 historyList
+        this.historyList[this.historyUid] = {is_all: false, page: 1, contents: []}
+        this.socket._getHistoryMsg(uid, 1)
       }
     }
   }

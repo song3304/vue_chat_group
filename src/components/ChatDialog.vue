@@ -17,19 +17,6 @@ export default {
       return this.sessionList.hasOwnProperty(this.sessionIndex) ? this.sessionList[this.sessionIndex] : null
     }
   },
-  // watch: {
-  //   // 每当sessionList改变时，保存到localStorage中
-  //   sessionList: {
-  //               deep: true,
-  //               handler () {
-  //                   store.save({
-  //                       user: this.user,
-  //                       userList: this.userList,
-  //                       sessionList: this.sessionList
-  //                   });
-  //               }
-  //           }
-  //       },
   components: {
     card, list, send, message
   },
@@ -57,37 +44,38 @@ export default {
       })
       this.$emit('toReadEvent', msgIds, value.userId)
     },
-    drag:function(ev){
-			var oDiv=document.getElementById('vu_chat');
-			var oEvt=ev||event;
-			var disX=oEvt.clientX-oDiv.offsetLeft;
-			var disY=oEvt.clientY-oDiv.offsetTop;
-			document.onmousemove=function(ev){
-				var oEvt=ev||event;
-				var l=oEvt.clientX-disX;//计算
-				var t=oEvt.clientY-disY;
-				//限定
-				if(l<50) l=0;
-				if(l>document.documentElement.clientWidth-oDiv.offsetWidth-50)
-					l=document.documentElement.clientWidth-oDiv.offsetWidth;
-				if(t<50) t=0;
-				if(t>document.documentElement.clientHeight-oDiv.offsetHeight-50)
-					t=document.documentElement.clientHeight-oDiv.offsetHeight;
+    drag: function (ev) {
+      var oDiv = document.getElementById('vu_chat')
+      var oEvt = ev || event
+      var disX = oEvt.clientX - oDiv.offsetLeft
+      var disY = oEvt.clientY - oDiv.offsetTop
+      document.onmousemove = function (ev) {
+        var oEvt = ev || event
+        var l = oEvt.clientX - disX// 计算
+        var t = oEvt.clientY - disY
+        // 限定
+        if (l < 50) l = 0
+        if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
+          l = document.documentElement.clientWidth - oDiv.offsetWidth
+        }
 
-				oDiv.style.left=l+'px';	//使用
-				oDiv.style.top=t+'px';
-			};
-			document.onmouseup=function(){
-				document.onmouseup=document.onmousemove=null;
-				oDiv.releaseCapture && oDiv.releaseCapture();
-			};
-
-			oDiv.setCapture && oDiv.setCapture();
-			return false;
-		},
-		jinzhi:function(ev){
-			ev.stopPropagation();
-		},
+        if (t < 50) t = 0
+        if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
+          t = document.documentElement.clientHeight - oDiv.offsetHeight
+        }
+        oDiv.style.left = l + 'px'// 使用
+        oDiv.style.top = t + 'px'
+      }
+      document.onmouseup = function () {
+        document.onmouseup = document.onmousemove = null
+        oDiv.releaseCapture && oDiv.releaseCapture()
+      }
+      oDiv.setCapture && oDiv.setCapture()
+      return false
+    },
+    jinzhi: function (ev) {
+      ev.stopPropagation()
+    },
     openHistory: function (uid) {
       this.$emit('openHistoryEvent', uid)
     },
@@ -96,6 +84,9 @@ export default {
     },
     delSession: function (index) {
       this.$emit('delSessionEvent', index)
+    },
+    todayMsg: function (uid) {
+      this.$emit('todayMsgEvent', uid)
     }
   }
 }
@@ -110,8 +101,8 @@ export default {
         </div>
         <div class="vu_m-na" id="tuo"><span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span><div class="vu_m-guan" @click="close" @mousedown="jinzhi"><p><span></span></p></div></div>
         <div class="vu_m-main" @mousedown="jinzhi">
-            <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead"></message>
-            <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead"></send>
+            <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
+            <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" ></send>
         </div>
     </div>
     </div>

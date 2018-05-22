@@ -5,7 +5,7 @@
       <span>{{historyUid!=0?userList[historyUid].name:''}}</span>
       <p class="vu_his-hide" @click="close" @mousedown="jinzhi"><span></span></p>
     </div>
-    <ul class="vu_his-main" @mousedown="jinzhi">
+    <ul class="vu_his-main" @mousedown="jinzhi" v-show="is_show">
       <div class="vu_baoliu">为您保留一周的聊天记录</div>
       <!--//时间-->
       <div class="vu_title">
@@ -38,14 +38,8 @@ export default {
     }
   },
   computed: {
-    lastTime: function () {
-      if (this.historyList.hasOwnProperty(this.historyUid)) {
-        var theOldItme = this.historyList[this.historyUid].contents.pop()
-        var theOldMsg = theOldItme.items.pop()
-        return theOldMsg.createTime
-      } else {
-        return ''
-      }
+    is_show: function () {
+      return this.historyList.hasOwnProperty(this.historyUid)
     }
   },
   methods: {
@@ -53,7 +47,7 @@ export default {
       this.$emit('closeEvent', {is_history_show: false})
     },
     getMoreMsg: function () {
-      this.$emit('getMoreMsgEvent', {historyUid: this.historyUid, lastTime: this.lastTime})
+      this.$emit('getMoreMsgEvent', this.historyUid)
     },
     drag: function (ev) {
       var oDiv = document.getElementById('vu_history')

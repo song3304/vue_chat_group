@@ -39,6 +39,11 @@ export default {
       if (session != null) {
         this.$emit('toReadEvent', session)
       }
+    },
+    todayMsg: function (session) {
+      if (session != null) {
+        this.$emit('todayMsgEvent', session.userId)
+      }
     }
   }
 }
@@ -46,7 +51,7 @@ export default {
 
 <template>
     <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)">
-    		<div class="vu_seemore">
+    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today" @click.stop="todayMsg(session)">
     				<p></p><span>查看更多</span>
     		</div>
         <ul v-if="session!=null">

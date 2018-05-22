@@ -70,6 +70,7 @@ if (!localStorage.getItem(key)) {
     sessionList: [
       {
         userId: 2,
+        has_send_today: false,
         messages: [
           {
             messageId: 3,
@@ -89,6 +90,7 @@ if (!localStorage.getItem(key)) {
       },
       {
         userId: 3,
+        has_send_today: false,
         messages: [
           {
             messageId: 5,
@@ -110,6 +112,7 @@ if (!localStorage.getItem(key)) {
     historyList: {
       2: { // 只取一周数据
         is_all: false, // 一周数据是否取完
+        page: 1,
         contents: [
           {
             date: '2018-05-14',
@@ -118,13 +121,15 @@ if (!localStorage.getItem(key)) {
                 messageId: 3,
                 self: false,
                 createTime: '2018-05-14 11:08:00',
-                content: '我是小五'
+                content: '我是小五',
+                is_read: true
               },
               {
                 messageId: 4,
                 self: false,
                 createTime: '2018-05-14 11:01:20',
-                content: '这是自己说的话'
+                content: '这是自己说的话',
+                is_read: true
               }
             ]
           },
@@ -134,7 +139,8 @@ if (!localStorage.getItem(key)) {
               messageId: 3,
               userId: 1,
               createTime: '2018-05-13 11:08:00',
-              content: '我是小五'
+              content: '我是小五',
+              is_read: true
             }]
           }
         ]
