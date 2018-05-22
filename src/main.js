@@ -168,7 +168,8 @@ new Vue({
       // this.$sockect.emit('changeUserName',data)
     },
     // 更新已读
-    toRead: function ($msgIds) {
+    toRead: function (msgIds, userId) {
+      this.userList[userId].isCalling = false
       // this.$sockect.emit('toReadMsg', $msgIds)
     },
     // 打开历史记录

@@ -33,12 +33,19 @@ export default {
       },
       deep: true
     }
+  },
+  methods: {
+    toRead: function (session) {
+      if (session != null) {
+        this.$emit('toReadEvent', session)
+      }
+    }
   }
 }
 </script>
 
 <template>
-    <div class="vu_m-message" id = "chat_message_main">
+    <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)">
     		<div class="vu_seemore">
     				<p></p><span>查看更多</span>
     		</div>

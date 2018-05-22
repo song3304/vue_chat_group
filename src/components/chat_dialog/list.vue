@@ -21,8 +21,8 @@ export default {
       this.currentIndex = this.sessionList.indexOf(value)
       this.$emit('updateIndexEvent', this.currentIndex)
       // 已读处理
-      var el = event.currentTarget
-      $('.vu_m-list-del .vu_m-list-del-num', el).hide()
+      // var el = event.currentTarget
+      // $('.vu_m-list-del .vu_m-list-del-num', el).hide()
       this.$emit('toReadEvent', value)
     },
     deletePerson: function (index) {
@@ -80,5 +80,5 @@ export default {
 </template>
 
 <style>
-    
+
 </style>
