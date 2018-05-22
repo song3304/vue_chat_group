@@ -159,20 +159,20 @@ ul {
 }
 .vu_account-l{
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	/*overflow-y: scroll;*/
 	background-color: #f6f6f6;
-	box-shadow: -1px -1px 3px 0px 
+	box-shadow: -1px 2px 3px 0px 
 		rgba(42, 42, 42, 0.11);
 }
 #vu_friend{
 	position: fixed;
-	bottom: 0;
+	bottom:15px;
 	right: 0;
 	width: 260px;
 	height: 410px;
 	background-color: #ffffff;
-	box-shadow: -1px -1px 3px 0px 
+	box-shadow: -1px 2px 3px 0px 
 		rgba(42, 42, 42, 0.11);
 	z-index: 1000;
 }
@@ -648,7 +648,7 @@ ul {
 .vu_fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -131px;text-align: center;margin-top: 7px;}
 .vu_fen_zu_title p:hover{background: #BC2424;}
 .vu_fen_zu_title p:hover span{background: url(../images/qie_tu.png) -4px -220px;}
-.vu_fenzu_left{width: 250px!important;height: 350px;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
+.vu_fenzu_left{width: 250px!important;height: 350px!important;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
 .vu_fenzu_left>ul{
 	width: 270px;
 	overflow-y: scroll;
@@ -765,7 +765,7 @@ ul {
 	border-radius: 50%;
 	position: absolute;
 	top:5px;
-	right:14px;
+	right:30px;
 	text-align: center;
 	line-height:10px;
 	display: none;
@@ -846,7 +846,7 @@ ul {
     background-color: #dddddd;
 }
 .vu_m-list {
-    li {
+    li{
         padding: 12px 15px;
         cursor: pointer;
         transition: background-color .1s;
@@ -977,7 +977,7 @@ ul {
 	margin:3px 0 0 10px!important;
 }
 .vu_submenu-newname .vu_checkbox_bg{
-	    margin: 3px 10px 0 0!important;
+	    margin: 3px 26px 0 0!important;
 }
 .vu_qun_fen>li>.vu_link{position: relative;}
 .vu_qun_fen>li>.vu_link:hover .vu_check-all{
