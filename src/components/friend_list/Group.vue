@@ -68,7 +68,7 @@ export default {
 <template>
   <ul class="vu_qun_fen">
     <li v-for="companyItem in companyList">
-        <div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_accordion_li': isCalling(companyItem.userIds, userList)}">
+        <div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_link vu_accordion_li': isCalling(companyItem.userIds, userList)}">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
