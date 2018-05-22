@@ -69,21 +69,10 @@ export default {
         userIds: [],
         groupName: ''
       },
-      placeholder: '请输入分组名称',
-      // seachKey: '',
-      // searchList: []
+      placeholder: '请输入分组名称'
     }
   },
   methods: {
-    // search: function () {
-    //   this.searchList = []
-    //   for (var i = 0, lg = this.userList.length; i < lg; i++) {
-    //     var item = this.userList[i]
-    //     if (item.name.indexOf(newValue) > -1) {
-    //       this.searchList.push(item)
-    //     }
-    //   }
-    // },
     // 关闭事件
     close: function () {
       this.$emit('closeEvent', {

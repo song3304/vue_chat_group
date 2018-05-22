@@ -59,7 +59,7 @@ new Vue({
   // },
   components: {friendList, chatdialog, historylist, groupdialog},
   template: `<div id="chat_app"><div id="vu_chitchat" @click="firstopen()">
-		      <p class="vu_jump"></p>
+		      <p :class="{'vu_jump':isCalling(userList)}"></p>
 		      <span>私信<br>聊天</span>
 		    </div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>
@@ -180,6 +180,13 @@ new Vue({
       this.sessionIndex = 0
       store.update({sessionList: this.sessionList})
     },
+    isCalling (userList) {
+      for (var uid in userList) {
+        if (userList[uid].isCalling) return true
+      }
+      return false
+    },
+    // 更新本地存储
     updateData: function (data) {
       if (data.hasOwnProperty('user')) {
         this.user = data.user
