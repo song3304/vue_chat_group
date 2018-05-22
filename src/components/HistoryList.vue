@@ -83,11 +83,10 @@ export default {
       oDiv.setCapture && oDiv.setCapture()
       return false
     },
-    jinzhi:function(ev){
-		ev.stopPropagation();
-	},
-	loadMore:function(){//	查看更多
-        
+    jinzhi: function (ev) {
+      ev.stopPropagation()
+    },
+    loadMore: function () { // 查看更多
     }
   }
 }
