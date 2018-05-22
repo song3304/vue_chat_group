@@ -35,21 +35,31 @@ export default {
       $(el).hide()
     },
     openChat: function (uid) {
-      this.$emit('openChartEvent', uid);
+      this.$emit('openChartEvent', uid)
     },
-    changeQunName:function(ev){//点击修改群分组名称
-    	event.stopPropagation();
-    	this.Qunfen = true
+    changeQunName: function (ev) { // 点击修改群分组名称
+      event.stopPropagation()
+      this.Qunfen = true
     },
-    quncancel:function(){//关闭修改弹窗
-    	this.Qunfen = false
+    quncancel: function () { // 关闭修改弹窗
+      this.Qunfen = false
     },
-    popcancel:function(){//关闭确认弹窗
-    	this.Qunpopup = false
+    popcancel: function () { // 关闭确认弹窗
+      this.Qunpopup = false
     },
-    Qundel:function(ev){//点击删除
-    	event.stopPropagation();
-    	this.Qunpopup = true
+    Qundel: function (ev) { // 点击删除
+      event.stopPropagation()
+      this.Qunpopup = true
+    },
+    isCalling (userIds, userList) {
+      return userIds.some(uid => userList[uid].isCalling)
+    }
+  },
+  filters: {
+    online (userIds, userList) {
+      var onlineCnt = 0
+      userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
+      return onlineCnt
     }
   }
 }
@@ -57,11 +67,11 @@ export default {
 </script>
 <template>
   <ul class="vu_qun_fen">
-    <li v-for="companyItem in companyList" :class="{'vu_accordion_li': companyItem.isCalling}">
+    <li v-for="companyItem in companyList" :class="{'vu_accordion_li': isCalling(companyItem.userIds, userList)}">
         <div class="vu_link">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
-        	<span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span>
+        	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
         	<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName"></span>
         	<p title="点击删除分组" class="vu_check-all" @click="Qundel">-</p>
         </div>
@@ -77,24 +87,24 @@ export default {
             <!--删除人员-->
             <p class="vu_ren-dele" @click="Qundel"></p>
           </li>
-       </ul>        
+       </ul>
       </li>
       <!--//修改群分名字-->
       <div class="vu_qunzu_name" v-show="Qunfen">
       	<div class="vu_fen_zu_title">
-      		<span>修改群组名称</span> 
+      		<span>修改群组名称</span>
       		<p class="vu_fen_zu_tier"  @click="quncancel"><span></span></p>
-      	</div> 
-      	<p class="vu_fenzu_name_na">请输入组名称：</p> 
-      	<input type="text" name="groupName" placeholder="请输入新分组名称"> 
+      	</div>
+      	<p class="vu_fenzu_name_na">请输入组名称：</p>
+      	<input type="text" name="groupName" placeholder="请输入新分组名称">
       	<div class="vu_fenzu_name_footer"><button>确认</button> <span class="vu_fen_zu_tier" @click="quncancel">取消</span></div>
       </div>
       <!--删除确认弹窗-->
       <div class="vu_del-popup" v-show="Qunpopup">
       	<div class="vu_fen_zu_title">
-      		<span>删除</span> 
+      		<span>删除</span>
       		<p class="vu_fen_zu_tier"  @click="popcancel"><span></span></p>
-      	</div> 
+      	</div>
       	<p>是否确认删除？</p>
       	<div class="vu_fenzu_name_footer"><button>确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
       </div>

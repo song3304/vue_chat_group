@@ -34,16 +34,12 @@ if (!localStorage.getItem(key)) {
       {
         orgId: 1,
         orgName: '华塑汇',
-        userIds: [2, 3],
-        isCalling: false,
-        onlineCnt: 1
+        userIds: [2, 3]
       },
       {
         orgId: 2,
         orgName: '汇商通',
-        userIds: [3],
-        isCalling: false,
-        onlineCnt: 0
+        userIds: [3]
       }
     ],
     // 分组列表
@@ -53,16 +49,12 @@ if (!localStorage.getItem(key)) {
         {
           groupId: 1,
           groupName: '普通好友',
-          userIds: [2, 3],
-          isCalling: false,
-          onlineCnt: 0
+          userIds: [2, 3]
         },
         {
           groupId: 2,
           groupName: 'VIP客户',
-          userIds: [3],
-          isCalling: false,
-          onlineCnt: 0
+          userIds: [3]
         }
       ],
       // 群发分组
@@ -125,14 +117,12 @@ if (!localStorage.getItem(key)) {
               {
                 messageId: 3,
                 self: false,
-                userName: '小王',
                 createTime: '2018-05-14 11:08:00',
                 content: '我是小五'
               },
               {
                 messageId: 4,
                 self: false,
-                userName: '小明',
                 createTime: '2018-05-14 11:01:20',
                 content: '这是自己说的话'
               }
@@ -143,7 +133,6 @@ if (!localStorage.getItem(key)) {
             items: [{
               messageId: 3,
               userId: 1,
-              userName: '小王',
               createTime: '2018-05-13 11:08:00',
               content: '我是小五'
             }]

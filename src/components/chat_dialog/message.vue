@@ -11,15 +11,15 @@ export default {
     // 将日期过滤为 hour:minutes:seconds
     time (date) {
       if (typeof date === 'string') {
-        date = new Date(date);      
-      };
-      var hour = date.getHours();
-      var min = date.getMinutes();
-      var sec = date.getSeconds();
-      function p(s) {
-	        return s < 10 ? '0' + s: s;
-	    }
-      return p(hour) + ':' + p(min)+ ':' + p(sec)
+        date = new Date(date)
+      }
+      var hour = date.getHours()
+      var min = date.getMinutes()
+      var sec = date.getSeconds()
+      function p (s) {
+        return s < 10 ? '0' + s : s
+      }
+      return p(hour) + ':' + p(min) + ':' + p(sec)
     }
   },
   watch: {
@@ -51,7 +51,7 @@ export default {
                     <br clear="all"/>
                 </div>
             </li>
-        </ul>        
+        </ul>
     </div>
 </template>
 

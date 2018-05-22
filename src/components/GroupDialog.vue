@@ -9,7 +9,7 @@
         <!--input type="text" class="vu_fenzu_left_input" placeholder="搜索" @keyup.enter="search" @click="search" vu_model="seachKey"/-->
         <ul class="vu_fenzu_left_ul">
           <li v-for="companyItem in companyList" :class="{'vu_accordion_li': companyItem.isCalling}">
-            <div class="vu_link"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
+            <div class="vu_link"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
             <ul class="vu_submenu vu_submenu_ul ">
               <li v-for="userItem in companyItem.userIds " class="vu_submenu-name vu_submenu-newname" >
                 <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
@@ -168,7 +168,14 @@ export default {
 		},
 		jinzhi:function(ev){
 			ev.stopPropagation();
-		},
+		}
+  },
+  filters: {
+    online (userIds, userList) {
+      var onlineCnt = 0
+      userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
+      return onlineCnt
+    }
   }
 }
 </script>

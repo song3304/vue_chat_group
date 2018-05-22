@@ -12,8 +12,6 @@
 				<img v-show="index!=activeIndex" :src="item.imgSrc" alt="" />
 				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />
 			</li>
-	        <!--<li class=" {current_active == 'company'?'m-active':''}" @click="choose('company');clickTab(index)"><img src="../images/m-chat.png" /><img src="../images/chat.png" /></li>
-	        <li class=" {current_active == 'group'?'m-active':''}" @click="choose('group');clickTab(index)"><img src="../images/group.png" /><img src="../images/m-group.png" /></li>-->
 	        <div class="vu_m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
@@ -113,20 +111,6 @@ export default {
       })
       this.panelShow.searchShow = false
     },
-    // 切换
- // choose: function(type) {
- //   this.current_active = type;
- //   if (type == 'company') {
- //     this.panelShow.companyShow = true;
- //     this.panelShow.groupShow = false;
- //     this.panelShow.searchShow = false;
- //
- //   } else {
- //     this.panelShow.companyShow = false;
- //     this.panelShow.groupShow = true;
- //     this.panelShow.searchShow = false;
- //   }
- // },
     // 创建组事件
     createGroup: function (type) {
       this.$emit('openGroupEvent', type)
@@ -143,5 +127,4 @@ export default {
     }
   }
 }
-
 </script>

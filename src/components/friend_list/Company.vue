@@ -30,6 +30,16 @@ export default {
     },
     openChat: function (uid) {
       this.$emit('openChartEvent', uid)
+    },
+    isCalling (userIds, userList) {
+      return userIds.some(uid => userList[uid].isCalling)
+    }
+  },
+  filters: {
+    online (userIds, userList) {
+      var onlineCnt = 0
+      userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
+      return onlineCnt
     }
   }
 }
@@ -38,10 +48,10 @@ export default {
 <template>
   <ul id="vu_accordion" class="vu_accordion vu_qie_div">
     <li v-for="companyItem in companyList">
-        <div class="vu_link" :class="{'vu_accordion_li': companyItem.isCalling}"><i class="fa fa-caret-right "></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.onlineCnt}}/{{companyItem.userIds.length}}</span></div>
+        <div class="vu_link" :class="{'vu_accordion_li': isCalling(companyItem.userIds, userList)}"><i class="fa fa-caret-right "></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
         <ul class="vu_submenu vu_submenu_ul ">
           <li v-for="userItem in companyItem.userIds" class="vu_submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)">
-            <div :class="{'vu_m-touxiang':!userItem.isCalling,'vu_m-touxiang vu_touxiang':userItem.isCalling}"> <!--有消息头像动加类名 vu_touxiang-->
+            <div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"> <!--有消息头像动加类名 vu_touxiang-->
               <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               <!--//不在线，添加class=gray-->
             </div>
@@ -49,7 +59,7 @@ export default {
             <span class="vu_m-phone-img " @click="changeName"></span>
             <input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!-- "  placeholder="{{userList[userItem].name}} "-->
           </li>
-        </ul>        
+        </ul>
       </li>
     </ul>
 </template>
