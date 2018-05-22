@@ -21,6 +21,11 @@ export default {
     },
     openHistoryDialog: function (uid) {
       this.$emit('openHistoryEvent', uid)
+    },
+    toRead: function (session) {
+      if (session != null) {
+        this.$emit('toReadEvent', session)
+      }
     }
   }
 }
@@ -28,7 +33,7 @@ export default {
 
 <template>
     <div class="vu_m-text" v-if="session!=null">
-        <textarea placeholder="" v-model="text"></textarea>
+        <textarea placeholder="" v-model="text" @click="toRead(session)"></textarea>
         <span class="vu_send" @click="inputing">发送</span><span class="vu_history" @click="openHistoryDialog(session.userId)">历史记录<p></p></span>
     </div>
 </template>

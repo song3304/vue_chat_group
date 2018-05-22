@@ -55,7 +55,7 @@ export default {
           msgIds.push(item.messageId)
         }
       })
-      this.$emit('toReadEvent', msgIds)
+      this.$emit('toReadEvent', msgIds, value.userId)
     },
     drag:function(ev){
 			var oDiv=document.getElementById('vu_chat');
@@ -110,13 +110,13 @@ export default {
         </div>
         <div class="vu_m-na" id="tuo"><span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span><div class="vu_m-guan" @click="close" @mousedown="jinzhi"><p><span></span></p></div></div>
         <div class="vu_m-main" @mousedown="jinzhi">
-            <message :session="session" :user="user" :user-list="userList"></message>
-            <send :session="session" @openHistoryEvent="openHistory"></send>
+            <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead"></message>
+            <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead"></send>
         </div>
     </div>
     </div>
 </template>
 
-<style >   
+<style >
 
 </style>
