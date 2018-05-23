@@ -87,6 +87,9 @@ export default {
     },
     todayMsg: function (uid) {
       this.$emit('todayMsgEvent', uid)
+    },
+    toChat: function (toUid, msg) {
+      this.$emit('chatEvent', toUid, msg)
     }
   }
 }
@@ -102,7 +105,7 @@ export default {
         <div class="vu_m-na" id="tuo"><span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span><div class="vu_m-guan" @click="close" @mousedown="jinzhi"><p><span></span></p></div></div>
         <div class="vu_m-main" @mousedown="jinzhi">
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
-            <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" ></send>
+            <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
         </div>
     </div>
     </div>

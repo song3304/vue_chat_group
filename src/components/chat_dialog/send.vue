@@ -10,13 +10,14 @@ export default {
     inputing: function (e) {
       // 输入内容为空 不提交
       if (this.text === '') return
-      this.session.messages.push({
-        messageId: 0,
-        text: this.text,
-        date: new Date(),
-        self: true,
-        is_read: true
-      })
+      // this.session.messages.push({
+      //   messageId: 0,
+      //   text: this.text,
+      //   date: new Date(),
+      //   self: true,
+      //   is_read: true
+      // })
+      this.$emit('chatEvent', this.session.userId, this.text)
       this.text = ''
     },
     openHistoryDialog: function (uid) {
