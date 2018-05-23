@@ -64,7 +64,7 @@ new Vue({
 		    </div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg"></chatdialog>
-		    <historylist v-show="panel_show.is_history_show" :user="user" :userList="userList" :historyList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
+		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
   created: function () {
     // 初始化数据 套接字
@@ -175,8 +175,8 @@ new Vue({
     // 打开历史记录
     openHistory: function (uid) {
       this.historyUid = uid
-      this.getMoreMsg(uid)
       this.panel_show.is_history_show = true
+      this.getMoreMsg(uid)
     },
     // 更新索引
     updateIndex: function (index) {
@@ -211,7 +211,9 @@ new Vue({
         this.sessionList = data.sessionList
       }
       if (data.hasOwnProperty('historyList')) {
+        // console.log(data.historyList)
         this.historyList = data.historyList
+        this.$refs.childhistory.$forceUpdate()
       }
     },
     // 格式化时间
@@ -278,7 +280,7 @@ new Vue({
         }
       } else {
         // 初始化 historyList
-        this.historyList[this.historyUid] = {is_all: false, page: 1, contents: []}
+        // this.historyList[this.historyUid] = {is_all: false, page: 1, contents: []}
         this.socket._getHistoryMsg(uid, 1)
       }
     }
