@@ -114,7 +114,7 @@ ul {
 	left:0;
 	width: 22px;
 	height: 17px;
-	background: url(../images/qie_tu.png) 0 -158px;
+	background: url(../images/qie_tu.png) 0 -181px;
 	margin:0 0 0 9px;	
 }
 /*新消息跳动*/
@@ -247,7 +247,7 @@ ul {
 	display:none;
 	width: 12px;
 	height: 12px;
-	background: url(../images/qie_tu.png) -4px -106px;
+	background: url(../images/qie_tu.png) -4px -129px;
 	cursor: pointer;
 	margin: 19px 0 0 3px;
 }
@@ -279,7 +279,7 @@ ul {
 	right:100px;
 	width:20px;
 	height: 26px;
-	background:url(../images/qie_tu.png) -4px -79px  no-repeat;
+	background:url(../images/qie_tu.png) -4px -102px  no-repeat;
 	cursor: pointer;
 }
 .vu_m-search{
@@ -295,7 +295,7 @@ ul {
 	margin-top: 3px;
 	width:15px;
 	height:15px;
-	background: url(../images/qie_tu.png) -4px -131px;
+	background: url(../images/qie_tu.png) -4px -155px;
 }
 .vu_fa-chevron-down:before{
 	color: #a4a4a4;
@@ -304,7 +304,7 @@ ul {
 	background:#bc2424;
 }
 .vu_m-guan:hover p span,.vu_m-search:hover p span{
-	background: url(../images/qie_tu.png) -4px -220px no-repeat;
+	background: url(../images/qie_tu.png) -4px -244px no-repeat;
 }
 .vu_m-list .vu_avatar{
 	width: 40px;
@@ -379,12 +379,12 @@ ul {
 	width:16px;
 	height:15px;
 	border-radius: 50%;
-	background:#EEEEEE url(../images/qie_tu.png) -3px 0;
+	background:#EEEEEE url(../images/qie_tu.png) -3px -23px;
 	display:none;
 	z-index: 3;
 }
 .vu_delet-li:hover{
-	background:#EEEEEE url(../images/qie_tu.png) -3px -21px;
+	background:#EEEEEE url(../images/qie_tu.png) -3px -44px;
 }
 .vu_submenu-name{cursor: pointer;}
 .vu_submenu-none{height: 50px;text-align: center;line-height: 50px;border-bottom: 1px solid #cccccc;font-size: 14px;color: #333333;}
@@ -417,14 +417,14 @@ ul {
 	display: inline-block;
 	width: 14px;
 	height: 14px;
-	background: url(../images/qie_tu.png) -4px -130px no-repeat;
+	background: url(../images/qie_tu.png) -4px -154px no-repeat;
 	margin:4px 0 0 0;
 }
 .vu_his-guan p:hover{background:#BC2424;}
 .vu_his-guan p:hover span{
 	width: 15px;
 	height: 15px;
-	background: url(../images/qie_tu.png) -4px -220px no-repeat;
+	background: url(../images/qie_tu.png) -4px -244px no-repeat;
 }
 .vu_his-main{
 	height:640px;
@@ -646,9 +646,9 @@ ul {
 }
 .vu_fen_zu_title>span{font-size: 13px;color: #ffffff;display: inline-block;line-height: 30px;padding-left: 10px;}
 .vu_fen_zu_title p{float:right;width: 30px;height: 30px;cursor: pointer;margin: 0;text-align: center;}
-.vu_fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -131px;text-align: center;margin-top: 7px;}
+.vu_fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -155px;text-align: center;margin-top: 7px;}
 .vu_fen_zu_title p:hover{background: #BC2424;}
-.vu_fen_zu_title p:hover span{background: url(../images/qie_tu.png) -4px -220px;}
+.vu_fen_zu_title p:hover span{background: url(../images/qie_tu.png) -4px -242px;}
 .vu_fenzu_left{width: 250px!important;height: 350px!important;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
 .vu_fenzu_left>ul{
 	width: 270px;
@@ -668,6 +668,9 @@ ul {
 	background: url(../images/qie_tu.png) -4px 0 no-repeat;
 	float: right;
 	margin:7px 20px 0 0;
+}
+.vu_fenzu_right_ul li:hover span{
+	background: url(../images/qie_tu.png) -4px -23px no-repeat;
 }
 .vu_fenzu_right>p{
 	color: #999999;
@@ -886,7 +889,7 @@ ul {
 	display: inline-block;
 	width: 18px;
 	height: 12px;
-	background: url(../images/qie_tu.png) -4px -64px;
+	background: url(../images/qie_tu.png) -4px -87px;
 	float: left;
 	margin-top: 2px;
 }
@@ -1007,19 +1010,19 @@ ul {
 	height: 20px;
 	float: right;
 	margin: 16px 15px 0 0;
-	background: url(../images/qie_tu.png) -4px 1px no-repeat;
+	background: url(../images/qie_tu.png) -4px -21px no-repeat;
 	display: none;
 }
 .vu_submenu .vu_submenu-name:hover .vu_ren-dele{display: block;}
 .vu_submenu .vu_submenu-name .vu_ren-dele:hover{
-	background: url(../images/qie_tu.png) -4px -20px no-repeat;
+	background: url(../images/qie_tu.png) -4px -42px no-repeat;
 }
 .vu_qun-name{
 	display:none;
     float: right;
     width: 12px;
     height: 12px;
-    background: url(../images/qie_tu.png) -4px -106px;
+    background: url(../images/qie_tu.png) -4px -129px;
     cursor: pointer;
     margin:5px 18px 0 3px;
 
