@@ -16,7 +16,7 @@ $(function () {
     $next.slideToggle()
     $this.parent().toggleClass('vu_open')
     if (!e.data.multiple) {
-//    $el.find('.vu_submenu').not($next).slideUp().parent().removeClass('vu_open')
+      $el.find('.vu_submenu').not($next).slideUp().parent().removeClass('vu_open')
     }
   }
   var accordion = new Accordion($('#vu_accordion'), false)
