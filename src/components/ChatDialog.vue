@@ -33,7 +33,7 @@ export default {
       this.$emit('closeEvent', {
         is_dialog_show: false,
         is_history_show: false
-      });
+      })
     },
     toRead: function (value) {
       var msgIds = []
