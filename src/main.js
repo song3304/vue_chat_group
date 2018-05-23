@@ -211,7 +211,6 @@ new Vue({
         this.sessionList = data.sessionList
       }
       if (data.hasOwnProperty('historyList')) {
-        // console.log(data.historyList)
         this.historyList = data.historyList
         this.$refs.childhistory.$forceUpdate()
       }
@@ -280,7 +279,6 @@ new Vue({
         }
       } else {
         // 初始化 historyList
-        // this.historyList[this.historyUid] = {is_all: false, page: 1, contents: []}
         this.socket._getHistoryMsg(uid, 1)
       }
     }

@@ -37,8 +37,3 @@ export default {
         <span class="vu_send" @click="inputing">发送</span><span class="vu_history" @click="openHistoryDialog(session.userId)">历史记录<p></p></span>
     </div>
 </template>
-
-<style>
-
-
-</style>
