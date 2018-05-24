@@ -55,6 +55,7 @@ export default {
     				<p></p><span>查看更多</span>
     		</div>
         <ul v-if="session!=null">
+            <li v-if="session.messages.length<1">没有消息</li>
             <li v-for="item in session.messages">
                 <p class="vu_time"><span>{{item.date}}</span></p>
                 <div class="vu_main" :class="{ vu_self: item.self }">

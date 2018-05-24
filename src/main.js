@@ -133,9 +133,13 @@ new Vue({
       } else {
         var addSessionData = {
           userId: uid,
+          has_send_today: false,
           messages: []
         }
         this.sessionList.unshift(addSessionData)
+      }
+      if (this.userList[uid].isCalling === true) {
+        this.userList[uid].isCalling = false
       }
       this.sessionIndex = 0
       this.panel_show.is_dialog_show = true

@@ -36,9 +36,6 @@ export default {
     },
     openChat: function (uid) {
       this.$emit('openChartEvent', uid)
-      if(this.userList[uid].isCalling == true){
-      	this.userList[uid].isCalling=false
-      }
     },
     changeQunName: function (ev) { // 点击修改群分组名称
       event.stopPropagation()
