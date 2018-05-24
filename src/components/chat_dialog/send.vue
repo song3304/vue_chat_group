@@ -34,7 +34,7 @@ export default {
 
 <template>
     <div class="vu_m-text" v-if="session!=null">
-        <textarea placeholder="" v-model="text" @click="toRead(session)"></textarea>
+        <textarea placeholder="" v-model="text" @click="toRead(session)" @keyup.enter="inputing"></textarea>
         <span class="vu_send" @click="inputing">发送</span><span class="vu_history" @click="openHistoryDialog(session.userId)">历史记录<p></p></span>
     </div>
 </template>
