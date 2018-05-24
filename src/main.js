@@ -62,7 +62,7 @@ new Vue({
 		      <p :class="{'vu_jump':isCalling(userList)}"></p>
 		      <span>私信<br>聊天</span>
 		    </div>
-		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson"></friendList>
+		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></friendList>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
@@ -175,7 +175,7 @@ new Vue({
     // 更新已读
     toRead: function (msgIds, userId) {
       this.userList[userId].isCalling = false
-      // this.$sockect.emit('toReadMsg', $msgIds)
+      this.socket._toReadMsg(userId, msgIds)
     },
     // 打开历史记录
     openHistory: function (uid) {
@@ -298,6 +298,10 @@ new Vue({
     // 删除好友
     delPerson: function (gid, gtype, uid) {
       this.socket._del_person(gid, gtype, uid)
+    },
+    // 修改组名
+    modifyGroupName: function (gid, gtype, gname) {
+      this.socket._modify_group_name(gid, gtype, gname)
     }
   }
 })

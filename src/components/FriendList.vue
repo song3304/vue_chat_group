@@ -26,11 +26,11 @@
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.groupShow">
 	        <div class="vu_qunfen_yi">
 	          <p>普通组</p>
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson"></groupPanel>
+	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
 	        </div>
 	        <div class="vu_qunfen_er">
 	          <p>群发组</p>
-	          <groupPanel group_type="groupHair" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson"></groupPanel>
+	          <groupPanel group_type="groupHair" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
 	        </div>
 	      </div>
 	    </div>
@@ -130,6 +130,9 @@ export default {
     },
     delPerson: function (groupId, groupType, uid) {
       this.$emit('delPersonEvent', groupId, groupType, uid)
+    },
+    modifyGroupName: function (groupId, groupType, groupName) {
+      this.$emit('modifyGroupEvent', groupId, groupType, groupName)
     }
   }
 }

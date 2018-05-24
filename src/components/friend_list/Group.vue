@@ -7,6 +7,8 @@ export default {
       groupId: 0,
       uid: 0,
       delType: '',
+      groupName: '',
+      groupPlaceHolder: '请输入新分组名称',
       Qunfen: false, // 修改群分组名称弹窗关闭
       Qunpopup: false // 确认弹窗关闭
     }
@@ -40,9 +42,18 @@ export default {
     openChat: function (uid) {
       this.$emit('openChartEvent', uid)
     },
-    changeQunName: function (ev) { // 点击修改群分组名称
+    changeQunName: function (ev, groupId) { // 点击修改群分组名称
       event.stopPropagation()
+      this.groupId = groupId
       this.Qunfen = true
+    },
+    modifyGroupName: function () {
+      if (this.groupName === '') {
+        this.groupPlaceHolder = '组名不能为空，请重新输入'
+      }
+      this.$emit('modifyGroupEvent', this.groupId, this.group_type, this.groupName)
+      this.groupName = ''
+      this.Qunfen = false
     },
     quncancel: function () { // 关闭修改弹窗
       this.Qunfen = false
@@ -92,7 +103,7 @@ export default {
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
-        	<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName"></span>
+        	<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName($event,companyItem.groupId)"></span>
         	<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
@@ -116,8 +127,8 @@ export default {
       		<p class="vu_fen_zu_tier"  @click="quncancel"><span></span></p>
       	</div>
       	<p class="vu_fenzu_name_na">请输入组名称：</p>
-      	<input type="text" name="groupName" placeholder="请输入新分组名称">
-      	<div class="vu_fenzu_name_footer"><button>确认</button> <span class="vu_fen_zu_tier" @click="quncancel">取消</span></div>
+      	<input type="text" name="groupName" :placeholder="groupPlaceHolder" v-model="groupName">
+      	<div class="vu_fenzu_name_footer"><button @click="modifyGroupName">确认</button> <span class="vu_fen_zu_tier" @click="quncancel">取消</span></div>
       </div>
       <!--删除确认弹窗-->
       <div class="vu_del-popup" v-show="Qunpopup">
