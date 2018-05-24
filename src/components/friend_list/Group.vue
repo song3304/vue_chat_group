@@ -5,6 +5,8 @@ export default {
   data () {
     return {
       groupId: 0,
+      uid: 0,
+      delType: '',
       Qunfen: false, // 修改群分组名称弹窗关闭
       Qunpopup: false // 确认弹窗关闭
     }
@@ -52,10 +54,22 @@ export default {
       event.stopPropagation()
       this.Qunpopup = true
       this.groupId = groupId
+      this.delType = 'group'
     },
-    delGroup: function () {
-      this.$emit('delGroupEvent', this.groupId, this.group_type)
+    delConfirm: function () {
+      if (this.delType === 'group') {
+        this.$emit('delGroupEvent', this.groupId, this.group_type)
+      } else if (this.delType === 'person') {
+        this.$emit('delPersonEvent', this.groupId, this.group_type, this.uid)
+      }
       this.Qunpopup = false
+    },
+    delPen: function (ev, groupId, uid) {
+      event.stopPropagation()
+      this.Qunpopup = true
+      this.groupId = groupId
+      this.uid = uid
+      this.delType = 'person'
     },
     isCalling (userIds, userList) {
       return userIds.some(uid => userList[uid].isCalling)
@@ -91,7 +105,7 @@ export default {
             <span class="vu_m-phone-img " @click="changeName"></span>
             <input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
-            <p class="vu_ren-dele" @click="Qundel"></p>
+            <p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p>
           </li>
        </ul>
       </li>
@@ -112,7 +126,7 @@ export default {
       		<p class="vu_fen_zu_tier"  @click="popcancel"><span></span></p>
       	</div>
       	<p>是否确认删除？</p>
-      	<div class="vu_fenzu_name_footer" @click="delGroup"><button>确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
+      	<div class="vu_fenzu_name_footer"><button @click="delConfirm">确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
       </div>
     </ul>
 </template>
