@@ -9,9 +9,9 @@
         <!--input type="text" class="vu_fenzu_left_input" placeholder="搜索" @keyup.enter="search" @click="search" vu_model="seachKey"/-->
         <ul class="vu_fenzu_left_ul">
           <li v-for="companyItem in companyList" :class="{'vu_accordion_li': companyItem.isCalling}">
-            <div class="vu_link"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
+            <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
             <ul class="vu_submenu vu_submenu_ul ">
-              <li v-for="userItem in companyItem.userIds " class="vu_submenu-name vu_submenu-newname" >
+              <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current':in_array(userItem,formData.userIds)}">
                 <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
                   <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
                   <!--//不在线，添加class=gray-->
@@ -158,6 +158,12 @@ export default {
     },
     jinzhi: function (ev) {
       ev.stopPropagation()
+    },
+    // 折叠
+    accordion: function (ev) {
+      var _this = $(event.currentTarget)
+      _this.next('ul').slideToggle()
+      _this.parent('li').toggleClass('vu_open')
     }
   },
   filters: {

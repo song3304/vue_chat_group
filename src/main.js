@@ -3,7 +3,6 @@
 import Vue from 'vue'
 // import VueSocketio from 'vue-socket.io'
 import 'font-awesome/css/font-awesome.css'
-import './js/leftnav.js'
 import store from './js/store'
 import friendList from './components/FriendList'
 import chatdialog from './components/ChatDialog'

@@ -3,6 +3,7 @@ import card from './chat_dialog/card'
 import list from './chat_dialog/list'
 import send from './chat_dialog/send'
 import message from './chat_dialog/message'
+import $ from 'jquery'
 
 export default {
   name: 'ChatDialog',

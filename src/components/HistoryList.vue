@@ -5,7 +5,7 @@
       <span>{{historyUid!=0?userList[historyUid].name:''}}</span>
       <p class="vu_his-hide" @click="close" @mousedown="jinzhi"><span></span></p>
     </div>
-    <div id="vu_his-head">    
+    <div id="vu_his-head">
     <ul class="vu_his-main" @mousedown="jinzhi" v-show="is_show(hList)" id="vu_his-main">
       <div class="vu_baoliu" @click="getMoreMsg" v-show="!is_all(hList)">查看更多</div>
       <div class="vu_baoliu" v-show="is_all(hList)">已经到底了</div>
@@ -17,7 +17,7 @@
           <p :class="{'vu_oppo-title':!date_item.self,'vu_one-title':date_item.self}">{{date_item.self?'自己':userList[historyUid].name}} {{date_item.createTime}}</p>
           <p :class="{'vu_oppo-xiang':!date_item.self,'vu_one-xiang':date_item.self}">{{date_item.content}}</p>
         </li>
-      </div>      
+      </div>
       <div class="vu_baoliu">为您保留一周的聊天记录</div>
     </ul>
     </div>
@@ -49,11 +49,11 @@ export default {
     },
     getMoreMsg: function () {
       this.$emit('getMoreMsgEvent', this.historyUid)
-      setTimeout(function(){
-      	var el =document.getElementById('vu_his-head')      	
-				el.scrollTop = el.scrollHeight-localStorage.a
-	    	localStorage.a=el.scrollHeight
-      },1)			
+      setTimeout(function () {
+        var el = document.getElementById('vu_his-head')
+        el.scrollTop = el.scrollHeight - localStorage.a
+        localStorage.a = el.scrollHeight
+      }, 1)
     },
     drag: function (ev) {
       var oDiv = document.getElementById('vu_history')

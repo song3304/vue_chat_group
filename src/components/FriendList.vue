@@ -15,8 +15,8 @@
 	        <div class="vu_m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
-	            <li class="vu_fen-active" @click="createGroup('common')">创建新组</li>
-	            <li @click="createGroup('group')">创建群发组</li>
+	            <li :class="{'vu_fen-active':createType==='common'}" @click="createGroup('common')">创建新组</li>
+	            <li :class="{'vu_fen-active':createType==='group'}" @click="createGroup('group')">创建群发组</li>
 	          </ul>
 	        </div>
 	      </ul>
@@ -66,7 +66,8 @@ export default {
         {
           imgSrc: require('../images/group.png'),
           activeImgSrc: require('../images/m-group.png')
-        }]
+        }],
+      createType: 'common'
     }
   },
   components: {companyPanel, groupPanel, searchDialog},
@@ -113,22 +114,25 @@ export default {
     },
     // 创建组事件
     createGroup: function (type) {
+      this.createType = type
       this.$emit('openGroupEvent', type)
       this.groupShow = false
+      $('.vu_m-add ul li').attr('class', '')
+      $(this).attr('class', 'vu_fen-active')
     },
     openChat: function (uid) {
       this.$emit('openTalkEvent', uid)
     },
     toggle: function (ev) {
-    	ev.stopPropagation();
+      ev.stopPropagation()
       this.groupShow = !this.groupShow
     },
     changeUserName: function (data) {
       this.$emit('changeUserNameEvent', data)
     },
-    chuangjian:function(){
-    	this.groupShow = false
-	},
+    chuangjian: function () {
+      this.groupShow = false
+    },
     delGroup: function (groupId, groupType) {
       this.$emit('delGroupEvent', groupId, groupType)
     },
