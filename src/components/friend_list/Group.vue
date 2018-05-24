@@ -2,12 +2,13 @@
 import $ from 'jquery'
 
 export default {
-	data(){
-		return{
-			Qunfen:false, //修改群分组名称弹窗关闭
-			Qunpopup:false //确认弹窗关闭
-		}
-	},
+  data () {
+    return {
+      groupId: 0,
+      Qunfen: false, // 修改群分组名称弹窗关闭
+      Qunpopup: false // 确认弹窗关闭
+    }
+  },
   props: ['user', 'userList', 'companyList', 'group_type'],
   methods: {
     mouseOver: function (event) {
@@ -44,12 +45,17 @@ export default {
     quncancel: function () { // 关闭修改弹窗
       this.Qunfen = false
     },
-    popcancel: function () { // 关闭确认弹窗
+    popcancel: function () { // 关闭删除弹框
       this.Qunpopup = false
     },
-    Qundel: function (ev) { // 点击删除
+    Qundel: function (ev, groupId) { // 点击弹出删除框
       event.stopPropagation()
       this.Qunpopup = true
+      this.groupId = groupId
+    },
+    delGroup: function () {
+      this.$emit('delGroupEvent', this.groupId, this.group_type)
+      this.Qunpopup = false
     },
     isCalling (userIds, userList) {
       return userIds.some(uid => userList[uid].isCalling)
@@ -73,7 +79,7 @@ export default {
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
         	<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName"></span>
-        	<p title="点击删除分组" class="vu_check-all" @click="Qundel">-</p>
+        	<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
           <li v-for="userItem in companyItem.userIds" class="vu_submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)">
@@ -106,7 +112,7 @@ export default {
       		<p class="vu_fen_zu_tier"  @click="popcancel"><span></span></p>
       	</div>
       	<p>是否确认删除？</p>
-      	<div class="vu_fenzu_name_footer"><button>确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
+      	<div class="vu_fenzu_name_footer" @click="delGroup"><button>确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
       </div>
     </ul>
 </template>

@@ -26,11 +26,11 @@
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.groupShow">
 	        <div class="vu_qunfen_yi">
 	          <p>普通组</p>
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName"></groupPanel>
+	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup"></groupPanel>
 	        </div>
 	        <div class="vu_qunfen_er">
 	          <p>群发组</p>
-	          <groupPanel group_type="group" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat" @changeUserNameEvent="changeUserName"></groupPanel>
+	          <groupPanel group_type="groupHair" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup"></groupPanel>
 	        </div>
 	      </div>
 	    </div>
@@ -124,6 +124,9 @@ export default {
     },
     changeUserName: function (data) {
       this.$emit('changeUserNameEvent', data)
+    },
+    delGroup: function (groupId, groupType) {
+      this.$emit('delGroupEvent', groupId, groupType)
     }
   }
 }

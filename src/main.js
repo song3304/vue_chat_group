@@ -62,7 +62,7 @@ new Vue({
 		      <p :class="{'vu_jump':isCalling(userList)}"></p>
 		      <span>私信<br>聊天</span>
 		    </div>
-		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName"></friendList>
+		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup"></friendList>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
@@ -124,7 +124,8 @@ new Vue({
     },
     // 创建分组
     createGroup: function (data) {
-      // this.$sockect.emit('createGroup',data)
+      this.socket._create_group(data.groupName, data.groupType, data.userIds)
+      // this.socket.emit('createGroup', data)
     },
     // 打开对话框
     openTalk: function (uid) {
@@ -289,6 +290,10 @@ new Vue({
     // 聊天发送数据
     toChat: function (toUid, msg) {
       this.socket._sendMsg(toUid, msg)
+    },
+    // 删除分组
+    delGroup: function (gid, gtype) {
+      this.socket._del_group(gid, gtype)
     }
   }
 })
