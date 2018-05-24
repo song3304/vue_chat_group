@@ -4,6 +4,7 @@ import friendList from '@/components/FriendList'
 import chatdialog from '@/components/ChatDialog'
 import historylist from '@/components/HistoryList'
 import groupdialog from '@/components/GroupDialog'
+import qunnew from '@/components/QunNew'
 
 Vue.use(Router)
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/groupdialog',
       name: 'groupdialog',
       component: groupdialog
+    },
+    {
+      path: '/qunnew',
+      name: 'qunnew',
+      component: qunnew
     }
   ]
 })
