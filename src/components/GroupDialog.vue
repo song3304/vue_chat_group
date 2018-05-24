@@ -128,36 +128,37 @@ export default {
     delUser: function (uid) {
       this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
     },
-    drag:function(ev){
-			var oDiv=document.getElementById('vu_div');
-			var oEvt=ev||event;
-			var disX=oEvt.clientX-oDiv.offsetLeft;
-			var disY=oEvt.clientY-oDiv.offsetTop;
-			document.onmousemove=function(ev){
-				var oEvt=ev||event;
-				var l=oEvt.clientX-disX;//计算
-				var t=oEvt.clientY-disY;
-				//限定
-				if(l<5) l=0;
-				if(l>document.documentElement.clientWidth-oDiv.offsetWidth-50)
-					l=document.documentElement.clientWidth-oDiv.offsetWidth;
-				if(t<5) t=0;
-				if(t>document.documentElement.clientHeight-oDiv.offsetHeight-50)
-					t=document.documentElement.clientHeight-oDiv.offsetHeight;
-
-				oDiv.style.left=l+'px';	//使用
-				oDiv.style.top=t+'px';
-			};
-			document.onmouseup=function(){
-				document.onmouseup=document.onmousemove=null;
-				oDiv.releaseCapture && oDiv.releaseCapture();
-			};
-			oDiv.setCapture && oDiv.setCapture();
-			return false;
-		},
-		jinzhi:function(ev){
-			ev.stopPropagation();
-		}
+    drag: function (ev) {
+      var oDiv = document.getElementById('vu_div')
+      var oEvt = ev || event
+      var disX = oEvt.clientX - oDiv.offsetLeft
+      var disY = oEvt.clientY - oDiv.offsetTop
+      document.onmousemove = function (ev) {
+        var oEvt = ev || event
+        var l = oEvt.clientX - disX // 计算
+        var t = oEvt.clientY - disY
+        // 限定
+        if (l < 5) l = 0
+        if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
+          l = document.documentElement.clientWidth - oDiv.offsetWidth
+        }
+        if (t < 5) t = 0
+        if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
+          t = document.documentElement.clientHeight - oDiv.offsetHeight
+        }
+        oDiv.style.left = l + 'px'
+        oDiv.style.top = t + 'px'
+      }
+      document.onmouseup = function () {
+        document.onmouseup = document.onmousemove = null
+        oDiv.releaseCapture && oDiv.releaseCapture()
+      }
+      oDiv.setCapture && oDiv.setCapture()
+      return false
+    },
+    jinzhi: function (ev) {
+      ev.stopPropagation()
+    }
   },
   filters: {
     online (userIds, userList) {

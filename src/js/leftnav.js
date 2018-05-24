@@ -6,6 +6,7 @@ $(function () {
     // Variables privadas
     var links = this.el.find('.vu_link')
     // Evento
+    //$(document).on('click', $(links), {el: this.el, multiple: this.multiple}, this.dropdown)
     links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
   }
   Accordion.prototype.dropdown = function (e) {
@@ -51,8 +52,6 @@ $(function () {
 })
 
 $(document).on('click', '.vu_m-add ul li', function () {
-  var va = $(this).text()
-  $('.vu_fen_zu_title>span').text(va)
   $('.vu_m-add ul li').attr('class', '')
   $(this).attr('class', 'vu_fen-active')
 })

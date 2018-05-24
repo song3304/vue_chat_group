@@ -2,12 +2,15 @@
 import $ from 'jquery'
 
 export default {
-	data(){
-		return{
-			Qunfen:false, //修改群分组名称弹窗关闭
-			Qunpopup:false //确认弹窗关闭
-		}
-	},
+  data () {
+    return {
+      groupId: 0,
+      uid: 0,
+      delType: '',
+      Qunfen: false, // 修改群分组名称弹窗关闭
+      Qunpopup: false // 确认弹窗关闭
+    }
+  },
   props: ['user', 'userList', 'companyList', 'group_type'],
   methods: {
     mouseOver: function (event) {
@@ -44,12 +47,29 @@ export default {
     quncancel: function () { // 关闭修改弹窗
       this.Qunfen = false
     },
-    popcancel: function () { // 关闭确认弹窗
+    popcancel: function () { // 关闭删除弹框
       this.Qunpopup = false
     },
-    Qundel: function (ev) { // 点击删除
+    Qundel: function (ev, groupId) { // 点击弹出删除框
       event.stopPropagation()
       this.Qunpopup = true
+      this.groupId = groupId
+      this.delType = 'group'
+    },
+    delConfirm: function () {
+      if (this.delType === 'group') {
+        this.$emit('delGroupEvent', this.groupId, this.group_type)
+      } else if (this.delType === 'person') {
+        this.$emit('delPersonEvent', this.groupId, this.group_type, this.uid)
+      }
+      this.Qunpopup = false
+    },
+    delPen: function (ev, groupId, uid) {
+      event.stopPropagation()
+      this.Qunpopup = true
+      this.groupId = groupId
+      this.uid = uid
+      this.delType = 'person'
     },
     isCalling (userIds, userList) {
       return userIds.some(uid => userList[uid].isCalling)
@@ -73,7 +93,7 @@ export default {
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
         	<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName"></span>
-        	<p title="点击删除分组" class="vu_check-all" @click="Qundel">-</p>
+        	<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
           <li v-for="userItem in companyItem.userIds" class="vu_submenu-name" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)">
@@ -85,7 +105,7 @@ export default {
             <span class="vu_m-phone-img " @click="changeName"></span>
             <input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
-            <p class="vu_ren-dele" @click="Qundel"></p>
+            <p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p>
           </li>
        </ul>
       </li>
@@ -106,7 +126,7 @@ export default {
       		<p class="vu_fen_zu_tier"  @click="popcancel"><span></span></p>
       	</div>
       	<p>是否确认删除？</p>
-      	<div class="vu_fenzu_name_footer"><button>确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
+      	<div class="vu_fenzu_name_footer"><button @click="delConfirm">确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
       </div>
     </ul>
 </template>
