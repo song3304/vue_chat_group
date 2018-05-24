@@ -56,7 +56,7 @@ export default {
     		</div>
         <ul v-if="session!=null">
             <li v-for="item in session.messages">
-                <p class="vu_time"><span>{{item.date | time}}</span></p>
+                <p class="vu_time"><span>{{item.date}}</span></p>
                 <div class="vu_main" :class="{ vu_self: item.self }">
                     <img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.userId].img" />
                     <div class="vu_text">{{item.text}}</div>

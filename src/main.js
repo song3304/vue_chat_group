@@ -260,11 +260,11 @@ new Vue({
             })
             // 合并
             this.sessionList[sessIndex].messages.forEach(function (item) {
-              if (userSessionList.messages.every(i => i.messageId !== item.messageId)) {
-                userSessionList.messages.push(item)
+              if (userSessionList.every(i => i.messageId !== item.messageId)) {
+                userSessionList.push(item)
               }
             })
-            this.sessionList[sessIndex].messages = userSessionList.messages.sort(function (a, b) { return Date.parse(a.date) - Date.parse(b.date) })
+            this.sessionList[sessIndex].messages = userSessionList.sort(function (a, b) { return Date.parse(a.date) - Date.parse(b.date) })
           }
         } else {
           this.socket._getTodayMsg(uid)
