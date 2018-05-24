@@ -1,5 +1,5 @@
 <template>
-	<div id="vu_friend">
+	<div id="vu_friend" @click="chuangjian">
 	    <div class="vu_m-search">
 	      <input type="text" id="vu_search" placeholder="查找联系人" @keyup.enter="search" />
 	      <div @click="search"></div>
@@ -119,12 +119,16 @@ export default {
     openChat: function (uid) {
       this.$emit('openTalkEvent', uid)
     },
-    toggle: function () {
+    toggle: function (ev) {
+    	ev.stopPropagation();
       this.groupShow = !this.groupShow
     },
     changeUserName: function (data) {
       this.$emit('changeUserNameEvent', data)
     },
+    chuangjian:function(){
+    	this.groupShow = false
+	},
     delGroup: function (groupId, groupType) {
       this.$emit('delGroupEvent', groupId, groupType)
     },

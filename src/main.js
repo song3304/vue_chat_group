@@ -9,6 +9,7 @@ import friendList from './components/FriendList'
 import chatdialog from './components/ChatDialog'
 import historylist from './components/HistoryList'
 import groupdialog from './components/GroupDialog'
+import qunnew from './components/QunNew'
 import './css/chat_index.css'
 import './css/chat_leftnav.css'
 
@@ -25,7 +26,8 @@ new Vue({
       is_friend_show: false,
       is_dialog_show: false,
       is_history_show: false,
-      is_group_show: false
+      is_group_show: false,
+      is_qun_show: false
     },
     // 登录用户
     user: serverData.user,
@@ -57,7 +59,7 @@ new Vue({
   //   }
   // 发送emit用:this.$scoket.emit(key,val)
   // },
-  components: {friendList, chatdialog, historylist, groupdialog},
+  components: {friendList, chatdialog, historylist, groupdialog,qunnew},
   template: `<div id="chat_app"><div id="vu_chitchat" @click="firstopen()">
 		      <p :class="{'vu_jump':isCalling(userList)}"></p>
 		      <span>私信<br>聊天</span>
@@ -65,7 +67,8 @@ new Vue({
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></friendList>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
-				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog></div>`,
+				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
+				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></qunnew></div>`,
   created: function () {
     // 初始化数据 套接字
     if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined') {
@@ -157,6 +160,9 @@ new Vue({
       }
       if (data.hasOwnProperty('is_group_show')) {
         this.panel_show.is_group_show = data.is_group_show
+      }
+      if (data.hasOwnProperty('is_qun_show')) {
+        this.panel_show.is_qun_show = data.is_qun_show
       }
     },
     // 私信聊天打开好友列表

@@ -31,6 +31,7 @@ ul {
     width:670px;
 	height:540px;
 	z-index: 1000;
+	box-shadow: 0px 0px 6px 3px rgba(42, 42, 42, 0.2);
 }
 #vu_chat .vu_sidebar{
 	background: #EEEEEE;
@@ -426,9 +427,12 @@ ul {
 	height: 15px;
 	background: url(../images/qie_tu.png) -4px -244px no-repeat;
 }
-.vu_his-main{
+#vu_his-head{
 	height:640px;
 	overflow-y:scroll;
+}
+.vu_his-main{
+	
 }
 .vu_title-text span {
     display: block;      /*设置为块级元素会独占一行形成上下居中的效果*/
@@ -592,7 +596,7 @@ ul {
 .vu_m-add ul{
 	position: absolute;
 	top:20px;
-	right:-20px;
+	right:0;
 	width: 80px;
 	height: 46px;
 	background-color: #ffffff;
@@ -786,8 +790,8 @@ ul {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,0.3);
-	/*z-index: 999;*/
+	/*background: rgba(0,0,0,0.3);
+	z-index: 999;*/
 }
 /*从页面移出样式*/
 #vu_chat {
@@ -1064,4 +1068,9 @@ ul {
 }
 .vu_del-popup .vu_fenzu_name_footer span{
 	margin-right:20px;
+}
+.vu_m-message-new{
+	text-align: center;
+	color: #666666;
+	padding: 20px 0;
 }
