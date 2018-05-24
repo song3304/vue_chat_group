@@ -128,7 +128,6 @@ new Vue({
     // 创建分组
     createGroup: function (data) {
       this.socket._create_group(data.groupName, data.groupType, data.userIds)
-      // this.socket.emit('createGroup', data)
     },
     // 打开对话框
     openTalk: function (uid) {
@@ -181,7 +180,9 @@ new Vue({
     // 更新已读
     toRead: function (msgIds, userId) {
       this.userList[userId].isCalling = false
-      this.socket._toReadMsg(userId, msgIds)
+      if (msgIds.length > 0) {
+        this.socket._toReadMsg(userId, msgIds)
+      }
     },
     // 打开历史记录
     openHistory: function (uid) {
