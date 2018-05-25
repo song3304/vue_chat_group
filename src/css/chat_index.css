@@ -1136,3 +1136,20 @@ ul {
 	margin-left:555px;
 }
 /*群发消息样式end*/
+/*返回顶部stary*/
+#fanhui{
+	position: fixed;
+	right: 0;
+	bottom: 30px;
+	width: 40px;
+	height: 50px;
+	background: #FFFFFF;
+}
+#fanhui span{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../images/qie_tu.png) -4px -214px no-repeat;
+	margin:15px 0 0 13px;
+}
+/*返回顶部end*/

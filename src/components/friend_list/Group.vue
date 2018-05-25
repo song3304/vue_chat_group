@@ -24,6 +24,10 @@ export default {
       var el = event.currentTarget
       $('.vu_m-phone-img', $(el)).hide()
     },
+    mouseLeave:function(event){
+    	var el = event.currentTarget
+    	$('.vu_m-phone-input', $(el)).hide()  
+    },
     changeName: function (event) {
       var el = event.currentTarget
       $(el).hide().next().show()
@@ -118,7 +122,7 @@ export default {
         	<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
-          <li v-for="userItem in companyItem.userIds" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseover="mouseOver" @mouseout="mouseOut"  @dblclick="openChat(userItem)">
+          <li v-for="userItem in companyItem.userIds" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseover="mouseOver" @mouseout="mouseOut"  @dblclick="openChat(userItem)" @mouseleave="mouseLeave">
             <div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"> <!--有消息头像动加类名 touxiang-->
               <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               <!--//不在线，添加class=gray-->
