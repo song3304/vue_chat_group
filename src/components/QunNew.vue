@@ -69,6 +69,7 @@ export default {
         return
       }
       this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
+      this.close() // 关闭窗口
     },
     checkAll: function (event, userIds) {
       var el = event.currentTarget
