@@ -130,7 +130,9 @@ new Vue({
     },
     // 创建分组
     createGroup: function (data) {
-      this.socket._create_group(data.groupName, data.groupType, data.userIds)
+      if (this.socket !== null) {
+        this.socket._create_group(data.groupName, data.groupType, data.userIds)
+      }
     },
     // 打开对话框
     openTalk: function (uid) {
@@ -184,7 +186,9 @@ new Vue({
     toRead: function (msgIds, userId) {
       this.userList[userId].isCalling = false
       if (msgIds.length > 0) {
-        this.socket._toReadMsg(userId, msgIds)
+        if (this.socket !== null) {
+          this.socket._toReadMsg(userId, msgIds)
+        }
       }
     },
     // 打开历史记录
@@ -282,7 +286,9 @@ new Vue({
             this.sessionList[sessIndex].messages = userSessionList.sort(function (a, b) { return Date.parse(a.date) - Date.parse(b.date) })
           }
         } else {
-          this.socket._getTodayMsg(uid)
+          if (this.socket !== null) {
+            this.socket._getTodayMsg(uid)
+          }
         }
       }
     },
@@ -290,38 +296,52 @@ new Vue({
     getMoreMsg: function (uid) {
       if (this.historyList.hasOwnProperty(uid)) {
         if (!this.historyList[uid].is_all) {
-          this.socket._getHistoryMsg(uid, this.historyList[uid].page + 1)
+          if (this.socket !== null) {
+            this.socket._getHistoryMsg(uid, this.historyList[uid].page + 1)
+          }
         }
       } else {
         // 初始化 historyList
-        this.socket._getHistoryMsg(uid, 1)
+        if (this.socket !== null) {
+          this.socket._getHistoryMsg(uid, 1)
+        }
       }
     },
     // 聊天发送数据
     toChat: function (toUid, msg) {
-      this.socket._sendMsg(toUid, msg)
+      if (this.socket !== null) {
+        this.socket._sendMsg(toUid, msg)
+      }
     },
     // 删除分组
     delGroup: function (gid, gtype) {
-      this.socket._del_group(gid, gtype)
+      if (this.socket !== null) {
+        this.socket._del_group(gid, gtype)
+      }
     },
     // 删除好友
     delPerson: function (gid, gtype, uid) {
-      this.socket._del_person(gid, gtype, uid)
+      if (this.socket !== null) {
+        this.socket._del_person(gid, gtype, uid)
+      }
     },
     // 修改组名
     modifyGroupName: function (gid, gtype, gname) {
-      this.socket._modify_group_name(gid, gtype, gname)
+      if (this.socket !== null) {
+        this.socket._modify_group_name(gid, gtype, gname)
+      }
     },
     // 打开群发窗口
-    openGroupHair: function (msg, _target_obj) {
+    openGroupHair: function (msg, _targetObj) {
       this.groupMsg = msg
-      this.targetObj = _target_obj
+      this.targetObj = _targetObj
       this.panel_show.is_qun_show = true
     },
     // 触发群发
     sendGroupMsg: function (uids, msg) {
-      this.socket._sendGroupHair(uids, msg)
+      if (this.socket !== null) {
+        this.socket._sendGroupHair(uids, msg)
+      }
     }
   }
 })
