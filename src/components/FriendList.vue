@@ -15,8 +15,8 @@
 	        <div class="vu_m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
-	            <li :class="{'vu_fen-active':createType==='common'}" @click="createGroup('common')">创建新组</li>
-	            <li :class="{'vu_fen-active':createType==='group'}" @click="createGroup('group')">创建群发组</li>
+	            <li @click="createGroup('common')">创建新组</li>
+	            <li @click="createGroup('group')">创建群发组</li>
 	          </ul>
 	        </div>
 	      </ul>
