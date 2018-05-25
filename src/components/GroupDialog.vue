@@ -9,7 +9,7 @@
         <!--input type="text" class="vu_fenzu_left_input" placeholder="搜索" @keyup.enter="search" @click="search" vu_model="seachKey"/-->
         <ul class="vu_fenzu_left_ul">
           <li v-for="companyItem in companyList" :class="{'vu_accordion_li': companyItem.isCalling}">
-            <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
+            <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
             <ul class="vu_submenu vu_submenu_ul ">
               <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current':in_array(userItem,formData.userIds)}">
                 <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
@@ -21,8 +21,7 @@
                 <input class="m-phone-input" type="text" vu_model="userList[userItem].name" :data-uid="userList[userItem].id"  :placeholder="userList[userItem].name" @blur="modifyUserName "/>-->
                 <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
               </li>
-            </ul>
-            <p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p>
+            </ul>            
           </li>
         </ul>
       </div>
@@ -43,8 +42,8 @@
           <span>设置组名称</span>
           <p class="vu_fen_zu_tier" @click="closeGroup"><span></span></p>
         </div>
-        <p class="vu_fenzu_name_na">请输入组名称：</p>
-        <input type="text" name="groupName" v-model="formData.groupName" :placeholder="placeholder" />
+        <p class="vu_fenzu_name_na">请输入组名称(最多六个字)：</p>
+        <input type="text" class="vu_fenzu_name_input" name="groupName" v-model="formData.groupName" :placeholder="placeholder" maxlength="6" />
         <div class="vu_fenzu_name_footer">
           <button @click="submitGroup">确认</button>
           <span class="vu_fen_zu_tier" @click="closeGroup">取消</span>
@@ -78,9 +77,13 @@ export default {
       this.$emit('closeEvent', {
         is_group_show: false
       })
+      this.panelShow.setGroupShow = false
+      this.formData.userIds=[]
+      this.formData.groupName=''
     },
     closeGroup: function () {
-      this.panelShow.setGroupShow = false
+      this.panelShow.setGroupShow = false   
+      this.formData.groupName=''
     },
     checkAll: function (event, userIds) {
       var el = event.currentTarget
@@ -88,6 +91,7 @@ export default {
       if (opt === '+') {
         // 添加formData.userIds
         $(el).html('-')
+        el.title='点击取消全选';        
         for (var i = 0, lg = userIds.length; i < lg; i++) {
           if (!this.in_array(userIds[i], this.formData.userIds)) {
             this.formData.userIds.push(userIds[i])
@@ -96,6 +100,7 @@ export default {
       } else {
         // 删除formData.userIds
         $(el).html('+')
+        el.title='点击全选';
         this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
       }
     },
@@ -116,6 +121,9 @@ export default {
       }
       this.formData.groupType = this.groupType
       this.$emit('createGroupEvent', this.formData)
+      this.panelShow.setGroupShow = false
+      this.formData.userIds=[]
+      this.formData.groupName=''
     },
     in_array: function (search, array) {
       for (var i in array) {
