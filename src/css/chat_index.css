@@ -885,7 +885,7 @@ ul {
 }
 .vu_seemore{
 	position: absolute;
-	top: 2px;
+	top:4px;
 	left: 185px;
 	text-align: center;
 	cursor: pointer;
@@ -1153,3 +1153,15 @@ ul {
 	margin:15px 0 0 13px;
 }
 /*返回顶部end*/
+.vu_m-minimum{
+	position: absolute;
+	top:12px;
+	right:40px;
+	width: 20px;
+	height: 20px;
+	background: url(../images/qie_tu.png) -1px -263px no-repeat;
+	cursor:pointer;
+}
+.vu_m-minimum:hover{
+	background:#EEEEEE url(../images/qie_tu.png) -1px -263px no-repeat;
+}
