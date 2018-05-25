@@ -25,7 +25,6 @@
 </template>
 
 <script>
-	import Vue from 'vue'
 export default {
   props: ['user', 'userList', 'hList', 'historyUid'],
   data () {

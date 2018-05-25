@@ -34,7 +34,7 @@
         <button @click="submitUser" @mousedown="jinzhi">确认</button>
         <span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>
       </div>
-      
+
     </div>
   </div>
 </template>
@@ -140,8 +140,8 @@ export default {
 			oDiv.setCapture && oDiv.setCapture();
 			return false;
 		},
-		jinzhi:function(ev){
-			ev.stopPropagation();
+		jinzhi:function(event){
+      event.stopPropagation();
 		}
   },
   filters: {

@@ -123,8 +123,8 @@ export default {
     openChat: function (uid) {
       this.$emit('openTalkEvent', uid)
     },
-    toggle: function (ev) {
-      ev.stopPropagation()
+    toggle: function (event) {
+      event.stopPropagation()
       this.groupShow = !this.groupShow
     },
     changeUserName: function (data) {

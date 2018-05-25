@@ -43,7 +43,7 @@ export default {
     openChat: function (uid) {
       this.$emit('openChartEvent', uid)
     },
-    changeQunName: function (ev, groupId) { // 点击修改群分组名称
+    changeQunName: function (event, groupId) { // 点击修改群分组名称
       event.stopPropagation()
       this.groupId = groupId
       this.Qunfen = true
@@ -62,7 +62,7 @@ export default {
     popcancel: function () { // 关闭删除弹框
       this.Qunpopup = false
     },
-    Qundel: function (ev, groupId) { // 点击弹出删除框
+    Qundel: function (event, groupId) { // 点击弹出删除框
       event.stopPropagation()
       this.Qunpopup = true
       this.groupId = groupId
@@ -76,7 +76,7 @@ export default {
       }
       this.Qunpopup = false
     },
-    delPen: function (ev, groupId, uid) {
+    delPen: function (event, groupId, uid) {
       event.stopPropagation()
       this.Qunpopup = true
       this.groupId = groupId
@@ -87,7 +87,7 @@ export default {
       return userIds.some(uid => userList[uid].isCalling)
     },
     // 折叠
-    accordion: function (ev) {
+    accordion: function (event) {
       var _this = $(event.currentTarget)
       _this.next('ul').slideToggle()
       _this.parent('li').toggleClass('vu_open')

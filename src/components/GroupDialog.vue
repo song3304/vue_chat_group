@@ -160,7 +160,7 @@ export default {
       ev.stopPropagation()
     },
     // 折叠
-    accordion: function (ev) {
+    accordion: function (event) {
       var _this = $(event.currentTarget)
       _this.next('ul').slideToggle()
       _this.parent('li').toggleClass('vu_open')
