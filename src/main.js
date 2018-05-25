@@ -50,6 +50,8 @@ new Vue({
     groupType: 'common',
     // 群发消息内容
     groupMsg: '',
+    // 群发消息对象
+    targetObj: null,
     // socket
     socket: null
   },
@@ -312,8 +314,9 @@ new Vue({
       this.socket._modify_group_name(gid, gtype, gname)
     },
     // 打开群发窗口
-    openGroupHair: function (msg) {
+    openGroupHair: function (msg, _target_obj) {
       this.groupMsg = msg
+      this.targetObj = _target_obj
       this.panel_show.is_qun_show = true
     },
     // 触发群发

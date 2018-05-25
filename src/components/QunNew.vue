@@ -17,7 +17,7 @@
                 <a>{{userList[userItem].name}}</a>
                 <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
               </li>
-            </ul>            
+            </ul>
           </li>
         </ul>
       </div>
@@ -27,11 +27,11 @@
           <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
         </ul>
         <div class="vu_qunnew-que">
-		      	<div>*请您核对群发消息内容:</div>
-		      	<textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg"></textarea>
-	      </div>
+          <div>*请您核对群发消息内容:</div>
+          <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg"></textarea>
+        </div>
       </div>
-      <br clear="all"/>      
+      <br clear="all"/>
       <div class="vu_fenzu_footer">
         <button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>
         <span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>
@@ -60,8 +60,7 @@ export default {
       this.$emit('closeEvent', {
         is_qun_show: false
       })
-      this.formData.userIds=[]
-      this.formData.groupName=''
+      this.formData.userIds = []
     },
     sendGroupMsg: function () {
       if (this.formData.userIds.length < 1) {
@@ -72,9 +71,9 @@ export default {
         return
       }
       this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
-      this.formData.userIds=[]
-      this.formData.groupName=''
+      this.formData.userIds = []
       this.close() // 关闭窗口
+      this.this.groupMsg = ''
     },
     checkAll: function (event, userIds) {
       var el = event.currentTarget
