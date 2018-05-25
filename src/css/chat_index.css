@@ -262,16 +262,16 @@ ul {
 	color: #CCCCCC;
 }
 #vu_search::-webkit-input-placeholder { /* WebKit browsers */ 
-		color: #CCCCCC; 
+		color: #CCCCCC!important; 
 	} 
 #vu_search:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
-		color: #CCCCCC; 
+		color: #CCCCCC!important; 
 	} 
 #vu_search::-moz-placeholder { /* Mozilla Firefox 19+ */ 
-		color: #CCCCCC; 
+		color: #CCCCCC!important; 
 	} 
 #vu_search:-ms-input-placeholder { /* Internet Explorer 10+ */ 
-		color: #CCCCCC; 
+		color: #CCCCCC!important; 
 	} 
 
 .vu_m-search div{
@@ -766,7 +766,7 @@ ul {
 }
 .vu_submenu-name-div{display: inline-block;}
 .vu_fenzu_left_ul>li{position: relative;}
-.vu_fenzu_left_ul>li>.vu_check-all{
+.vu_fenzu_left_ul>li>div>.vu_check-all{
 	width: 15px;
 	height: 15px;
 	border: solid 1px #999999;

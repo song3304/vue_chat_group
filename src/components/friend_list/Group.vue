@@ -137,8 +137,8 @@ export default {
       		<span>修改群组名称</span>
       		<p class="vu_fen_zu_tier"  @click="quncancel"><span></span></p>
       	</div>
-      	<p class="vu_fenzu_name_na">请输入组名称：</p>
-      	<input type="text" name="groupName" :placeholder="groupPlaceHolder" v-model="groupName">
+      	<p class="vu_fenzu_name_na">请输入组名称(最多六个字)：</p>
+      	<input type="text" name="groupName" :placeholder="groupPlaceHolder" v-model="groupName" maxlength="6">
       	<div class="vu_fenzu_name_footer"><button @click="modifyGroupName">确认</button> <span class="vu_fen_zu_tier" @click="quncancel">取消</span></div>
       </div>
       <!--删除确认弹窗-->
