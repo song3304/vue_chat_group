@@ -44,6 +44,9 @@ export default {
       if (session != null) {
         this.$emit('todayMsgEvent', session.userId)
       }
+    },
+    textFormat: function (text) {
+      return text.replace(/\n/g, '<br/>')
     }
   }
 }
@@ -60,7 +63,7 @@ export default {
                 <p class="vu_time"><span>{{item.date}}</span></p>
                 <div class="vu_main" :class="{ vu_self: item.self }">
                     <img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.userId].img" />
-                    <div class="vu_text">{{item.text}}</div>
+                    <div class="vu_text" v-html="textFormat(item.text)"></div>
                     <br clear="all"/>
                 </div>
             </li>

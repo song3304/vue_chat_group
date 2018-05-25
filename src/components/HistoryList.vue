@@ -15,7 +15,7 @@
         <!--对方信息-->
         <li v-for="date_item in item.items" :class="{'vu_opposite':!date_item.self,'vu_oneself':date_item.self}">
           <p :class="{'vu_oppo-title':!date_item.self,'vu_one-title':date_item.self}">{{date_item.self?'自己':userList[historyUid].name}} {{date_item.createTime}}</p>
-          <p :class="{'vu_oppo-xiang':!date_item.self,'vu_one-xiang':date_item.self}">{{date_item.content}}</p>
+          <p :class="{'vu_oppo-xiang':!date_item.self,'vu_one-xiang':date_item.self}" v-html="textFormat(date_item.content)"></p>
         </li>
       </div>
       <div class="vu_baoliu">为您保留一周的聊天记录</div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
   props: ['user', 'userList', 'hList', 'historyUid'],
   data () {
@@ -94,6 +95,9 @@ export default {
     },
     is_show: function (data) {
       return data.hasOwnProperty(this.historyUid)
+    },
+    textFormat: function (text) {
+      return text.replace(/\n/g, '<br/>')
     }
   }
 }
