@@ -48,6 +48,8 @@ new Vue({
     sessionIndex: 0,
     // 默认创建分组
     groupType: 'common',
+    // 群发消息内容
+    groupMsg: '',
     // socket
     socket: null
   },
@@ -58,7 +60,7 @@ new Vue({
   //   }
   // 发送emit用:this.$scoket.emit(key,val)
   // },
-  components: {friendList, chatdialog, historylist, groupdialog,qunnew},
+  components: {friendList, chatdialog, historylist, groupdialog, qunnew},
   template: `<div id="chat_app"><div id="vu_chitchat" @click="firstopen()">
 		      <p :class="{'vu_jump':isCalling(userList)}"></p>
 		      <span>私信<br>聊天</span>
@@ -67,7 +69,7 @@ new Vue({
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
-				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></qunnew></div>`,
+				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew></div>`,
   created: function () {
     // 初始化数据 套接字
     if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined') {
@@ -308,6 +310,15 @@ new Vue({
     // 修改组名
     modifyGroupName: function (gid, gtype, gname) {
       this.socket._modify_group_name(gid, gtype, gname)
+    },
+    // 打开群发窗口
+    openGroupHair: function (msg) {
+      this.groupMsg = msg
+      this.panel_show.is_qun_show = true
+    },
+    // 触发群发
+    sendGroupMsg: function (uids, msg) {
+      this.socket._sendGroupHair(uids, msg)
     }
   }
 })
