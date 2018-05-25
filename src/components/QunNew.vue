@@ -6,12 +6,11 @@
         <p class="vu_fen_zu_tiyi"  @click="close" @mousedown="jinzhi"><span></span></p>
       </div>
       <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi">
-        <!--input type="text" class="vu_fenzu_left_input" placeholder="搜索" @keyup.enter="search" @click="search" vu_model="seachKey"/-->
         <ul class="vu_fenzu_left_ul">
-          <li v-for="companyItem in companyList" :class="{'vu_accordion_li': companyItem.isCalling}">
-            <div class="vu_link"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
+          <li v-for="companyItem in groupList.groupHair" :class="{'vu_accordion_li': companyItem.isCalling}">
+            <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
             <ul class="vu_submenu vu_submenu_ul ">
-              <li v-for="userItem in companyItem.userIds " class="vu_submenu-name vu_submenu-newname" >
+              <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current':in_array(userItem,formData.userIds)}" >
                 <div class="vu_m-touxiang">
                   <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
                 </div>
@@ -30,8 +29,10 @@
         </ul>
       </div>
       <br clear="all"/>
+      <div>群发消息内容:</div>
+      <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" style="width:100%;"></textarea>
       <div class="vu_fenzu_footer">
-        <button @click="submitUser" @mousedown="jinzhi">确认</button>
+        <button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>
         <span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>
       </div>
 
@@ -42,19 +43,14 @@
 <script>
 import $ from 'jquery'
 export default {
-  name: 'GroupDialog',
-  props: ['user', 'userList', 'companyList', 'groupType'],
+  name: 'GroupHairMsg',
+  props: ['user', 'userList', 'groupList', 'groupMsg'],
   data: function () {
     return {
-      panelShow: {
-        // searchShow: false,
-        setGroupShow: false
-      },
       formData: {
-        userIds: [],
-        groupName: ''
+        userIds: []
       },
-      placeholder: '请输入分组名称'
+      placeholder: '请输入群发内容.'
     }
   },
   methods: {
@@ -64,8 +60,15 @@ export default {
         is_qun_show: false
       })
     },
-    closeGroup: function () {
-      this.panelShow.setGroupShow = false
+    sendGroupMsg: function () {
+      if (this.formData.userIds.length < 1) {
+        alert('请先选择群发人员')
+        return
+      } else if (this.groupMsg === '') {
+        alert('群发消息不能为空.')
+        return
+      }
+      this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
     },
     checkAll: function (event, userIds) {
       var el = event.currentTarget
@@ -84,24 +87,6 @@ export default {
         this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
       }
     },
-    submitUser: function () {
-//    if (this.formData.userIds.length < 1) {
-//      alert('请先选择人员，再创建组')
-//    } else {
-//      this.panelShow.setGroupShow = true
-//    }
-    },
-    submitGroup: function () {
-//    if (this.formData.userIds.length < 1) {
-//      alert('请先选择人员，再创建组')
-//      return false
-//    } else if (this.formData.groupName === '') {
-//      this.placeholder = '请输入分组名称，再提交'
-//      return false
-//    }
-//    this.formData.groupType = this.groupType
-//    this.$emit('createGroupEvent', this.formData)
-    },
     in_array: function (search, array) {
       for (var i in array) {
         if (array[i] === search) {
@@ -113,36 +98,43 @@ export default {
     delUser: function (uid) {
       this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
     },
-    drag:function(ev){
-			var oDiv=document.getElementById('vu_div');
-			var oEvt=ev||event;
-			var disX=oEvt.clientX-oDiv.offsetLeft;
-			var disY=oEvt.clientY-oDiv.offsetTop;
-			document.onmousemove=function(ev){
-				var oEvt=ev||event;
-				var l=oEvt.clientX-disX;//计算
-				var t=oEvt.clientY-disY;
-				//限定
-				if(l<5) l=0;
-				if(l>document.documentElement.clientWidth-oDiv.offsetWidth-50)
-					l=document.documentElement.clientWidth-oDiv.offsetWidth;
-				if(t<5) t=0;
-				if(t>document.documentElement.clientHeight-oDiv.offsetHeight-50)
-					t=document.documentElement.clientHeight-oDiv.offsetHeight;
-
-				oDiv.style.left=l+'px';	//使用
-				oDiv.style.top=t+'px';
-			};
-			document.onmouseup=function(){
-				document.onmouseup=document.onmousemove=null;
-				oDiv.releaseCapture && oDiv.releaseCapture();
-			};
-			oDiv.setCapture && oDiv.setCapture();
-			return false;
-		},
-		jinzhi:function(event){
-      event.stopPropagation();
-		}
+    drag: function (ev) {
+      var oDiv = document.getElementById('vu_div')
+      var oEvt = ev || event
+      var disX = oEvt.clientX - oDiv.offsetLeft
+      var disY = oEvt.clientY - oDiv.offsetTop
+      document.onmousemove = function (ev) {
+        var oEvt = ev || event
+        var l = oEvt.clientX - disX
+        var t = oEvt.clientY - disY
+        // 限定
+        if (l < 5) l = 0
+        if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
+          l = document.documentElement.clientWidth - oDiv.offsetWidth
+        }
+        if (t < 5) { t = 0 }
+        if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
+          t = document.documentElement.clientHeight - oDiv.offsetHeight
+        }
+        oDiv.style.left = l + 'px'
+        oDiv.style.top = t + 'px'
+      }
+      document.onmouseup = function () {
+        document.onmouseup = document.onmousemove = null
+        oDiv.releaseCapture && oDiv.releaseCapture()
+      }
+      oDiv.setCapture && oDiv.setCapture()
+      return false
+    },
+    jinzhi: function (event) {
+      event.stopPropagation()
+    },
+    // 折叠
+    accordion: function (event) {
+      var _this = $(event.currentTarget)
+      _this.next('ul').slideToggle()
+      _this.parent('li').toggleClass('vu_open')
+    }
   },
   filters: {
     online (userIds, userList) {
