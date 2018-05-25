@@ -741,6 +741,7 @@ ul {
 	height: 20px;
 	vertical-align:middle;
 	opacity: 0;
+	
 
 }
 .vu_first_title {font-size: 14px!important;}
@@ -749,6 +750,7 @@ ul {
 	width: 20px;
 	height: 20px;
 	display: inline-block;
+	transform: scale(0.8);
 }
 .vu_radio_bg{
 	background-position: -118px 0 ;
@@ -985,7 +987,7 @@ ul {
 	margin:3px 0 0 10px!important;
 }
 .vu_submenu-newname .vu_checkbox_bg{
-	    margin: 3px 26px 0 0!important;
+	    margin: 3px 27px 0 0!important;
 }
 .vu_qun_fen>li>.vu_link{position: relative;}
 .vu_qun_fen>li>.vu_link:hover .vu_check-all{
@@ -1074,3 +1076,63 @@ ul {
 	color: #666666;
 	padding: 20px 0;
 }
+/*群发消息样式start*/
+.vu_qun-fenzu{
+	width: 740px;
+}
+.vu_qun-fenzu .vu_fenzu_right{
+	width: 490px;
+}
+.vu_qun-fenzu .vu_fenzu_right_ul{
+	width: 490px;
+	height:150px;
+}
+.vu_qun-fenzu .vu_fenzu_right_ul>li{
+	height:28px!important;
+	float: left;
+	width:102px;
+	background: #FFFFFF;
+	border-radius: 5px;
+	margin: 12px  0 0 12px;
+	position: relative;
+}
+.vu_qun-fenzu .vu_fenzu_right_ul>li div{
+	margin: 2px 0 0 5px;
+}
+.vu_qun-fenzu .vu_fenzu_right_ul>li a{
+	margin:0 0 0 5px!important;
+	height: 28px;
+	line-height: 28px;
+	max-width: 66px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	
+}
+.vu_qun-fenzu .vu_fenzu_right_ul>li span{
+	position: absolute;
+	margin: 0;
+	top: -3px;
+	right: -5px;
+}
+.vu_qunnew-que{
+	height: 175px;
+}
+.vu_qunnew-que div{
+	color: #ff5959;
+	padding-left:15px;
+}
+.vu_qunnew-que textarea{
+	width:480px;
+	height:145px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	border: solid 1px #dddddd;
+	margin:5px 0 0 10px;
+	overflow-y:scroll ;
+	resize:none
+}
+.vu_qun-fenzu .vu_fenzu_footer button{
+	margin-left:555px;
+}
+/*群发消息样式end*/

@@ -1,14 +1,14 @@
 <template>
   <div class="vu_xuan-fen" >
-    <div class="vu_fen_zu" @mousedown="drag" id="vu_div">
+    <div class="vu_fen_zu vu_qun-fenzu" @mousedown="drag" id="vu_div">
       <div class="vu_fen_zu_title">
-        <span>选择撮合员</span>
+        <span>选择群发人员</span>
         <p class="vu_fen_zu_tiyi"  @click="close" @mousedown="jinzhi"><span></span></p>
       </div>
       <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi">
         <ul class="vu_fenzu_left_ul">
           <li v-for="companyItem in groupList.groupHair" :class="{'vu_accordion_li': companyItem.isCalling}">
-            <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
+            <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
             <ul class="vu_submenu vu_submenu_ul ">
               <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current':in_array(userItem,formData.userIds)}" >
                 <div class="vu_m-touxiang">
@@ -17,8 +17,7 @@
                 <a>{{userList[userItem].name}}</a>
                 <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
               </li>
-            </ul>
-            <p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p>
+            </ul>            
           </li>
         </ul>
       </div>
@@ -27,10 +26,12 @@
         <ul class="vu_fenzu_right_ul">
           <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
         </ul>
+        <div class="vu_qunnew-que">
+		      	<div>*请您核对群发消息内容:</div>
+		      	<textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg"></textarea>
+	      </div>
       </div>
-      <br clear="all"/>
-      <div>群发消息内容:</div>
-      <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" style="width:100%;"></textarea>
+      <br clear="all"/>      
       <div class="vu_fenzu_footer">
         <button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>
         <span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>
@@ -59,6 +60,8 @@ export default {
       this.$emit('closeEvent', {
         is_qun_show: false
       })
+      this.formData.userIds=[]
+      this.formData.groupName=''
     },
     sendGroupMsg: function () {
       if (this.formData.userIds.length < 1) {
@@ -69,6 +72,8 @@ export default {
         return
       }
       this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
+      this.formData.userIds=[]
+      this.formData.groupName=''
     },
     checkAll: function (event, userIds) {
       var el = event.currentTarget
