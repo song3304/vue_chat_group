@@ -67,7 +67,7 @@ export default {
                 	<p class="vu_m-xiang">{{item|firstMsg}}</p>
                 </div>
                 <div class="vu_m-list-del">
-                	<p>{{item|lastTime}}</p>
+                	<p class="vu_m-list-del-time">{{item|lastTime}}</p>
                 	<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{item|noReadCnt}}</p>
                 	<div class="vu_delet-li"  @click.stop="deletePerson(index)"></div>
                 </div>
