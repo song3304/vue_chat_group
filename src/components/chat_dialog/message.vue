@@ -42,11 +42,11 @@ export default {
     },
     todayMsg: function (session) {
       if (session != null) {
-        this.$emit('todayMsgEvent', session.userId)
+        this.$emit('todayMsgEvent', session)
       }
     },
     textFormat: function (text) {
-      return text.replace(/\n/g, '<br/>')
+      return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
     }
   }
 }

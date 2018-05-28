@@ -108,6 +108,29 @@ if (!localStorage.getItem(key)) {
           }]
       }
     ],
+    // 删除会话
+    delSessionList: [
+      {
+        userId: 2,
+        has_send_today: false,
+        messages: [
+          {
+            messageId: 3,
+            text: 'Hello',
+            date: now,
+            self: false,
+            is_read: false
+          },
+          {
+            messageId: 4,
+            text: '测试',
+            date: now,
+            self: true,
+            is_read: false
+          }
+        ]
+      }
+    ],
     // 历史记录
     historyList: {
       2: { // 只取一周数据

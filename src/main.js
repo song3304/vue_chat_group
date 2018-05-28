@@ -38,6 +38,8 @@ new Vue({
     groupList: serverData.groupList,
     // 会话列表
     sessionList: serverData.sessionList,
+    // 保存已删除会话列表
+    delSessionList: serverData.delSessionList,
     // 历史记录列表
     historyList: serverData.historyList,
     // 当前历史记录用户id
@@ -103,6 +105,12 @@ new Vue({
         store.update({sessionList: this.sessionList})
       }
     },
+    delSessionList: {
+      deep: true,
+      handler () {
+        store.update({delSessionList: this.delSessionList})
+      }
+    },
     companyList: {
       deep: true,
       handler () {
@@ -139,12 +147,19 @@ new Vue({
       if (this.sessionList.some(function (item) { return item.userId === uid })) {
         this.sessionList.sort(function (first, second) { if (first.userId === uid) { return -1 } else if (second.userId === uid) { return 1 } else { return 0 } })
       } else {
-        var addSessionData = {
-          userId: uid,
-          has_send_today: false,
-          messages: []
+        var delIndex = this.delSessionList.findIndex(item => item.userId === uid)
+        if (delIndex < 0) {
+          var addSessionData = {
+            userId: uid,
+            has_send_today: false,
+            messages: []
+          }
+          this.sessionList.unshift(addSessionData)
+        } else {
+          var findSessionData = this.delSessionList[delIndex]
+          this.delSessionList.splice(delIndex, 1)
+          this.sessionList.unshift(findSessionData)
         }
-        this.sessionList.unshift(addSessionData)
       }
       if (this.userList[uid].isCalling === true) {
         this.userList[uid].isCalling = false
@@ -202,9 +217,10 @@ new Vue({
       this.sessionIndex = index
     },
     delSession: function (index) {
+      this.delSessionList.push(this.sessionList[index])
       this.sessionList.splice(index, 1)
       this.sessionIndex = 0
-      store.update({sessionList: this.sessionList})
+      store.update({sessionList: this.sessionList, delSessionList: this.delSessionList})
     },
     isCalling (userList) {
       for (var uid in userList) {
@@ -228,6 +244,9 @@ new Vue({
       }
       if (data.hasOwnProperty('sessionList')) {
         this.sessionList = data.sessionList
+      }
+      if (data.hasOwnProperty('delSessionList')) {
+        this.delSessionList = data.delSessionList
       }
       if (data.hasOwnProperty('historyList')) {
         this.historyList = data.historyList
@@ -255,41 +274,12 @@ new Vue({
       }
       return format
     },
-    // 获取今天数据
-    todayMsg: function (uid) {
+    // 获取更多数据
+    todayMsg: function (session) {
       if (this.socket !== null) {
-        // 判断当天历史记录是否有当天的
-        var today = this._format(new Date(), 'yyyy-MM-dd')
-        if (this.historyList.hasOwnProperty(uid) && this.historyList[uid].contents.some(item => item.date === today)) {
-          var index = this.historyList[uid].contents.findIndex(item => item.date === today)
-          var todayMsgs = this.historyList[uid].contents[index].items
-          var sessIndex = this.sessionList.findIndex(item => item.userId === uid)
-          if (sessIndex < 0) {
-            // 没找到
-            this.sessionList.push({
-              userId: uid,
-              has_send_today: true,
-              messages: todayMsgs.map(item => {
-                return {messageId: item.messageId, text: item.content, date: item.createTime, self: item.self, is_read: item.is_read}
-              })})
-          } else {
-            this.sessionList[sessIndex].has_send_today = true
-            var userSessionList = todayMsgs.map(item => {
-              return {messageId: item.messageId, text: item.content, date: item.createTime, self: item.self, is_read: item.is_read}
-            })
-            // 合并
-            this.sessionList[sessIndex].messages.forEach(function (item) {
-              if (userSessionList.every(i => i.messageId !== item.messageId)) {
-                userSessionList.push(item)
-              }
-            })
-            this.sessionList[sessIndex].messages = userSessionList.sort(function (a, b) { return Date.parse(a.date) - Date.parse(b.date) })
-          }
-        } else {
-          if (this.socket !== null) {
-            this.socket._getTodayMsg(uid)
-          }
-        }
+        var startTime = this._format(new Date(), 'yyyy-MM-dd hh:mm:ss')
+        session.messages.forEach(message => { startTime = startTime > message.date ? message.date : startTime })
+        this.socket._getTodayMsg(session.userId, startTime)
       }
     },
     // 获取历史数据

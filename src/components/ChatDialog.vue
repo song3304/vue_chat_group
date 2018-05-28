@@ -86,8 +86,8 @@ export default {
     delSession: function (index) {
       this.$emit('delSessionEvent', index)
     },
-    todayMsg: function (uid) {
-      this.$emit('todayMsgEvent', uid)
+    todayMsg: function (session) {
+      this.$emit('todayMsgEvent', session)
     },
     toChat: function (toUid, msg) {
       this.$emit('chatEvent', toUid, msg)
