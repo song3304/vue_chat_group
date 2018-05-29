@@ -76,7 +76,7 @@ new Vue({
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew></div>`,
   created: function () {
     // 初始化数据 套接字
-    if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined') {
+    if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined' && _chat_user.id != 1) {
       this.socket = new socketChat(this, _chat_user)
     }
   },
