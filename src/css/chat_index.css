@@ -979,6 +979,7 @@ ul {
     outline: none;
     font-family: "Micrsofot Yahei";
     resize: none;
+    padding: 0 13px 0 0;
 }
 .vu_m-guan p .fa{color: #DDDDDD;}
 .vu_submenu-newname{height: 24px!important;}
