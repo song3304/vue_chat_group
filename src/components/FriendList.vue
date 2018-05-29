@@ -16,7 +16,7 @@
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
 	            <li @click="createGroup('common')">创建新组</li>
-	            <li @click="createGroup('group')">创建群发组</li>
+	            <li v-if="user.plat=='match'" @click="createGroup('group')">创建群发组</li>
 	          </ul>
 	        </div>
 	      </ul>
@@ -28,7 +28,7 @@
 	          <p>普通组</p>
 	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
 	        </div>
-	        <div class="vu_qunfen_er">
+	        <div v-if="user.plat=='match'" class="vu_qunfen_er">
 	          <p>群发组</p>
 	          <groupPanel group_type="groupHair" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
 	        </div>

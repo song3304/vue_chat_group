@@ -10,7 +10,8 @@ if (!localStorage.getItem(key)) {
     user: {
       id: 1,
       name: 'Coffce',
-      img: '/static/img/chat/1.jpg'
+      img: '/static/img/chat/1.jpg',
+      plat: 'match'
     },
     // 用户列表
     userList: {
