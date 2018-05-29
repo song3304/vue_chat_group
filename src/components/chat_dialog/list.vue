@@ -33,14 +33,14 @@ export default {
   filters: {
     firstMsg: function (item) {
       if (item.messages.length > 0) {
-        return item.messages[0].text
+        return item.messages[item.messages.length - 1].text
       } else {
         return ''
       }
     },
     lastTime: function (item) {
       if (item.messages.length > 0) {
-        var date = new Date(item.messages[0].date)
+        var date = new Date(item.messages[item.messages.length - 1].date)
         var hour = date.getHours()
 	      var min = date.getMinutes()
 	      function p (s) {
