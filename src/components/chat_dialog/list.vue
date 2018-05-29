@@ -41,7 +41,12 @@ export default {
     lastTime: function (item) {
       if (item.messages.length > 0) {
         var date = new Date(item.messages[0].date)
-        return date.getHours() + ':' + date.getMinutes() // + ':' + date.getSeconds()
+        var hour = date.getHours()
+	      var min = date.getMinutes()
+	      function p (s) {
+	        return s < 10 ? '0' + s : s
+	      }
+	      return p(hour) + ':' + p(min) //+ ':' + p(sec)
       } else {
         return ''
       }

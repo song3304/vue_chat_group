@@ -128,8 +128,8 @@ export default {
               <!--//不在线，添加class=gray-->
             </div>
             <a>{{userList[userItem].name}}</a>
-            <span class="vu_m-phone-img " @click="changeName"></span>
-            <input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
+            <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
+            <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
             <p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p>
           </li>

@@ -44,6 +44,11 @@ export default {
       if (session != null) {
         this.$emit('todayMsgEvent', session)
       }
+      setTimeout(function () {
+        var el = document.getElementById('chat_message_main')
+        el.scrollTop = el.scrollHeight - localStorage.b
+        localStorage.b = el.scrollHeight
+      }, 10)
     },
     textFormat: function (text) {
       return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
@@ -54,7 +59,7 @@ export default {
 
 <template>
     <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)">
-    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today" @click.stop="todayMsg(session)">
+    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today" @click="todayMsg(session)">
     				<p></p><span>查看更多</span>
     		</div>
         <ul v-if="session!=null">
