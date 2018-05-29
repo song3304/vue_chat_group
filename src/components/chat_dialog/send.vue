@@ -8,17 +8,21 @@ export default {
   },
   methods: {
     inputing: function (e) {
-      // 输入内容为空 不提交
-      if (this.text.replace(/(^\s*)|(\s*$)/g, '') === '') return
-      // this.session.messages.push({
-      //   messageId: 0,
-      //   text: this.text,
-      //   date: new Date(),
-      //   self: true,
-      //   is_read: true
-      // })
-      this.$emit('chatEvent', this.session.userId, this.text)
-      this.text = ''
+      if (e.ctrlKey) {
+        this.text = this.text + '\n'
+      } else {
+        // 输入内容为空 不提交
+        if (this.text.replace(/(^\s*)|(\s*$)/g, '') === '') return
+        // this.session.messages.push({
+        //   messageId: 0,
+        //   text: this.text,
+        //   date: new Date(),
+        //   self: true,
+        //   is_read: true
+        // })
+        this.$emit('chatEvent', this.session.userId, this.text)
+        this.text = ''
+      }
     },
     openHistoryDialog: function (uid) {
       this.$emit('openHistoryEvent', uid)
@@ -34,7 +38,7 @@ export default {
 
 <template>
     <div class="vu_m-text" v-if="session!=null">
-        <textarea placeholder="" v-model="text" @click="toRead(session)" @keyup.enter.ctrl="inputing"></textarea>
+        <textarea placeholder="" v-model="text" @click="toRead(session)" @keyup.enter="inputing"></textarea>
         <span class="vu_send" @click="inputing">发送</span><span class="vu_history" @click="openHistoryDialog(session.userId)">历史记录<p></p></span>
     </div>
 </template>
