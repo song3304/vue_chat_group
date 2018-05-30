@@ -35,8 +35,18 @@ export default {
     }
   },
   computed: {
-  },
+  },  
   methods: {
+  	menuscroll () {
+			this.scroll = document.getElementById('vu_his-head').scrollTop
+		  if(this.scroll==0){
+		  	this.$emit('getMoreMsgEvent', this.historyUid)
+	      setTimeout(function () {
+	        var el = document.getElementById('vu_his-head')
+	        el.scrollTop = el.scrollHeight - localStorage.a
+	      }, 1)
+		  }
+		},
     contents: function (data) {
       if (data !== {} && this.historyUid !== 0 && data.hasOwnProperty(this.historyUid) && data[this.historyUid].hasOwnProperty('contents')) {
         return data[this.historyUid].contents
@@ -98,7 +108,11 @@ export default {
     },
     textFormat: function (text) {
       return text.replace(/\n/g, '<br/>')
-    }
-  }
+    },
+    
+  },	
+  mounted () {
+	  document.getElementById("vu_his-head").addEventListener('scroll', this.menuscroll)
+	},
 }
 </script>
