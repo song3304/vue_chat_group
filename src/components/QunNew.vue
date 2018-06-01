@@ -7,7 +7,7 @@
       </div>
       <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi">
         <ul class="vu_fenzu_left_ul">
-          <li v-for="companyItem in groupList.groupHair" :class="{'vu_accordion_li': companyItem.isCalling}">
+          <li v-for="companyItem in groupList.common" :class="{'vu_accordion_li': companyItem.isCalling}">
             <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
             <ul class="vu_submenu vu_submenu_ul ">
               <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current':in_array(userItem,formData.userIds)}" >

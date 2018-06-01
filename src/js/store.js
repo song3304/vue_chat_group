@@ -62,9 +62,7 @@ if (!localStorage.getItem(key)) {
       'groupHair': [{
         groupId: 3,
         groupName: '乙二醇群发',
-        userIds: [2, 3],
-        isCalling: false,
-        onlineCnt: 0
+        userIds: [2, 3]
       }]
     },
     // 会话列表
