@@ -57,6 +57,11 @@ export default {
         i += item.messages[j].is_read ? 0 : 1
       }
       return i
+    },
+    online (userIds, userList) {
+      var onlineCnt = 0
+      userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
+      return onlineCnt
     }
   }
 }
@@ -66,7 +71,7 @@ export default {
     <div class="vu_m-list">
         <ul v-if="session!=null">
             <li v-for="(item,index) in searchData" :class="{ vu_active: session.userId === item.userId }" @click="select(item,$event)">
-                <img class="vu_avatar"  width="30" height="30" :alt="userList[item.userId].name" :src="userList[item.userId].img">
+                <img class="vu_avatar"  width="30" height="30" :alt="userList[item.userId].name" :src="userList[item.userId].img" :class="{'vu_gray':!userList[item.userId].isOnline}">
                 <div class="vu_m-cs-cs">
                 	<p class="vu_name">{{userList[item.userId].name}}</p>
                 	<p class="vu_m-xiang">{{item|firstMsg}}</p>
