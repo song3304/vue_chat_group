@@ -52,13 +52,26 @@ export default {
     },
     textFormat: function (text) {
       return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
-    }
-  }
+    },
+    messscroll:function(session) {
+			this.scroll = document.getElementById('chat_message_main').scrollTop	
+		  if(this.scroll==0){
+		  	if (session != null) {
+	        this.$emit('todayMsgEvent', session)
+	      }
+	      setTimeout(function () {
+	        var el = document.getElementById('chat_message_main')
+	        el.scrollTop = el.scrollHeight - localStorage.aa
+	        localStorage.aa = el.scrollHeight
+	      }, 10)
+		  }
+		},
+  },
 }
 </script>
 
 <template>
-    <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)">
+    <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)" @scroll="messscroll(session)">
     		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today" @click="todayMsg(session)">
     				<p></p><span>查看更多</span>
     		</div>

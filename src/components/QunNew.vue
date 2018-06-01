@@ -1,6 +1,6 @@
 <template>
   <div class="vu_xuan-fen" >
-    <div class="vu_fen_zu vu_qun-fenzu" @mousedown="drag" id="vu_div">
+    <div class="vu_fen_zu vu_qun-fenzu" @mousedown="dragqun" id="vu_div-qun">
       <div class="vu_fen_zu_title">
         <span>选择群发人员</span>
         <p class="vu_fen_zu_tiyi"  @click="close" @mousedown="jinzhi"><span></span></p>
@@ -103,8 +103,8 @@ export default {
     delUser: function (uid) {
       this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
     },
-    drag: function (ev) {
-      var oDiv = document.getElementById('vu_div')
+    dragqun: function (ev) {
+      var oDiv = document.getElementById('vu_div-qun')
       var oEvt = ev || event
       var disX = oEvt.clientX - oDiv.offsetLeft
       var disY = oEvt.clientY - oDiv.offsetTop

@@ -502,6 +502,12 @@ ul {
 	height: 490px;
 	width: 240px;
 	overflow: auto;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 .vu_outer-container,.vu_content {
     width:220px;
@@ -802,7 +808,7 @@ ul {
 /*从页面移出样式*/
 #vu_chat {
     overflow: hidden;
-    border-radius: 3px;
+    border-radius: 3px;    
 }
 #vu_chat .vu_sidebar {
     float: left;
@@ -1152,7 +1158,8 @@ ul {
 	height: 50px;
 	background: #FFFFFF;
 	display: none;
-	box-shadow: 1px 2px 2px 2px rgba(0,0,0,0.3);
+	box-shadow: 1px 0px 2px 2px rgba(0,0,0,0.1);
+	z-index: 1000;
 }
 #fanhui span{
 	display: inline-block;

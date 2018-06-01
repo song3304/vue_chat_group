@@ -9,7 +9,7 @@ export default {
   methods: {
     inputing: function (e) {
       if (e.ctrlKey) {
-        this.text = this.text + '\n'
+        this.text = this.text + '\n'        
       } else {
         // 输入内容为空 不提交
         if (this.text.replace(/(^\s*)|(\s*$)/g, '') === '') return
@@ -38,7 +38,7 @@ export default {
 
 <template>
     <div class="vu_m-text" v-if="session!=null">
-        <textarea placeholder="" v-model="text" @click="toRead(session)" @keyup.enter="inputing"></textarea>
+        <textarea placeholder="" v-model="text" @click="toRead(session)" @keyup.enter="inputing" @keyuo.13="toRead(session)"></textarea>
         <span class="vu_send" @click="inputing">发送</span><span class="vu_history" @click="openHistoryDialog(session.userId)">历史记录<p></p></span>
     </div>
 </template>

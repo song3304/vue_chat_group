@@ -44,6 +44,7 @@ export default {
 	      setTimeout(function () {
 	        var el = document.getElementById('vu_his-head')
 	        el.scrollTop = el.scrollHeight - localStorage.a
+	        localStorage.a = el.scrollHeight
 	      }, 1)
 		  }
 		},
