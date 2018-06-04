@@ -87,8 +87,8 @@ export default {
     },
     checkAll: function (event, userIds) {
       var el = event.currentTarget
-      var opt = $(el).html()
-      if (opt === '+') {
+      var opt = $(el).html()      
+      if (opt === '+') {     	
         // 添加formData.userIds
         $(el).html('-')
         el.title='点击取消全选';        
@@ -97,12 +97,15 @@ export default {
             this.formData.userIds.push(userIds[i])
           }
         }
+        if($(el).parent().parent().hasClass('vu_open')){
+	      	event.stopPropagation()
+	      }
       } else {
         // 删除formData.userIds
         $(el).html('+')
         el.title='点击全选';
-        this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
-      }
+        this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))       
+      }    
     },
     submitUser: function () {
       if (this.formData.userIds.length < 1) {
