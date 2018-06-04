@@ -751,10 +751,8 @@ ul {
 	height: 20px;
 	vertical-align:middle;
 	opacity: 0;
-	
-
 }
-.vu_first_title {font-size: 14px!important;}
+.vu_first_title {font-size: 14px!important;max-width: 150px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 .vu_input_style{
 	background: url(../images/green.png) no-repeat;
 	width: 20px;
@@ -1119,8 +1117,7 @@ ul {
 	max-width: 66px;
 	overflow: hidden;
 	text-overflow:ellipsis;
-	white-space: nowrap;
-	
+	white-space: nowrap;	
 }
 .vu_qun-fenzu .vu_fenzu_right_ul>li span{
 	position: absolute;
