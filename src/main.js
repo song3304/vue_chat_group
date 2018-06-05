@@ -11,7 +11,7 @@ import groupdialog from './components/GroupDialog'
 import qunnew from './components/QunNew'
 import './css/chat_index.css'
 import './css/chat_leftnav.css'
-
+import 'babel-polyfill'
 Vue.config.productionTip = false
 
 // Vue.use(VueSocketio, 'http://localhost:8007')
