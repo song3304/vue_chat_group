@@ -22,7 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: ['babel-polyfill', './src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -38,9 +38,9 @@ module.exports = {
       '@': resolve('src'),
       'main': resolve('static/js/main.js'),
 //    配置
-      
-      
-      
+
+
+
     }
   },
   module: {
@@ -98,7 +98,7 @@ module.exports = {
 		 new webpack.optimize.CommonsChunkPlugin('common.js'),
 		 new webpack.ProvidePlugin({
 		     jQuery: "jquery",
-		     $: "jquery"  
+		     $: "jquery"
 		 },{
 //		 	写你的插件,
 					main:"main",
