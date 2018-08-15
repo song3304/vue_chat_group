@@ -1,29 +1,35 @@
 <template>
 	<div id="vu_friend" @click="chuangjian">
-	    <div class="vu_m-search">
+	    <!--<div class="vu_m-search">
 	      <input type="text" id="vu_search" placeholder="查找联系人" @keyup.enter="search" />
 	      <div @click="search"></div>
-	      <p><span @click="close"></span></p>
-	    </div>
+	      <p><span ></span></p>
+	    </div>-->
 	    <div class="vu_account-l vu_fl">
 	      <!--切换-->
 	      <ul class="vu_m_lei">
 	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" :class="{'vu_m-active':index == activeIndex}">
 				<img v-show="index!=activeIndex" :src="item.imgSrc" alt="" />
 				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />
+				<span>{{item.activSpan}}</span>
 			</li>
-	        <div class="vu_m-add">
+	        <!--<div class="vu_m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
 	            <li @click="createGroup('common')">创建新组</li>
-	            <!--li v-if="user.plat=='match'" @click="createGroup('group')">创建群发组</li-->
+	            
 	          </ul>
-	        </div>
+	        </div>-->
 	      </ul>
-	      <!--个人组-->
-	      <companyPanel v-show="panelShow.companyShow" :user="user" :userList="userList" :companyList="companyList" @openChartEvent="openChat" @changeUserNameEvent="changeUserName"></companyPanel>
-	      <!--//群组-->
-	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.groupShow">
+	      <!--聊天-->
+	      <div v-show="panelShow.chatShow">
+	      		
+	      </div>
+	      <!--//分组-->
+	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.companyShow">
+	      	<div class="vu_qunfen_new">
+	      		<div>+  新建分组</div>
+	      	</div>
 	        <div class="vu_qunfen_yi">
 	          <!--p>普通组</p-->
 	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
@@ -33,6 +39,9 @@
 	          <groupPanel group_type="groupHair" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
 	        </div-->
 	      </div>
+	      <!--群组-->
+	      <companyPanel v-show="panelShow.groupShow" :user="user" :userList="userList" :companyList="companyList" @openChartEvent="openChat" @changeUserNameEvent="changeUserName"></companyPanel>
+	      
 	    </div>
 	    <!--搜索页面-->
 	    <searchDialog v-show="panelShow.searchShow" :searchList="searchList" @openChartEvent="openChat"></searchDialog>
@@ -51,7 +60,8 @@ export default {
     return {
       activeIndex: 0,
       panelShow: {
-        companyShow: true, // 公司分组面板默认显示
+        chatShow: true,
+        companyShow:false,// 公司分组面板是否显示
         groupShow: false, // 群分组面板是否显示
         searchShow: false // 搜索面板是否显示
       },
@@ -61,11 +71,18 @@ export default {
       tabData: [
         {
           imgSrc: require('../images/chat.png'),
-          activeImgSrc: require('..//images/m-chat.png')
+          activeImgSrc: require('..//images/m-chat.png'),
+          activSpan:'聊天'
         },
         {
           imgSrc: require('../images/group.png'),
-          activeImgSrc: require('../images/m-group.png')
+          activeImgSrc: require('../images/m-group.png'),
+          activSpan:'分组'
+        },
+        {
+          imgSrc: require('../images/group.png'),
+          activeImgSrc: require('../images/m-group.png'),
+          activSpan:'群'
         }],
       createType: 'common'
     }
@@ -77,13 +94,23 @@ export default {
     clickTab: function (index) {
       this.activeIndex = index
       if (index === 0) {
+      	this.panelShow.chatShow = true
+        this.panelShow.companyShow = false
+        this.panelShow.groupShow = false
+        this.panelShow.searchShow = false
+        $('.vu_m-list').show()
+      } else if(index == 1){
+        this.panelShow.chatShow = false
         this.panelShow.companyShow = true
         this.panelShow.groupShow = false
         this.panelShow.searchShow = false
-      } else {
+        $('.vu_m-list').hide()
+      }else{
+      	this.panelShow.chatShow = false
         this.panelShow.companyShow = false
         this.panelShow.groupShow = true
         this.panelShow.searchShow = false
+        $('.vu_m-list').hide()
       }
     },
     // 搜索事件
@@ -102,23 +129,15 @@ export default {
         this.panelShow.searchShow = true
       }
     },
-    // 关闭事件
-    close: function (event) {
-      this.$emit('closeEvent', {
-        is_friend_show: false,
-        is_dialog_show: false,
-        is_history_show: false,
-        is_group_show: false
-      })
-      this.panelShow.searchShow = false
-    },
+
+
     // 创建组事件
     createGroup: function (type) {
       this.createType = type
       this.$emit('openGroupEvent', type)
       this.groupShow = false
-      $('.vu_m-add ul li').attr('class', '')
-      $(this).attr('class', 'vu_fen-active')
+//    $('.vu_m-add ul li').attr('class', '')
+//    $(this).attr('class', 'vu_fen-active')
     },
     openChat: function (uid) {
       this.$emit('openTalkEvent', uid)

@@ -10,7 +10,8 @@ export default {
   props: ['user', 'userList', 'sessionList', 'sessionIndex'],
   data: function () {
     return {
-      search: ''
+      search: '',
+      
     }
   },
   computed: {
@@ -45,38 +46,38 @@ export default {
       })
       this.$emit('toReadEvent', msgIds, value.userId)
     },
-    drag: function (ev) {
-      var oDiv = document.getElementById('vu_chat')
-      var oEvt = ev || event
-      var disX = oEvt.clientX - oDiv.offsetLeft
-      var disY = oEvt.clientY - oDiv.offsetTop
-      document.onmousemove = function (ev) {
-        var oEvt = ev || event
-        var l = oEvt.clientX - disX// 计算
-        var t = oEvt.clientY - disY
-        // 限定
-        if (l < 5) l = 0
-        if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
-          l = document.documentElement.clientWidth - oDiv.offsetWidth
-        }
-
-        if (t < 5) t = 0
-        if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
-          t = document.documentElement.clientHeight - oDiv.offsetHeight
-        }
-        oDiv.style.left = l + 'px'// 使用
-        oDiv.style.top = t + 'px'
-      }
-      document.onmouseup = function () {
-        document.onmouseup = document.onmousemove = null
-        oDiv.releaseCapture && oDiv.releaseCapture()
-      }
-      oDiv.setCapture && oDiv.setCapture()
-      return false
-    },
-    jinzhi: function (ev) {
-      ev.stopPropagation()
-    },
+//  drag: function (ev) {
+//    var oDiv = document.getElementById('vu_chat')
+//    var oEvt = ev || event
+//    var disX = oEvt.clientX - oDiv.offsetLeft
+//    var disY = oEvt.clientY - oDiv.offsetTop
+//    document.onmousemove = function (ev) {
+//      var oEvt = ev || event
+//      var l = oEvt.clientX - disX// 计算
+//      var t = oEvt.clientY - disY
+//      // 限定
+//      if (l < 5) l = 0
+//      if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
+//        l = document.documentElement.clientWidth - oDiv.offsetWidth
+//      }
+//
+//      if (t < 5) t = 0
+//      if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
+//        t = document.documentElement.clientHeight - oDiv.offsetHeight
+//      }
+//      oDiv.style.left = l + 'px'// 使用
+//      oDiv.style.top = t + 'px'
+//    }
+//    document.onmouseup = function () {
+//      document.onmouseup = document.onmousemove = null
+//      oDiv.releaseCapture && oDiv.releaseCapture()
+//    }
+//    oDiv.setCapture && oDiv.setCapture()
+//    return false
+//  },
+//  jinzhi: function (ev) {
+//    ev.stopPropagation()
+//  },
     openHistory: function (uid) {
       this.$emit('openHistoryEvent', uid)
     },
@@ -97,19 +98,25 @@ export default {
 </script>
 
 <template>
+<div class="vu_m-chatmain">
  <div class="vu_m-chat">
-    <div id="vu_chat" @mousedown="drag">
-        <div class="vu_sidebar" @mousedown="jinzhi">
-            <card :user="user" :search.sync="search"></card>
-            <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession"></list>
-        </div>
-        <div class="vu_m-na" id="tuo"><span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span><div class="vu_m-guan" @click="close" @mousedown="jinzhi"><p><span></span></p></div></div> <!--<div class="vu_m-minimum" @click="close" @mousedown="jinzhi"></div>-->
-        <div class="vu_m-main" @mousedown="jinzhi">
+ 			<list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
+    	<div id="vu_chat" >    
+        <!--<div class="vu_sidebar" >
+            <card :user="user" :search.sync="search"></card>            
+        </div>-->
+        <div class="vu_m-na" id="tuo">
+        		<span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span>
+        		<!--<div class="vu_m-guan" @click="close" ><p><span></span></p></div>-->
+        </div> <!--<div class="vu_m-minimum" @click="close" ></div>-->
+        <div class="vu_m-main" >
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
             <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
         </div>
     </div>
-    </div>
+ </div>
+ 
+</div>
 </template>
 
 <style >

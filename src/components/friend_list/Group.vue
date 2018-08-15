@@ -11,7 +11,8 @@ export default {
       groupPlaceHolder: '请输入新分组名称',
       Qunfen: false, // 修改群分组名称弹窗关闭
       Qunpopup: false, // 确认弹窗关闭
-      current_uerId: 0
+      current_uerId: 0,
+      firstselt:false, //分组名称
     }
   },
   props: ['user', 'userList', 'companyList', 'group_type'],
@@ -113,6 +114,10 @@ export default {
         }
       })
       return tempIds
+    },
+    changefenzhu(groupId){//分组设置
+    	event.stopPropagation()
+    	this.firstselt=!this.firstselt
     }
   },
   filters: {
@@ -127,13 +132,40 @@ export default {
 </script>
 <template>
   <ul class="vu_qun_fen">
+  	<!--有新加好友时-->
+  	<li>
+  			<div class="vu_link " @click="accordion">
+        	<i class="fa fa-caret-right"></i>
+        	<span class="vu_first_title ">新的好友</span>
+        	<span>1/2</span>        	
+        </div>
+        <ul class="vu_submenu vu_submenu_ul ">
+          <li class="vu_submenu-name">
+            <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
+              <img /><!--class="gray "-->
+              <!--//不在线，添加class=gray-->
+            </div>
+            <div class="vu_submenu_com">
+            	<a>小王</a>
+            	<p class="vue_submen_company">加好友，验证信息</p>
+            </div>
+            <div class="vu_ren-add">接受</div>
+          </li>
+       </ul>
+  	</li>
+  	<!--正常分组-->
     <li v-for="companyItem in companyList">
         <div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_link vu_accordion_li': isCalling(companyItem.userIds, userList)}" @click="accordion">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
-        	<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName($event,companyItem.groupId)"></span>
-        	<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>
+        	<span class="vu_qun-name" @click="changefenzhu(groupId)"></span>
+        	<!--<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName($event,companyItem.groupId)"></span>-->
+        	<!--<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>-->
+        	<ul class="vu_first_selt" v-show="firstselt">
+        		<li @click="changeQunName($event,companyItem.groupId)">删除组</li>
+        		<li @click="Qundel($event,companyItem.groupId)">重命名</li>
+        	</ul>
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
           <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseover="mouseOver" @mouseout="mouseOut"  @dblclick="openChat(userItem)" @mouseleave="mouseLeave">
@@ -141,7 +173,12 @@ export default {
               <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               <!--//不在线，添加class=gray-->
             </div>
-            <a>{{userList[userItem].name}}</a>
+            <div class="vu_submenu_com">
+            	<a>{{userList[userItem].name}}</a>
+            	<span></span> <!--已盯盘就显示-->
+            	<p class="vue_submen_company">所属公司名称</p>
+            </div>
+            
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
             <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->

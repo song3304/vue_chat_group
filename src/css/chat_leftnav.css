@@ -49,16 +49,16 @@ h1 a {
     font-size: 16px;
 }*/
 .vu_accordion {
-	height: 310px;
+	/*height: 310px;*/
     width: 100%;
-    margin-top: 20px;
-    overflow-y:scroll;
+    /*margin-top: 20px;*/
+    /*overflow-y:scroll;*/
 }
 .vu_accordion .vu_link {
     cursor: pointer;
     display: block;
     padding:2px 15px 3px 25px;
-    color: #333333;
+    color: #cccccc;
     font-size: 14px;
     position: relative;
     text-align: left;
@@ -98,30 +98,57 @@ h1 a {
 }
 
 .vu_submenu li {
-    height: 50px;
+    height:60px;
     position: relative;
     text-align: left;
 }
-
+.vu_submenu_com{
+	float: left;
+	margin-top: 10px;
+}
 .vu_submenu a{
     display: inline-block;
     text-decoration: none;
-    color: #666;
+    color: #EEEEEE;
     -webkit-transition: all 0.25s ease;
     -o-transition: all 0.25s ease;
     transition: all 0.25s ease;
-    margin:15px 0 0 10px;
-    float: left;
+    margin:0 0 0 10px;
+    /*float: left;*/
 }
-
+.vu_submenu .vue_submen_company{
+	/*float: left;*/
+	color: #cccccc;
+	font-size: 12px;
+	margin:1px 0 0 10px;
+}
+.vu_submenu_com span{
+	display: inline-block;
+	width: 28px;
+	height: 12px;
+	background: url(../images/yiding.png) -31px -147px;
+	margin-left: 8px;
+}
+.vu_ren-add{
+	width: 44px;
+	height: 20px;
+	background-color: #24b75b;
+	float: right;
+	margin: 19px 3% 0 0;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 20px;
+}
+.vu_ren-add:hover{background-color: #1c994b;}
 .vu_submenu li:hover ,.vu_submenu li.vu_current{
-    background-color: #E6E6E6;
+    background-color: #45444b;
     color: #666666;
 }
 
 /*http://www.jq22.com*/
 .vu_accordion .vu_link:hover{
-	background-color: #e6e6e6;
+	background-color:#45444b;
 }
 .vu_accordion .vu_link span{
 	font-size: 10px;

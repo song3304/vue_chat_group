@@ -49,12 +49,12 @@ if (!localStorage.getItem(key)) {
       'common': [
         {
           groupId: 1,
-          groupName: '普通好友',
+          groupName: '我的好友',
           userIds: [2, 3]
         },
         {
           groupId: 2,
-          groupName: 'VIP客户',
+          groupName: '客户',
           userIds: [3]
         }
       ],
