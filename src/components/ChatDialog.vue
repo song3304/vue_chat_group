@@ -106,7 +106,12 @@ export default {
             <card :user="user" :search.sync="search"></card>            
         </div>-->
         <div class="vu_m-na" id="tuo">
+        		<p class="vu_m-new">个人信息</p>
+        		<div class="vu_m-newqun"><img :src="userList[session.userId].img" alt="" /></div>
         		<span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span>
+        		<p class="vu_m-new_com">公司：中化金服</p>
+        		<p class="vu_m-new_phone">电话：<span>12365478952</span></p>
+        		<div class="vu_m-new_friend">加为好友</div>  <!--//加好友-->
         		<!--<div class="vu_m-guan" @click="close" ><p><span></span></p></div>-->
         </div> <!--<div class="vu_m-minimum" @click="close" ></div>-->
         <div class="vu_m-main" >

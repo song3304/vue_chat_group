@@ -80,7 +80,7 @@
 								<span>华塑汇</span>
 								<span class="vue-realtime-buy">买</span>
 								<span class="vue-realtime-buy">7100</span>
-								<span>长江国际</span>
+								<span>2018-08-17至2018-08-17</span>
 								<span>500</span>
 							</li>
 							<li>
@@ -88,7 +88,7 @@
 								<span>华塑汇</span>
 								<span class="vue-realtime-sell">卖</span>
 								<span class="vue-realtime-sell">7100</span>
-								<span>长江国际</span>
+								<span>2018-08-17至2018-08-17</span>
 								<span>500</span>
 							</li>
 						</ul>						

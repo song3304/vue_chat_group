@@ -16,7 +16,7 @@
 			<p>大厅成员</p>
 			<input class="vue_leftlist_search" type="text" placeholder="搜索大厅成员"/>
 			<ul class="leftlist_people_ul">
-				<li>
+				<li @click="firendchat">
 					<div class="leftlist_people_photo"> <!--头像-->
 						<img src="../images/15.png" alt="" />
 					</div>
@@ -38,6 +38,22 @@
 				</li>				
 			</ul>
 		</div>
+		<div class="vue_leftlist_tan" v-show="firendtan">   <!--加好友弹窗-->
+			<img src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
+			<!--<img src="../images/jiao_bg.png" alt="" />-->    <!--交易公司-->
+			<div class="vue_leftlist_img"><img src="../images/15.png" alt="" ></img></div>
+			<p class="vue_leftlist_line">小张</p>
+			<p class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
+			<!--<p class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>-->
+			<p class="vue_leftlist_companyname">所属公司：上海华塑汇</p>
+			<p class="vue_leftlist_companyname">手机号：14569872354</p>
+			<div class="vue_leftlist_companysz">
+				<span class="vue_leftlist_companysz_yi">临时会话</span>
+				<span class="vue_leftlist_companysz_er">添加好友</span>
+				<!--<p>聊天</p>-->
+			</div>
+			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
+		</div>
 	</div>
 </template>
 
@@ -46,7 +62,8 @@
   	components:{},
   	props:{},
   	data(){
-  		return{ 			
+  		return{ 
+  			firendtan:false,
   			leftList: [{
 				time: "08-15",
 				title:"这是周报标题"
@@ -59,7 +76,15 @@
 			}],
   		}
   	},
-
+	methods:{
+		firendchat:function(){
+			this.firendtan=!this.firendtan
+		},
+		leftlistclose:function(){
+			this.firendtan=false
+		}
+		
+	}
  
 }
 </script>

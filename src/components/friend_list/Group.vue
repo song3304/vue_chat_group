@@ -13,21 +13,25 @@ export default {
       Qunpopup: false, // 确认弹窗关闭
       current_uerId: 0,
       firstselt:false, //分组名称
+      namez:false,
+      groupNew:false, //移动列表隐藏
+      friendDel:false,//删除框隐藏
     }
   },
   props: ['user', 'userList', 'companyList', 'group_type'],
   methods: {
-    mouseOver: function (event) {
-      var el = event.currentTarget
-      $('.vu_m-phone-img', $(el)).show()
-    },
-    mouseOut: function (event) {
-      var el = event.currentTarget
-      $('.vu_m-phone-img', $(el)).hide()
-    },
+//  mouseOver: function (event) {
+//    var el = event.currentTarget
+//    $('.vu_m-phone-img', $(el)).show()
+//  },
+//  mouseOut: function (event) {
+//    var el = event.currentTarget
+//    $('.vu_m-phone-img', $(el)).hide()
+//  },
     mouseLeave:function(event){
     	var el = event.currentTarget
     	$('.vu_m-phone-input', $(el)).hide()
+    	$('.vue_name_sz').hide()
     },
     changeName: function (event) {
       var el = event.currentTarget
@@ -115,9 +119,38 @@ export default {
       })
       return tempIds
     },
-    changefenzhu(groupId){//分组设置
-    	event.stopPropagation()
-    	this.firstselt=!this.firstselt
+    changefenzhu(event){//分组设置    
+//    	if (companyItem.firstselt == false) {
+//         this.$set(companyItem, "firstselt", true);
+//      } else {
+//         companyItem.firstselt = !companyItem.firstselt;  
+//      }    	
+				var el = event.currentTarget				
+			  $('.vu_first_selt').hide()
+			  $('.vu_first_selt', $(el)).show()
+    	  event.stopPropagation();
+    },
+    nameSz:function(event){//划上头像出现弹窗    	
+			event.stopPropagation();	
+			var el = event.currentTarget				
+			$('.vue_name_sz').hide()
+			$('.vue_name_sz', $(el)).show()
+    },
+    namemove:function(){
+    	$('.vue_name_sz').hide()
+    	this.groupNew=true
+    },
+    vueMove:function(){//划上移动，移动分组表显示
+    	this.groupNew=true
+    },
+    vueLeave:function(){
+    	this.groupNew=false
+    },
+    delfri:function(){//打开删除好友弹窗
+    	this.friendDel=true
+    },
+    closedelfri:function(){//关闭删除好友弹窗
+    	this.friendDel=false
     }
   },
   filters: {
@@ -159,33 +192,62 @@ export default {
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
-        	<span class="vu_qun-name" @click="changefenzhu(groupId)"></span>
+        	<span class="vu_qun-name" @click="changefenzhu">
+        		<ul class="vu_first_selt">
+	        		<li @click="Qundel($event,companyItem.groupId)">删除组</li>
+	        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
+	        	</ul>
+        	</span>
         	<!--<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName($event,companyItem.groupId)"></span>-->
         	<!--<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>-->
-        	<ul class="vu_first_selt" v-show="firstselt">
-        		<li @click="changeQunName($event,companyItem.groupId)">删除组</li>
-        		<li @click="Qundel($event,companyItem.groupId)">重命名</li>
-        	</ul>
+        	
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
-          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseover="mouseOver" @mouseout="mouseOut"  @dblclick="openChat(userItem)" @mouseleave="mouseLeave">
-            <div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"> <!--有消息头像动加类名 touxiang-->
+          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseleave="mouseLeave">
+            <div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"  @mouseenter="nameSz"> <!--有消息头像动加类名 touxiang-->
               <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               <!--//不在线，添加class=gray-->
+	              <ul class="vue_name_sz">
+			          	<li @click="openChat(userItem)">发消息</li>
+			          	<li @click="delfri">删除好友</li>
+			          	<li @mouseenter="vueMove" @mouseleave="vueLeave">移动到<span></span>
+			          			<ul class="vue_name_move" v-show="groupNew">
+						          		<li v-for="companyItem in companyList" @click="namemove">{{companyItem.groupName}}</li>
+						          </ul>			          	
+			          	</li>
+			          	<li>重命名</li>
+			          	
+		          	</ul>
             </div>
             <div class="vu_submenu_com">
             	<a>{{userList[userItem].name}}</a>
-            	<span></span> <!--已盯盘就显示-->
+            	<span></span> <!--已盯盘就显示图标-->
             	<p class="vue_submen_company">所属公司名称</p>
             </div>
             
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
             <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
-            <p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p>
+            <p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p><!--盯盘好友不可删除-->
+            
+	          
           </li>
+          
        </ul>
       </li>
+      <!--//删除好友-->
+      <div class="vue_del_friend" v-show="friendDel">
+      	<div class="vue_del_friend_yi">
+	      		<span>删除好友</span>
+	      		<p @click="closedelfri"><span></span></p>
+	      </div>
+	  		<p class="vue_del_friend_er">确认要删除小张吗？</p>
+	  		<div class="vue_del_friend_san">
+	  			<span class="vue_del_friend_que">确认</span>
+	  			<span class="vue_del_friend_xiao" @click="closedelfri">取消</span>
+	  		</div>
+      	
+      </div>
       <!--//修改群分名字-->
       <div class="vu_qunzu_name" v-show="Qunfen">
       	<div class="vu_fen_zu_title">

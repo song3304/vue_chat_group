@@ -28,7 +28,7 @@
 	      <!--//分组-->
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.companyShow">
 	      	<div class="vu_qunfen_new">
-	      		<div>+  新建分组</div>
+	      		<div @click="createGroup('common')">+  新建分组</div>
 	      	</div>
 	        <div class="vu_qunfen_yi">
 	          <!--p>普通组</p-->
@@ -70,8 +70,8 @@ export default {
       searchList: [],
       tabData: [
         {
-          imgSrc: require('../images/chat.png'),
-          activeImgSrc: require('..//images/m-chat.png'),
+          imgSrc: require('../images/m-chat.png'),
+          activeImgSrc: require('../images/chat.png'),
           activSpan:'聊天'
         },
         {
@@ -80,8 +80,8 @@ export default {
           activSpan:'分组'
         },
         {
-          imgSrc: require('../images/group.png'),
-          activeImgSrc: require('../images/m-group.png'),
+          imgSrc: require('../images/qun.png'),
+          activeImgSrc: require('../images/m-qun.png'),
           activSpan:'群'
         }],
       createType: 'common'
@@ -108,7 +108,7 @@ export default {
       }else{
       	this.panelShow.chatShow = false
         this.panelShow.companyShow = false
-        this.panelShow.groupShow = true
+        this.panelShow.groupShow = false   //群隐藏
         this.panelShow.searchShow = false
         $('.vu_m-list').hide()
       }

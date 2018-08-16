@@ -97,7 +97,7 @@ h1 a {
     display: none;
 }
 
-.vu_submenu li {
+.vu_submenu>li {
     height:60px;
     position: relative;
     text-align: left;
@@ -141,7 +141,7 @@ h1 a {
 	line-height: 20px;
 }
 .vu_ren-add:hover{background-color: #1c994b;}
-.vu_submenu li:hover ,.vu_submenu li.vu_current{
+.vu_submenu>li:hover ,.vu_submenu>li.vu_current{
     background-color: #45444b;
     color: #666666;
 }
