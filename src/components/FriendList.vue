@@ -22,9 +22,7 @@
 	        </div>-->
 	      </ul>
 	      <!--聊天-->
-	      <div v-show="panelShow.chatShow">
-	      		
-	      </div>
+	      <div v-show="panelShow.chatShow"></div>
 	      <!--//分组-->
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.companyShow">
 	      	<div class="vu_qunfen_new">
@@ -70,21 +68,21 @@ export default {
       searchList: [],
       tabData: [
         {
-          imgSrc:'../images/m-chat.png',
-          activeImgSrc:'../images/chat.png',
+          imgSrc: require('../images/m-chat.png'),
+          activeImgSrc: require('../images/chat.png'),
           activSpan:'聊天'
         },
         {
-          imgSrc:'../images/group.png',
-          activeImgSrc:'../images/m-group.png',
+          imgSrc: require('../images/group.png'),
+          activeImgSrc: require('../images/m-group.png'),
           activSpan:'分组'
         },
         {
-          imgSrc:'../images/qun.png',
-          activeImgSrc:'../images/m-qun.png',
+          imgSrc: require('../images/qun.png'),
+          activeImgSrc: require('../images/m-qun.png'),
           activSpan:'群'
         }],
-      createType: 'common'
+      createType: 'common',
     }
   },
   components: {companyPanel, groupPanel, searchDialog},
@@ -161,6 +159,6 @@ export default {
     modifyGroupName: function (groupId, groupType, groupName) {
       this.$emit('modifyGroupEvent', groupId, groupType, groupName)
     }
-  }
+  },
 }
 </script>

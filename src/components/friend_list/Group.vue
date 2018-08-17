@@ -15,7 +15,7 @@ export default {
       firstselt:false, //分组名称
       namez:false,
       groupNew:false, //移动列表隐藏
-      friendDel:false,//删除框隐藏
+      friendDel:false,//删除框隐藏  
     }
   },
   props: ['user', 'userList', 'companyList', 'group_type'],
@@ -51,6 +51,9 @@ export default {
     },
     openChat: function (uid) {
       this.$emit('openChartEvent', uid)
+//    $('.vu_m-list').show()
+//    $('#vu_qun-fen').hide()
+//    $('#vu_accordion').hide()
     },
     changeQunName: function (event, groupId) { // 点击修改群分组名称
       event.stopPropagation()
@@ -119,16 +122,18 @@ export default {
       })
       return tempIds
     },
-    changefenzhu(event){//分组设置    
+    changefenzhu(companyItem){//分组设置    
 //    	if (companyItem.firstselt == false) {
+//    		console.log(3)
 //         this.$set(companyItem, "firstselt", true);
 //      } else {
+//      	console.log(345)
 //         companyItem.firstselt = !companyItem.firstselt;  
-//      }    	
+//      } 
+				event.stopPropagation();
 				var el = event.currentTarget				
 			  $('.vu_first_selt').hide()
-			  $('.vu_first_selt', $(el)).show()
-    	  event.stopPropagation();
+			  $('.vu_first_selt', $(el)).show()    	  
     },
     nameSz:function(event){//划上头像出现弹窗    	
 			event.stopPropagation();	
@@ -151,6 +156,9 @@ export default {
     },
     closedelfri:function(){//关闭删除好友弹窗
     	this.friendDel=false
+    },
+    closefenzhu:function(){
+    	$('.vu_first_selt').hide()    	
     }
   },
   filters: {
@@ -192,12 +200,13 @@ export default {
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
-        	<span class="vu_qun-name" @click="changefenzhu">
-        		<ul class="vu_first_selt">
-	        		<li @click="Qundel($event,companyItem.groupId)">删除组</li>
-	        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
-	        	</ul>
-        	</span>
+        	<div class="vu_qun-name" @click="changefenzhu(companyItem)" @mouseleave="closefenzhu">
+		        	<ul class="vu_first_selt">
+			        		<li @click="Qundel($event,companyItem.groupId)">删除组</li>
+			        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
+		        	</ul>
+        	</div>
+        	
         	<!--<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName($event,companyItem.groupId)"></span>-->
         	<!--<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>-->
         	
