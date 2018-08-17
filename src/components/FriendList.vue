@@ -70,18 +70,18 @@ export default {
       searchList: [],
       tabData: [
         {
-          imgSrc: require('../images/m-chat.png'),
-          activeImgSrc: require('../images/chat.png'),
+          imgSrc:'../images/m-chat.png',
+          activeImgSrc:'../images/chat.png',
           activSpan:'聊天'
         },
         {
-          imgSrc: require('../images/group.png'),
-          activeImgSrc: require('../images/m-group.png'),
+          imgSrc:'../images/group.png',
+          activeImgSrc:'../images/m-group.png',
           activSpan:'分组'
         },
         {
-          imgSrc: require('../images/qun.png'),
-          activeImgSrc: require('../images/m-qun.png'),
+          imgSrc:'../images/qun.png',
+          activeImgSrc:'../images/m-qun.png',
           activSpan:'群'
         }],
       createType: 'common'

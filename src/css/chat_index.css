@@ -20,7 +20,7 @@ ul {
 #chat_app{
 	width: 100%;
 	min-width: 1200px;
-	height: 100%;
+	height:916px;
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
 	
@@ -29,8 +29,10 @@ ul {
 	/*position: fixed;
 	left:300px;
     bottom:0;*/
+   position: absolute;
+   bottom: 0;
     width:100%;
-	height:100%;
+	height:100%;	
 	/*z-index: 1000;
 	box-shadow: 0px 0px 6px 3px rgba(42, 42, 42, 0.2);*/
 }
@@ -68,14 +70,14 @@ ul {
 .vu_send{
 	float: left;
 	display: inline-block;
-	height:70%;
+	height:21.5px;
     width: 7%;
 	background-color: #fd3000;
 	font-size: 16px;
 	color: #FFFFFF;
 	text-align: center;
 	cursor: pointer;
-	margin: 1% 0 0 0;
+	margin:0.5% 0 0 0;
 }
 .vu_history{
 	position: absolute;	
@@ -931,7 +933,7 @@ ul {
 .vu_seemore{
 	position: absolute;
 	top:4px;
-	left: 185px;
+	left:260px;
 	text-align: center;
 	cursor: pointer;
 }
@@ -1012,7 +1014,7 @@ ul {
 .vu_m-text textarea {
     /*padding: 27px 10px 45px 10px;*/
     /*margin:27px 0 0 10px;*/
-    height:70%;
+    height:21.5px;
     width:88%;
     font-size: 14px;
     /*overflow-y:scroll;*/
@@ -1497,15 +1499,21 @@ ul {
     float: left;
     margin: 10px 0 0 10px;
 }
-.vue-realtime-auto{width: 98%;margin:10px 0 0 2%;height:160px;overflow-y: auto;}
-.vue-realtime-auto li{width: 50%;float: left;border-right: 1px solid #132747;height: 30px;line-height: 30px;}
-.vue-realtime-auto li span{width: 15%;text-align: center;color: #FFFFFF;display: inline-block;}
+.vue-realtime-auto{width: 98%;margin:5px 0 5px 2%;height:150px;overflow-y: auto;}
+.vue-realtime-auto li{width: 50%;float: left;border-right: 1px solid #132747;height: 30px;line-height: 30px;padding-left: 0.8%;}
+.vue-realtime-auto li span{text-align: center;color: #FFFFFF;display: inline-block;}
+.vue-realtime-auto-time{width:10%;}
+.vue-realtime-auto-company{width: 15%;}
+.vue-realtime-auto-data{width:42%;}
+.vue-realtime-auto-num{width: 10%;}
+.vue-realtime-buy_price,.vue-realtime-sell_price{width:13%!important;}
 .vue-realtime-buy{
 	color: #ff1400!important;
-	width: 10%!important;
+	width: 5%;
 }
 .vue-realtime-sell{
 	color: #00d700!important;
+	width: 5%;
 }
 /*图表块设置end*/
 
@@ -1852,3 +1860,31 @@ ul {
 	cursor: pointer;
 }
 /*确认删除好友弹窗end*/
+.vu_m_tubiao{
+	position:absolute;
+	top:-9px;
+	left:50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	width: 76px;
+	height: 9px;
+	background: url(../images/yiding.png) 0 -183px;
+	z-index: 10;
+	cursor: pointer;
+}
+.vu_m_tubiao:hover{background: url(../images/yiding.png) 0 -217px;}
+.vu_m_tubiao_er{
+	position:absolute;
+	top:0;
+	left:50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	width: 76px;
+	height: 9px;
+	background: url(../images/yiding.png) -89px -181px;
+	z-index: 10;
+	cursor: pointer;
+}
+.vu_m_tubiao_er:hover{background: url(../images/yiding.png) -89px -214px;}
+#resizable{height: 100%;width:100%;max-height: 916px;}
+.ui-resizable{position: absolute!important;}

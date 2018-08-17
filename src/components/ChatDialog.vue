@@ -31,6 +31,12 @@ export default {
     }
   },
   methods: {
+  	vueshrink:function(){
+  		$( "#resizable" ).resizable({
+				 handles: "n",
+				 minHeight:211
+			});
+  	},
     close: function () {
       this.$emit('closeEvent', {
         is_dialog_show: false,
@@ -101,10 +107,12 @@ export default {
 <div class="vu_m-chatmain">
  <div class="vu_m-chat">
  			<list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
-    	<div id="vu_chat" >    
+    	<div id="vu_chat" >   
+    		<div id="resizable">     				   			
         <!--<div class="vu_sidebar" >
             <card :user="user" :search.sync="search"></card>            
         </div>-->
+        <div class="vu_m_tubiao" @mouseenter="vueshrink"></div>  <!--//拉动图标-->
         <div class="vu_m-na" id="tuo">
         		<p class="vu_m-new">个人信息</p>
         		<div class="vu_m-newqun"><img :src="userList[session.userId].img" alt="" /></div>
@@ -118,6 +126,7 @@ export default {
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
             <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
         </div>
+      </div>
     </div>
  </div>
  

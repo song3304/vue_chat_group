@@ -76,20 +76,20 @@
 					<div class="vue-tealtime-time">
 						<ul class="vue-realtime-auto" >							
 							<li>
-								<span>15:23</span>
-								<span>华塑汇</span>
+								<span class="vue-realtime-auto-time">15:23</span>
+								<span class="vue-realtime-auto-company">华塑汇</span>
 								<span class="vue-realtime-buy">买</span>
-								<span class="vue-realtime-buy">7100</span>
-								<span>2018-08-17至2018-08-17</span>
-								<span>500</span>
+								<span class="vue-realtime-buy vue-realtime-buy_price">7100</span>
+								<span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
+								<span class="vue-realtime-auto-num">500</span>
 							</li>
 							<li>
-								<span>15:23</span>
-								<span>华塑汇</span>
+								<span class="vue-realtime-auto-time">15:23</span>
+								<span class="vue-realtime-auto-company">华塑汇</span>
 								<span class="vue-realtime-sell">卖</span>
-								<span class="vue-realtime-sell">7100</span>
-								<span>2018-08-17至2018-08-17</span>
-								<span>500</span>
+								<span class="vue-realtime-sell vue-realtime-sell_price">7100</span>
+								<span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
+								<span class="vue-realtime-auto-num">500</span>
 							</li>
 						</ul>						
 					</div>
