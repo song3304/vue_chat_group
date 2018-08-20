@@ -120,7 +120,7 @@ if (!localStorage.getItem(key)) {
             self: false,
             is_read: true
           }]
-      },
+      }/*,
       {
         qunId: 3,
         type: 'qun',
@@ -140,7 +140,7 @@ if (!localStorage.getItem(key)) {
             self: false,
             is_read: true
           }]
-      }
+      }*/
     ],
     // 删除会话
     delSessionList: [
