@@ -12,13 +12,12 @@
 					</div>	
 					<!--下拉表-->
 					<ul class="vue_kind_ul" v-show="kindshow" >
-						<li>乙二醇</li>
-						<li>甲醇</li>
+					    <li v-for="(catalogItem,index) in catalogList" @click="addcatalog(catalogItem,index)">{{catalogItem.name}}</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_kind_species">
 						<li>
-							<span>乙二醇</span>
+							<span>{{catalog}}</span>
 						</li>
 					</ul>
 				</div>
@@ -30,7 +29,7 @@
 					</div>	
 					<!--下拉表-->
 					<ul class="vue_company_ul" v-show="companyshow">
-						<li v-for="(companyitem,index) in companylist" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+						<li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_company_species">
@@ -48,12 +47,15 @@
 					</div>	
 					<!--下拉表-->
 					<ul class="vue_people_ul" v-show="peopleshow">
-						<li v-for="(peopleitem,index) in peoplelist" @click="addpeo(peopleitem,index)"><span><img src="../images/15.png" alt="" /></span><p>{{peopleitem.name}}</p></li>						
+						<li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
+						    <span><img src="../images/15.png" alt="" /></span>
+						    <p>{{peopleitem.username}}</p>
+						</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_company_species">
 						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)">
-							<span>{{peospitem.name}}</span>
+							<span>{{peospitem.username}}</span>
 							<p><span></span></p>
 						</li>
 					</ul>
@@ -118,25 +120,12 @@
 		kindshow:false,
 		companyshow:false,
 		peopleshow:false,
-		companylist: [{//公司测试数据
-			name:'化塑汇',
-			isActive: false
-		}, {
-			name:'公司名称',
-			isActive: false
-		}, {
-			name:'化商通',
-			isActive: false
-		}],
-		peoplelist:[{
-			name:'小王'
-		}, {
-			name:'小李'
-		}, {
-			name:'小张'
-		}],
+		catalogList:match_hall_catalogs,
+		companyList:match_hall_companies,
+		peopleList:[{username:''}],
 		comsplist:[],
 		peosplist:[],
+		catalog:'乙二醇',
 		isActive:false,
     }
   },
@@ -177,7 +166,14 @@
         }]
       });
     },
+
+    addcatalog(catalogItem,index){
+        this.kindshow=false;
+        this.catalog=catalogItem.name;
+    },
+
     addcom(companyitem,index){//公司添加到右侧
+        this.peopleList=companyitem.members;//联动--人员下拉框
     	this.companyshow=false
 		let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
         if (selectedItem) {

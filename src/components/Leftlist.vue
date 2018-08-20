@@ -64,7 +64,7 @@
   	data(){
   		return{ 
   			firendtan:false,
-  			leftList: [{
+  			leftLists: [{
 				time: "08-15",
 				title:"这是周报标题"
 			}, {
@@ -74,6 +74,7 @@
 				time: "08-17",
 				title:"广东乙烯制乙二醇送到报7850-7900"
 			}],
+			leftList:match_hall_cms,
   		}
   	},
 	methods:{
