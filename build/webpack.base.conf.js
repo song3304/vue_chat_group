@@ -98,7 +98,9 @@ module.exports = {
 		 new webpack.optimize.CommonsChunkPlugin('common.js'),
 		 new webpack.ProvidePlugin({
 		     jQuery: "jquery",
-		     $: "jquery"
+		     $: "jquery",
+		     jquery: "jquery",
+          "window.jQuery": "jquery"
 		 },{
 //		 	写你的插件,
 					main:"main",

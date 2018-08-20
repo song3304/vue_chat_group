@@ -35,7 +35,7 @@
 						<span>小张</span>
 						<p>化塑汇</p>
 					</div>
-				</li>				
+				</li>					
 			</ul>
 		</div>
 		<div class="vue_leftlist_tan" v-show="firendtan">   <!--加好友弹窗-->
@@ -73,6 +73,15 @@
 			}, {
 				time: "08-17",
 				title:"广东乙烯制乙二醇送到报7850-7900"
+			}, {
+				time: "08-17",
+				title:"广东乙烯制乙二醇送到报7850-7900"
+			}, {
+				time: "08-17",
+				title:"广东乙烯制乙二醇送到报7850-7900"
+			}, {
+				time: "08-17",
+				title:"广东乙烯制乙二醇送到报7850-7900"
 			}],
   		}
   	},
@@ -84,7 +93,25 @@
 			this.firendtan=false
 		}
 		
-	}
+	},
+	mounted() {
+	    $(".vue_leftlist_ul").niceScroll({
+	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值	        
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	    });
+	    $(".leftlist_people_ul").niceScroll({
+	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值	        
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	    });
+	},
  
 }
 </script>
