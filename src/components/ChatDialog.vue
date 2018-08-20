@@ -32,10 +32,7 @@ export default {
   },
   methods: {
   	vueshrink:function(){
-  		$( "#resizable" ).resizable({
-				 handles: "n",
-				 minHeight:211
-			});
+  		
   	},
     close: function () {
       this.$emit('closeEvent', {
@@ -99,7 +96,14 @@ export default {
     toChat: function (toUid, msg) {
       this.$emit('chatEvent', toUid, msg)
     }
-  }
+ },
+ mounted(){
+	 	$( "#resizable" ).resizable({
+			 handles: "n",
+			 minHeight:211,
+			 maxHeight:916
+		});
+ }
 }
 </script>
 
@@ -112,7 +116,7 @@ export default {
         <!--<div class="vu_sidebar" >
             <card :user="user" :search.sync="search"></card>            
         </div>-->
-        <div class="vu_m_tubiao" @mouseenter="vueshrink"></div>  <!--//拉动图标-->
+        <!--<div class="vu_m_tubiao" @mouseenter="vueshrink"></div>-->
         <div class="vu_m-na" id="tuo">
         		<p class="vu_m-new">个人信息</p>
         		<div class="vu_m-newqun"><img :src="userList[session.userId].img" alt="" /></div>
