@@ -49,6 +49,8 @@ new Vue({
     historyList: serverData.historyList,
     // 当前历史记录用户id
     historyUid: 0,
+    //大厅成员列表
+    onlineUserList:serverData.onlineUserList,
     // 搜索key
     search: '',
     // 选中的会话Index
@@ -81,7 +83,7 @@ new Vue({
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
-				<leftlist></leftlist>
+				<leftlist :onlineUserList="onlineUserList"></leftlist>
 				</div>`,
   created: function () {
     // 初始化数据 套接字
@@ -136,6 +138,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({historyList: this.historyList})
+      }
+    },
+    onlineUserList: {
+      deep: true,
+      handler () {
+        store.update({onlineUserList: this.onlineUserList})
       }
     }
   },
