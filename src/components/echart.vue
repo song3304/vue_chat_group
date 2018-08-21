@@ -53,15 +53,9 @@
 						</li>
 					</ul>
 					<!--右边切换选项-->
-<<<<<<< HEAD
-					<ul class="vue_company_species">
-						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)">
-							<span>{{peospitem.username}}</span>
-=======
 					<ul class="vue_company_species vue_people_species">
 						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)" :class="{'comactive': peospitem.isActive}">
 							<span>{{peospitem.name}}</span>
->>>>>>> fdcca18d29b5cd2433b5a02431edf7546b8f77a0
 							<p><span></span></p>
 						</li>
 					</ul>
@@ -180,7 +174,6 @@
         }]
       });
     },
-<<<<<<< HEAD
 
     addcatalog(catalogItem,index){
         this.kindshow=false;
@@ -189,9 +182,6 @@
 
     addcom(companyitem,index){//公司添加到右侧
         this.peopleList=companyitem.members;//联动--人员下拉框
-=======
-    addcom(companyitem,index){//公司添加到右侧	
->>>>>>> fdcca18d29b5cd2433b5a02431edf7546b8f77a0
     	this.companyshow=false
 		let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
         if (selectedItem) {

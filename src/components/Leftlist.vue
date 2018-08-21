@@ -8,7 +8,6 @@
 					<span>{{leftitem.time}}</span>
 					<p>{{leftitem.title}}</p>
 				</li>
-				<br clear="all"/>
 			</ul>
 		</div>
 		<!--大厅成员-->
@@ -64,25 +63,6 @@
   	data(){
   		return{ 
   			firendtan:false,
-  			leftLists: [{
-				time: "08-15",
-				title:"这是周报标题"
-			}, {
-				time: "08-16",
-				title:"这是测试数据"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}],
 			leftList:match_hall_cms,
   		}
   	},
