@@ -167,7 +167,17 @@ export default {
       userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
       return onlineCnt
     }
-  }
+  },
+  mounted() {
+//  $(".vu_qunfen_yi").niceScroll({
+//  	cursorcolor: "#525159", // 改变滚动条颜色，使用16进制颜色值        
+//      cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+//      cursorwidth: "5px", // 滚动条的宽度，单位：便素
+//      background: "", // 轨道的背景颜色
+//      cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+//      autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+//  });
+  },
 }
 
 </script>
@@ -213,8 +223,10 @@ export default {
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
           <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseleave="mouseLeave">
-            <div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"  @mouseenter="nameSz"> <!--有消息头像动加类名 touxiang-->
-              <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
+            <div   @mouseenter="nameSz"> <!--有消息头像动加类名 touxiang-->
+            	<div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}">
+              	<img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
+              </div>
               <!--//不在线，添加class=gray-->
 	              <ul class="vue_name_sz">
 			          	<li @click="openChat(userItem)">发消息</li>

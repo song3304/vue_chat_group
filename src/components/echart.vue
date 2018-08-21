@@ -33,9 +33,9 @@
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_company_species">
-						<li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" @click="delcom(comindex)">
+						<li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" >
 							<span>{{comspitem.name}}</span>
-							<p><span></span></p>
+							<p @click="delcom(comindex)"><span></span></p>
 						</li>
 					</ul>
 				</div>
@@ -53,9 +53,15 @@
 						</li>
 					</ul>
 					<!--右边切换选项-->
+<<<<<<< HEAD
 					<ul class="vue_company_species">
 						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)">
 							<span>{{peospitem.username}}</span>
+=======
+					<ul class="vue_company_species vue_people_species">
+						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)" :class="{'comactive': peospitem.isActive}">
+							<span>{{peospitem.name}}</span>
+>>>>>>> fdcca18d29b5cd2433b5a02431edf7546b8f77a0
 							<p><span></span></p>
 						</li>
 					</ul>
@@ -131,6 +137,14 @@
   },
   mounted() {
     this.drawLine();
+    $(".vue-tealtime-time").niceScroll({
+    	cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值       
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+        background: "", // 轨道的背景颜色
+        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+    });
   },
   methods: {
   	kindclick: function (){
@@ -166,6 +180,7 @@
         }]
       });
     },
+<<<<<<< HEAD
 
     addcatalog(catalogItem,index){
         this.kindshow=false;
@@ -174,28 +189,34 @@
 
     addcom(companyitem,index){//公司添加到右侧
         this.peopleList=companyitem.members;//联动--人员下拉框
+=======
+    addcom(companyitem,index){//公司添加到右侧	
+>>>>>>> fdcca18d29b5cd2433b5a02431edf7546b8f77a0
     	this.companyshow=false
 		let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
         if (selectedItem) {
-           
-        } else {       	
+            $('.vue_company_species>li').attr('class','')
+        	$('.vue_company_species>li').eq(index).attr('class','comactive')
+        } else {      
+        	$('.vue_company_species>li').attr('class','')
            	this.comsplist.push({
-             	...companyitem //,isActive:true
+             	...companyitem ,isActive:true//,isActive:true
         	})
         };        
-//      console.log(this.comsplist)
     },
     delcom(comindex){//公司删除
     	this.comsplist.splice(comindex,1);
     },
-    addpeo(peopleitem,index){//人员追加到右侧
+    addpeo(peopleitem,index){//人员追加到右侧	
     	this.peopleshow=false
     	let peoedItem = this.peosplist.filter(v => v.name === peopleitem.name)[0];
         if (peoedItem) {
-           
+        	$('.vue_people_species>li').attr('class','')
+        	$('.vue_people_species>li').eq(index).attr('class','comactive')
         } else {
+        	$('.vue_people_species>li').attr('class','')        	
            	this.peosplist.push({
-             	...peopleitem
+             	...peopleitem,isActive:true
         	})
         };
     },

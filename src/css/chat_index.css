@@ -164,7 +164,7 @@ ul {
 	left: 0;
 	width:18%;
 	min-width: 216px;
-	height:100%;
+	height:937px;
 	background-color: rgba(46, 46, 46, 0.8);
 	/*opacity: 0.8;
 	z-index: 1000;*/
@@ -307,7 +307,7 @@ ul {
 	margin:10px 0 0 10px;
 	overflow: hidden;
 }
-.vu_m-list .vu_name{margin:11px 0 0 10px;font-size: 14px;text-align: left;color: #eeeeee;}
+.vu_m-list .vu_name{margin:11px 0 0 10px;font-size: 12px;text-align: left;color: #eeeeee;}
 .vu_m-list li{position: relative;height:60px;cursor: pointer;}
 .vu_m-list li:hover{background:  #525159;}
 .vu_m-list li:hover .vu_delet-li{
@@ -491,7 +491,7 @@ ul {
 	cursor: pointer;
 }
 .vu_m-list{
-	height: 100%;
+	height:896px;
 	width:28.4%;
 	min-width: 216px;
 	overflow: auto;
@@ -512,8 +512,8 @@ ul {
     position:absolute; 
     top: -315%;
     left: -30%;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    /*overflow-x: hidden;
+    overflow-y: scroll;*/
 }
  
  /* for Chrome */
@@ -633,6 +633,10 @@ ul {
 	/*margin:0 5px 10px 5px;*/
 	text-align: left;
 	/*padding-bottom: 10px;*/
+	height: ;
+}
+.vu_qunfen_yi{
+	height: 820px;
 }
 #vu_qun-fen>div>p{
 	color: #1a517d;
@@ -796,8 +800,8 @@ ul {
 #vu_chat_app{width: 100%;height: 100%;}
 .vue_name_sz{
 	position: absolute;
-	top:25px;
-	left:100px;
+	top:30px;
+	left:78px;
 	width: 90px;
 	height: 105px;
 	background-color: #ffffff;
@@ -927,7 +931,7 @@ ul {
 }
 .vu_m-message {
     padding:15px 15px 10px 15px;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     position: relative;
 }
 .vu_seemore{
@@ -1500,8 +1504,15 @@ ul {
     float: left;
     margin: 10px 0 0 10px;
 }
-.vue-realtime-auto{width: 98%;margin:5px 0 5px 2%;height:150px;overflow-y: auto;}
+/*.vue-realtime-auto{width: 98%;margin:5px 0 5px 2%;height:150px;overflow-y: auto;}*/
+.vue-tealtime-time {
+    height: 150px;
+    outline: initial!important;
+    width: 97.5%;
+    margin: 5px 0 5px 2%;
+}
 .vue-realtime-auto li{width: 50%;float: left;border-right: 1px solid #132747;height: 30px;line-height: 30px;padding-left: 0.8%;}
+.vue-realtime-auto li:nth-child(even){border-right: 0;}
 .vue-realtime-auto li span{text-align: center;color: #FFFFFF;display: inline-block;}
 .vue-realtime-auto-time{width:10%;}
 .vue-realtime-auto-company{width: 15%;}
@@ -1611,7 +1622,7 @@ ul {
 }
 .leftlist_people_ul li{
 	position: relative;
-	height: 50px;
+	height:48px;
 	border-bottom: 1px solid #d8d6e8;
 }
 .leftlist_people_ul li:hover{background-color: #efedf8;cursor: pointer;}
@@ -1645,7 +1656,7 @@ ul {
 }
 .leftlist_people_ul{
 	margin-top: 10px;
-	height:465px;
+	height:458px;
 	overflow: auto;
 }
 .leftlist_people_name{
