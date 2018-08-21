@@ -51,9 +51,7 @@ export default {
     },
     openChat: function (uid) {
       this.$emit('openChartEvent', uid)
-//    $('.vu_m-list').show()
-//    $('#vu_qun-fen').hide()
-//    $('#vu_accordion').hide()
+      $('.vu_m-list').show()
     },
     changeQunName: function (event, groupId) { // 点击修改群分组名称
       event.stopPropagation()

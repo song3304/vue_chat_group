@@ -8,7 +8,7 @@
 	    <div class="vu_account-l vu_fl">
 	      <!--切换-->
 	      <ul class="vu_m_lei">
-	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" :class="{'vu_m-active':index == activeIndex}">
+	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" @openChartEvent="openChat(index)" :class="{'vu_m-active':index == activeIndex}">
 				<img v-show="index!=activeIndex" :src="item.imgSrc" alt="" />
 				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />
 				<span>{{item.activSpan}}</span>
@@ -127,17 +127,18 @@ export default {
         this.panelShow.searchShow = true
       }
     },
-
-
     // 创建组事件
     createGroup: function (type) {
       this.createType = type
       this.$emit('openGroupEvent', type)
       this.groupShow = false
-//    $('.vu_m-add ul li').attr('class', '')
-//    $(this).attr('class', 'vu_fen-active')
     },
     openChat: function (uid) {
+    	this.activeIndex = 0
+	    this.panelShow.chatShow = true
+        this.panelShow.companyShow = false
+        this.panelShow.groupShow = false
+        this.panelShow.searchShow = false
       this.$emit('openTalkEvent', uid)
     },
     toggle: function (event) {
@@ -158,7 +159,7 @@ export default {
     },
     modifyGroupName: function (groupId, groupType, groupName) {
       this.$emit('modifyGroupEvent', groupId, groupType, groupName)
-    }
+    },
   },
 }
 </script>
