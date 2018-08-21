@@ -13,29 +13,30 @@
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people">
-			<p>大厅成员</p>
-			<input class="vue_leftlist_search" type="text" placeholder="搜索大厅成员"/>
-			<ul class="leftlist_people_ul">
-				<li @click="firendchat">
-					<div class="leftlist_people_photo"> <!--头像-->
-						<img src="../images/15.png" alt="" />
-					</div>
-					<span class="leftlist_people_cuo"></span> <!--撮合公司-->
-					<div class="leftlist_people_name"> <!--名称-->
-						<span>小张</span>
-						<p>化塑汇</p>
-					</div>
-				</li>
-				<li>
-					<div class="leftlist_people_photo"> <!--头像-->
-						<img src="../images/15.png" alt="" />
-					</div>
-					<span class="leftlist_people_jiao"></span> <!--交易公司-->
-					<div class="leftlist_people_name"> <!--名称-->
-						<span>小张</span>
-						<p>化塑汇</p>
-					</div>
-				</li>					
+      <p>大厅成员</p>
+      <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
+      <ul class="leftlist_people_ul">
+        <li v-for="(item,key,index) in searchData" @click="firendchat" >
+          <div class="leftlist_people_photo"> <!--头像-->
+            <img :src="item.img" alt="" />
+          </div>
+          <span v-if="item.plat=='match'" class="leftlist_people_cuo"></span> <!--撮合公司-->
+          <span v-if="item.plat=='trade'" class="leftlist_people_jiao"></span> <!--交易公司-->
+          <div class="leftlist_people_name"> <!--名称-->
+            <span>{{item.name}}</span>
+            <p>{{item.orgName}}</p>
+          </div>
+        </li>
+				<!--<li>-->
+					<!--<div class="leftlist_people_photo"> &lt;!&ndash;头像&ndash;&gt;-->
+						<!--<img src="../images/15.png" alt="" />-->
+					<!--</div>-->
+					<!--<span class="leftlist_people_jiao"></span> &lt;!&ndash;交易公司&ndash;&gt;-->
+					<!--<div class="leftlist_people_name"> &lt;!&ndash;名称&ndash;&gt;-->
+						<!--<span>小张</span>-->
+						<!--<p>化塑汇</p>-->
+					<!--</div>-->
+				<!--</li>					-->
 			</ul>
 		</div>
 		<div class="vue_leftlist_tan" v-show="firendtan">   <!--加好友弹窗-->
@@ -60,10 +61,12 @@
 <script>
 	export default {
   	components:{},
-  	props:{},
-  	data(){
-  		return{ 
+  	// props:{},
+    props: ['onlineUserList'],
+    data(){
+  		return{
   			firendtan:false,
+        searchKey:'',
   			leftLists: [{
 				time: "08-15",
 				title:"这是周报标题"
@@ -86,6 +89,21 @@
 			leftList:match_hall_cms,
   		}
   	},
+    computed: {
+      searchData: function () {
+        if (this.searchKey === '') {
+          return this.onlineUserList
+        } else {
+          this.searchList ={};
+          for (var index in this.onlineUserList){
+            if(this.onlineUserList[index].name.indexOf(this.searchKey)>=0){
+              this.searchList[index] = this.onlineUserList[index];
+            }
+          }
+          return this.searchList;
+        }
+      }
+    },
 	methods:{
 		firendchat:function(){
 			this.firendtan=!this.firendtan
@@ -93,11 +111,11 @@
 		leftlistclose:function(){
 			this.firendtan=false
 		}
-		
+
 	},
 	mounted() {
 	    $(".vue_leftlist_ul").niceScroll({
-	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值	        
+	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
 	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
 	        background: "", // 轨道的背景颜色
@@ -105,7 +123,7 @@
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
 	    $(".leftlist_people_ul").niceScroll({
-	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值	        
+	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
 	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
 	        background: "", // 轨道的背景颜色
@@ -113,7 +131,7 @@
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
 	},
- 
+
 }
 </script>
 
