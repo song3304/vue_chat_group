@@ -4,7 +4,7 @@
 		<div class="vue_leftlist">
 			<p>资讯列表</p>
 			<ul class="vue_leftlist_ul">
-				<li v-for="leftitem in leftList">
+				<li v-for="leftitem in leftList" v-bind:cms_id="leftitem.id">
 					<span>{{leftitem.time}}</span>
 					<p>{{leftitem.title}}</p>
 				</li>
@@ -66,26 +66,7 @@
     data(){
   		return{
   			firendtan:false,
-        searchKey:'',
-  			leftLists: [{
-				time: "08-15",
-				title:"这是周报标题"
-			}, {
-				time: "08-16",
-				title:"这是测试数据"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}, {
-				time: "08-17",
-				title:"广东乙烯制乙二醇送到报7850-7900"
-			}],
+            searchKey:'',
 			leftList:match_hall_cms,
   		}
   	},
