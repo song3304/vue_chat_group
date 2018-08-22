@@ -16,7 +16,9 @@ import './css/chat_leftnav.css'
 import './css/jquery-ui.min.css'
 import './js/jquery-ui.min.js'
 import 'babel-polyfill'
+import 'jquery'
 import 'jquery.nicescroll'
+
 Vue.config.productionTip = false
 
 // Vue.use(VueSocketio, 'http://localhost:8007')
