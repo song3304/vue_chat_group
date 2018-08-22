@@ -9,7 +9,7 @@
 						<span class="vue_chatkind_tubiao"></span>
 						<span class="vue_chatkind_name">种类</span>
 						<span class="vue_chat_jiantou"></span>
-					</div>	
+					</div>
 					<!--下拉表-->
 					<ul class="vue_kind_ul" v-show="kindshow" >
 					    <li v-for="(catalogItem,index) in catalogList" @click="addcatalog(catalogItem,index)">{{catalogItem.name}}</li>
@@ -26,7 +26,7 @@
 						<span class="vue_company_tubiao"></span>
 						<span class="vue_chatkind_name">公司</span>
 						<span class="vue_chat_jiantou"></span>
-					</div>	
+					</div>
 					<!--下拉表-->
 					<ul class="vue_company_ul" v-show="companyshow">
 						<li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
@@ -44,7 +44,7 @@
 						<span class="vue_people_tubiao"></span>
 						<span class="vue_chatkind_name">人员</span>
 						<span class="vue_chat_jiantou"></span>
-					</div>	
+					</div>
 					<!--下拉表-->
 					<ul class="vue_people_ul" v-show="peopleshow">
 						<li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
@@ -62,11 +62,11 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!--图表展示-->
 		<div class="vue_chat_main">
 			<div id='vue-myChart' ></div>
-		</div>		
+		</div>
 		<!--实时报价信息-->
 		<div class="vue-chart-foot">
 			<div class="vue-realtime">
@@ -76,7 +76,7 @@
 						<span>实时报价</span>
 					</div>
 					<div class="vue-tealtime-time">
-						<ul class="vue-realtime-auto" >							
+						<ul class="vue-realtime-auto" >
 							<li>
 								<span class="vue-realtime-auto-time">15:23</span>
 								<span class="vue-realtime-auto-company">华塑汇</span>
@@ -93,7 +93,7 @@
 								<span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
 								<span class="vue-realtime-auto-num">500</span>
 							</li>
-						</ul>						
+						</ul>
 					</div>
 				</div>
 				<br clear="all"/>
@@ -101,8 +101,8 @@
 		</div>
 	  </div>
 	</div>
-		
-	
+
+
 </template>
 
 <script>
@@ -112,7 +112,7 @@
 	// 引入提示框和title组件
 	require('echarts/lib/component/tooltip')
 	require('echarts/lib/component/title')
-	
+
 	export default {
   name: 'hello',
   data() {
@@ -132,7 +132,7 @@
   mounted() {
     this.drawLine();
     $(".vue-tealtime-time").niceScroll({
-    	cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值       
+    	cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
         cursorwidth: "5px", // 滚动条的宽度，单位：便素
         background: "", // 轨道的背景颜色
@@ -187,24 +187,24 @@
         if (selectedItem) {
             $('.vue_company_species>li').attr('class','')
         	$('.vue_company_species>li').eq(index).attr('class','comactive')
-        } else {      
+        } else {
         	$('.vue_company_species>li').attr('class','')
            	this.comsplist.push({
              	...companyitem ,isActive:true//,isActive:true
         	})
-        };        
+        };
     },
     delcom(comindex){//公司删除
     	this.comsplist.splice(comindex,1);
     },
-    addpeo(peopleitem,index){//人员追加到右侧	
+    addpeo(peopleitem,index){//人员追加到右侧
     	this.peopleshow=false
     	let peoedItem = this.peosplist.filter(v => v.name === peopleitem.name)[0];
         if (peoedItem) {
         	$('.vue_people_species>li').attr('class','')
         	$('.vue_people_species>li').eq(index).attr('class','comactive')
         } else {
-        	$('.vue_people_species>li').attr('class','')        	
+        	$('.vue_people_species>li').attr('class','')
            	this.peosplist.push({
              	...peopleitem,isActive:true
         	})

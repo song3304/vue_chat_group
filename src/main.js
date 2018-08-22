@@ -88,7 +88,7 @@ new Vue({
   created: function () {
     // 初始化数据 套接字
     if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined' && _chat_user.id != 1) {
-      this.socket = new socketChat(this, _chat_user)
+      this.socket = new socketGroupChat(this, _chat_user)
     }
   },
   mounted: function () {

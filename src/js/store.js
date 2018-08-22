@@ -11,7 +11,10 @@ if (!localStorage.getItem(key)) {
       id: 1,
       name: 'Coffce',
       img: '/static/img/chat/1.jpg',
-      plat: 'match'
+      plat: 'match',
+      org_id: 32,
+      company_name: 'Acompany',
+      company_short_name: 'sp'
     },
     // 当前在线大厅用户列表
     onlineUserList: {
@@ -120,27 +123,27 @@ if (!localStorage.getItem(key)) {
             self: false,
             is_read: true
           }]
-      }/*,
+      },
       {
         qunId: 3,
         type: 'qun',
         has_send_today: false,
         messages: [
           {
+            userId: 3,
             messageId: 5,
             text: 'the world!',
             date: now,
-            self: true,
             is_read: false
           },
           {
+            userId: 3,
             messageId: 6,
             text: '我是小王',
             date: now,
-            self: false,
             is_read: true
           }]
-      }*/
+      }
     ],
     // 删除会话
     delSessionList: [
