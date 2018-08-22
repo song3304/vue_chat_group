@@ -15,7 +15,7 @@
       <p>大厅成员</p>
       <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
       <ul class="leftlist_people_ul">
-        <li v-for="(item,key,index) in searchData" @click="firendchat" >
+        <li v-for="(item,key,index) in searchData" @click="firendchat(key)" >
           <div class="leftlist_people_photo"> <!--头像-->
             <img :src="item.img" alt="" />
           </div>
@@ -39,19 +39,19 @@
 			</ul>
 		</div>
 		<div class="vue_leftlist_tan" v-show="firendtan">   <!--加好友弹窗-->
-			<img src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-			<!--<img src="../images/jiao_bg.png" alt="" />-->    <!--交易公司-->
-			<div class="vue_leftlist_img"><img src="../images/15.png" alt="" ></img></div>
-			<p class="vue_leftlist_line">小张</p>
-			<p class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
-			<!--<p class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>-->
-			<p class="vue_leftlist_companyname">所属公司：上海华塑汇</p>
-			<p class="vue_leftlist_companyname">手机号：14569872354</p>
-			<div class="vue_leftlist_companysz">
-				<span class="vue_leftlist_companysz_yi">临时会话</span>
-				<span class="vue_leftlist_companysz_er">添加好友</span>
-				<!--<p>聊天</p>-->
-			</div>
+      <img v-if="onlineUserList[infoId].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
+      <img v-if="onlineUserList[infoId].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+      <div class="vue_leftlist_img"><img :src="onlineUserList[infoId].img" alt="" /></div>
+      <p class="vue_leftlist_line">{{onlineUserList[infoId].name}}</p>
+      <p v-if="onlineUserList[infoId].plat=='match'" class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
+      <p v-if="onlineUserList[infoId].plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>
+      <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].orgName}}</p>
+      <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
+      <div class="vue_leftlist_companysz">
+        <span class="vue_leftlist_companysz_yi">临时会话</span>
+        <span class="vue_leftlist_companysz_er">添加好友</span>
+        <!--<p>聊天</p>-->
+      </div>
 			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
 		</div>
 	</div>
@@ -65,8 +65,9 @@
     data(){
   		return{
   			firendtan:false,
-            searchKey:'',
-			leftList:match_hall_cms,
+        searchKey:'',
+        infoId:2,
+			  leftList:match_hall_cms,
   		}
   	},
     computed: {
@@ -85,8 +86,10 @@
       }
     },
 	methods:{
-		firendchat:function(){
-			this.firendtan=!this.firendtan
+		firendchat:function(key){
+			this.firendtan=!this.firendtan;
+      this.infoId = key;
+      console.log(this.onlineUserList[key]);
 		},
 		leftlistclose:function(){
 			this.firendtan=false
