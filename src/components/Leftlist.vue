@@ -8,7 +8,6 @@
 					<span>{{leftitem.time}}</span>
 					<p>{{leftitem.title}}</p>
 				</li>
-				<br clear="all"/>
 			</ul>
 		</div>
 		<!--大厅成员-->

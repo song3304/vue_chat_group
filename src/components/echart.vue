@@ -53,9 +53,8 @@
 						</li>
 					</ul>
 					<!--右边切换选项-->
-
-					<ul class="vue_company_species">
-						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)">
+					<ul class="vue_company_species vue_people_species">
+						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)" :class="{'comactive': peospitem.isActive}">
 							<span>{{peospitem.username}}</span>
 							<p><span></span></p>
 						</li>
@@ -175,7 +174,6 @@
         }]
       });
     },
-
 
     addcatalog(catalogItem,index){
         this.kindshow=false;
