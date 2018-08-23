@@ -20,7 +20,7 @@ ul {
 #chat_app{
 	width: 100%;
 	min-width: 1200px;
-	height:916px;
+	height:1012px;
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
 	
@@ -38,7 +38,7 @@ ul {
 }
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
-	height:23%;
+	height:28%;
 	position: relative;
 }
 .vu_m-chat{
@@ -48,9 +48,6 @@ ul {
 	width: 100%;height: 100%;}
 #vu_chat .vu_sidebar{
 	background: #EEEEEE;
-}
-.vu_m-text textarea{
-	background: #F6F6F6;
 }
 .vu_m-message .vu_self .vu_text{
 	color: #FFFFFF;
@@ -70,7 +67,8 @@ ul {
 .vu_send{
 	float: left;
 	display: inline-block;
-	height:21.5px;
+	height:30px;
+	line-height: 30px;
     width: 7%;
 	background-color: #fd3000;
 	font-size: 16px;
@@ -80,17 +78,18 @@ ul {
 	margin:0.5% 0 0 0;
 }
 .vu_history{
-	position: absolute;	
-	top: 8px;
-	right: 15px;
-	width:76px;
-	height: 18px;
+	width:6%;
+	height:30px;
 	text-align: center;
 	line-height: 18px;
 	font-size: 12px;
 	cursor: pointer;
+	float: left;
+	background: #f8f4f2;
+	margin: 0.6% 0 0 0;
 }
-.vu_history:hover,.vu_history:active,.vu_history:focus{
+.vu_history img{margin-top:6px;}
+/*.vu_history:hover,.vu_history:active,.vu_history:focus{
 	background-color: #dddddd;
 }
 .vu_history p{
@@ -103,18 +102,27 @@ ul {
     float: right;
     padding: 0;
     margin:4px 5px 4px  0;
-}
+}*/
 .vue-head{
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 40px;
+	z-index: 100;
+	min-width: 1200px;
+	background:url(../images/bg.png);
 }
 .vue-head span{
+	position: absolute;
+	top:7px;
+	left: 19%;
 	display: inline-block;
 	width: 103px;
 	height: 26px;
 	background: url(../images/adminlogo.png);
 	background-size: cover;
-	margin: 7px 0 0 25px;
+	/*margin: 7px 0 0 25px;*/
 }
 /*新消息跳动*/
 .vu_jump{
@@ -159,12 +167,12 @@ ul {
 		rgba(42, 42, 42, 0.11);*/
 }
 #vu_friend{
-	position:absolute;
+	position:fixed;
 	top:40px;
 	left: 0;
 	width:18%;
 	min-width: 216px;
-	height:937px;
+	height:1040px;
 	background-color: rgba(46, 46, 46, 0.8);
 	/*opacity: 0.8;
 	z-index: 1000;*/
@@ -492,8 +500,8 @@ ul {
 	cursor: pointer;
 }
 .vu_m-list{
-	height:896px;
-	width:28.4%;
+	height:862px;
+	width:18%;
 	min-width: 216px;
 	overflow: auto;
 	-webkit-touch-callout: none;
@@ -510,9 +518,9 @@ ul {
     position: relative;
 }
 .vu_m-list {
-    position:absolute; 
-    top: -315%;
-    left: -30%;
+    position:fixed; 
+    top:80px;
+    left:0;
     /*overflow-x: hidden;
     overflow-y: scroll;*/
 }
@@ -1015,20 +1023,21 @@ ul {
 .vu_m-text {
     height:15%;
     border-top: solid 1px #cccccc;
+    padding-left:2%;
 }
 .vu_m-text textarea {
     /*padding: 27px 10px 45px 10px;*/
     /*margin:27px 0 0 10px;*/
-    height:21.5px;
-    width:88%;
+    height:30px;
+    width:82%;
     font-size: 14px;
     /*overflow-y:scroll;*/
     border: none;
     outline: none;
     font-family: "Micrsofot Yahei";
     resize: none;
-    /*padding: 0 13px 0 0;*/
-   margin:0.6% 0 0 1%;
+    padding: 0  0 0 5px;
+   margin:0.6% 0 0 0;
    float: left;
 }
 .vu_m-guan p .fa{color: #DDDDDD;}
@@ -1273,7 +1282,7 @@ ul {
 	/*padding:38% 0 0;*/
 	/*margin-left: 19%;*/
 	width: 100%;
-	height:77%;
+	height:72%;
 	/*background:#101a29;*/
 	position:relative;
 }
@@ -1512,14 +1521,14 @@ ul {
     width: 97.5%;
     margin: 5px 0 5px 2%;
 }
-.vue-realtime-auto li{width: 50%;float: left;border-right: 1px solid #132747;height: 30px;line-height: 30px;padding-left: 0.8%;}
+.vue-realtime-auto li{width:100%;float: left;height: 30px;line-height: 30px;padding-left: 0.8%;}
 .vue-realtime-auto li:nth-child(even){border-right: 0;}
 .vue-realtime-auto li span{text-align: center;color: #FFFFFF;display: inline-block;}
-.vue-realtime-auto-time{width:10%;}
-.vue-realtime-auto-company{width: 15%;}
-.vue-realtime-auto-data{width:42%;}
-.vue-realtime-auto-num{width: 10%;}
-.vue-realtime-buy_price,.vue-realtime-sell_price{width:13%!important;}
+.vue-realtime-auto-time{width:12%;}
+.vue-realtime-auto-company{width: 17%;}
+.vue-realtime-auto-data{width:34%;letter-spacing:1px;}
+.vue-realtime-auto-num{width: 12%;}
+.vue-realtime-buy_price,.vue-realtime-sell_price{width:15%!important;}
 .vue-realtime-buy{
 	color: #ff1400!important;
 	width: 5%;
@@ -1550,6 +1559,7 @@ ul {
 	width: 65%;
 	height: 100%;
 	margin-left: 19%;
+	margin-top: 40px;
 }
 .comactive{color: #4385f5!important;}
 /*左边列表start*/
@@ -1561,6 +1571,7 @@ ul {
 	height: 100%;
 	background-color: #e1dfee;
 	float: right;
+	margin-top: 40px;
 }
 .vue_leftlist{
 	height: 370px;
@@ -1585,10 +1596,10 @@ ul {
 	font-size: 14px;
 	color: #666666;
 	width: 97%;
-	margin: 0 1% 0 2%;
-	cursor: pointer;
+	margin: 0 1% 0 2%;	
 }
-.vue_leftlist_ul li:hover{color: #fd3000!important;}
+.vue_leftlist_ul li a{display: inline-block;color: #666666;cursor: pointer;width: 100%;height: 100%;}
+.vue_leftlist_ul li:hover a{color: #fd3000!important;}
 .vue_leftlist_ul span{
 	float: left;
 }
@@ -1910,3 +1921,31 @@ ul {
 	height: 6px;
 	background-color: #db2100;
 }
+/*群发报价start*/
+.vue_qun_offer{
+	position: absolute;
+	left:15%;
+	bottom:23px;
+	width: 162px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #4385f5;
+	border-radius: 5px;
+	z-index: 30;
+	text-align: center;
+	cursor: pointer;
+}
+.vue_qun_offer p{
+	width: 20px;
+	height: 20px;
+	background: url(../images/yiding.png) -107px -65px;
+	display: inline-block;
+	float: left;
+	margin:9px 5px 0 34px;
+}
+.vue_qun_offer span{
+	float: left;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+/*群发报价end*/

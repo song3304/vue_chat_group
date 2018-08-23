@@ -5,8 +5,10 @@
 			<p>资讯列表</p>
 			<ul class="vue_leftlist_ul">
 				<li v-for="leftitem in leftList" v-bind:cms_id="leftitem.id">
-					<span>{{leftitem.time}}</span>
-					<p>{{leftitem.title}}</p>
+					<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" >
+						<span>{{leftitem.time}}</span>
+						<p>{{leftitem.title}}</p>
+					</a>
 				</li>
 			</ul>
 		</div>
