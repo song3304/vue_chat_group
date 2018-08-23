@@ -23,7 +23,7 @@ ul {
 	height:916px;
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
-	
+
 }
 #vu_chat {
 	/*position: fixed;
@@ -32,7 +32,7 @@ ul {
    position: absolute;
    bottom: 0;
     width:100%;
-	height:100%;	
+	height:100%;
 	/*z-index: 1000;
 	box-shadow: 0px 0px 6px 3px rgba(42, 42, 42, 0.2);*/
 }
@@ -56,7 +56,7 @@ ul {
 	color: #FFFFFF;
 }
 .vu_m-na{
-	background:#eeedf6;		
+	background:#eeedf6;
 }
 .vu_m-na-name{
 	display: block;
@@ -80,7 +80,7 @@ ul {
 	margin:0.5% 0 0 0;
 }
 .vu_history{
-	position: absolute;	
+	position: absolute;
 	top: 8px;
 	right: 15px;
 	width:76px;
@@ -155,7 +155,7 @@ ul {
 	/*height: 100%;*/
 	/*overflow-y: scroll;*/
 	/*background-color: #f6f6f6;*/
-	/*box-shadow: -1px 2px 3px 0px 
+	/*box-shadow: -1px 2px 3px 0px
 		rgba(42, 42, 42, 0.11);*/
 }
 #vu_friend{
@@ -224,7 +224,7 @@ ul {
 	100%{top: 7px;}
 }
 .vu_m-touxiang img{
-	border-radius: 50%;	
+	border-radius: 50%;
 	width: 100%;
 	height: 100%;
 }
@@ -254,18 +254,18 @@ ul {
 	background: #5c6d9d;
 	color: #CCCCCC;
 }
-#vu_search::-webkit-input-placeholder { /* WebKit browsers */ 
-		color: #CCCCCC!important; 
-	} 
-#vu_search:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
-		color: #CCCCCC!important; 
-	} 
-#vu_search::-moz-placeholder { /* Mozilla Firefox 19+ */ 
-		color: #CCCCCC!important; 
-	} 
-#vu_search:-ms-input-placeholder { /* Internet Explorer 10+ */ 
-		color: #CCCCCC!important; 
-	} 
+#vu_search::-webkit-input-placeholder { /* WebKit browsers */
+		color: #CCCCCC!important;
+	}
+#vu_search:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		color: #CCCCCC!important;
+	}
+#vu_search::-moz-placeholder { /* Mozilla Firefox 19+ */
+		color: #CCCCCC!important;
+	}
+#vu_search:-ms-input-placeholder { /* Internet Explorer 10+ */
+		color: #CCCCCC!important;
+	}
 
 .vu_m-search div{
 	position: absolute;
@@ -394,7 +394,7 @@ ul {
 	width: 550px;
 	height: 680px;
 	background-color: #f6f6f6;
-	box-shadow: 0px 0px 6px 0px 
+	box-shadow: 0px 0px 6px 0px
 		rgba(42, 42, 42, 0.2);
 	position: fixed;
 	left:30%;
@@ -430,29 +430,29 @@ ul {
 	overflow-y:scroll;
 }
 .vu_his-main{
-	
+
 }
 .vu_title-text span {
     display: block;      /*设置为块级元素会独占一行形成上下居中的效果*/
     position: relative;  /*定位横线（当横线的父元素）*/
     color: #666666;      /*居中文字的颜色*/
-    text-align: center; 
+    text-align: center;
     font-size: 12px;
     font-size: 10px;
-} 
-.vu_title-text span:before, .vu_title-text span:after { 
-    content: ''; 
+}
+.vu_title-text span:before, .vu_title-text span:after {
+    content: '';
     position: absolute;   /*定位背景横线的位置*/
-    top: 50%; 
+    top: 50%;
     background: #CCCCCC;   /*背景横线颜色*/
     width: 30%;            /*单侧横线的长度*/
-    height: 1px; 
-} 
-.vu_title-text span:before { 
+    height: 1px;
+}
+.vu_title-text span:before {
     left:8%;              /*调整背景横线的左右距离*/
-} 
-.vu_title-text span:after { 
-    right:8%; 
+}
+.vu_title-text span:after {
+    right:8%;
 }
 .vu_his-main li{
 	padding-left:23px;
@@ -510,24 +510,24 @@ ul {
     position: relative;
 }
 .vu_m-list {
-    position:absolute; 
+    position:absolute;
     top: -315%;
     left: -30%;
     /*overflow-x: hidden;
     overflow-y: scroll;*/
 }
- 
+
  /* for Chrome */
 .vu_m-list::-webkit-scrollbar {
     display: none;
 }
 /*滤镜*/
-.vu_gray { 
+.vu_gray {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);    
-    filter: grayscale(100%);	
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
     filter: gray;
 }
 /*列表来信息,动画*/
@@ -537,7 +537,7 @@ ul {
 	-moz-animation:fadetoggle 1s infinite linear;;
 }
 @-webkit-keyframes fadetoggle {
-	0%{ opacity: 1;}  
+	0%{ opacity: 1;}
 	50%{opacity: 0;}
 	100%{ opacity: 1;}
 }
@@ -611,7 +611,7 @@ ul {
 	right:0;
 	width: 80px;
 	background-color: #ffffff;
-	box-shadow: 0px 0px 2px 0px 
+	box-shadow: 0px 0px 2px 0px
 		rgba(42, 42, 42, 0.2);
 	z-index: 2;
 }
@@ -649,7 +649,7 @@ ul {
 	width: 490px;
 	height: 430px;
 	background-color: #f6f6f6;
-	box-shadow: 0px 0px 6px 3px 
+	box-shadow: 0px 0px 6px 3px
 		rgba(42, 42, 42, 0.2);
 	position: fixed;
 	top: 7%;
@@ -718,7 +718,7 @@ ul {
 	background-color:#2ca0dc;
 }
 .vu_fenzu_footer span,.vu_fenzu_name_footer span{
-	display: inline-block;	
+	display: inline-block;
 	background-color: #f6f6f6;
 	border: solid 1px #dddddd;
 	color: #666666;
@@ -729,7 +729,7 @@ ul {
 	width: 330px;
 	height: 152px;
 	background-color: #f6f6f6;
-	box-shadow: 0px 0px 2px 0px 
+	box-shadow: 0px 0px 2px 0px
 		rgba(42, 42, 42, 0.2);
 	position: absolute;
 	top:140px;
@@ -806,7 +806,7 @@ ul {
 	width: 90px;
 	height: 105px;
 	background-color: #ffffff;
-	box-shadow: 0px 2px 4px 0px 
+	box-shadow: 0px 2px 4px 0px
 		rgba(0, 0, 0, 0.21);
 	border-radius: 5px;
 	padding: 3px 0;
@@ -826,7 +826,7 @@ ul {
 .vue_name_sz>li>span{
 	width: 6px;
 	height: 11px;
-	display: inline-block;	
+	display: inline-block;
 	background: url(../images/yiding.png) -251px -7px;
 	margin-left: 10px;
 }
@@ -837,7 +837,7 @@ ul {
 	width: 80px;
 	/*height: 76px;*/
 	background-color: #ffffff;
-	box-shadow: 0px 2px 4px 0px 
+	box-shadow: 0px 2px 4px 0px
 		rgba(0, 0, 0, 0.21);
 	border-radius: 5px;
 	padding: 3px 0;
@@ -1078,8 +1078,8 @@ ul {
 .vu_submenu .vu_submenu-name .vu_ren-dele:hover{
 	background: url(../images/qie_tu.png) -4px -42px no-repeat;
 }
-.vu_qun-name{	
-    width:20px;  
+.vu_qun-name{
+    width:20px;
     height: 15px;
     background: url(../images/yiding.png) -71px -124px;
     cursor: pointer;
@@ -1163,7 +1163,7 @@ ul {
 	max-width: 66px;
 	overflow: hidden;
 	text-overflow:ellipsis;
-	white-space: nowrap;	
+	white-space: nowrap;
 }
 .vu_qun-fenzu .vu_fenzu_right_ul>li span{
 	position: absolute;
@@ -1322,6 +1322,7 @@ ul {
 	height: 33.3%;
 	border-bottom:1px solid #172739;
 	position: relative;
+  overflow: hidden;
 }
 	.vue_kind_ul{
 		position: absolute;
@@ -1335,7 +1336,7 @@ ul {
 	}
 	.vue_kind_ul li{
 		width: 139px;
-		height: 24px;		
+		height: 24px;
 		line-height: 24px;
 		padding-left: 10px;
 		color: #999999;
@@ -1357,7 +1358,7 @@ ul {
 		display: inline-block;
 		width:18px;
 		height:19px;
-		background: url(../images/yiding.png) -105px 0;		
+		background: url(../images/yiding.png) -105px 0;
 	}
 	.vue_chat_div span{
 		color: #999999;
@@ -1481,8 +1482,8 @@ ul {
 		width: 18px;
 		height: 18px;
 		overflow: hidden;
-		background-color: #eeeeee;	
-		margin: 3px 5px 0 0;	
+		background-color: #eeeeee;
+		margin: 3px 5px 0 0;
 		float: left;
 	}
 	.vue_people_ul span img{
@@ -1603,7 +1604,7 @@ ul {
 }
 
 .vue_leftlist_people{
-	
+
 }
 .vue_leftlist_people>p{
 	height: 40px;
@@ -1625,6 +1626,7 @@ ul {
 	position: relative;
 	height:48px;
 	border-bottom: 1px solid #d8d6e8;
+  overflow:hidden;
 }
 .leftlist_people_ul li:hover{background-color: #efedf8;cursor: pointer;}
 .leftlist_people_photo{
@@ -1716,7 +1718,7 @@ ul {
 	border-bottom:1px solid #DDDDDD ;
 	font-size: 14px;
 	font-weight: 550;
-	
+
 }
 .vue_leftlist_companysz{
 	position: absolute;
@@ -1763,7 +1765,7 @@ ul {
 	margin: 2px;
 }
 .vue_leftlist_close:hover{
-	background-color: #ef6e6e;	
+	background-color: #ef6e6e;
 }
 /*左边列表end*/
 .vu_m-new{
@@ -1814,7 +1816,7 @@ ul {
 	width: 380px;
 	height: 230px;
 	background-color: #f4f4f4;
-	box-shadow: 0px 2px 22px 1px 
+	box-shadow: 0px 2px 22px 1px
 		rgba(0, 0, 0, 0.09);
 	border-radius: 5px;
 	z-index: 10;
@@ -1853,7 +1855,7 @@ ul {
 	text-align: center;
 	line-height: 24px;
 	font-size: 14px;
-	margin-top:60px;	
+	margin-top:60px;
 }
 .vue_del_friend_que{
 	display: inline-block;
