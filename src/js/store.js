@@ -1,4 +1,4 @@
-const key = 'VUE-CHAT-ENEGY-V1'
+const key = 'VUE-CHAT-ENEGY-V2'
 
 // 虚拟数据
 if (!localStorage.getItem(key)) {
