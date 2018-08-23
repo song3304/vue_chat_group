@@ -39,8 +39,8 @@ new Vue({
     user: serverData.user,
     // 用户列表
     userList: serverData.userList,
-    // 公司列表
-    companyList: serverData.companyList,
+    // 群聊
+    qunList: serverData.qunList,
     // 分组列表
     groupList: serverData.groupList,
     // 会话列表
@@ -51,8 +51,10 @@ new Vue({
     historyList: serverData.historyList,
     // 当前历史记录用户id
     historyUid: 0,
-    //大厅成员列表
-    onlineUserList:serverData.onlineUserList,
+    // 大厅成员列表
+    onlineUserList: serverData.onlineUserList,
+    // 验证消息
+    verifyMsg: serverData.verifyMsg,
     // 搜索key
     search: '',
     // 选中的会话Index
