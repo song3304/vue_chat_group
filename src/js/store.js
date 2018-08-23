@@ -74,12 +74,64 @@ if (!localStorage.getItem(key)) {
     },
     // 群列表
     qunList: [
-      {
-        qunId: 1,
-        qunName: '我的公司群',
-        groupOwner: 1, // 群主id
-        userIds: [2, 3]
-      }
+
+    ],
+    // verify消息
+    verifyMsg: [
+      // {// 发送验证给别人
+      //   id: 1, // 验证消息id
+      //   uid: 53,
+      //   to_uid: 72,
+      //   user_info: {
+      //     id: 53,
+      //     company_name: '化塑汇',
+      //     company_short_name: '化塑汇',
+      //     img: '2018/05/30/714937762a921426422efb4382e4bce3.png',
+      //     nickname: '化塑汇',
+      //     org_id: 32,
+      //     phone: '15234060911',
+      //     realname: 'huasuhui',
+      //     system_type: 2
+      //   },
+      //   to_user_info: {
+      //     id: 72, // 用户id
+      //     company_name: '化商通',
+      //     company_short_name: '化商通',
+      //     img: '2018/05/25/c1a33aa432740914d197709a397a1cdb.png',
+      //     nickname: '共赢',
+      //     org_id: 42, // 公司id
+      //     phone: '17521091706',
+      //     realname: '李广怀',
+      //     system_type: 2
+      //   }
+      // },
+      // {// 别人发送验证给自己
+      //   id: 2,
+      //   uid: 80,
+      //   to_uid: 50,
+      //   user_info: {
+      //     id: 80,
+      //     company_name: '上海哲话投资管理有限公司',
+      //     company_short_name: '哲话',
+      //     img: null,
+      //     nickname: '哲话',
+      //     org_id: 44,
+      //     phone: '13916597115',
+      //     realname: '哲话色放',
+      //     system_type: 2
+      //   },
+      //   to_user_info: {
+      //     company_name: '化塑汇',
+      //     company_short_name: '化塑汇',
+      //     id: 53,
+      //     img: '2018/05/30/714937762a921426422efb4382e4bce3.png',
+      //     nickname: '化塑汇',
+      //     org_id: 32,
+      //     phone: '15234060911',
+      //     realname: 'huasuhui',
+      //     system_type: 2
+      //   }
+      // }
     ],
     // 会话列表
     sessionList: [
@@ -281,6 +333,9 @@ export default {
     }
     if (store.hasOwnProperty('historyList')) {
       oldData.historyList = store.historyList
+    }
+    if (store.hasOwnProperty('verifyMsg')) {
+      oldData.verifyMsg = store.verifyMsg
     }
     localStorage.setItem(key, JSON.stringify(oldData))
   }

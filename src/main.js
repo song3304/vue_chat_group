@@ -89,7 +89,7 @@ new Vue({
 				</div>`,
   created: function () {
     // 初始化数据 套接字
-    if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined' && _chat_user.id != 1) {
+    if (typeof (socketGroupChat) !== 'undefined' && typeof (_chat_user) !== 'undefined' && _chat_user.id != 1) {
       this.socket = new socketGroupChat(this, _chat_user)
     }
   },
@@ -124,10 +124,10 @@ new Vue({
         store.update({delSessionList: this.delSessionList})
       }
     },
-    companyList: {
+    qunList: {
       deep: true,
       handler () {
-        store.update({companyList: this.companyList})
+        store.update({qunList: this.qunList})
       }
     },
     groupList: {
@@ -140,6 +140,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({historyList: this.historyList})
+      }
+    },
+    verifyMsg: {
+      deep: true,
+      handler () {
+        store.update({verifyMsg: this.verifyMsg})
       }
     },
     onlineUserList: {
@@ -255,11 +261,14 @@ new Vue({
       if (data.hasOwnProperty('userList')) {
         this.userList = data.userList
       }
-      if (data.hasOwnProperty('companyList')) {
-        this.companyList = data.companyList
+      if (data.hasOwnProperty('onlineUserList')) {
+        this.onlineUserList = data.onlineUserList
       }
       if (data.hasOwnProperty('groupList')) {
         this.groupList = data.groupList
+      }
+      if (data.hasOwnProperty('qunList')) {
+        this.qunList = data.qunList
       }
       if (data.hasOwnProperty('sessionList')) {
         this.sessionList = data.sessionList
@@ -270,6 +279,9 @@ new Vue({
       if (data.hasOwnProperty('historyList')) {
         this.historyList = data.historyList
         this.$refs.childhistory.$forceUpdate()
+      }
+      if (data.hasOwnProperty('verifyMsg')) {
+        this.verifyMsg = data.verifyMsg
       }
     },
     // 格式化时间
