@@ -13,6 +13,7 @@
 				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />
 				<span>{{item.activSpan}}</span>
 			</li>
+			<div class="vue_new_news"></div>  <!--有新加好友就显示-->
 	        <!--<div class="vu_m-add">
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">

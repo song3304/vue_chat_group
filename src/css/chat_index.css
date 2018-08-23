@@ -233,8 +233,9 @@ ul {
 	margin-top:15px;
 	margin-left: 10px;
 	position: absolute;
-	top: 0;
-	left:45px;
+	top: -35px;
+    left: -32px;
+    width: 54%;
 }
 .vu_m-phone-img{
 	display:none;
@@ -1900,3 +1901,12 @@ ul {
 .vu_m_tubiao_er:hover{background: url(../images/yiding.png) -89px -214px;}
 #resizable{height: 100%;width:100%;max-height: 916px;}
 .ui-resizable{position: absolute!important;}
+.vue_new_news{
+	position: absolute;
+	top:9px;
+	left: 59%;
+	border-radius: 50%;
+	width: 6px;
+	height: 6px;
+	background-color: #db2100;
+}

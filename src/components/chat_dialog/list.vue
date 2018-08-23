@@ -92,32 +92,6 @@ export default {
 
           </li>
         </ul>
-        <ul>   <!--//假消息-->
-        	<li class="">
-	            <img class="vu_avatar"  width="30" height="30"  src="../../../static/img/chat/default.png">
-	            <div class="vu_m-cs-cs">
-	            	<p class="vu_name">小张(公司名称)</p>
-	            	<p class="vu_m-xiang">最新消息</p>
-	            </div>
-	            <div class="vu_m-list-del">
-	            	<p class="vu_m-list-del-time">09:21</p>
-	            	<p class="vu_m-list-del-num">2</p>
-	            	<div class="vu_delet-li"></div>
-	            </div>
-	        </li>
-	        <li class="" >
-	            <img class="vu_avatar"  width="30" height="30"  src="../../../static/img/chat/default.png">
-	            <div class="vu_m-cs-cs">
-	            	<p class="vu_name">小张(公司名称)</p>
-	            	<p class="vu_m-xiang">最新消息</p>
-	            </div>
-	            <div class="vu_m-list-del">
-	            	<p class="vu_m-list-del-time">09:21</p>
-	            	<p class="vu_m-list-del-num">2</p>
-	            	<div class="vu_delet-li"></div>
-	            </div>
-	        </li>
-        </ul>
     </div>
 </template>
 
