@@ -64,41 +64,63 @@
 		</div>
 		
 		<!--图表展示-->
-		<div class="vue_chat_main">
+		<!----<div class="vue_chat_main">
 			<div id='vue-myChart' ></div>
-		</div>		
-		<!--实时报价信息-->
-		<div class="vue-chart-foot">
-			<div class="vue-realtime">
-				<div class="vue-realtime-time">
-					<div class="vue-real-img">
-						<p class="vue-real-img-img"></p>
-						<span>实时报价</span>
-					</div>
-					<div class="vue-tealtime-time">
-						<ul class="vue-realtime-auto" >							
-							<li>
-								<span class="vue-realtime-auto-time">15:23</span>
-								<span class="vue-realtime-auto-company">华塑汇</span>
-								<span class="vue-realtime-buy">买</span>
-								<span class="vue-realtime-buy vue-realtime-buy_price">7100</span>
-								<span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
-								<span class="vue-realtime-auto-num">500</span>
-							</li>
-							<li>
-								<span class="vue-realtime-auto-time">15:23</span>
-								<span class="vue-realtime-auto-company">华塑汇</span>
-								<span class="vue-realtime-sell">卖</span>
-								<span class="vue-realtime-sell vue-realtime-sell_price">7100</span>
-								<span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
-								<span class="vue-realtime-auto-num">500</span>
-							</li>
-						</ul>						
-					</div>
-				</div>
-				<br clear="all"/>
-			</div>
-		</div>
+		</div>---->
+
+
+
+
+    <!----ryt 曲线图 start-->
+
+        <div id="myTabContent" class="tab-content tab_mm">
+            <div v-for='(catalog,index) in catalogList' class="tab-pane fade in active" v-bind:id="'pan_'+catalog.id" v-show="catalog.show==1?true:false">
+                <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
+                <div class="clear"></div>
+
+                <div class="ckdp_icon"><a href="javascript:;"></a></div>
+            </div>
+        </div>
+
+	<!---ryt 曲线图 end--->
+
+
+	<!--实时报价信息 start-->
+        <div class="vue-chart-foot">
+            <div class="vue-realtime">
+                <div class="vue-realtime-time">
+                    <div class="vue-real-img">
+                        <p class="vue-real-img-img"></p>
+                        <span>实时报价</span>
+                    </div>
+                    <div class="vue-tealtime-time">
+                        <ul class="vue-realtime-auto"  v-for='(catalog,index) in catalogList' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id">
+                            <!--<li>
+                                <span class="vue-realtime-auto-time">15:23</span>
+                                <span class="vue-realtime-auto-company">华塑汇</span>
+                                <span class="vue-realtime-buy">买</span>
+                                <span class="vue-realtime-buy vue-realtime-buy_price">7100</span>
+                                <span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
+                                <span class="vue-realtime-auto-num">500</span>
+                            </li>
+                            <li>
+                                <span class="vue-realtime-auto-time">15:23</span>
+                                <span class="vue-realtime-auto-company">华塑汇</span>
+                                <span class="vue-realtime-sell">卖</span>
+                                <span class="vue-realtime-sell vue-realtime-sell_price">7100</span>
+                                <span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
+                                <span class="vue-realtime-auto-num">500</span>
+                            </li>-->
+                        </ul>
+                    </div>
+                </div>
+                <br clear="all"/>
+            </div>
+        </div>
+    <!--实时报价信息 end-->
+
+
+
 	  </div>
 	</div>
 		
@@ -106,12 +128,12 @@
 </template>
 
 <script>
-	let echarts = require('echarts/lib/echarts')
+	//let echarts = require('echarts/lib/echarts')
 	// 引入折线图组件
-	require('echarts/lib/chart/line')
+	//require('echarts/lib/chart/line')
 	// 引入提示框和title组件
-	require('echarts/lib/component/tooltip')
-	require('echarts/lib/component/title')
+	//require('echarts/lib/component/tooltip')
+	//require('echarts/lib/component/title')
 	
 	export default {
   name: 'hello',
@@ -130,7 +152,7 @@
     }
   },
   mounted() {
-    this.drawLine();
+    //this.drawLine();
     $(".vue-tealtime-time").niceScroll({
     	cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值       
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
