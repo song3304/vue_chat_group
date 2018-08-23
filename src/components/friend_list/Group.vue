@@ -35,7 +35,7 @@ export default {
     },
     changeName: function (event) {
       var el = event.currentTarget
-      $(el).hide().next().show()
+      $(el).next().show()
     },
     modifyUserName: function (event) {
       var el = event.currentTarget
@@ -228,14 +228,14 @@ export default {
               <!--//不在线，添加class=gray-->
 	              <ul class="vue_name_sz">
 			          	<li @click="openChat(userItem)">发消息</li>
-			          	<li @click="delfri">删除好友</li>
+			          	<li @click="delPen($event,companyItem.groupId,userItem)">删除好友</li>  <!--@click="delfri"--><!--盯盘好友不可删除-->
 			          	<li @mouseenter="vueMove" @mouseleave="vueLeave">移动到<span></span>
 			          			<ul class="vue_name_move" v-show="groupNew">
 						          		<li v-for="companyItem in companyList" @click="namemove">{{companyItem.groupName}}</li>
 						          </ul>			          	
 			          	</li>
-			          	<li>重命名</li>
-			          	
+			          	<li @click="changeName">重命名</li>
+			          	<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
 		          	</ul>
             </div>
             <div class="vu_submenu_com">
@@ -245,9 +245,9 @@ export default {
             </div>
             
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
-            <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
+           <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>--> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
-            <p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p><!--盯盘好友不可删除-->
+            <!--<p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p> <!--盯盘好友不可删除-->-->
             
 	          
           </li>
@@ -262,8 +262,8 @@ export default {
 	      </div>
 	  		<p class="vue_del_friend_er">确认要删除小张吗？</p>
 	  		<div class="vue_del_friend_san">
-	  			<span class="vue_del_friend_que">确认</span>
-	  			<span class="vue_del_friend_xiao" @click="closedelfri">取消</span>
+	  			<span class="vue_del_friend_que" @click="delConfirm">确认</span>
+	  			<span class="vue_del_friend_xiao" @click="closedelfri">取消</span> <!--@click="closedelfri"-->
 	  		</div>
       	
       </div>
