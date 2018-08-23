@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 		<!--大厅成员-->
-		<div class="vue_leftlist_people">
+		<div class="vue_leftlist_people" v-if="onlineUserList">
       <p>大厅成员</p>
       <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
       <ul class="leftlist_people_ul">
@@ -40,7 +40,7 @@
 				<!--</li>					-->
 			</ul>
 		</div>
-		<div class="vue_leftlist_tan" v-show="firendtan">   <!--加好友弹窗-->
+		<div class="vue_leftlist_tan" v-if="onlineUserList[infoId]" v-show="firendtan">   <!--加好友弹窗-->
       <img v-if="onlineUserList[infoId].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
       <img v-if="onlineUserList[infoId].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
       <div class="vue_leftlist_img"><img :src="onlineUserList[infoId].img" alt="" /></div>
@@ -99,6 +99,7 @@
 
 	},
 	mounted() {
+    console.log('大厅',typeof (this.onlineUserList))
 	    $(".vue_leftlist_ul").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
