@@ -16,7 +16,9 @@ import './css/chat_leftnav.css'
 import './css/jquery-ui.min.css'
 import './js/jquery-ui.min.js'
 import 'babel-polyfill'
+import 'jquery'
 import 'jquery.nicescroll'
+
 Vue.config.productionTip = false
 
 // Vue.use(VueSocketio, 'http://localhost:8007')
@@ -37,8 +39,8 @@ new Vue({
     user: serverData.user,
     // 用户列表
     userList: serverData.userList,
-    // 公司列表
-    companyList: serverData.companyList,
+    // 群聊
+    qunList: serverData.qunList,
     // 分组列表
     groupList: serverData.groupList,
     // 会话列表
@@ -49,8 +51,10 @@ new Vue({
     historyList: serverData.historyList,
     // 当前历史记录用户id
     historyUid: 0,
-    //大厅成员列表
-    onlineUserList:serverData.onlineUserList,
+    // 大厅成员列表
+    onlineUserList: serverData.onlineUserList,
+    // 验证消息
+    verifyMsg: serverData.verifyMsg,
     // 搜索key
     search: '',
     // 选中的会话Index
@@ -74,12 +78,12 @@ new Vue({
   components: {friendList, chatdialog, historylist, groupdialog, qunnew,echart,leftlist},
   template: `<div id="chat_app">
   				<div class="vue-head"><span></span></div>
-		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :companyList="companyList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></friendList>
+		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></friendList>
 		    <div id="vue_main_main">
 		    <echart></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
-				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :companyList="companyList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
+				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
@@ -87,8 +91,8 @@ new Vue({
 				</div>`,
   created: function () {
     // 初始化数据 套接字
-    if (typeof (socketChat) !== 'undefined' && typeof (_chat_user) !== 'undefined' && _chat_user.id != 1) {
-      this.socket = new socketChat(this, _chat_user)
+    if (typeof (socketGroupChat) !== 'undefined' && typeof (_chat_user) !== 'undefined' && _chat_user.id != 1) {
+      this.socket = new socketGroupChat(this, _chat_user)
     }
   },
   mounted: function () {
@@ -122,10 +126,10 @@ new Vue({
         store.update({delSessionList: this.delSessionList})
       }
     },
-    companyList: {
+    qunList: {
       deep: true,
       handler () {
-        store.update({companyList: this.companyList})
+        store.update({qunList: this.qunList})
       }
     },
     groupList: {
@@ -138,6 +142,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({historyList: this.historyList})
+      }
+    },
+    verifyMsg: {
+      deep: true,
+      handler () {
+        store.update({verifyMsg: this.verifyMsg})
       }
     },
     onlineUserList: {
@@ -253,11 +263,14 @@ new Vue({
       if (data.hasOwnProperty('userList')) {
         this.userList = data.userList
       }
-      if (data.hasOwnProperty('companyList')) {
-        this.companyList = data.companyList
+      if (data.hasOwnProperty('onlineUserList')) {
+        this.onlineUserList = data.onlineUserList
       }
       if (data.hasOwnProperty('groupList')) {
         this.groupList = data.groupList
+      }
+      if (data.hasOwnProperty('qunList')) {
+        this.qunList = data.qunList
       }
       if (data.hasOwnProperty('sessionList')) {
         this.sessionList = data.sessionList
@@ -268,6 +281,9 @@ new Vue({
       if (data.hasOwnProperty('historyList')) {
         this.historyList = data.historyList
         this.$refs.childhistory.$forceUpdate()
+      }
+      if (data.hasOwnProperty('verifyMsg')) {
+        this.verifyMsg = data.verifyMsg
       }
     },
     // 格式化时间
