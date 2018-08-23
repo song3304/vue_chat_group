@@ -8,13 +8,127 @@
   <body>
   <script>
     var this_text = 'I\'m working';
-    var match_hall_catalogs=[{"id":17,"name":"\u4e59\u4e8c\u91871808","status":1,"grade_no":null,"catalog_id":11,"catalog_path":"2,9,11","porder":0,"delivery_start":"2018-08-15","delivery_end":"2018-08-25","create_time":"2018-06-01 09:22:36","update_time":"2018-06-01 09:40:25","delete_time":null},{"id":18,"name":"\u4e59\u4e8c\u91871809","status":1,"grade_no":null,"catalog_id":11,"catalog_path":"2,9,11","porder":0,"delivery_start":"2018-09-15","delivery_end":"2018-09-25","create_time":"2018-06-29 17:43:40","update_time":"2018-06-29 17:44:13","delete_time":null},{"id":19,"name":"\u4e59\u4e8c\u91871810","status":1,"grade_no":null,"catalog_id":11,"catalog_path":"2,9,11","porder":0,"delivery_start":"0000-00-00","delivery_end":"0000-00-00","create_time":"2018-08-13 11:42:42","update_time":"2018-08-13 11:42:42","delete_time":null}];
+    var match_hall_catalogs=[{"id":17,"name":"\u4e59\u4e8c\u91871808","status":1,"grade_no":null,"catalog_id":11,"catalog_path":"2,9,11","porder":0,"delivery_start":"2018-08-15","delivery_end":"2018-08-25","create_time":"2018-06-01 09:22:36","update_time":"2018-06-01 09:40:25","delete_time":null,"show":1},{"id":18,"name":"\u4e59\u4e8c\u91871809","status":1,"grade_no":null,"catalog_id":11,"catalog_path":"2,9,11","porder":0,"delivery_start":"2018-09-15","delivery_end":"2018-09-25","create_time":"2018-06-29 17:43:40","update_time":"2018-06-29 17:44:13","delete_time":null,"show":0},{"id":19,"name":"\u4e59\u4e8c\u91871810","status":1,"grade_no":null,"catalog_id":11,"catalog_path":"2,9,11","porder":0,"delivery_start":"0000-00-00","delivery_end":"0000-00-00","create_time":"2018-08-13 11:42:42","update_time":"2018-08-13 11:42:42","delete_time":null,"show":0}];
 
     var match_hall_companies={"32":{"id":32,"name":"\u5316\u5851\u6c47","shortName":"\u5316\u5851\u6c47","pic_url":"2018\/03\/05\/5a3b949e90d5204d3dace23be7233ca0.png","members":[{"id":53,"username":"huasuhui","password":"3b8fdb64bd33aec3da78ce440d521cc5","nickname":"\u5316\u5851\u6c47","realname":"huasuhui","phone":"15234060911","is_phone_show":1,"email":"1150227205@qq.com","gender":1,"pic_url":"2018\/05\/30\/714937762a921426422efb4382e4bce3.png","org_id":32,"system_type":2,"is_valid":1,"qq":"3280442307","profile":"\u5316\u5851\u6c47\u7ba1\u7406\u5458","create_time":"2018-01-16 17:12:29","update_time":"2018-07-04 13:52:25","delete_time":null},{"id":67,"username":"xiaowang","password":"eeba91b2b2d15fdd456edf8f9594448f","nickname":"\u5316\u5851\u6c47-\u5c0f\u738b","realname":"\u5316\u5851\u6c47-\u5c0f\u738b","phone":"18800000294","is_phone_show":1,"email":"4343432@qq.com","gender":1,"pic_url":null,"org_id":32,"system_type":2,"is_valid":1,"qq":"18800000294","profile":"\u5c0f\u738b","create_time":"2018-01-25 17:23:20","update_time":"2018-07-10 15:50:08","delete_time":null},{"id":68,"username":"xiaoli","password":"eeba91b2b2d15fdd456edf8f9594448f","nickname":"\u5c0f\u674e","realname":"xiaoli","phone":"18710123455","is_phone_show":1,"email":"538636@qq.com","gender":1,"pic_url":"2018\/05\/30\/cf7160454535470598c2725113b859df.png","org_id":32,"system_type":2,"is_valid":1,"qq":"18710123455","profile":"\u5c0f\u674e","create_time":"2018-01-25 17:25:32","update_time":"2018-07-10 15:49:20","delete_time":null},{"id":69,"username":"xiaozhang","password":"eeba91b2b2d15fdd456edf8f9594448f","nickname":"\u5316\u5851\u6c47-\u5c0f\u5f20","realname":"\u5316\u5851\u6c47-\u5c0f\u5f20","phone":"13901031183","is_phone_show":1,"email":"4345345345@qq.com","gender":1,"pic_url":"2018\/06\/29\/6b8f8988c6feebaca095ba483a91c74c.bmp","org_id":32,"system_type":2,"is_valid":1,"qq":"2467014700","profile":"\u5c0f\u5f20","create_time":"2018-01-25 17:27:06","update_time":"2018-06-29 10:58:51","delete_time":null}]},"42":{"id":42,"name":"\u5316\u5546\u901a","shortName":"\u5316\u5546\u901a","pic_url":"2018\/03\/21\/8f00cc24055535f70a120fc6e37a66a4.png","members":[{"id":72,"username":"huashangtong","password":"757be5aa412f03a01695e17e34a8f036","nickname":"\u5171\u8d62","realname":"\u674e\u5e7f\u6000","phone":"17521091706","is_phone_show":1,"email":"115022725505@qq.com","gender":0,"pic_url":"2018\/05\/25\/c1a33aa432740914d197709a397a1cdb.png","org_id":42,"system_type":2,"is_valid":1,"qq":"3280442307","profile":"\u5316\u5546\u901a\u7ba1\u7406\u5458","create_time":"2018-01-29 18:13:33","update_time":"2018-03-23 14:37:27","delete_time":null}]},"44":{"id":44,"name":"\u4e0a\u6d77\u54f2\u8bdd\u6295\u8d44\u7ba1\u7406\u6709\u9650\u516c\u53f8\t","shortName":"\u54f2\u8bdd","pic_url":null,"members":[{"id":80,"username":"zhehua","password":"52851e30a214736e6eb9233d3b9ad3a6","nickname":"\u54f2\u8bdd","realname":"\u54f2\u8bdd\u8272\u653e","phone":"13916597115","is_phone_show":1,"email":"12123324031292@qq.com","gender":2,"pic_url":null,"org_id":44,"system_type":2,"is_valid":1,"qq":"13916697115","profile":"\u54f2\u8bdd\u7ba1\u7406\u5458","create_time":"2018-04-17 18:22:59","update_time":"2018-05-23 14:44:38","delete_time":null}]},"45":{"id":45,"name":"\u676d\u5dde\u5fe0\u6734\u6295\u8d44\u54a8\u8be2\u6709\u9650\u516c\u53f8","shortName":"\u5fe0\u6734","pic_url":null,"members":[{"id":81,"username":"zhongputouzi","password":"e4eb77bb0fc2ad0b34ca5b24bc712cf9","nickname":"zhongputouzi","realname":"zhongputouzi","phone":"18301302257","is_phone_show":1,"email":null,"gender":0,"pic_url":null,"org_id":45,"system_type":2,"is_valid":1,"qq":null,"profile":null,"create_time":"2018-04-25 11:09:11","update_time":"2018-04-25 11:09:11","delete_time":null}]}};
 
-    var match_hall_cms={"2802":{"id":2802,"title":"\u516c\u5bd3\u5e02\u573a\u672a\u6765\u524d\u666f\u5982\u4f55?","create_time":"2018-06-28 14:06:52","time":"06-28"},"2801":{"id":2801,"title":"\u516c\u5bd3\u5e02\u573a\u672a\u6765\u524d\u666f\u5982\u4f55?","create_time":"2018-06-28 14:06:07","time":"06-28"},"2800":{"id":2800,"title":"\u516c\u5bd3\u5e02\u573a\u672a\u6765\u524d\u666f\u5982\u4f55?\u6052\u5927\u3001\u4e50\u5c45\u7b49\u5730\u4ea7\u5927\u5496\u5206\u4eab\u5e72\u8d27","create_time":"2018-06-28 14:05:15","time":"06-28"},"2799":{"id":2799,"title":"\u6052\u5927\u5730\u4ea727.47\u4ebf\u62a2\u53604\u5b97\u5730 \u62ff\u5730550.68\u4ea9","create_time":"2018-06-28 14:04:14","time":"06-28"},"2798":{"id":2798,"title":"\u5929\u6d25\u653e\u5bbd\u843d\u6237\u6761\u4ef6\u00a01\u5929\u5438\u5f1530\u4e07\u4eba","create_time":"2018-06-28 14:03:25","time":"06-28"},"2795":{"id":2795,"title":"\u4e59\u4e8c\u9187\uff1a\u53cd\u5f39\u6619\u82b1\u4e00\u73b0 \u884c\u60c5\u5f31\u52bf\u96be\u6539","create_time":"2018-05-14 09:56:13","time":"05-14"},"2794":{"id":2794,"title":"\u84ec\u4f69\u5965\u79f0\u5982\u671d\u9c9c\u8fc5\u901f\u5f03\u6838\u7f8e\u5c06\u52a9\u5176\u7e41\u8363","create_time":"2018-05-14 09:55:07","time":"05-14"},"2793":{"id":2793,"title":"\u76db\u6cfd\u5609\u5174\u4e24\u5730\u8f7b\u7eba\u539f\u6599\u5e02\u573a\u4e00\u5468\uff085.7-5.13\uff09\u884c\u60c5","create_time":"2018-05-14 09:47:13","time":"05-14"},"2792":{"id":2792,"title":"\u7f8e\u6cb9\u8fde\u6da8\u4e24\u5468 \u5e03\u6cb9\u4e00\u5468\u4ee5\u6765\u52b2\u53473%","create_time":"2018-05-14 09:45:33","time":"05-14"},"2791":{"id":2791,"title":"\u6d59\u6c5f\u5916\u8d38\u4f01\u4e1a\u5927\u8f6c\u578b\uff1a\u6dd8\u5de5\u5382\u4e0e\u65b0\u4f9b\u5e94\u94fe\u63a2\u7d22","create_time":"2018-05-14 09:45:12","time":"05-14"}};
+    var match_hall_cms=[{"id":2802,"title":"\u516c\u5bd3\u5e02\u573a\u672a\u6765\u524d\u666f\u5982\u4f55?","create_time":"2018-06-28 14:06:52","time":"06-28"},{"id":2801,"title":"\u516c\u5bd3\u5e02\u573a\u672a\u6765\u524d\u666f\u5982\u4f55?","create_time":"2018-06-28 14:06:07","time":"06-28"},{"id":2800,"title":"\u516c\u5bd3\u5e02\u573a\u672a\u6765\u524d\u666f\u5982\u4f55?\u6052\u5927\u3001\u4e50\u5c45\u7b49\u5730\u4ea7\u5927\u5496\u5206\u4eab\u5e72\u8d27","create_time":"2018-06-28 14:05:15","time":"06-28"},{"id":2799,"title":"\u6052\u5927\u5730\u4ea727.47\u4ebf\u62a2\u53604\u5b97\u5730 \u62ff\u5730550.68\u4ea9","create_time":"2018-06-28 14:04:14","time":"06-28"},{"id":2798,"title":"\u5929\u6d25\u653e\u5bbd\u843d\u6237\u6761\u4ef6\u00a01\u5929\u5438\u5f1530\u4e07\u4eba","create_time":"2018-06-28 14:03:25","time":"06-28"},{"id":2795,"title":"\u4e59\u4e8c\u9187\uff1a\u53cd\u5f39\u6619\u82b1\u4e00\u73b0 \u884c\u60c5\u5f31\u52bf\u96be\u6539","create_time":"2018-05-14 09:56:13","time":"05-14"},{"id":2794,"title":"\u84ec\u4f69\u5965\u79f0\u5982\u671d\u9c9c\u8fc5\u901f\u5f03\u6838\u7f8e\u5c06\u52a9\u5176\u7e41\u8363","create_time":"2018-05-14 09:55:07","time":"05-14"},{"id":2793,"title":"\u76db\u6cfd\u5609\u5174\u4e24\u5730\u8f7b\u7eba\u539f\u6599\u5e02\u573a\u4e00\u5468\uff085.7-5.13\uff09\u884c\u60c5","create_time":"2018-05-14 09:47:13","time":"05-14"},{"id":2792,"title":"\u7f8e\u6cb9\u8fde\u6da8\u4e24\u5468 \u5e03\u6cb9\u4e00\u5468\u4ee5\u6765\u52b2\u53473%","create_time":"2018-05-14 09:45:33","time":"05-14"},{"id":2791,"title":"\u6d59\u6c5f\u5916\u8d38\u4f01\u4e1a\u5927\u8f6c\u578b\uff1a\u6dd8\u5de5\u5382\u4e0e\u65b0\u4f9b\u5e94\u94fe\u63a2\u7d22","create_time":"2018-05-14 09:45:12","time":"05-14"}];
 
   </script>
+
+
+
+  <!----实时报价 start---->
+  <link href="static/css/front.css" rel="stylesheet">
+  <link href="static/css/new_index.css" rel="stylesheet">
+  <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <script src="static/js/jquery-1.11.0.min.js"></script>
+  <script src="static/js/offer_index.js"></script>
+  <script src="static/js/custom.js"></script>
+  <script src="static/js/socket.io.js"></script>
+  <script src="static/js/echarts.min.js"></script>
+  <script src="static/js/showK.js"></script>
+  <script src="static/js/jquery-ui-1.10.4.min.js"></script>
+  <script type="text/javascript">
+      !function($){
+          var echartsObj = [], panObj = [],panObj1 = [];
+          var ninestamp=this.ninestamp();
+          document.ready = function() {
+              var uid=0;
+              // 连接服务端
+              var socket = io(quoteAddress[0]);
+              var socket_id = socket.id;
+              var chartArr=new Array();
+              if (match_hall_catalogs.length!=0) {
+                  $.each(match_hall_catalogs, function (index, item) {
+                      var product_id = item.id;
+                      var chartName="myChart_"+item.id;
+                      chartArr[chartName]= new MyChart(product_id, uid, ninestamp);
+                      var realWidth = $("#myTabContent").width();
+                      $('#pan_data_' + product_id).width(realWidth * 1 - 31);
+                      echartsObj.push(chartArr[chartName]);
+                      panObj.push($('#pan_data_' + product_id));
+                      chartArr[chartName].init('pan_data_' + product_id, 'bird_price_banner_' + product_id, 5);
+                  });
+              }
+              // 连接后登录
+              var first_connected = false;
+              socket.on('connect', function(){
+                  if (!first_connected) {
+                      first_connected = true;
+                      socket_id = socket.id;
+                  }
+                  socket.emit('login', uid);
+                  $.each(match_hall_catalogs,function(index,item){
+                      if (socket_id != socket.id) {
+                          //重新连接，则重新加载初始化数据
+                          //eval("myChart_"+item.id).initialize();
+                          chartArr["myChart_"+item.id].initialize();
+                      }
+                  });
+                  socket_id = socket.id;
+              });
+
+              socket.on('login_success', function(msg){
+                  $.each(match_hall_catalogs,function(index,item){
+                      socket.emit('register', uid, item.id,uid);
+                  });
+              });
+
+
+
+              // 后端推送来消息时
+              socket.on('quoteUpdate', function(data){
+                  var formatData=JSON.parse(data);
+                  if (formatData.code === 0) {
+                      mychart = chartArr["myChart_"+formatData.product_id];
+                  } else {
+                      return;
+                  }
+                  if (formatData.data.sell_average !== undefined) {
+                      mychart.offerStore.addPrice(formatData.data.sell_average,
+                          PriceType.Sell);
+                  }
+                  if (formatData.data.buy_average !== undefined) {
+                      mychart.offerStore.addPrice(formatData.data.buy_average,
+                          PriceType.Buy);
+                  }
+                  if (formatData.data.order_average !== undefined) {
+                      mychart.offerStore.addPrice(formatData.data.order_average,
+                          PriceType.Order);
+                  }
+                  if (formatData.data.sell_open_price !== undefined) {
+
+                      mychart.offerStore.sell_begin_price=formatData.data.sell_open_price;
+                  }
+                  if (formatData.data.buy_open_price !== undefined) {
+                      mychart.offerStore.buy_begin_price=formatData.data.buy_open_price;
+                  }
+                  mychart.refreshChart();
+                  //处理报价信息
+                  mychart.OfferBird.init(formatData.data);
+                  mychart.OfferBird.render();
+                  $.each(match_hall_catalogs,function(index,item){
+                      if(formatData.product_id==item.id){
+                          mychart.init_dync_price('realtime_'+item.id);
+                          mychart.OfferBird.renderDync();
+                      }
+                  });
+              });
+
+          }
+      }(jQuery);
+
+          function ninestamp() {
+              var timeModel=new Date();
+              timeModel.setHours('09',0,0,0);
+              return timeModel.getTime()/1000;
+          }
+  </script>
+  <!----实时报价 end---->
+
+
     <div id="chat_app">
 
 		</div>
