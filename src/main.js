@@ -233,11 +233,11 @@ new Vue({
       // this.$sockect.emit('changeUserName',data)
     },
     // 更新已读
-    toRead: function (msgIds, userId) {
+    toRead: function (msgIds, userId, type) { // type:[single_chat->个人消息,group_chat->群聊消息]
       this.userList[userId].isCalling = false
       if (msgIds.length > 0) {
-        if (this.socket !== null) {
-          this.socket._toReadMsg(userId, msgIds)
+        if (this.socket !== null) { // type = [user or qun]
+          this.socket._toReadMsg(userId, msgIds, type === 'user' ? 'single_chat' : 'group_chat')
         }
       }
     },
