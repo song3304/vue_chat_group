@@ -38,7 +38,7 @@ new Vue({
     // 登录用户
     user: serverData.user,
     // 盯盘或者被关注用户ids
-    followList:serverData.followList,
+    followList: serverData.followList,
     // 用户列表
     userList: serverData.userList,
     // 群聊
