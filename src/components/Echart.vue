@@ -29,7 +29,7 @@
 					</div>
 					<!--下拉表-->
 					<ul class="vue_company_ul" v-show="companyshow">
-						<li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+						<li v-for="(companyitem,index) in companyList" v-bind:company_id='companyitem.id' @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_company_species">
@@ -47,7 +47,7 @@
 					</div>
 					<!--下拉表-->
 					<ul class="vue_people_ul" v-show="peopleshow">
-						<li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
+						<li v-for="(peopleitem,index) in peopleList" v-bind:user_id='peopleitem.id' @click="addpeo(peopleitem,index)">
 						    <span><img src="../images/15.png" alt="" /></span>
 						    <p>{{peopleitem.username}}</p>
 						</li>
