@@ -16,6 +16,7 @@ if (!localStorage.getItem(key)) {
       company_name: 'Acompany',
       company_short_name: 'sp'
     },
+    followList: [2, 3, 4],
     // 当前在线大厅用户列表
     onlineUserList: {
       2: {
@@ -336,6 +337,9 @@ export default {
     }
     if (store.hasOwnProperty('verifyMsg')) {
       oldData.verifyMsg = store.verifyMsg
+    }
+    if (store.hasOwnProperty('followList')) {
+      oldData.followList = store.followList
     }
     localStorage.setItem(key, JSON.stringify(oldData))
   }

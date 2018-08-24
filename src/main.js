@@ -37,6 +37,8 @@ new Vue({
     },
     // 登录用户
     user: serverData.user,
+    // 盯盘或者被关注用户ids
+    followList:serverData.followList,
     // 用户列表
     userList: serverData.userList,
     // 群聊
@@ -154,6 +156,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({onlineUserList: this.onlineUserList})
+      }
+    },
+    followList: {
+      deep: true,
+      handler () {
+        store.update({followList: this.followList})
       }
     }
   },
@@ -284,6 +292,9 @@ new Vue({
       }
       if (data.hasOwnProperty('verifyMsg')) {
         this.verifyMsg = data.verifyMsg
+      }
+      if (data.hasOwnProperty('followList')) {
+        this.followList = data.followList
       }
     },
     // 格式化时间
