@@ -12,7 +12,7 @@
 					</div>
 					<!--下拉表-->
 					<ul class="vue_kind_ul" v-show="kindshow" >
-					    <li v-for="(catalogItem,index) in catalogList" @click="addcatalog(catalogItem,index)">{{catalogItem.name}}</li>
+					    <li v-for="(catalogItem,index) in catalogList" v-bind:catalog_id='catalogItem.id' @click="addcatalog(catalogItem,index)">{{catalogItem.name}}</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_kind_species">
@@ -132,32 +132,31 @@
 	//require('echarts/lib/component/tooltip')
 	//require('echarts/lib/component/title')
 	export default {
-  name: 'hello',
-  data() {
-    return {
-		kindshow:false,
-		companyshow:false,
-		peopleshow:false,
-		catalogList:match_hall_catalogs,
-		companyList:match_hall_companies,
-		peopleList:[{username:''}],
-		comsplist:[],
-		peosplist:[],
-		catalog:'乙二醇',
-		isActive:false,
-    }
-  },
-  mounted() {
-    //this.drawLine();
-    $(".vue-tealtime-time").niceScroll({
-    	cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
-        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-        cursorwidth: "5px", // 滚动条的宽度，单位：便素
-        background: "", // 轨道的背景颜色
-        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
-    });
-  },
+    name: 'hello',
+    data() {
+        return {
+            kindshow:false,
+            companyshow:false,
+            peopleshow:false,
+            catalogList:match_hall_catalogs,
+            companyList:match_hall_companies,
+            peopleList:[{username:''}],
+            comsplist:[],
+            peosplist:[],
+            catalog:'乙二醇',
+            isActive:false,
+        }
+    },
+    mounted() {
+        $(".vue-tealtime-time").niceScroll({
+            cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
+            cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+            cursorwidth: "5px", // 滚动条的宽度，单位：便素
+            background: "", // 轨道的背景颜色
+            cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+            autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+        });
+    },
   methods: {
   	kindclick: function (){
   		this.kindshow=!this.kindshow,
@@ -174,26 +173,15 @@
   		this.companyshow=false,
   		this.kindshow=false
   	},
-    drawLine() {
-      // 基于准备好的dom，初始化echarts实例
-      let myChart = echarts.init(document.getElementById('vue-myChart'))
-      // 绘制图表
-      myChart.setOption({
-//      title: { text: 'ECharts 入门示例' },
-        tooltip: {},
-        xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-        },
-        yAxis: {},
-        series: [{
-          name: '销量',
-          type: 'line',
-          data: [5, 20, 36, 10, 10, 20]
-        }]
-      });
-    },
 
-    addcatalog(catalogItem,index){
+    addcatalog(catalogItem,index){//种类切换
+        this.catalogList.map((v,i)=>{
+            if(index!=i){
+                v.show=0
+            }else{
+                v.show=1;
+            }
+        });
         this.kindshow=false;
         this.catalog=catalogItem.name;
     },
