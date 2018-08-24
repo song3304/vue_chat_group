@@ -7,16 +7,25 @@ import $ from 'jquery'
 
 export default {
   name: 'ChatDialog',
-  props: ['user', 'userList', 'sessionList', 'sessionIndex'],
+  props: ['user', 'userList', 'sessionList', 'sessionIndex','groupList'],
   data: function () {
     return {
       search: '',
-
+      fid:''
     }
   },
   computed: {
     session: function () {
       return this.sessionList.hasOwnProperty(this.sessionIndex) ? this.sessionList[this.sessionIndex] : null
+    },
+    isFirend:function(){
+      var isfri = false;
+      for (var index in this.groupList[common]){
+        if(this.groupList[common][index].userIds.indexOf(this.fid)!=-1){
+          isfri = true;
+        }
+      }
+      return isfri
     }
   },
   components: {
@@ -26,7 +35,7 @@ export default {
     sessionList: {
       deep: true,
       handler () {
-        this.sessionList.length < 1 && this.close()
+        // this.sessionList.length < 1 && this.close()
       }
     }
   },
@@ -98,6 +107,9 @@ export default {
     }
  },
  mounted(){
+    if(this.session&&this.session.userId){
+      this.fid = this.session.userId
+    }
 	 	$( "#resizable" ).resizable({
 			 handles: "n",
 			 minHeight:211,
@@ -121,9 +133,9 @@ export default {
         		<p class="vu_m-new">个人信息</p>
         		<div class="vu_m-newqun"><img :src="userList[session.userId].img" alt="" /></div>
         		<span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span>
-        		<p class="vu_m-new_com">公司：中化金服</p>
-        		<p class="vu_m-new_phone">电话：<span>12365478952</span></p>
-        		<div class="vu_m-new_friend">加为好友</div>  <!--//加好友-->
+        		<p class="vu_m-new_com">公司：{{userList[session.userId].company_name}}</p>
+        		<p class="vu_m-new_phone">电话：<span>{{userList[session.userId].phone}}</span></p>
+        		<div class="vu_m-new_friend" v-if="isFriend">加为好友</div>  <!--//加好友-->
         		<!--<div class="vu_m-guan" @click="close" ><p><span></span></p></div>-->
         </div> <!--<div class="vu_m-minimum" @click="close" ></div>-->
         <div class="vu_m-main" >
