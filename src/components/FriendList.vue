@@ -18,7 +18,7 @@
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
 	            <li @click="createGroup('common')">创建新组</li>
-	            
+
 	          </ul>
 	        </div>-->
 	      </ul>
@@ -31,7 +31,7 @@
 	      	</div>
 	        <div class="vu_qunfen_yi">
 	          <!--p>普通组</p-->
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
+	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" :followList="followList" :verifyMsg="verifyMsg" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
 	        </div>
 	        <!--div v-if="user.plat=='match'" class="vu_qunfen_er">
 	          <p>群发组</p>
@@ -40,7 +40,7 @@
 	      </div>
 	      <!--群组-->
 	      <companyPanel v-show="panelShow.groupShow" :user="user" :userList="userList" :companyList="companyList" @openChartEvent="openChat" @changeUserNameEvent="changeUserName"></companyPanel>
-	      
+
 	    </div>
 	    <!--搜索页面-->
 	    <searchDialog v-show="panelShow.searchShow" :searchList="searchList" @openChartEvent="openChat"></searchDialog>
@@ -59,7 +59,7 @@ import $ from 'jquery'
 
 export default {
   name: 'FriendList',
-  props: ['user', 'userList', 'companyList', 'groupList'],
+  props: ['user', 'userList', 'companyList', 'groupList', 'followList','verifyMsg'],
   data: function () {
     return {
       activeIndex: 0,

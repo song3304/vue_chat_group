@@ -4,7 +4,8 @@ export default {
   props: ['userList', 'sessionIndex', 'session', 'search', 'sessionList'],
   data: function () {
     return {
-      currentIndex: 0
+      currentIndex: 0,
+      tag:0
     }
   },
   computed: {
@@ -14,7 +15,16 @@ export default {
       } else {
         return this.sessionList.filter(item => this.userList[item.userId].name.indexOf(this.search) > -1)
       }
-    }
+    },
+      isUserMsg: function () {
+        var userMsgCount = 0;
+        for (var index in this.sessionList){
+          if(this.sessionList[index].userId){
+            userMsgCount ++;
+          }
+        }
+        return userMsgCount;
+      },
   },
   methods: {
     select (value, event) {
@@ -88,10 +98,13 @@ export default {
                 	<div class="vu_delet-li"  @click.stop="deletePerson(index)"></div>
                 </div>
             </li>
-          <li v-if="searchData.length < 1" style="color:#000;">
-
-          </li>
+          <!--<li v-if="searchData.length < 1" style="color:#000;">-->
+            <!--暂无聊天消息-->
+          <!--</li>-->
         </ul>
+        <div v-show="isUserMsg==0" style="color:#ccc; text-align:center;line-height:50px;">
+            暂无聊天消息
+        </div>
     </div>
 </template>
 
