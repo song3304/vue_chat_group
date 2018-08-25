@@ -31,7 +31,7 @@
 	      	</div>
 	        <div class="vu_qunfen_yi">
 	          <!--p>普通组</p-->
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" :followList="followList" :verifyMsg="verifyMsg" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
+	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" :followList="followList" :verifyMsg="verifyMsg" @openChartEvent="openChat" @receiveFriendEvent="receiveFriend" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @moveFriendEvent="moveFriend"></groupPanel>
 	        </div>
 	        <!--div v-if="user.plat=='match'" class="vu_qunfen_er">
 	          <p>群发组</p>
@@ -153,6 +153,12 @@ export default {
     },
     changeUserName: function (data) {
       this.$emit('changeUserNameEvent', data)
+    },
+    receiveFriend: function (msgId, isAgree) {
+      this.$emit('receiveFriendEvent', msgId, isAgree)
+    },
+    moveFriend: function (friendId, groupId, toGroupId) {
+      this.$emit('moveFriendEvent', friendId, groupId, toGroupId)
     },
     chuangjian: function () {
       this.groupShow = false

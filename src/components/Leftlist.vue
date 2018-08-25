@@ -50,8 +50,8 @@
       <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].orgName}}</p>
       <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
       <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id">
-        <span class="vue_leftlist_companysz_yi">临时会话</span>
-        <span class="vue_leftlist_companysz_er">添加好友</span>
+        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
+        <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,'验证消息要改')">添加好友</span>
         <!--<p>聊天</p>-->
       </div>
 			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
@@ -87,16 +87,21 @@
         }
       }
     },
-	methods:{
-		firendchat:function(key){
-			this.firendtan=!this.firendtan;
-      this.infoId = key;
-		},
-		leftlistclose:function(){
-			this.firendtan=false
-		}
-
-	},
+  methods: {
+    firendchat: function (key) {
+      this.firendtan = !this.firendtan
+      this.infoId = key
+    },
+    leftlistclose: function () {
+      this.firendtan = false
+    },
+    openTempTalk: function (otherUid) {
+      this.$emit('openTempTalkEvent', otherUid)
+    },
+    addFriend: function (otherUid, msg) {
+      this.$emit('addFriendEvent', otherUid, msg)
+    }
+  },
 	mounted() {
     // console.log('大厅',typeof (this.onlineUserList))
 	    $(".vue_leftlist_ul").niceScroll({

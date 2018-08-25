@@ -60,10 +60,12 @@ export default {
     modifyUserName: function (event) {
       var el = event.currentTarget
       var userId = $(el).data('uid')
+      var groupId = $(el).data('gid')
       var userName = $(el).val()
+      userName = userName.replace(/^\s+|\s+$/g, '') // 去空格
       if (userName !== '') {
         this.userList[userId].name = userName
-        this.$emit('changeUserNameEvent', {userId: userId, userName: userName})
+        this.$emit('changeUserNameEvent', {friendId: userId, friendName: userName, groupId: groupId, type: 'user'})
       }
       // 回传提交保存
 
@@ -72,6 +74,11 @@ export default {
     openChat: function (uid) {
       this.$emit('openChartEvent', uid, 'user')
       $('.vu_m-list').show()
+    },
+    // 接收,拒绝好友
+    receive: function (msgId, isAgree) {
+      this.$emit('receiveFriendEvent', msgId, isAgree)
+      // 后续处理
     },
     changeQunName: function (event, groupId) { // 点击修改群分组名称
       event.stopPropagation()
@@ -159,7 +166,8 @@ export default {
 			$('.vue_name_sz').hide()
 			$('.vue_name_sz', $(el)).show()
     },
-    namemove:function(){
+    namemove:function (friendId, groupId, toGroupId) {
+      this.$emit('moveFriendEvent', friendId, groupId, toGroupId)
     	$('.vue_name_sz').hide()
     	this.groupNew=true
     },
@@ -218,7 +226,8 @@ export default {
             <a>{{addfriList.user_info.nickname}}</a>
             <p class="vue_submen_company">{{addfriList.message}}</p>
           </div>
-          <div class="vu_ren-add">接受</div>
+          <div class="vu_ren-add" @click="receive(addfriList.id,true)">接受</div>
+          <div class="vu_ren-add" @click="receive(addfriList.id,false)">拒绝</div>
         </li>
       </ul>
     </li>
@@ -251,15 +260,15 @@ export default {
 			          	<li @click="delPen($event,companyItem.groupId,userItem)">删除好友</li>  <!--@click="delfri"--><!--盯盘好友不可删除-->
 			          	<li @mouseenter="vueMove" @mouseleave="vueLeave">移动到<span></span>
 			          			<ul class="vue_name_move" v-show="groupNew">
-						          		<li v-for="companyItem in companyList" @click="namemove">{{companyItem.groupName}}</li>
+						          		<li v-for="moveItem in companyList" v-if="companyItem.groupId !== moveItem.groupId" @click="namemove(userItem,companyItem.groupId,moveItem.groupId)">{{moveItem.groupName}}</li>
 						          </ul>
 			          	</li>
 			          	<li @click="changeName">重命名</li>
-			          	<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
+			          	<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
 		          	</ul>
             </div>
             <div class="vu_submenu_com">
-            	<a>{{userList[userItem].name}}</a>
+            	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}</a>
             	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
             	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
             </div>
