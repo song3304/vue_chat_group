@@ -137,7 +137,7 @@ if (!localStorage.getItem(key)) {
     // 会话列表
     sessionList: [
       {
-        userId: 2,
+        id: 2,
         type: 'user',
         has_send_today: false,
         messages: [
@@ -158,7 +158,7 @@ if (!localStorage.getItem(key)) {
         ]
       },
       {
-        userId: 3,
+        id: 3,
         type: 'user',
         has_send_today: false,
         messages: [
@@ -178,7 +178,7 @@ if (!localStorage.getItem(key)) {
           }]
       },
       {
-        qunId: 3,
+        id: 3,
         type: 'qun',
         has_send_today: false,
         messages: [
@@ -201,7 +201,7 @@ if (!localStorage.getItem(key)) {
     // 删除会话
     delSessionList: [
       {
-        userId: 2,
+        id: 2,
         type: 'user',
         has_send_today: false,
         messages: [

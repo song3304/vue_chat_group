@@ -5,7 +5,7 @@ export default {
   data: function () {
     return {
       currentIndex: 0,
-      tag:0
+      tag: 0
     }
   },
   computed: {
@@ -13,18 +13,18 @@ export default {
       if (this.search === '') {
         return this.sessionList
       } else {
-        return this.sessionList.filter(item => this.userList[item.userId].name.indexOf(this.search) > -1)
+        return this.sessionList.filter(item => item.type === 'user' && this.userList[item.id].name.indexOf(this.search) > -1)
       }
     },
-      isUserMsg: function () {
-        var userMsgCount = 0;
-        for (var index in this.sessionList){
-          if(this.sessionList[index].userId){
-            userMsgCount ++;
-          }
+    isUserMsg: function () {
+      var userMsgCount = 0
+      for (var index in this.sessionList) {
+        if (this.sessionList[index].type === 'user') {
+          userMsgCount++
         }
-        return userMsgCount;
-      },
+      }
+      return userMsgCount
+    }
   },
   methods: {
     select (value, event) {
@@ -86,10 +86,10 @@ export default {
 <template>
     <div class="vu_m-list">
         <ul v-if="session!=null">
-            <li v-for="(item,index) in searchData" v-if="item.userId" :class="{ vu_active: session.userId === item.userId }" @click="select(item,$event)">
-                <img class="vu_avatar"  width="30" height="30" :alt="userList[item.userId].name" :src="userList[item.userId].img" :class="{'vu_gray':!userList[item.userId].isOnline}">
+          <li v-for="(item,index) in searchData" v-if="item.type==='user'" :class="{ vu_active: session.id === item.id }" @click="select(item,$event)">
+                <img class="vu_avatar"  width="30" height="30" :alt="userList[item.id].name" :src="userList[item.id].img" :class="{'vu_gray':!userList[item.id].isOnline}">
                 <div class="vu_m-cs-cs">
-                	<p class="vu_name">{{userList[item.userId].name}}(公司名称)</p>
+                	<p class="vu_name">{{userList[item.id].name}}(公司名称)</p>
                 	<p class="vu_m-xiang">{{item|firstMsg}}</p>
                 </div>
                 <div class="vu_m-list-del">
@@ -97,10 +97,7 @@ export default {
                 	<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{item|noReadCnt}}</p>
                 	<div class="vu_delet-li"  @click.stop="deletePerson(index)"></div>
                 </div>
-            </li>
-          <!--<li v-if="searchData.length < 1" style="color:#000;">-->
-            <!--暂无聊天消息-->
-          <!--</li>-->
+          </li>
         </ul>
         <div v-show="isUserMsg==0" style="color:#ccc; text-align:center;line-height:50px;">
             暂无聊天消息

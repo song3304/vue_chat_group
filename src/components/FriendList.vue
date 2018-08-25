@@ -139,13 +139,13 @@ export default {
       this.$emit('openGroupEvent', type)
       this.groupShow = false
     },
-    openChat: function (uid) {
+    openChat: function (uid, idType) {
     	this.activeIndex = 0
 	    this.panelShow.chatShow = true
         this.panelShow.companyShow = false
         this.panelShow.groupShow = false
         this.panelShow.searchShow = false
-      this.$emit('openTalkEvent', uid)
+      this.$emit('openTalkEvent', uid, idType)
     },
     toggle: function (event) {
       event.stopPropagation()

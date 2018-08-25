@@ -10,22 +10,12 @@ export default {
   props: ['user', 'userList', 'sessionList', 'sessionIndex','groupList'],
   data: function () {
     return {
-      search: '',
-      fid:''
+      search: ''
     }
   },
   computed: {
     session: function () {
       return this.sessionList.hasOwnProperty(this.sessionIndex) ? this.sessionList[this.sessionIndex] : null
-    },
-    isFirend:function(){
-      var isfri = false;
-      for (var index in this.groupList[common]){
-        if(this.groupList[common][index].userIds.indexOf(this.fid)!=-1){
-          isfri = true;
-        }
-      }
-      return isfri
     }
   },
   components: {
@@ -43,12 +33,6 @@ export default {
   	vueshrink:function(){
 
   	},
-    close: function () {
-      this.$emit('closeEvent', {
-        is_dialog_show: false,
-        is_history_show: false
-      })
-    },
     toRead: function (value) {
       var msgIds = []
       value.messages.forEach(function (item) {
@@ -56,40 +40,8 @@ export default {
           msgIds.push(item.messageId)
         }
       })
-      this.$emit('toReadEvent', msgIds, value.userId)
+      this.$emit('toReadEvent', msgIds, value.id, value.type)
     },
-//  drag: function (ev) {
-//    var oDiv = document.getElementById('vu_chat')
-//    var oEvt = ev || event
-//    var disX = oEvt.clientX - oDiv.offsetLeft
-//    var disY = oEvt.clientY - oDiv.offsetTop
-//    document.onmousemove = function (ev) {
-//      var oEvt = ev || event
-//      var l = oEvt.clientX - disX// 计算
-//      var t = oEvt.clientY - disY
-//      // 限定
-//      if (l < 5) l = 0
-//      if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
-//        l = document.documentElement.clientWidth - oDiv.offsetWidth
-//      }
-//
-//      if (t < 5) t = 0
-//      if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
-//        t = document.documentElement.clientHeight - oDiv.offsetHeight
-//      }
-//      oDiv.style.left = l + 'px'// 使用
-//      oDiv.style.top = t + 'px'
-//    }
-//    document.onmouseup = function () {
-//      document.onmouseup = document.onmousemove = null
-//      oDiv.releaseCapture && oDiv.releaseCapture()
-//    }
-//    oDiv.setCapture && oDiv.setCapture()
-//    return false
-//  },
-//  jinzhi: function (ev) {
-//    ev.stopPropagation()
-//  },
     openHistory: function (uid) {
       this.$emit('openHistoryEvent', uid)
     },
@@ -107,10 +59,7 @@ export default {
     }
  },
  mounted(){
-    if(this.session&&this.session.userId){
-      this.fid = this.session.userId
-    }
-	 	$( "#resizable" ).resizable({
+    $("#resizable").resizable({
 			 handles: "n",
 			 minHeight:211,
 			 maxHeight:916
@@ -125,19 +74,14 @@ export default {
  			<list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
     	<div id="vu_chat" >
     		<div id="resizable">
-        <!--<div class="vu_sidebar" >
-            <card :user="user" :search.sync="search"></card>
-        </div>-->
-        <!--<div class="vu_m_tubiao" @mouseenter="vueshrink"></div>-->
-        <div class="vu_m-na" id="tuo" v-if="session">
+        <div class="vu_m-na" id="tuo" v-if="session!=null && session.type=='user'">
         		<p class="vu_m-new">个人信息</p>
-        		<div class="vu_m-newqun"><img :src="userList[session.userId].img" alt="" /></div>
-        		<span class="vu_m-na-name">{{session!=null ? userList[session.userId].name : ''}}</span>
-        		<p class="vu_m-new_com">公司：{{userList[session.userId].company_name}}</p>
-        		<p class="vu_m-new_phone">电话：<span>{{userList[session.userId].phone}}</span></p>
-        		<div class="vu_m-new_friend" v-if="isFriend">加为好友</div>  <!--//加好友-->
-        		<!--<div class="vu_m-guan" @click="close" ><p><span></span></p></div>-->
-        </div> <!--<div class="vu_m-minimum" @click="close" ></div>-->
+        		<div class="vu_m-newqun"><img :src="userList[session.id].img" alt="" /></div>
+        		<span class="vu_m-na-name">{{session!=null ? userList[session.id].name : ''}}</span>
+        		<p class="vu_m-new_com">公司：{{userList[session.id].company_name}}</p>
+        		<p class="vu_m-new_phone">电话：<span>{{userList[session.id].phone}}</span></p>
+        		<div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'">加为好友</div>  <!--//加好友-->
+        </div>
         <div class="vu_m-main" >
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
             <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>

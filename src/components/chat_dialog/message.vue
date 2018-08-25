@@ -4,7 +4,7 @@ export default {
   props: ['session', 'user', 'userList'],
   computed: {
     sessionUser () {
-      return this.userList[this.session.userId]
+      return this.userList[this.session.id]
     }
   },
   filters: {
@@ -54,7 +54,7 @@ export default {
       return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
     },
     messscroll:function(session) {
-			this.scroll = document.getElementById('chat_message_main').scrollTop	
+			this.scroll = document.getElementById('chat_message_main').scrollTop
 		  if(this.scroll==0){
 		  	if (session != null) {
 	        this.$emit('todayMsgEvent', session)
@@ -69,7 +69,7 @@ export default {
   },
   mounted() {
     $("#chat_message_main").niceScroll({
-    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值        
+    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
         cursorwidth: "5px", // 滚动条的宽度，单位：便素
         background: "", // 轨道的背景颜色
@@ -82,15 +82,15 @@ export default {
 
 <template>
     <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)" @scroll="messscroll(session)">
-    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today" @click="todayMsg(session)">
+    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today&& session.type=='user'" @click="todayMsg(session)">
     				<p></p><span>查看更多</span>
     		</div>
-        <ul v-if="session!=null">
+        <ul v-if="session!=null && session.type=='user'">
             <li v-if="session.messages.length<1" class="vu_m-message-new">暂无最新消息！</li>
             <li v-for="item in session.messages">
                 <p class="vu_time"><span>{{item.date}}</span></p>
-                <div class="vu_main" :class="{ vu_self: item.self }">
-                    <img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.userId].img" />
+                <div class="vu_main" :class="{ vu_self: item.userId === session.id }">
+                    <img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.id].img" />
                     <div class="vu_text" v-html="textFormat(item.text)"></div>
                     <br clear="all"/>
                 </div>

@@ -178,14 +178,15 @@ new Vue({
       }
     },
     // 打开对话框
-    openTalk: function (uid) {
-      if (this.sessionList.some(function (item) { return item.userId === uid })) {
-        this.sessionList.sort(function (first, second) { if (first.userId === uid) { return -1 } else if (second.userId === uid) { return 1 } else { return 0 } })
+    openTalk: function (uid, idType) {
+      if (this.sessionList.some(function (item) { return idType === item.type && item.id === uid })) {
+        this.sessionList.sort(function (first, second) { if (idType === first.type && first.id === uid) { return -1 } else if (idType === second.type && second.id === uid) { return 1 } else { return 0 } })
       } else {
-        var delIndex = this.delSessionList.findIndex(item => item.userId === uid)
+        var delIndex = this.delSessionList.findIndex(item => idType === item.type && item.id === uid)
         if (delIndex < 0) {
           var addSessionData = {
-            userId: uid,
+            id: uid,
+            type: idType,
             has_send_today: false,
             messages: []
           }
@@ -196,7 +197,7 @@ new Vue({
           this.sessionList.unshift(findSessionData)
         }
       }
-      if (this.userList[uid].isCalling === true) {
+      if (idType === 'user' && this.userList[uid].isCalling === true) {
         this.userList[uid].isCalling = false
       }
       this.sessionIndex = 0
@@ -323,7 +324,7 @@ new Vue({
       if (this.socket !== null) {
         var startTime = this._format(new Date(), 'yyyy-MM-dd hh:mm:ss')
         session.messages.forEach(message => { startTime = startTime > message.date ? message.date : startTime })
-        this.socket._getTodayMsg(session.userId, startTime)
+        this.socket._getTodayMsg(session.id, startTime, session.type === 'user' ? 'single_chat' : 'group_chat')
       }
     },
     // 获取历史数据

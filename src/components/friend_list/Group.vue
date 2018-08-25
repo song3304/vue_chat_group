@@ -70,7 +70,7 @@ export default {
       $(el).hide()
     },
     openChat: function (uid) {
-      this.$emit('openChartEvent', uid)
+      this.$emit('openChartEvent', uid, 'user')
       $('.vu_m-list').show()
     },
     changeQunName: function (event, groupId) { // 点击修改群分组名称
@@ -261,13 +261,13 @@ export default {
             <div class="vu_submenu_com">
             	<a>{{userList[userItem].name}}</a>
             	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
-            	<p class="vue_submen_company">所属公司名称</p>
+            	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
             </div>
 
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
            <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>--> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
-            <!--<p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p> <!--盯盘好友不可删除-->-->
+            <!--<p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p> <!--盯盘好友不可删除-->
 
 
           </li>
