@@ -68,7 +68,9 @@ new Vue({
     // 群发消息对象
     targetObj: null,
     // socket
-    socket: null
+    socket: null,
+    //是否是临时消息
+    is_temp: false
   },
   // sockets: {
   // 所有sockect 事件放在这
@@ -89,12 +91,12 @@ new Vue({
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
-				<leftlist :user="user" :onlineUserList="onlineUserList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend"></leftlist>
+				<leftlist :user="user" :onlineUserList="onlineUserList" :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend"></leftlist>
 				</div>`,
   created: function () {
     // 初始化数据 套接字
     if (typeof (socketGroupChat) !== 'undefined' && typeof (_chat_user) !== 'undefined' && _chat_user.id != 1) {
-      this.socket = new socketGroupChat(this, _chat_user)
+        this.socket = new socketGroupChat(this, _chat_user)
     }
   },
   mounted: function () {
@@ -193,6 +195,7 @@ new Vue({
           alert('数据错误,请刷新页面.')
         }
       }
+      this.is_temp = true
       this.openTalk(uid, 'user')
     },
     // 发送好友验证
@@ -373,10 +376,11 @@ new Vue({
       }
     },
     // 聊天发送数据
-    toChat: function (toUid, msg) {
+    toChat: function (toUid, msg, is_temp) {
       if (this.socket !== null) {
-        this.socket._sendMsg(toUid, msg)
+        this.socket._sendMsg(toUid, msg, is_temp)
       }
+      this.is_temp = false
     },
     // 删除分组
     delGroup: function (gid, gtype) {

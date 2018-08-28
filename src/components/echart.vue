@@ -6,8 +6,8 @@
 			<div class="vue-chart-head">
 				<div class="vue_chat_kind">
 					<div class="vue_chat_div" @click="kindclick">
-						<span class="vue_chatkind_tubiao"></span>
-						<span class="vue_chatkind_name">种类</span>
+						<span :class="{vue_chatkind_tubiao:true,chooseIco:chooseTag==1}"></span>
+						<span :class="{vue_chatkind_name:true,choose:chooseTag==1}">种类</span>
 						<span class="vue_chat_jiantou"></span>
 					</div>
 					<!--下拉表-->
@@ -23,8 +23,8 @@
 				</div>
 				<div class="vue_chat_company">
 					<div class="vue_chat_div" @click="companyclick">
-						<span class="vue_company_tubiao"></span>
-						<span class="vue_chatkind_name">公司</span>
+						<span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
+						<span :class="{vue_chatkind_name:true,choose:chooseTag==2}">公司</span>
 						<span class="vue_chat_jiantou"></span>
 					</div>
 					<!--下拉表-->
@@ -41,8 +41,8 @@
 				</div>
 				<div class="vue_chat_people">
 					<div class="vue_chat_div" @click="peopleclick">
-						<span class="vue_people_tubiao"></span>
-						<span class="vue_chatkind_name">人员</span>
+						<span :class="{vue_people_tubiao:true,chooseIco:chooseTag==3}"></span>
+						<span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
 						<span class="vue_chat_jiantou"></span>
 					</div>
 					<!--下拉表-->
@@ -145,6 +145,7 @@
             peosplist:[],
             catalog:'乙二醇',
             isActive:false,
+            chooseTag:1,//选择标识
         }
     },
     mounted() {
@@ -162,16 +163,19 @@
   		this.kindshow=!this.kindshow,
   		this.companyshow=false,
   		this.peopleshow=false
+      this.chooseTag=1
   	},
   	companyclick: function (){
   		this.companyshow=!this.companyshow,
   		this.kindshow=false,
   		this.peopleshow=false
+      this.chooseTag=2
   	},
   	peopleclick: function (){
   		this.peopleshow=!this.peopleshow,
   		this.companyshow=false,
   		this.kindshow=false
+      this.chooseTag=3
   	},
 
     addcatalog(catalogItem,index){//种类切换

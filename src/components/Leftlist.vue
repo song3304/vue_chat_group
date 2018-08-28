@@ -17,7 +17,7 @@
       <p>大厅成员</p>
       <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
       <ul class="leftlist_people_ul">
-        <li v-for="(item,key,index) in searchData" @mouseleave="firendchat(key)" @mouseenter="firendchat(key)" >
+        <li v-for="(item,key,index) in searchData" @click="firendchat(key)">
           <div class="leftlist_people_photo"> <!--头像-->
             <img :src="item.img" alt="" />
           </div>
@@ -47,15 +47,32 @@
       <p class="vue_leftlist_line">{{onlineUserList[infoId].name}}</p>
       <p v-if="onlineUserList[infoId].plat=='match'" class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
       <p v-if="onlineUserList[infoId].plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>
-      <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].orgName}}</p>
+      <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].company_name}}</p>
       <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
-      <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id">
+      <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id" v-show="userList[infoId].friend_type!='friend'">
         <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
-        <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,'验证消息要改')">添加好友</span>
+        <span class="vue_leftlist_companysz_er" @click="openVerify">添加好友</span>
         <!--<p>聊天</p>-->
       </div>
 			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
 		</div>
+    <div class="vue_leftlist_tan" v-if="onlineUserList[infoId]" v-show="sendfirendtan">   <!--加好友弹窗-->
+      <img v-if="onlineUserList[infoId].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
+      <img v-if="onlineUserList[infoId].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+      <div class="vue_leftlist_img"><img :src="onlineUserList[infoId].img" alt="" /></div>
+      <p class="vue_leftlist_line verify">{{onlineUserList[infoId].name}}</p>
+      <p v-if="onlineUserList[infoId].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
+      <p v-if="onlineUserList[infoId].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+      <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].company_name}}</p>
+      <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
+      <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
+      <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id" v-show="userList[infoId].friend_type!='friend'">
+        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
+        <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,verifymsg)" style="color: #4385F5;">发送</span>
+        <!--<p>聊天</p>-->
+      </div>
+      <div class="vue_leftlist_close" @click="openVerify"><span></span></div>
+    </div>
 	</div>
 </template>
 
@@ -63,13 +80,15 @@
 	export default {
   	components:{},
   	// props:{},
-    props: ['onlineUserList','user'],
+    props: ['onlineUserList','user', 'userList'],
     data(){
   		return{
   			firendtan:false,
         searchKey:'',
         infoId:2,
 			  leftList:match_hall_cms,
+        sendfirendtan:false,
+        verifymsg:'',//验证信息
   		}
   	},
     computed: {
@@ -88,6 +107,10 @@
       }
     },
   methods: {
+    openVerify: function () {
+      this.firendtan = false
+      this.sendfirendtan = !this.sendfirendtan
+    },
     firendchat: function (key) {
       this.firendtan = !this.firendtan
       this.infoId = key
@@ -100,6 +123,8 @@
     },
     addFriend: function (otherUid, msg) {
       this.$emit('addFriendEvent', otherUid, msg)
+      this.verifymsg = ''
+      this.sendfirendtan = false
     }
   },
 	mounted() {

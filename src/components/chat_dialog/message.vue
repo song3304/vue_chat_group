@@ -89,7 +89,7 @@ export default {
             <li v-if="session.messages.length<1" class="vu_m-message-new">暂无最新消息！</li>
             <li v-for="item in session.messages">
                 <p class="vu_time"><span>{{item.date}}</span></p>
-                <div class="vu_main" :class="{ vu_self: item.userId === session.id }">
+                <div class="vu_main" :class="{ vu_self: item.userId === user.id}">
                     <img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.id].img" />
                     <div class="vu_text" v-html="textFormat(item.text)"></div>
                     <br clear="all"/>

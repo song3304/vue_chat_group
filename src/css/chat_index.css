@@ -40,6 +40,7 @@ ul {
 	/*padding:18% 0 0;*/
 	height:28%;
 	position: relative;
+  z-index: 99;
 }
 .vu_m-chat{
 	position: absolute;
@@ -67,9 +68,9 @@ ul {
 .vu_send{
 	float: left;
 	display: inline-block;
-	height:30px;
-	line-height: 30px;
-    width: 7%;
+	height:40px;
+	line-height: 40px;
+  width: 10%;
 	background-color: #fd3000;
 	font-size: 16px;
 	color: #FFFFFF;
@@ -176,6 +177,7 @@ ul {
 	background-color: rgba(46, 46, 46, 0.8);
 	/*opacity: 0.8;
 	z-index: 1000;*/
+  z-index: 99;
 }
 .vu_input-search{
 	position: absolute;
@@ -317,7 +319,7 @@ ul {
 	overflow: hidden;
 }
 .vu_m-list .vu_name{margin:11px 0 0 10px;font-size: 12px;text-align: left;color: #eeeeee;}
-.vu_m-list li{position: relative;height:60px;cursor: pointer;}
+.vu_m-list li{position: relative;height:60px;cursor: pointer;overflow: hidden;}
 .vu_m-list li:hover{background:  #525159;}
 .vu_m-list li:hover .vu_delet-li{
 	display: block;
@@ -946,9 +948,11 @@ ul {
 .vu_seemore{
 	position: absolute;
 	top:4px;
-	left:260px;
+	/*left:260px;*/
 	text-align: center;
 	cursor: pointer;
+  left: 50%;
+  margin-left: -40px;
 }
 .vu_seemore span{font-size:12px;color: #2089ff;float: left;}
 .vu_seemore p{
@@ -1021,14 +1025,16 @@ ul {
     border-left-color: #2089ff;
 }
 .vu_m-text {
-    height:15%;
+    height:20%;
     border-top: solid 1px #cccccc;
     padding-left:2%;
+    padding-top: 5px;
 }
 .vu_m-text textarea {
     /*padding: 27px 10px 45px 10px;*/
     /*margin:27px 0 0 10px;*/
-    height:30px;
+    height:40px;
+    line-height: 40px;
     width:82%;
     font-size: 14px;
     /*overflow-y:scroll;*/
@@ -1037,6 +1043,7 @@ ul {
     font-family: "Micrsofot Yahei";
     resize: none;
     padding: 0  0 0 5px;
+    padding-left: 20px;
    margin:0.6% 0 0 0;
    float: left;
 }
@@ -1325,6 +1332,8 @@ ul {
 	width: 100%;
 	height: 28.7%;
 	background:#101a29;
+  margin-top: 10px;
+  position: relative;
 }
 /*头切换选项*/
 .vue-chart-head>div{
@@ -1369,6 +1378,18 @@ ul {
 		border-right: 1px solid #172739;
 		cursor: pointer;
 	}
+  .vue_chat_div .choose{
+  color:#fd3000;
+  }
+  .vue_chatkind_tubiao.chooseIco{
+    background: url(/static/img/yiding.f14cb8c.png) -105px -34px;
+  }
+  .vue_company_tubiao.chooseIco{
+    background: url(/static/img/yiding.f14cb8c.png) -141px -34px;
+  }
+  .vue_people_tubiao.chooseIco{
+    background: url(/static/img/yiding.f14cb8c.png) -174px -34px;
+  }
 	.vue_chatkind_tubiao{
 		display: inline-block;
 		width:18px;
@@ -1563,9 +1584,9 @@ ul {
 }
 #vue_main_main{
 	float: left;
-	width: 65%;
+	width: 65.8%;
 	height: 100%;
-	margin-left: 19%;
+	margin-left: 18.6%;
 	margin-top: 40px;
 }
 .comactive{color: #4385f5!important;}
@@ -1678,7 +1699,7 @@ ul {
 	margin-top: 10px;
 	height:458px;
   overflow: auto;
-  width:206px;
+  /*min-width:206px;*/
 }
 .leftlist_people_name{
 	float: left;
@@ -1736,7 +1757,27 @@ ul {
 	border-bottom:1px solid #DDDDDD ;
 	font-size: 14px;
 	font-weight: 550;
-
+}
+.vue_leftlist_tan textarea{
+  width: 256px;height: 50px;margin-left: 30px;resize:none;line-height: 25px;
+  padding: 0 10px;
+}
+.vue_leftlist_line.verify{
+  padding: 30px 0 15px 0;
+}
+.vue_leftlist_companycuo.verify, .vue_leftlist_companyjiao.verify{
+  margin: 15px 0 10px 0;
+}
+.vue_leftlist_tan .verifyMsg{
+  width: 256px;height: 50px;margin-left: 30px;
+  border-top: 1px solid #DDDDDD;
+  line-height: 25px;
+  color: #666;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
 }
 .vue_leftlist_companysz{
 	position: absolute;

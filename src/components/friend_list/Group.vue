@@ -16,6 +16,7 @@ export default {
       namez:false,
       groupNew:false, //移动列表隐藏
       friendDel:false,//删除框隐藏
+      lookInfoTag:-1,//验证资料卡隐藏
     }
   },
   props: ['user', 'userList', 'companyList', 'group_type', 'followList','verifyMsg'],
@@ -48,6 +49,9 @@ export default {
 //    var el = event.currentTarget
 //    $('.vu_m-phone-img', $(el)).hide()
 //  },
+    lookInfo: function (index) {
+      this.lookInfoTag = index
+    },
     mouseLeave:function(event){
     	var el = event.currentTarget
     	$('.vu_m-phone-input', $(el)).hide()
@@ -211,13 +215,13 @@ export default {
   <ul class="vu_qun_fen">
   	<!--有新加好友时-->
   	<li>
-  			<div class="vu_link " @click="accordion">
+  			<div class="vu_link " @click="accordion" v-if="myVerify">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">新的好友</span>
           <span>{{onMyVerify}}/{{myVerify}}</span>
         </div>
       <ul class="vu_submenu vu_submenu_ul ">
-        <li class="vu_submenu-name" v-for="addfriList in verifyMsg" v-if="addfriList.to_uid==user.id">
+        <li class="vu_submenu-name" v-for="(addfriList,index) in verifyMsg" v-if="addfriList.to_uid==user.id">
           <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
             <img :src="userList[addfriList.uid].img" :class="{ 'vu_gray':!userList[addfriList.uid].isOnline} "/><!--class="gray "-->
             <!--//不在线，添加class=gray-->
@@ -226,18 +230,34 @@ export default {
             <a>{{addfriList.user_info.nickname}}</a>
             <p class="vue_submen_company">{{addfriList.message}}</p>
           </div>
-          <div class="vu_ren-add" @click="receive(addfriList.id,true)">接受</div>
-          <div class="vu_ren-add" @click="receive(addfriList.id,false)">拒绝</div>
+          <div class="vu_ren-add" @click="lookInfo(index)">查看</div>
+          <!--验证好友的资料卡-->
+          <div class="vue_leftlist_tan" style="left: 300px;top:40px;position:fixed" v-if="userList[addfriList.uid]" v-show="lookInfoTag==index">   <!--加好友弹窗-->
+            <img src="../../images/addfri_bg.png" alt="" />
+            <div class="vue_leftlist_img"><img :src="userList[addfriList.uid].img" alt="" /></div>
+            <p class="vue_leftlist_line verify">{{userList[addfriList.uid].name}}</p>
+            <p v-if="userList[addfriList.uid].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
+            <p v-if="userList[addfriList.uid].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+            <p class="vue_leftlist_companyname">所属公司：{{userList[addfriList.uid].company_name}}</p>
+            <p class="vue_leftlist_companyname">手机号：{{userList[addfriList.uid].phone||'无'}}</p>
+            <div class="verifyMsg">验证信息：{{addfriList.message}}</div>
+            <div class="vue_leftlist_companysz">
+              <span class="vue_leftlist_companysz_yi" @click="receive(addfriList.id,false)">拒绝</span>
+              <span class="vue_leftlist_companysz_er" @click="receive(addfriList.id,true)">接受</span>
+              <!--<p>聊天</p>-->
+            </div>
+            <div class="vue_leftlist_close" @click="lookInfo"><span></span></div>
+          </div>
         </li>
       </ul>
     </li>
   	<!--正常分组-->
-    <li v-for="companyItem in companyList">
+    <li v-for="(companyItem,index) in companyList">
         <div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_link vu_accordion_li': isCalling(companyItem.userIds, userList)}" @click="accordion">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
-        	<div class="vu_qun-name" @click="changefenzhu(companyItem)" @mouseleave="closefenzhu">
+        	<div class="vu_qun-name" @click="changefenzhu(companyItem)" @mouseleave="closefenzhu" v-if="index">
 		        	<ul class="vu_first_selt">
 			        		<li @click="Qundel($event,companyItem.groupId)">删除组</li>
 			        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
