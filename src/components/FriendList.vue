@@ -18,7 +18,7 @@
 	          <p @click="toggle">+</p>
 	          <ul v-show="groupShow">
 	            <li @click="createGroup('common')">创建新组</li>
-	            
+
 	          </ul>
 	        </div>-->
 	      </ul>
@@ -31,7 +31,7 @@
 	      	</div>
 	        <div class="vu_qunfen_yi">
 	          <!--p>普通组</p-->
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
+	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" :followList="followList" :verifyMsg="verifyMsg" @openChartEvent="openChat" @receiveFriendEvent="receiveFriend" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @moveFriendEvent="moveFriend"></groupPanel>
 	        </div>
 	        <!--div v-if="user.plat=='match'" class="vu_qunfen_er">
 	          <p>群发组</p>
@@ -40,7 +40,7 @@
 	      </div>
 	      <!--群组-->
 	      <companyPanel v-show="panelShow.groupShow" :user="user" :userList="userList" :companyList="companyList" @openChartEvent="openChat" @changeUserNameEvent="changeUserName"></companyPanel>
-	      
+
 	    </div>
 	    <!--搜索页面-->
 	    <searchDialog v-show="panelShow.searchShow" :searchList="searchList" @openChartEvent="openChat"></searchDialog>
@@ -59,7 +59,7 @@ import $ from 'jquery'
 
 export default {
   name: 'FriendList',
-  props: ['user', 'userList', 'companyList', 'groupList'],
+  props: ['user', 'userList', 'companyList', 'groupList', 'followList','verifyMsg'],
   data: function () {
     return {
       activeIndex: 0,
@@ -139,13 +139,13 @@ export default {
       this.$emit('openGroupEvent', type)
       this.groupShow = false
     },
-    openChat: function (uid) {
+    openChat: function (uid, idType) {
     	this.activeIndex = 0
 	    this.panelShow.chatShow = true
         this.panelShow.companyShow = false
         this.panelShow.groupShow = false
         this.panelShow.searchShow = false
-      this.$emit('openTalkEvent', uid)
+      this.$emit('openTalkEvent', uid, idType)
     },
     toggle: function (event) {
       event.stopPropagation()
@@ -153,6 +153,12 @@ export default {
     },
     changeUserName: function (data) {
       this.$emit('changeUserNameEvent', data)
+    },
+    receiveFriend: function (msgId, isAgree) {
+      this.$emit('receiveFriendEvent', msgId, isAgree)
+    },
+    moveFriend: function (friendId, groupId, toGroupId) {
+      this.$emit('moveFriendEvent', friendId, groupId, toGroupId)
     },
     chuangjian: function () {
       this.groupShow = false

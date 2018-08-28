@@ -15,10 +15,30 @@ export default {
       firstselt:false, //分组名称
       namez:false,
       groupNew:false, //移动列表隐藏
-      friendDel:false,//删除框隐藏  
+      friendDel:false,//删除框隐藏
     }
   },
-  props: ['user', 'userList', 'companyList', 'group_type'],
+  props: ['user', 'userList', 'companyList', 'group_type', 'followList','verifyMsg'],
+  computed: {
+    myVerify: function () {
+      var verifyCount = 0;
+      for (var index in this.verifyMsg){
+        if(this.verifyMsg[index].to_uid == this.user.id){
+          verifyCount ++;
+        }
+      }
+      return verifyCount;
+    },
+    onMyVerify: function () {
+      var onverifyC = 0;
+      for (var index in this.verifyMsg){
+        if(this.verifyMsg[index].to_uid == this.user.id && this.userList[this.verifyMsg[index].uid].isOnline){
+          onverifyC ++;
+        }
+      }
+      return onverifyC;
+    }
+  },
   methods: {
 //  mouseOver: function (event) {
 //    var el = event.currentTarget
@@ -40,18 +60,25 @@ export default {
     modifyUserName: function (event) {
       var el = event.currentTarget
       var userId = $(el).data('uid')
+      var groupId = $(el).data('gid')
       var userName = $(el).val()
+      userName = userName.replace(/^\s+|\s+$/g, '') // 去空格
       if (userName !== '') {
         this.userList[userId].name = userName
-        this.$emit('changeUserNameEvent', {userId: userId, userName: userName})
+        this.$emit('changeUserNameEvent', {friendId: userId, friendName: userName, groupId: groupId, type: 'user'})
       }
       // 回传提交保存
 
       $(el).hide()
     },
     openChat: function (uid) {
-      this.$emit('openChartEvent', uid)
+      this.$emit('openChartEvent', uid, 'user')
       $('.vu_m-list').show()
+    },
+    // 接收,拒绝好友
+    receive: function (msgId, isAgree) {
+      this.$emit('receiveFriendEvent', msgId, isAgree)
+      // 后续处理
     },
     changeQunName: function (event, groupId) { // 点击修改群分组名称
       event.stopPropagation()
@@ -120,26 +147,27 @@ export default {
       })
       return tempIds
     },
-    changefenzhu(companyItem){//分组设置    
+    changefenzhu(companyItem){//分组设置
 //    	if (companyItem.firstselt == false) {
 //    		console.log(3)
 //         this.$set(companyItem, "firstselt", true);
 //      } else {
 //      	console.log(345)
-//         companyItem.firstselt = !companyItem.firstselt;  
-//      } 
+//         companyItem.firstselt = !companyItem.firstselt;
+//      }
 				event.stopPropagation();
-				var el = event.currentTarget				
+				var el = event.currentTarget
 			  $('.vu_first_selt').hide()
-			  $('.vu_first_selt', $(el)).show()    	  
+			  $('.vu_first_selt', $(el)).show()
     },
-    nameSz:function(event){//划上头像出现弹窗    	
-			event.stopPropagation();	
-			var el = event.currentTarget				
+    nameSz:function(event){//划上头像出现弹窗
+			event.stopPropagation();
+			var el = event.currentTarget
 			$('.vue_name_sz').hide()
 			$('.vue_name_sz', $(el)).show()
     },
-    namemove:function(){
+    namemove:function (friendId, groupId, toGroupId) {
+      this.$emit('moveFriendEvent', friendId, groupId, toGroupId)
     	$('.vue_name_sz').hide()
     	this.groupNew=true
     },
@@ -156,7 +184,7 @@ export default {
     	this.friendDel=false
     },
     closefenzhu:function(){
-    	$('.vu_first_selt').hide()    	
+    	$('.vu_first_selt').hide()
     }
   },
   filters: {
@@ -168,7 +196,7 @@ export default {
   },
   mounted() {
 //  $(".vu_qunfen_yi").niceScroll({
-//  	cursorcolor: "#525159", // 改变滚动条颜色，使用16进制颜色值        
+//  	cursorcolor: "#525159", // 改变滚动条颜色，使用16进制颜色值
 //      cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
 //      cursorwidth: "5px", // 滚动条的宽度，单位：便素
 //      background: "", // 轨道的背景颜色
@@ -186,22 +214,23 @@ export default {
   			<div class="vu_link " @click="accordion">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">新的好友</span>
-        	<span>1/2</span>        	
+          <span>{{onMyVerify}}/{{myVerify}}</span>
         </div>
-        <ul class="vu_submenu vu_submenu_ul ">
-          <li class="vu_submenu-name">
-            <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
-              <img /><!--class="gray "-->
-              <!--//不在线，添加class=gray-->
-            </div>
-            <div class="vu_submenu_com">
-            	<a>小王</a>
-            	<p class="vue_submen_company">加好友，验证信息</p>
-            </div>
-            <div class="vu_ren-add">接受</div>
-          </li>
-       </ul>
-  	</li>
+      <ul class="vu_submenu vu_submenu_ul ">
+        <li class="vu_submenu-name" v-for="addfriList in verifyMsg" v-if="addfriList.to_uid==user.id">
+          <div class="vu_m-touxiang"> <!--有消息头像动加类名 touxiang-->
+            <img :src="userList[addfriList.uid].img" :class="{ 'vu_gray':!userList[addfriList.uid].isOnline} "/><!--class="gray "-->
+            <!--//不在线，添加class=gray-->
+          </div>
+          <div class="vu_submenu_com">
+            <a>{{addfriList.user_info.nickname}}</a>
+            <p class="vue_submen_company">{{addfriList.message}}</p>
+          </div>
+          <div class="vu_ren-add" @click="receive(addfriList.id,true)">接受</div>
+          <div class="vu_ren-add" @click="receive(addfriList.id,false)">拒绝</div>
+        </li>
+      </ul>
+    </li>
   	<!--正常分组-->
     <li v-for="companyItem in companyList">
         <div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_link vu_accordion_li': isCalling(companyItem.userIds, userList)}" @click="accordion">
@@ -214,14 +243,14 @@ export default {
 			        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
 		        	</ul>
         	</div>
-        	
+
         	<!--<span title="点击修改群名称" class="vu_qun-name" @click="changeQunName($event,companyItem.groupId)"></span>-->
         	<!--<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>-->
-        	
+
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
-          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseleave="mouseLeave">
-            <div   @mouseenter="nameSz"> <!--有消息头像动加类名 touxiang-->
+          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseleave="mouseLeave" @mouseenter="nameSz">
+            <div> <!--有消息头像动加类名 touxiang-->
             	<div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}">
               	<img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               </div>
@@ -231,27 +260,27 @@ export default {
 			          	<li @click="delPen($event,companyItem.groupId,userItem)">删除好友</li>  <!--@click="delfri"--><!--盯盘好友不可删除-->
 			          	<li @mouseenter="vueMove" @mouseleave="vueLeave">移动到<span></span>
 			          			<ul class="vue_name_move" v-show="groupNew">
-						          		<li v-for="companyItem in companyList" @click="namemove">{{companyItem.groupName}}</li>
-						          </ul>			          	
+						          		<li v-for="moveItem in companyList" v-if="companyItem.groupId !== moveItem.groupId" @click="namemove(userItem,companyItem.groupId,moveItem.groupId)">{{moveItem.groupName}}</li>
+						          </ul>
 			          	</li>
 			          	<li @click="changeName">重命名</li>
-			          	<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
+			          	<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
 		          	</ul>
             </div>
             <div class="vu_submenu_com">
-            	<a>{{userList[userItem].name}}</a>
-            	<span></span> <!--已盯盘就显示图标-->
-            	<p class="vue_submen_company">所属公司名称</p>
+            	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}</a>
+            	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
+            	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
             </div>
-            
+
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
            <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>--> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
-            <!--<p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p> <!--盯盘好友不可删除-->-->
-            
-	          
+            <!--<p class="vu_ren-dele" @click="delPen($event,companyItem.groupId,userItem)"></p> <!--盯盘好友不可删除-->
+
+
           </li>
-          
+
        </ul>
       </li>
       <!--//删除好友-->
@@ -265,7 +294,7 @@ export default {
 	  			<span class="vue_del_friend_que" @click="delConfirm">确认</span>
 	  			<span class="vue_del_friend_xiao" @click="closedelfri">取消</span> <!--@click="closedelfri"-->
 	  		</div>
-      	
+
       </div>
       <!--//修改群分名字-->
       <div class="vu_qunzu_name" v-show="Qunfen">

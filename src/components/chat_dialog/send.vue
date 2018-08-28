@@ -8,12 +8,11 @@ export default {
   },
   methods: {
     inputing: function (e) {
-    	
+
       if (e.ctrlKey) {
-        this.text = this.text + '\n'     
-        
+        this.text = this.text + '\n'
+
       } else {
-      	console.log(234)
         // 输入内容为空 不提交
         if (this.text.replace(/(^\s*)|(\s*$)/g, '') === '') return
         // this.session.messages.push({
@@ -23,7 +22,7 @@ export default {
         //   self: true,
         //   is_read: true
         // })
-        this.$emit('chatEvent', this.session.userId, this.text)
+        this.$emit('chatEvent', this.session.id, this.text)
         this.text = ''
       }
     },
@@ -41,8 +40,8 @@ export default {
 
 <template>
     <div class="vu_m-text" v-if="session!=null">
-    		<!--<div class="vu_history" title="历史记录" @click="openHistoryDialog(session.userId)"><img src="../../images/lishijilu.png" alt="" /></div>-->
+    		<!--<div class="vu_history" title="历史记录" @click="openHistoryDialog(session.id)"><img src="../../images/lishijilu.png" alt="" /></div>-->
         <textarea placeholder="" v-model="text" @click="toRead(session)" @keyup.enter="inputing" @keyuo.13="toRead(session)"></textarea>
-        <span class="vu_send" @click="inputing">发送</span><!--<span class="vu_history" @click="openHistoryDialog(session.userId)">历史记录<p></p></span>-->
+        <span class="vu_send" @click="inputing">发送</span><!--<span class="vu_history" @click="openHistoryDialog(session.id)">历史记录<p></p></span>-->
     </div>
 </template>

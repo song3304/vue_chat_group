@@ -80,16 +80,16 @@ new Vue({
   components: {friendList, chatdialog, historylist, groupdialog, qunnew,echart,leftlist},
   template: `<div id="chat_app">
   				<div class="vue-head"><span></span></div>
-		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></friendList>
+		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
 		    <div id="vue_main_main">
 		    <echart></echart>
-		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
+		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
-				<leftlist :onlineUserList="onlineUserList"></leftlist>
+				<leftlist :user="user" :onlineUserList="onlineUserList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend"></leftlist>
 				</div>`,
   created: function () {
     // 初始化数据 套接字
@@ -177,15 +177,38 @@ new Vue({
         this.socket._create_group(data.groupName, data.groupType, data.userIds)
       }
     },
+    // 打开临时会话
+    openTempTalk: function (uid) {
+      // 将在线用户添加到用户列表
+      if (!this.userList.hasOwnProperty(uid)) {
+        if (this.onlineUserList.hasOwnProperty(uid)) {
+          var userList = this.userList
+          var userItem = this.onlineUserList[uid]
+          userItem.isCalling = 0
+          userItem.isOnline = 1
+          userItem.friend_type = 'online'
+          userList[uid] = userItem
+          this.updateData({userList: userList})
+        } else {
+          alert('数据错误,请刷新页面.')
+        }
+      }
+      this.openTalk(uid, 'user')
+    },
+    // 发送好友验证
+    addFriend: function (uid, msg) {
+      this.socket._addFreind(uid, msg);
+    },
     // 打开对话框
-    openTalk: function (uid) {
-      if (this.sessionList.some(function (item) { return item.userId === uid })) {
-        this.sessionList.sort(function (first, second) { if (first.userId === uid) { return -1 } else if (second.userId === uid) { return 1 } else { return 0 } })
+    openTalk: function (uid, idType) {
+      if (this.sessionList.some(function (item) { return idType === item.type && item.id === uid })) {
+        this.sessionList.sort(function (first, second) { if (idType === first.type && first.id === uid) { return -1 } else if (idType === second.type && second.id === uid) { return 1 } else { return 0 } })
       } else {
-        var delIndex = this.delSessionList.findIndex(item => item.userId === uid)
+        var delIndex = this.delSessionList.findIndex(item => idType === item.type && item.id === uid)
         if (delIndex < 0) {
           var addSessionData = {
-            userId: uid,
+            id: uid,
+            type: idType,
             has_send_today: false,
             messages: []
           }
@@ -196,7 +219,7 @@ new Vue({
           this.sessionList.unshift(findSessionData)
         }
       }
-      if (this.userList[uid].isCalling === true) {
+      if (idType === 'user' && this.userList[uid].isCalling === true) {
         this.userList[uid].isCalling = false
       }
       this.sessionIndex = 0
@@ -228,16 +251,24 @@ new Vue({
         }
       }
     },
+    // 接收拒绝验证
+    receiveFriend: function (msgId, isAgree) {
+      this.socket._toReceiveFreind(msgId, isAgree)
+    },
+    // 移动用户到其他分组
+    moveFriend: function (friendId, groupId, toGroupId) {
+      this.socket._moveFriendGroup(friendId, groupId, toGroupId);
+    },
     // 修改用户名
     changeUserName: function (data) {
-      // this.$sockect.emit('changeUserName',data)
+      this.socket._changeGroupUserName(data);
     },
     // 更新已读
-    toRead: function (msgIds, userId) {
+    toRead: function (msgIds, userId, type) { // type:[single_chat->个人消息,group_chat->群聊消息]
       this.userList[userId].isCalling = false
       if (msgIds.length > 0) {
-        if (this.socket !== null) {
-          this.socket._toReadMsg(userId, msgIds)
+        if (this.socket !== null) { // type = [user or qun]
+          this.socket._toReadMsg(userId, msgIds, type === 'user' ? 'single_chat' : 'group_chat')
         }
       }
     },
@@ -323,7 +354,7 @@ new Vue({
       if (this.socket !== null) {
         var startTime = this._format(new Date(), 'yyyy-MM-dd hh:mm:ss')
         session.messages.forEach(message => { startTime = startTime > message.date ? message.date : startTime })
-        this.socket._getTodayMsg(session.userId, startTime)
+        this.socket._getTodayMsg(session.id, startTime, session.type === 'user' ? 'single_chat' : 'group_chat')
       }
     },
     // 获取历史数据
