@@ -12,12 +12,12 @@
 					</div>
 					<!--下拉表-->
 					<ul class="vue_kind_ul" v-show="kindshow" >
-					    <li v-for="(catalogItem,index) in catalogList" v-bind:catalog_id='catalogItem.id' @click="addcatalog(catalogItem,index)">{{catalogItem.name}}</li>
+					    <li v-for="(catalogItem,index) in catalogList"  @click="addcatalog(catalogItem,index)">{{catalogItem.name}}</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_kind_species">
 						<li>
-							<span>{{catalog}}</span>
+							<span>{{selectCatalogName}}</span>
 						</li>
 					</ul>
 				</div>
@@ -29,12 +29,12 @@
 					</div>
 					<!--下拉表-->
 					<ul class="vue_company_ul" v-show="companyshow">
-						<li v-for="(companyitem,index) in companyList" v-bind:company_id='companyitem.id' @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+						<li v-for="(companyitem,index) in companyList"  @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_company_species">
 						<li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" >
-							<span>{{comspitem.name}}</span>
+							<span @click="changecom(comspitem,comindex)">{{comspitem.name}}</span>
 							<p @click="delcom(comindex)"><span></span></p>
 						</li>
 					</ul>
@@ -47,45 +47,35 @@
 					</div>
 					<!--下拉表-->
 					<ul class="vue_people_ul" v-show="peopleshow">
-						<li v-for="(peopleitem,index) in peopleList" v-bind:user_id='peopleitem.id' @click="addpeo(peopleitem,index)">
-						    <span><img src="../images/15.png" alt="" /></span>
+						<li v-for="(peopleitem,index) in peopleList"  @click="addpeo(peopleitem,index)">
+						    <!--<span><img src="../images/15.png" alt="" /></span>-->
+						    <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
 						    <p>{{peopleitem.username}}</p>
 						</li>
 					</ul>
 					<!--右边切换选项-->
 					<ul class="vue_company_species vue_people_species">
-						<li v-for="(peospitem,peoindex) in peosplist" @click="delpeo(peoindex)" :class="{'comactive': peospitem.isActive}">
-							<span>{{peospitem.username}}</span>
-							<p><span></span></p>
+						<li v-for="(peospitem,peoindex) in peosplist"  :class="{'peoactive': peospitem.isActive}">
+							<span @click="changepeo(peospitem,peoindex)">{{peospitem.username}}</span>
+							<p @click="delpeo(peoindex)"><span></span></p>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 
-		<!--图表展示-->
-		<!----<div class="vue_chat_main">
-			<div id='vue-myChart' ></div>
-		</div>---->
 
-
-
-
-    <!----ryt 曲线图 start-->
-
+        <!----曲线图表 start---->
         <div id="myTabContent" class="tab-content tab_mm">
             <div v-for='(catalog,index) in catalogList' class="tab-pane fade in active" v-bind:id="'pan_'+catalog.id" v-show="catalog.show==1?true:false">
                 <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
                 <div class="clear"></div>
-
                 <div class="ckdp_icon"><a href="javascript:;"></a></div>
             </div>
         </div>
+	    <!----曲线图表 end---->
 
-	<!---ryt 曲线图 end--->
-
-
-	<!--实时报价信息 start-->
+	    <!----实时报价信息 start---->
         <div class="vue-chart-foot">
             <div class="vue-realtime">
                 <div class="vue-realtime-time">
@@ -117,7 +107,9 @@
                 <br clear="all"/>
             </div>
         </div>
-    <!--实时报价信息 end-->
+        <!----实时报价信息 end---->
+
+
 	  </div>
 	</div>
 
@@ -132,95 +124,126 @@
 	//require('echarts/lib/component/tooltip')
 	//require('echarts/lib/component/title')
 	export default {
-    name: 'hello',
-    data() {
-        return {
-            kindshow:false,
-            companyshow:false,
-            peopleshow:false,
-            catalogList:match_hall_catalogs,
-            companyList:match_hall_companies,
-            peopleList:[{username:''}],
-            comsplist:[],
-            peosplist:[],
-            catalog:'乙二醇',
-            isActive:false,
-        }
-    },
-    mounted() {
-        $(".vue-tealtime-time").niceScroll({
-            cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
-            cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-            cursorwidth: "5px", // 滚动条的宽度，单位：便素
-            background: "", // 轨道的背景颜色
-            cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-            autohidemode: false, // 隐藏滚动条的方式, 可用的值:
-        });
-    },
-  methods: {
-  	kindclick: function (){
-  		this.kindshow=!this.kindshow,
-  		this.companyshow=false,
-  		this.peopleshow=false
-  	},
-  	companyclick: function (){
-  		this.companyshow=!this.companyshow,
-  		this.kindshow=false,
-  		this.peopleshow=false
-  	},
-  	peopleclick: function (){
-  		this.peopleshow=!this.peopleshow,
-  		this.companyshow=false,
-  		this.kindshow=false
-  	},
-
-    addcatalog(catalogItem,index){//种类切换
-        this.catalogList.map((v,i)=>{
-            if(index!=i){
-                v.show=0
-            }else{
-                v.show=1;
+        name: 'hello',
+        data() {
+            return {
+                kindshow:false,
+                companyshow:false,
+                peopleshow:false,
+                catalogList:match_hall_catalogs,//种类
+                companyList:match_hall_companies,//公司
+                peopleList:[{username:'请先选择公司'}],//人员
+                comsplist:[],
+                peosplist:[],
+                selectCatalogName:match_hall_catalogs[0].name,
+                selectPid:match_hall_catalogs[0].id,
+                selectUid:0,
+                selectCid:'',
+                isActive:false,
             }
-        });
-        this.kindshow=false;
-        this.catalog=catalogItem.name;
-    },
+        },
+        mounted() {
+            $(".vue-tealtime-time").niceScroll({
+                cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
+                cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+                cursorwidth: "5px", // 滚动条的宽度，单位：便素
+                background: "", // 轨道的背景颜色
+                cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+                autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+            });
+        },
+        methods: {
+            kindclick: function (){
+                this.kindshow=!this.kindshow,
+                this.companyshow=false,
+                this.peopleshow=false
+            },
+            companyclick: function (){
+                this.companyshow=!this.companyshow,
+                this.kindshow=false,
+                this.peopleshow=false
+            },
+            peopleclick: function (){
+                this.peopleshow=!this.peopleshow,
+                this.companyshow=false,
+                this.kindshow=false
+            },
 
-    addcom(companyitem,index){//公司添加到右侧
-        this.peopleList=companyitem.members;//联动--人员下拉框
-    	this.companyshow=false
-		let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
-        if (selectedItem) {
-            $('.vue_company_species>li').attr('class','')
-        	$('.vue_company_species>li').eq(index).attr('class','comactive')
-        } else {
-        	$('.vue_company_species>li').attr('class','')
-           	this.comsplist.push({
-             	...companyitem ,isActive:true//,isActive:true
-        	})
-        };
-    },
-    delcom(comindex){//公司删除
-    	this.comsplist.splice(comindex,1);
-    },
-    addpeo(peopleitem,index){//人员追加到右侧
-    	this.peopleshow=false
-    	let peoedItem = this.peosplist.filter(v => v.name === peopleitem.name)[0];
-        if (peoedItem) {
-        	$('.vue_people_species>li').attr('class','')
-        	$('.vue_people_species>li').eq(index).attr('class','comactive')
-        } else {
-        	$('.vue_people_species>li').attr('class','')
-           	this.peosplist.push({
-             	...peopleitem,isActive:true
-        	})
-        };
-    },
-    delpeo(peoindex){//人员删除
-    	this.peosplist.splice(peoindex,1);
+            addcatalog(catalogItem,index){//种类切换
+                this.catalogList.map((v,i)=>{
+                    if(index!=i){
+                        v.show=0
+                    }else{
+                        v.show=1;
+                    }
+                });
+                this.kindshow=false;
+                this.selectCatalogName=catalogItem.name;
+                this.selectPid=catalogItem.id;
+                refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            },
+            addcom(companyitem,index){//公司添加到右侧
+                this.peopleList=companyitem.members;//联动人员下拉框
+                this.selectCid=companyitem.id;
+                this.selectUid=0;
+                this.peosplist=[];
+                this.companyshow=false
+                let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
+                if (selectedItem) {
+                    $('.vue_company_species>li').attr('class','')
+                    $('.vue_company_species>li').eq(index).attr('class','comactive')
+                } else {
+                    $('.vue_company_species>li').attr('class','')
+                    this.comsplist.push({
+                        ...companyitem ,isActive:true
+                    })
+                };
+                refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            },
+            changecom(comspitem,comindex){//公司切换
+                this.selectCid=comspitem.id;
+                this.peopleList=comspitem.members;//联动人员下拉框
+                this.peosplist=[];
+                $('.vue_company_species>li').attr('class','');
+                $('.vue_company_species>li').eq(comindex).attr('class','comactive');
+                refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            },
+            delcom(comindex){//公司删除
+                this.comsplist.splice(comindex,1);
+                this.peopleList=[{username:'请先选择公司'}];//清空人员下拉框
+                this.peosplist=[];
+                this.selectCid='';
+                this.selectUid=0;
+                refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            },
+            addpeo(peopleitem,index){//人员追加到右侧
+                this.peopleshow=false
+                this.selectUid=peopleitem.id;
+                let peoedItem = this.peosplist.filter(v => v.nickname === peopleitem.nickname)[0];
+                if (peoedItem) {
+                    $('.vue_people_species>li').attr('class','')
+                    $('.vue_people_species>li').eq(index).attr('class','peoactive')
+                } else {
+                    $('.vue_people_species>li').attr('class','')
+                    this.peosplist.push({
+                        ...peopleitem,isActive:true
+                    })
+                };
+                refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            },
+            changepeo(peospitem,peoindex){//人员切换
+                this.selectUid=peospitem.id;
+                $('.vue_people_species>li').attr('class','');
+                $('.vue_people_species>li').eq(peoindex).attr('class','peoactive');
+                refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            },
+            delpeo(peoindex){//人员删除
+                this.peosplist.splice(peoindex,1);
+                this.selectUid=0;
+                refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            }
+        }
     }
-  }
-}
 </script>
 
 <style>
