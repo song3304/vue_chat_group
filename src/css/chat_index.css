@@ -1340,13 +1340,14 @@ ul {
 	height: 33.3%;
 	border-bottom:1px solid #172739;
 	position: relative;
-  clear: both;
+    clear: both;
 }
 .vue-chart-head>div ul{
-  margin-bottom:0;
+	margin-bottom: 0;
 }
 .vue-chart-head>div p{
-  margin:0;
+	margin: 0;
+  clear: both;
 }
 	.vue_kind_ul{
 		position: absolute;
@@ -1589,7 +1590,7 @@ ul {
 	margin-left: 18.6%;
 	margin-top: 40px;
 }
-.comactive{color: #4385f5!important;}
+.comactive,.peoactive{color: #4385f5!important;}
 /*左边列表start*/
 #leftlist{
 	/*position: absolute;
