@@ -11,15 +11,15 @@
             <div class="vu_link" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
             <ul class="vu_submenu vu_submenu_ul ">
               <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current':in_array(userItem,formData.userIds)}">
-                <div class="vu_m-touxiang"> 
+                <div class="vu_m-touxiang">
                   <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/>
-                  
+
                 </div>
                 <a>{{userList[userItem].name}}</a>
 
                 <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
               </li>
-            </ul>            
+            </ul>
           </li>
         </ul>
       </div>-->
@@ -35,7 +35,7 @@
         <span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>
       </div>-->
       <!--//设置组名称-->
-      <div class="vu_fenzu_name"  @mousedown="jinzhi" id="vu_div">
+      <div class="vu_fenzu_name"  @mousedown="jinzhi" id="vu_div" style="z-index: 99;position: fixed">
         <div class="vu_fen_zu_title">
           <span>设置组名称</span>
           <p class="vu_fen_zu_tier" @click="close"><span></span></p>
@@ -80,16 +80,16 @@ export default {
       this.formData.groupName=''
     },
     closeGroup: function () {
-      this.panelShow.setGroupShow = false   
+      this.panelShow.setGroupShow = false
       this.formData.groupName=''
     },
 //  checkAll: function (event, userIds) {
 //    var el = event.currentTarget
-//    var opt = $(el).html()      
-//    if (opt === '+') {     	
+//    var opt = $(el).html()
+//    if (opt === '+') {
 //      // 添加formData.userIds
 //      $(el).html('-')
-//      el.title='点击取消全选';        
+//      el.title='点击取消全选';
 //      for (var i = 0, lg = userIds.length; i < lg; i++) {
 //        if (!this.in_array(userIds[i], this.formData.userIds)) {
 //          this.formData.userIds.push(userIds[i])
@@ -102,8 +102,8 @@ export default {
 //      // 删除formData.userIds
 //      $(el).html('+')
 //      el.title='点击全选';
-//      this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))       
-//    }    
+//      this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
+//    }
 //  },
 //  submitUser: function () {
 //    if (this.formData.userIds.length < 1) {
@@ -116,7 +116,7 @@ export default {
 //    if (this.formData.userIds.length < 1) {
 //      alert('请先选择人员，再创建组')
 //      return false
-//    } else 
+//    } else
       if (this.formData.groupName === '') {
         this.placeholder = '请输入分组名称，再提交'
         return false

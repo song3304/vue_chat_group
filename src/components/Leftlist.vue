@@ -17,13 +17,13 @@
       <p>大厅成员</p>
       <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
       <ul class="leftlist_people_ul">
-        <li v-for="(item,key,index) in searchData" @click="firendchat(key)">
+        <li v-for="(item,key,index) in searchData" @click="firendchat(key)" v-if="item.plat!='user'">
           <div class="leftlist_people_photo"> <!--头像-->
             <img :src="item.img" alt="" />
           </div>
           <span v-if="item.plat=='match'" class="leftlist_people_cuo"></span> <!--撮合公司-->
           <span v-if="item.plat=='trade'" class="leftlist_people_jiao"></span> <!--交易公司-->
-          <div class="leftlist_people_name" style="height:206px;"> <!--名称-->
+          <div class="leftlist_people_name ellipsis"> <!--名称-->
             <span>{{item.name}}</span>
             <p>{{item.company_name}}</p>
           </div>
@@ -49,7 +49,7 @@
       <p v-if="onlineUserList[infoId].plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>
       <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].company_name}}</p>
       <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
-      <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id" v-show="userList[infoId].friend_type!='friend'">
+      <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id" v-show="isNull||userList[infoId]==undefined||userList[infoId].friend_type!='friend'">
         <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
         <span class="vue_leftlist_companysz_er" @click="openVerify">添加好友</span>
         <!--<p>聊天</p>-->
@@ -66,7 +66,7 @@
       <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].company_name}}</p>
       <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
       <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
-      <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id" v-show="userList[infoId].friend_type!='friend'">
+      <div class="vue_leftlist_companysz">
         <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
         <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,verifymsg)" style="color: #4385F5;">发送</span>
         <!--<p>聊天</p>-->
@@ -104,6 +104,12 @@
           }
           return this.searchList;
         }
+      },
+    isNull: function() {
+      for(var key in this.userList) {
+        return false;
+      }
+        return true;
       }
     },
   methods: {

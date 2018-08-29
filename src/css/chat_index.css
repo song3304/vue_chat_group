@@ -80,7 +80,7 @@ ul {
 }
 .vu_history{
 	width:6%;
-	height:30px;
+	height:40px;
 	text-align: center;
 	line-height: 18px;
 	font-size: 12px;
@@ -89,7 +89,7 @@ ul {
 	background: #f8f4f2;
 	margin: 0.6% 0 0 0;
 }
-.vu_history img{margin-top:6px;}
+.vu_history img{margin-top:10px;}
 /*.vu_history:hover,.vu_history:active,.vu_history:focus{
 	background-color: #dddddd;
 }
@@ -1705,6 +1705,12 @@ ul {
 .leftlist_people_name{
 	float: left;
 	margin: 5px 0 0 10px;
+}
+.leftlist_people_name.ellipsis{
+  width: 65%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .leftlist_people_name span{color: #333333;font-size: 14px;font-weight: 550;}
 .leftlist_people_name p{font-size: 12px;color: #666666;margin-top:2px;}

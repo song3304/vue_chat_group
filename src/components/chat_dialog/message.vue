@@ -82,7 +82,7 @@ export default {
 
 <template>
     <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)" @scroll="messscroll(session)">
-    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today&& session.type=='user'" @click="todayMsg(session)">
+    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today&& session.type=='user'&&session.messages.length>3" @click="todayMsg(session)">
     				<p></p><span>查看更多</span>
     		</div>
         <ul v-if="session!=null && session.type=='user'">

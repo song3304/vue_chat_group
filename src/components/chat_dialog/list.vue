@@ -102,6 +102,7 @@ export default {
         <div v-show="isUserMsg==0" style="color:#ccc; text-align:center;line-height:50px;">
             暂无聊天消息
         </div>
+        <!--<div class="vue_qun_offer"><p></p> <span>群发报价</span></div>-->
     </div>
 </template>
 

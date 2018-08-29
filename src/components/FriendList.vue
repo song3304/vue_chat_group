@@ -45,10 +45,10 @@
 	    <!--搜索页面-->
 	    <searchDialog v-show="panelShow.searchShow" :searchList="searchList" @openChartEvent="openChat"></searchDialog>
 	    <!--群发报价-->
-	    <!--<div class="vue_qun_offer">
-	    	<p></p>
-	    	<span>群发报价</span>
-	    </div>-->
+	    <!--<div class="vue_qun_offer">-->
+	    	<!--<p></p>-->
+	    	<!--<span>群发报价</span>-->
+	    <!--</div>-->
 	</div>
 </template>
 <script>
