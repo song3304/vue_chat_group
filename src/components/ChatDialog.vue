@@ -10,7 +10,9 @@ export default {
   props: ['user', 'userList', 'sessionList', 'sessionIndex','groupList'],
   data: function () {
     return {
-      search: ''
+      search: '',
+      addFriTag:false,//添加好友标识
+      verifymsg:'',//验证信息
     }
   },
   computed: {
@@ -30,9 +32,9 @@ export default {
     }
   },
   methods: {
-  	vueshrink:function(){
-
-  	},
+    openVerify: function () {
+      this.addFriTag = !this.addFriTag
+    },
     toRead: function (value) {
       var msgIds = []
       value.messages.forEach(function (item) {
@@ -56,6 +58,12 @@ export default {
     },
     toChat: function (toUid, msg) {
       this.$emit('chatEvent', toUid, msg)
+    },
+    //添加好友
+    addFriend: function (otherUid, msg) {
+      this.$emit('addFriendEvent', otherUid, msg)
+      this.verifymsg = ''
+      this.addFriTag = false
     }
  },
  mounted(){
@@ -80,13 +88,30 @@ export default {
         		<span class="vu_m-na-name">{{session!=null ? userList[session.id].name : ''}}</span>
         		<p class="vu_m-new_com">公司：{{userList[session.id].company_name}}</p>
         		<p class="vu_m-new_phone">电话：<span>{{userList[session.id].phone}}</span></p>
-        		<div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'">加为好友</div>  <!--//加好友-->
+        		<div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" @click="openVerify">加为好友</div>  <!--//加好友-->
         </div>
         <div class="vu_m-main" >
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
             <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
         </div>
       </div>
+        <!--<div class="vue_leftlist_tan addFriLeft" v-if="session!=null" v-show="addFriTag">   &lt;!&ndash;加好友弹窗&ndash;&gt;-->
+          <!--<img v-if="userList[session.id].plat=='match'" src="../images/cuo_bg.png" alt="" /> &lt;!&ndash;撮合公司&ndash;&gt;-->
+          <!--<img v-if="userList[session.id].plat=='trade'" src="../images/jiao_bg.png" alt="" />   &lt;!&ndash; 交易公司 &ndash;&gt;-->
+          <!--<div class="vue_leftlist_img"><img :src="userList[session.id].img" alt="" /></div>-->
+          <!--<p class="vue_leftlist_line verify">{{userList[session.id].name}}</p>-->
+          <!--<p v-if="userList[session.id].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>-->
+          <!--<p v-if="userList[session.id].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>-->
+          <!--<p class="vue_leftlist_companyname">所属公司：{{userList[session.id].company_name}}</p>-->
+          <!--<p class="vue_leftlist_companyname">手机号：{{userList[session.id].phone||'无'}}</p>-->
+          <!--<textarea v-model="verifymsg" placeholder="验证信息："></textarea>-->
+          <!--<div class="vue_leftlist_companysz">-->
+            <!--<span class="vue_leftlist_companysz_yi" @click="openVerify">取消</span>-->
+            <!--<span class="vue_leftlist_companysz_er" @click="addFriend(session.id,verifymsg)" style="color: #4385F5;">发送</span>-->
+            <!--&lt;!&ndash;<p>聊天</p>&ndash;&gt;-->
+          <!--</div>-->
+          <!--<div class="vue_leftlist_close" @click="openVerify"><span></span></div>-->
+        <!--</div>-->
     </div>
  </div>
 
