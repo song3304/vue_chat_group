@@ -1980,15 +1980,15 @@ ul {
 }
 /*群发报价start*/
 .vue_qun_offer{
-	position: absolute;
-	left:15%;
+	position: fixed;
+	left:4%;
 	bottom:23px;
 	width: 162px;
 	height: 40px;
 	line-height: 40px;
 	background-color: #4385f5;
 	border-radius: 5px;
-	z-index: 30;
+	z-index: 999;
 	text-align: center;
 	cursor: pointer;
 }

@@ -70,7 +70,9 @@ new Vue({
     // socket
     socket: null,
     //是否是临时消息
-    is_temp: false
+    is_temp: false,
+    //乙二醇种类
+    chooseCatalog:0
   },
   // sockets: {
   // 所有sockect 事件放在这
@@ -84,7 +86,7 @@ new Vue({
   				<div class="vue-head"><span></span></div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
 		    <div id="vue_main_main">
-		    <echart></echart>
+		    <echart :chooseCatalog="chooseCatalog"></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat"></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>

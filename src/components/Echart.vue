@@ -118,6 +118,10 @@
             </div>
         </div>
     <!--实时报价信息 end-->
+
+      <!-- 群发报价 -->
+
+      <div class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
 	  </div>
 	</div>
 
@@ -146,6 +150,7 @@
             catalog:'乙二醇',
             isActive:false,
             chooseTag:1,//选择标识
+            chooseCatalog:0,//选中种类
         }
     },
     mounted() {
@@ -159,6 +164,17 @@
         });
     },
   methods: {
+    //群发种类
+    qunFa: function () {
+      // alert(this.chooseCatalog)
+      if(this.chooseCatalog!=0){
+        // window.location.href="/match/offer/index.html?catalog_id="+this.chooseCatalog;
+        // window.open("/match/offer/index.html?catalog_id="+this.chooseCatalog)
+        self.location.href="/match/offer/index.html?catalog_id="+this.chooseCatalog;
+      }else{
+        alert('请选择种类');
+      }
+    },
   	kindclick: function (){
   		this.kindshow=!this.kindshow,
   		this.companyshow=false,
@@ -188,6 +204,8 @@
         });
         this.kindshow=false;
         this.catalog=catalogItem.name;
+        this.chooseCatalog = catalogItem.catalog_id;
+        console.log(catalogItem)
     },
 
     addcom(companyitem,index){//公司添加到右侧
