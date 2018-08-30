@@ -220,6 +220,7 @@
     },
     changecom(comspitem,comindex){//公司切换
         this.selectCid=comspitem.id;
+        this.selectUid=0;
         this.peopleList=comspitem.members;//联动人员下拉框
         this.peosplist=[];
         $('.vue_company_species>li').attr('class','');
