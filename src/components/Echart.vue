@@ -1,13 +1,13 @@
 <template>
 	<div id="vue_echart">
-		<div class="vue_echart">
+		<div class="vue_echart" v-show="!showQunFa">
 		<!--切换选项-->
 		<div class="vue_chart_yi">
 			<div class="vue-chart-head">
 				<div class="vue_chat_kind">
 					<div class="vue_chat_div" @click="kindclick">
-						<span class="vue_chatkind_tubiao"></span>
-						<span class="vue_chatkind_name">种类</span>
+            <span :class="{vue_chatkind_tubiao:true,chooseIco:chooseTag==1}"></span>
+            <span :class="{vue_chatkind_name:true,choose:chooseTag==1}">种类</span>
 						<span class="vue_chat_jiantou"></span>
 					</div>
 					<!--下拉表-->
@@ -23,8 +23,8 @@
 				</div>
 				<div class="vue_chat_company">
 					<div class="vue_chat_div" @click="companyclick">
-						<span class="vue_company_tubiao"></span>
-                        <span class="vue_chatkind_name">公司</span>
+            <span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
+            <span :class="{vue_chatkind_name:true,choose:chooseTag==2}">公司</span>
 						<span class="vue_chat_jiantou"></span>
 					</div>
 					<!--下拉表-->
@@ -41,8 +41,8 @@
 				</div>
 				<div class="vue_chat_people">
 					<div class="vue_chat_div" @click="peopleclick">
-						<span class="vue_people_tubiao"></span>
-						<span class="vue_chatkind_name">人员</span>
+            <span :class="{vue_people_tubiao:true,chooseIco:chooseTag==3}"></span>
+            <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
 						<span class="vue_chat_jiantou"></span>
 					</div>
 					<!--下拉表-->
@@ -67,7 +67,7 @@
     <!----曲线图表 start-->
 
         <div id="myTabContent" class="tab-content tab_mm">
-            <div v-for='(catalog,index) in catalogList' class="tab-pane fade in active" v-bind:id="'pan_'+catalog.id" v-show="catalog.show==1?true:false">
+            <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
                 <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
                 <div class="clear"></div>
                 <div class="ckdp_icon"><a href="javascript:;"></a></div>
@@ -110,11 +110,55 @@
             </div>
         </div>
     <!--实时报价信息 end-->
-
-      <!-- 群发报价 -->
-
-      <div class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
 	  </div>
+
+    <!-- 群发框 -->
+    <div class="c_qunBox" v-show="showQunFa">
+      <div class="c_qunPeo">
+        <div class="c_qunPeoTitle">选择群发人员</div>
+        <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 668px!important;">
+          <ul class="vu_fenzu_left_ul" style="width: 100%;height: 668px;">
+            <li v-for="companyItem in groupList.common" :class="{'vu_accordion_li': companyItem.isCalling}">
+              <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+              <ul class="vu_submenu vu_submenu_ul">
+                <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                  <div class="vu_m-touxiang newQunFa">
+                    <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                  </div>
+                  <a class="newQunFa">{{userList[userItem].name}}</a>
+                  <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="c_qunBaoJia">
+        <div class="c_qunBaoJiaTitle">{{selectCatalogName}}-群发报价</div>
+        <div class="c_qunDiv">
+          <p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
+          <ul class="vu_fenzu_right_ul newQunFa">
+            <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+          </ul>
+        </div>
+        <div class="vu_qunnew-que newQunFa">
+          <!--<div>*请您核对群发消息内容:</div>-->
+          <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
+        </div>
+        <div class="c_shiBieButton">
+          报价识别
+        </div>
+        <!--<div class="vu_fenzu_footer">-->
+        <!--<button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>-->
+        <!--<span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>-->
+        <!--</div>-->
+      </div>
+      <img src="../images/tips.png" alt="" class="c_qunTips" v-show="formData.userIds.length==0">
+    </div>
+
+    <!-- 群发报价 -->
+    <div v-if="user.plat=='match'" v-show="!showQunFa" class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
+    <div v-if="user.plat=='match'" v-show="showQunFa" class="vue_qun_offer closeQunFa" @click="closeQunFa()"><p></p><span>关闭群发</span></div>
 	</div>
 
 
@@ -129,6 +173,7 @@
 	//require('echarts/lib/component/title')
 	export default {
     name: 'hello',
+    props: ['user', 'userList', 'groupList', 'groupMsg'],
     data() {
         return {
             kindshow:false,
@@ -145,7 +190,13 @@
             selectCid:'',
             isActive:false,
             chooseTag:1,//选择标识
-            chooseCatalog:0,//选中种类
+            chooseCatalog:match_hall_catalogs[0].catalog_id,//选中种类
+          showQunFa:false,//显示群发
+          //qunNew部分内容
+          formData: {
+            userIds: []
+          },
+          placeholder: '请输入群发内容.'
         }
     },
     mounted() {
@@ -157,16 +208,108 @@
             cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
             autohidemode: false, // 隐藏滚动条的方式, 可用的值:
         });
+        $('#myTabContent>div').eq(0).css('height','auto')
+        $('.vue_kind_ul li').on('click',function(){
+        	var index=$('.vue_kind_ul li').index(this)
+        	$('#myTabContent>div').css('height','0')
+        	$('#myTabContent>div').eq(index).css('height','auto')
+        })
     },
   methods: {
+    //qunNew部分内容
+    /* qunNew部分开始 */
+    sendGroupMsg: function () {
+      if (this.formData.userIds.length < 1) {
+        alert('请先选择群发人员')
+        return
+      } else if (this.groupMsg === '') {
+        alert('群发消息不能为空.')
+        return
+      }
+      this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
+      this.formData.userIds = []
+      this.close() // 关闭窗口
+      this.this.groupMsg = ''
+    },
+    checkAll: function (event, userIds) {
+      var el = event.currentTarget
+      var opt = $(el).html()
+      if (opt === '+') {
+        // 添加formData.userIds
+        $(el).html('-')
+        for (var i = 0, lg = userIds.length; i < lg; i++) {
+          if (!this.in_array(userIds[i], this.formData.userIds)) {
+            this.formData.userIds.push(userIds[i])
+          }
+        }
+      } else {
+        // 删除formData.userIds
+        $(el).html('+')
+        this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
+      }
+    },
+    in_array: function (search, array) {
+      for (var i in array) {
+        if (array[i] === search) {
+          return true
+        }
+      }
+      return false
+    },
+    delUser: function (uid) {
+      this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
+    },
+    dragqun: function (ev) {
+      var oDiv = document.getElementById('vu_div-qun')
+      var oEvt = ev || event
+      var disX = oEvt.clientX - oDiv.offsetLeft
+      var disY = oEvt.clientY - oDiv.offsetTop
+      document.onmousemove = function (ev) {
+        var oEvt = ev || event
+        var l = oEvt.clientX - disX
+        var t = oEvt.clientY - disY
+        // 限定
+        if (l < 5) l = 0
+        if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 50) {
+          l = document.documentElement.clientWidth - oDiv.offsetWidth
+        }
+        if (t < 5) { t = 0 }
+        if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 50) {
+          t = document.documentElement.clientHeight - oDiv.offsetHeight
+        }
+        oDiv.style.left = l + 'px'
+        oDiv.style.top = t + 'px'
+      }
+      document.onmouseup = function () {
+        document.onmouseup = document.onmousemove = null
+        oDiv.releaseCapture && oDiv.releaseCapture()
+      }
+      oDiv.setCapture && oDiv.setCapture()
+      return false
+    },
+    jinzhi: function (event) {
+      event.stopPropagation()
+    },
+    // 折叠
+    accordion: function (event) {
+      var _this = $(event.currentTarget)
+      _this.next('ul').slideToggle()
+      _this.parent('li').toggleClass('vu_open')
+    },
+    /* qunNew.vue部分结束 */
     //群发种类
     qunFa: function () {
+      // alert(this.chooseCatalog)
       if(this.chooseCatalog!=0){
-        self.location.href="/match/offer/index.html?catalog_id="+this.selectPid;
+        this.showQunFa = true;
       }else{
         alert('请选择种类');
       }
     },
+    closeQunFa: function () {
+      this.showQunFa = false;
+    },
+    /* qunNew部分结束 */
   	kindclick: function (){
   		this.kindshow=!this.kindshow,
   		this.companyshow=false,
@@ -177,7 +320,7 @@
   		this.companyshow=!this.companyshow,
   		this.kindshow=false,
   		this.peopleshow=false
-      //this.chooseTag=2
+//      this.chooseTag=2
   	},
   	peopleclick: function (){
   		this.peopleshow=!this.peopleshow,
@@ -197,7 +340,8 @@
         this.kindshow=false;
         this.selectCatalogName=catalogItem.name;
         this.selectPid=catalogItem.id;
-        refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+        this.chooseCatalog = catalogItem.catalog_id;
+      refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
     },
 
     addcom(companyitem,index){//公司添加到右侧
@@ -234,6 +378,9 @@
         this.selectCid='';
         this.selectUid=0;
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+        if(comindex==0){
+        	
+        }
     },
     addpeo(peopleitem,index){//人员追加到右侧
     	this.peopleshow=false;
@@ -261,7 +408,15 @@
     	this.selectUid=0;
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
     }
-  }
+  },
+    //qunNew部分内容
+    filters: {
+      online (userIds, userList) {
+        var onlineCnt = 0
+        userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
+        return onlineCnt
+      }
+    }
 }
 </script>
 
