@@ -67,7 +67,7 @@
     <!----曲线图表 start-->
 
         <div id="myTabContent" class="tab-content tab_mm">
-            <div v-for='(catalog,index) in catalogList' class="tab-pane fade in active" v-bind:id="'pan_'+catalog.id" v-show="catalog.show==1?true:false">
+            <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
                 <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
                 <div class="clear"></div>
                 <div class="ckdp_icon"><a href="javascript:;"></a></div>
@@ -208,6 +208,12 @@
             cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
             autohidemode: false, // 隐藏滚动条的方式, 可用的值:
         });
+        $('#myTabContent>div').eq(0).css('height','auto')
+        $('.vue_kind_ul li').on('click',function(){
+        	var index=$('.vue_kind_ul li').index(this)
+        	$('#myTabContent>div').css('height','0')
+        	$('#myTabContent>div').eq(index).css('height','auto')
+        })
     },
   methods: {
     //qunNew部分内容
@@ -314,7 +320,7 @@
   		this.companyshow=!this.companyshow,
   		this.kindshow=false,
   		this.peopleshow=false
-      //this.chooseTag=2
+//      this.chooseTag=2
   	},
   	peopleclick: function (){
   		this.peopleshow=!this.peopleshow,
@@ -371,6 +377,9 @@
         this.selectCid='';
         this.selectUid=0;
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+        if(comindex==0){
+        	
+        }
     },
     addpeo(peopleitem,index){//人员追加到右侧
     	this.peopleshow=false;

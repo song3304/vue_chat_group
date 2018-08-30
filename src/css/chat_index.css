@@ -12,7 +12,7 @@ body {
     font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
     /*background-size: cover;*/
     font-smoothing: antialiased;
-    background: #383D72;
+    background: #383D72!important;
 }
 ul {
     list-style: none;
@@ -38,9 +38,10 @@ ul {
 }
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
-	height:28%;
+	height:26.2%;
 	position: relative;
   z-index: 99;
+  margin-top: 2.8%;
 }
 .vu_m-chat{
 	position: absolute;
@@ -318,7 +319,11 @@ ul {
 	margin:10px 0 0 10px;
 	overflow: hidden;
 }
-.vu_m-list .vu_name{margin:11px 0 0 10px;font-size: 12px;text-align: left;color: #eeeeee;}
+.vu_m-list .vu_name{margin:11px 0 0 10px;font-size: 12px;text-align: left;color: #eeeeee;overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
 .vu_m-list li{position: relative;height:60px;cursor: pointer;overflow: hidden;}
 .vu_m-list li:hover{background:  #525159;}
 .vu_m-list li:hover .vu_delet-li{
@@ -587,13 +592,13 @@ ul {
 }
 .vu_m_lei>li{
 	float: left;
-	width:33%;
+	width:33.333%;
 	text-align: center;
 	height:40px;
 	line-height: 40px;
 	cursor: pointer;
 }
-.vu_m_lei>li img{float: left;margin: 11px 0 0 22%;width: 16px;height: 18px;}
+.vu_m_lei>li img{float: left;margin: 11px 0 0 22%;height: 18px;}
 .vu_m_lei>li span{color: #999999;float: left;margin-left: 3px;}
 .vu_m-active{
 	/*border-bottom: 1px solid #1a517d;*/
@@ -949,6 +954,7 @@ ul {
 #vu_chat .vu_m-message {
     height:85%;
 }
+.mess_age_age{height: 95%;}
 .vu_input-search .vu_submenu{
   display: block;
 }
@@ -1801,6 +1807,7 @@ ul {
 	height: 340px;
 	background-color: #EEEDF6;
 	border-radius: 10px;
+	box-shadow:0 2px 3px #aaaaaa;
  }
  .vue_leftlist_img{
  	position: absolute;
@@ -1896,8 +1903,8 @@ ul {
 }
 .vue_leftlist_close{
 	position: absolute;
-	top:3px;
-	right: 3px;
+	top:5px;
+	right: 5px;
 	width: 20px;
 	height: 20px;
 }
@@ -1931,8 +1938,14 @@ ul {
 .vu_m-new_com{
 	color: #999999;
 	text-align: center;
-	margin-bottom: 5px;
-	margin-top: 36px;
+	/*margin-bottom: 5px;*/
+	margin: 36px auto 5px auto;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	height: 20px;
+	max-width:215px;
+	min-width: 170px;
 }
 .vu_m-new_phone{
 	color: #999999;
