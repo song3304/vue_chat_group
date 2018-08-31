@@ -2152,6 +2152,7 @@ li{
   line-height: 60px;
   border-bottom: 1px solid #ddd;
   overflow: hidden;
+  background: #fff;
 }
 .c_qunBaoJiaTitle img{
   display: block;
@@ -2198,4 +2199,8 @@ li{
 .c_qunDiv{
   height: 315px;
   border-bottom: 1px solid #ddd;
+}
+.c_qunContent{
+  background: #fff;
+  overflow: hidden;
 }
