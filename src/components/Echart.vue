@@ -114,50 +114,52 @@
 
     <!-- 群发框 -->
     <div class="c_qunBox" v-show="showQunFa">
-      <div class="c_qunPeo">
-        <div class="c_qunPeoTitle">选择群发人员</div>
-        <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 668px!important;">
-          <ul class="vu_fenzu_left_ul" style="width: 100%;height: 668px;">
-            <li v-for="companyItem in groupList.common" :class="{'vu_accordion_li': companyItem.isCalling}">
-              <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
-              <ul class="vu_submenu vu_submenu_ul">
-                <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
-                  <div class="vu_m-touxiang newQunFa">
-                    <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
-                  </div>
-                  <a class="newQunFa">{{userList[userItem].name}}</a>
-                  <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
-                </li>
-              </ul>
-            </li>
-          </ul>
+      <div class="c_qunBaoJiaTitle">{{selectCatalogName}}-群发报价 <img src="../images/closeQF.png" alt="" @click="closeQunFa"></div>
+      <div class="c_qunContent">
+        <div class="c_qunPeo">
+          <div class="c_qunPeoTitle">选择群发人员</div>
+          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 628px!important;">
+            <ul class="vu_fenzu_left_ul" style="width: 100%;height: 628px;">
+              <li v-for="companyItem in groupList.common" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="c_qunBaoJia">
-        <div class="c_qunBaoJiaTitle">{{selectCatalogName}}-群发报价</div>
-        <div class="c_qunDiv">
-          <p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
-          <ul class="vu_fenzu_right_ul newQunFa">
-            <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
-          </ul>
+        <div class="c_qunBaoJia">
+          <div class="c_qunDiv">
+            <p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
+            <ul class="vu_fenzu_right_ul newQunFa">
+              <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+            </ul>
+          </div>
+          <div class="vu_qunnew-que newQunFa">
+            <!--<div>*请您核对群发消息内容:</div>-->
+            <form id="addQuickForm" action="http://www.energy.cn/match/offer/create" method="post"
+                  class="form-horizontal form form-builder">
+              <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
+            </form>
+          </div>
+          <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="showShibie($event)" id='quick_parse_create'style="margin-top: 14px;">
+            报价识别
+          </div>
+          <!--<div class="vu_fenzu_footer">-->
+          <!--<button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>-->
+          <!--<span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>-->
+          <!--</div>-->
         </div>
-        <div class="vu_qunnew-que newQunFa">
-          <!--<div>*请您核对群发消息内容:</div>-->
-          <form id="addQuickForm" action="<{'match/offer/create'|url}>" method="post"
-                class="form-horizontal form form-builder">
-            <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
-          </form>
-        </div>
-        <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="showShibie($event)" id='quick_parse_create'>
-          报价识别
-        </div>
-        <!--<div class="vu_fenzu_footer">-->
-        <!--<button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>-->
-        <!--<span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>-->
-        <!--</div>-->
       </div>
       <div id="quick_parse_new" style="margin-left: 0">
-        <div class="cuohe_bao_tan" style="width:80%;">
+        <div class="cuohe_bao_tan" style="width:80%;min-width: 1200px;">
           <div class="roleindex_tittle">
             <img src="/static/img/match/tijiaobaojia.png" alt="" style="margin-left: 20px;float:left;margin-top:15px;margin-right:5px;">
             <span class="tijia-jiaos">提交报价</span>
@@ -184,8 +186,7 @@
     </div>
 
     <!-- 群发报价 -->
-    <div v-if="user.plat=='match'" v-show="!showQunFa" class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
-    <div v-if="user.plat=='match'" v-show="showQunFa" class="vue_qun_offer closeQunFa" @click="closeQunFa()"><p></p><span>关闭群发</span></div>
+    <div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
   </div>
 
 
@@ -255,7 +256,7 @@
         }
         this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
         this.formData.userIds = []
-        this.close() // 关闭窗口
+        // this.close() // 关闭窗口
         this.this.groupMsg = ''
       },
       checkAll: function (event, userIds) {
@@ -526,30 +527,31 @@
           $_this.data('cnt',1);
           $("#quick_parse_new_data_table").bootstrapTable(opt);
           console.log(opt)
-          $("#quick_parse_new").show();
+          // $("#quick_parse_new").show();
         }else{
           console.log($_this.data('cnt'));
           $("#quick_parse_new_data_table").bootstrapTable('refresh',opt);
         }
+        this.sendGroupMsg();
       },
       /* qunNew部分结束 */
       kindclick: function (){
         this.kindshow=!this.kindshow,
           this.companyshow=false,
           this.peopleshow=false
-        //this.chooseTag=1
+        this.chooseTag=1
       },
       companyclick: function (){
         this.companyshow=!this.companyshow,
           this.kindshow=false,
           this.peopleshow=false
-        //this.chooseTag=2
+        this.chooseTag=2
       },
       peopleclick: function (){
         this.peopleshow=!this.peopleshow,
           this.companyshow=false,
           this.kindshow=false
-        //this.chooseTag=3
+        this.chooseTag=3
       },
 
       addcatalog(catalogItem,index){//种类切换
