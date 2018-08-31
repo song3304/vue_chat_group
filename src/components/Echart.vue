@@ -31,7 +31,7 @@
 	              <li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
 	            </ul>
             </div>
-            
+
             <!--右边切换选项-->
             <ul class="vue_company_species">
               <li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" >
@@ -53,7 +53,7 @@
 	              </li>
 	            </ul>
             </div>
-            
+
             <!--右边切换选项-->
             <ul class="vue_company_species vue_people_species">
               <li v-for="(peospitem,peoindex) in peosplist" :class="{'peoactive': peospitem.isActive}">
@@ -116,8 +116,8 @@
 
     <!-- 群发框 -->
     <div class="c_qunBox" v-show="showQunFa">
-      <div class="c_qunBaoJiaTitle">乙二醇-群发报价 <img src="../images/closeQF.png" alt="" @click="closeQunFa"></div>
-      <div class="c_qunContent">
+      <div class="c_qunBaoJiaTitle">乙二醇-群发报价 <span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
+      <div class="c_imgntent">
         <div class="c_qunPeo">
           <div class="c_qunPeoTitle">选择群发人员</div>
           <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 628px!important;">

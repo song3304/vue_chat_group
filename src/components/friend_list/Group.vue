@@ -275,7 +275,7 @@ export default {
               	<img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               </div>
               <!--//不在线，添加class=gray-->
-	              
+
             </div>
             <div class="vu_submenu_com">
             	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}<b v-if="!userList[userItem].friend_name">({{userList[userItem].friend_name}})</b> </a>
