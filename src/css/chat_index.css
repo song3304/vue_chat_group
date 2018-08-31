@@ -1,93 +1,95 @@
 *, *:before, *:after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 body, html {
-    height: 100%;
+  height: 100%;
 }
 body, ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 body {
-    font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
-    /*background-size: cover;*/
-    font-smoothing: antialiased;
-    background: #383D72;
+  font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
+  /*background-size: cover;*/
+  font-smoothing: antialiased;
+  background: #383D72;
 }
 ul {
-    list-style: none;
+  list-style: none;
 }
 #chat_app{
-	width: 100%;
-	min-width: 1200px;
-	height:1012px;
-	/*background:url(../images/bg.png);
-	background-size: cover;*/
+  width: 100%;
+  min-width: 1200px;
+  height:1012px;
+  /*background:url(../images/bg.png);
+    background-size: cover;*/
 
 }
 #vu_chat {
-	/*position: fixed;
-	left:300px;
+  /*position: fixed;
+    left:300px;
     bottom:0;*/
-   position: absolute;
-   bottom: 0;
-    width:100%;
-	height:100%;
-	/*z-index: 1000;
-	box-shadow: 0px 0px 6px 3px rgba(42, 42, 42, 0.2);*/
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  height:100%;
+  /*z-index: 1000;
+    box-shadow: 0px 0px 6px 3px rgba(42, 42, 42, 0.2);*/
 }
 .vu_m-chatmain{
-	/*padding:18% 0 0;*/
-	height:28%;
-	position: relative;
+  /*padding:18% 0 0;*/
+  height:28%;
+  position: relative;
   z-index: 99;
 }
 .vu_m-chat{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;height: 100%;}
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;height: 100%;}
 #vu_chat .vu_sidebar{
-	background: #EEEEEE;
+  background: #EEEEEE;
 }
 .vu_m-message .vu_self .vu_text{
-	color: #FFFFFF;
+  color: #FFFFFF;
 }
 .vu_m-na{
-	background:#eeedf6;
+  background:#eeedf6;
 }
 .vu_m-na-name{
-	display: block;
-	width: 100%;
-	text-align: center;
-	font-size: 16px;
-	float: left;
-	color: #333333;
-	font-weight: 550;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  float: left;
+  color: #333333;
+  font-weight: 550;
+  /*新增*/
+  padding-bottom: 20px;
 }
 .vu_send{
-	float: left;
-	display: inline-block;
-	height:40px;
-	line-height: 40px;
+  float: left;
+  display: inline-block;
+  height:40px;
+  line-height: 40px;
   width: 10%;
-	background-color: #fd3000;
-	font-size: 16px;
-	color: #FFFFFF;
-	text-align: center;
-	cursor: pointer;
-	margin:0.5% 0 0 0;
+  background-color: #fd3000;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: center;
+  cursor: pointer;
+  margin:0.5% 0 0 0;
 }
 .vu_history{
-	width:6%;
-	height:40px;
-	text-align: center;
-	line-height: 18px;
-	font-size: 12px;
-	cursor: pointer;
-	float: left;
-	background: #f8f4f2;
-	margin: 0.6% 0 0 0;
+  width:6%;
+  height:40px;
+  text-align: center;
+  line-height: 18px;
+  font-size: 12px;
+  cursor: pointer;
+  float: left;
+  background: #f8f4f2;
+  margin: 0.6% 0 0 0;
 }
 .vu_history img{margin-top:10px;}
 /*.vu_history:hover,.vu_history:active,.vu_history:focus{
@@ -105,295 +107,295 @@ ul {
     margin:4px 5px 4px  0;
 }*/
 .vue-head{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 40px;
-	z-index: 100;
-	min-width: 1200px;
-	background:url(../images/bg.png);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 100;
+  min-width: 1200px;
+  background:url(../images/bg.png);
 }
 .vue-head span{
-	position: absolute;
-	top:7px;
-	left: 19%;
-	display: inline-block;
-	width: 103px;
-	height: 26px;
-	background: url(../images/adminlogo.png);
-	background-size: cover;
-	/*margin: 7px 0 0 25px;*/
+  position: absolute;
+  top:7px;
+  left: 19%;
+  display: inline-block;
+  width: 103px;
+  height: 26px;
+  background: url(../images/adminlogo.png);
+  background-size: cover;
+  /*margin: 7px 0 0 25px;*/
 }
 /*新消息跳动*/
 .vu_jump{
-	animation:jump .6s infinite linear;
-	-webkit-animation:jump .6s infinite linear;
-	-moz-animation:jump .6s infinite linear;
-	-ms-animation:jump .6s infinite linear;
+  animation:jump .6s infinite linear;
+  -webkit-animation:jump .6s infinite linear;
+  -moz-animation:jump .6s infinite linear;
+  -ms-animation:jump .6s infinite linear;
 }
 @-moz-keyframes jump{
-	0%{top:15px}
-	5%{top:15px}
-	25%{top:8px}
-	50%{top:15px}
-	75%{top: 10px;}
-	95%{top: 15px;}
-	100%{top: 15px;}
+  0%{top:15px}
+  5%{top:15px}
+  25%{top:8px}
+  50%{top:15px}
+  75%{top: 10px;}
+  95%{top: 15px;}
+  100%{top: 15px;}
 }
 @-webkit-keyframes jump{
-	0%{top:15px}
-	5%{top:15px}
-	25%{top:8px}
-	50%{top:15px}
-	75%{top: 10px;}
-	95%{top: 15px;}
-	100%{top: 15px;}
+  0%{top:15px}
+  5%{top:15px}
+  25%{top:8px}
+  50%{top:15px}
+  75%{top: 10px;}
+  95%{top: 15px;}
+  100%{top: 15px;}
 }
 @-ms-keyframes jump{
-	0%{top:15px}
-	5%{top:15px}
-	25%{top:8px}
-	50%{top:15px}
-	75%{top: 10px;}
-	95%{top: 15px;}
-	100%{top: 15px;}
+  0%{top:15px}
+  5%{top:15px}
+  25%{top:8px}
+  50%{top:15px}
+  75%{top: 10px;}
+  95%{top: 15px;}
+  100%{top: 15px;}
 }
 .vu_account-l{
-	width: 100%;
-	/*height: 100%;*/
-	/*overflow-y: scroll;*/
-	/*background-color: #f6f6f6;*/
-	/*box-shadow: -1px 2px 3px 0px
-		rgba(42, 42, 42, 0.11);*/
+  width: 100%;
+  /*height: 100%;*/
+  /*overflow-y: scroll;*/
+  /*background-color: #f6f6f6;*/
+  /*box-shadow: -1px 2px 3px 0px
+        rgba(42, 42, 42, 0.11);*/
 }
 #vu_friend{
-	position:fixed;
-	top:40px;
-	left: 0;
-	width:18%;
-	min-width: 216px;
-	height:1040px;
-	background-color: rgba(46, 46, 46, 0.8);
-	/*opacity: 0.8;
-	z-index: 1000;*/
+  position:fixed;
+  top:40px;
+  left: 0;
+  width:18%;
+  min-width: 216px;
+  height:1040px;
+  background-color: rgba(46, 46, 46, 0.8);
+  /*opacity: 0.8;
+    z-index: 1000;*/
   z-index: 99;
 }
 .vu_input-search{
-	position: absolute;
-	top:50px;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #F6F6F6;
+  position: absolute;
+  top:50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #F6F6F6;
 }
 .vu_m-touxiang{
-	position: relative;
-	top:7px;
-	left: 0;
-	width:40px;
-	height:40px;
-	background-color: #cccccc;
-	border-radius:5px;
-	display: inline-block;
-	float: left;
-	/*margin-top:7px;*/
-	margin-left:15px;
+  position: relative;
+  top:7px;
+  left: 0;
+  width:40px;
+  height:40px;
+  background-color: #cccccc;
+  border-radius:5px;
+  display: inline-block;
+  float: left;
+  /*margin-top:7px;*/
+  margin-left:15px;
 }
 .vu_touxiang{
-	animation:toujump .6s infinite linear;
-	-webkit-animation:toujump .6s infinite linear;
-	-moz-animation:toujump .6s infinite linear;
-	-ms-animation:toujump .6s infinite linear;
+  animation:toujump .6s infinite linear;
+  -webkit-animation:toujump .6s infinite linear;
+  -moz-animation:toujump .6s infinite linear;
+  -ms-animation:toujump .6s infinite linear;
 }
 @-moz-keyframes toujump{
-	0%{top:7px}
-	5%{top:7px}
-	25%{top:4px}
-	50%{top:7px}
-	75%{top: 6px;}
-	95%{top: 7px;}
-	100%{top: 7px;}
+  0%{top:7px}
+  5%{top:7px}
+  25%{top:4px}
+  50%{top:7px}
+  75%{top: 6px;}
+  95%{top: 7px;}
+  100%{top: 7px;}
 }
 @-webkit-keyframes toujump{
-	0%{top:7px}
-	5%{top:7px}
-	25%{top:4px}
-	50%{top:7px}
-	75%{top: 6px;}
-	95%{top: 7px;}
-	100%{top: 7px;}
+  0%{top:7px}
+  5%{top:7px}
+  25%{top:4px}
+  50%{top:7px}
+  75%{top: 6px;}
+  95%{top: 7px;}
+  100%{top: 7px;}
 }
 @-ms-keyframes toujump{
-	0%{top:7px}
-	5%{top:7px}
-	25%{top:4px}
-	50%{top:7px}
-	75%{top: 6px;}
-	95%{top: 7px;}
-	100%{top: 7px;}
+  0%{top:7px}
+  5%{top:7px}
+  25%{top:4px}
+  50%{top:7px}
+  75%{top: 6px;}
+  95%{top: 7px;}
+  100%{top: 7px;}
 }
 .vu_m-touxiang img{
-	border-radius: 50%;
-	width: 100%;
-	height: 100%;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
 }
 .vu_m-phone-input{
-	display: none;
-	margin-top:15px;
-	margin-left: 10px;
-	position: absolute;
-	top: -35px;
-    left: -32px;
-    width: 54%;
+  display: none;
+  margin-top:15px;
+  margin-left: 10px;
+  position: absolute;
+  top: -35px;
+  left: -32px;
+  width: 54%;
 }
 .vu_m-phone-img{
-	display:none;
-	width: 12px;
-	height: 12px;
-	background: url(../images/qie_tu.png) -4px -129px;
-	cursor: pointer;
-	margin: 19px 0 0 3px;
+  display:none;
+  width: 12px;
+  height: 12px;
+  background: url(../images/qie_tu.png) -4px -129px;
+  cursor: pointer;
+  margin: 19px 0 0 3px;
 }
 #vu_search{
-	width: 146px;
-	height: 26px;
-	border: solid 1px #cccccc;
-	margin:11px 15px;
-	padding-left: 10px;
-	background: #5c6d9d;
-	color: #CCCCCC;
+  width: 146px;
+  height: 26px;
+  border: solid 1px #cccccc;
+  margin:11px 15px;
+  padding-left: 10px;
+  background: #5c6d9d;
+  color: #CCCCCC;
 }
 #vu_search::-webkit-input-placeholder { /* WebKit browsers */
-		color: #CCCCCC!important;
-	}
+  color: #CCCCCC!important;
+}
 #vu_search:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-		color: #CCCCCC!important;
-	}
+  color: #CCCCCC!important;
+}
 #vu_search::-moz-placeholder { /* Mozilla Firefox 19+ */
-		color: #CCCCCC!important;
-	}
+  color: #CCCCCC!important;
+}
 #vu_search:-ms-input-placeholder { /* Internet Explorer 10+ */
-		color: #CCCCCC!important;
-	}
+  color: #CCCCCC!important;
+}
 
 .vu_m-search div{
-	position: absolute;
-	top: 12px;
-	right:100px;
-	width:20px;
-	height: 26px;
-	background:url(../images/qie_tu.png) -4px -102px  no-repeat;
-	cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right:100px;
+  width:20px;
+  height: 26px;
+  background:url(../images/qie_tu.png) -4px -102px  no-repeat;
+  cursor: pointer;
 }
 .vu_m-search{
-	height: 50px;
-	border-bottom:1px solid #eeeeee;
-	position: relative;
-	background: #5c6d9d;
+  height: 50px;
+  border-bottom:1px solid #eeeeee;
+  position: relative;
+  background: #5c6d9d;
 }
 .vu_m-guan{float: right;margin-top:4px;}
 .vu_m-search p,.vu_m-guan p{float:right;width: 20px;height: 20px;cursor: pointer;text-align: center;margin: 10px 10px 0 0;}
 .vu_m-search span,.vu_m-guan span{
-	display: inline-block;
-	margin-top: 3px;
-	width:15px;
-	height:15px;
-	background: url(../images/qie_tu.png) -4px -155px;
+  display: inline-block;
+  margin-top: 3px;
+  width:15px;
+  height:15px;
+  background: url(../images/qie_tu.png) -4px -155px;
 }
 .vu_fa-chevron-down:before{
-	color: #a4a4a4;
+  color: #a4a4a4;
 }
 .vu_m-guan:hover p,.vu_m-search:hover p {
-	background:#bc2424;
+  background:#bc2424;
 }
 .vu_m-guan:hover p span,.vu_m-search:hover p span{
-	background: url(../images/qie_tu.png) -4px -244px no-repeat;
+  background: url(../images/qie_tu.png) -4px -244px no-repeat;
 }
 .vu_m-list .vu_avatar{
-	width: 40px;
-	height: 40px;
-	border-radius: 5px;
-	float: left;
-	margin:10px 0 0 10px;
-	overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  float: left;
+  margin:10px 0 0 10px;
+  overflow: hidden;
 }
 .vu_m-list .vu_name{margin:11px 0 0 10px;font-size: 12px;text-align: left;color: #eeeeee;}
 .vu_m-list li{position: relative;height:60px;cursor: pointer;overflow: hidden;}
 .vu_m-list li:hover{background:  #525159;}
 .vu_m-list li:hover .vu_delet-li{
-	display: block;
+  display: block;
 }
 .vu_m-list li:hover .vu_m-list-del-num{
-	background:#e1e1e1;
-	color: #e1e1e1;
+  background:#e1e1e1;
+  color: #e1e1e1;
 }
 .vu_m-list img{
-	float: left;
+  float: left;
 }
 .vu_m-list-del{
-	float: left;
-	position: relative;
-	margin-top:12px;
-	width:50px;
-	height:35px;
-	text-align: center;
+  float: left;
+  position: relative;
+  margin-top:12px;
+  width:50px;
+  height:35px;
+  text-align: center;
 }
 .vu_m-list-del .vu_m-list-del-time{height: 15px;color: #999999;margin: 0;}
 .vu_m-list-del .vu_m-list-del-num{
-	margin-top:8px;
-	display: inline-block;
-    border-radius: 50%;
-    padding:1px 3px;
-    background-color: #e42b2b;
-    color: #FFFFFF;
-    font-size: 12px;
-    height: 14px;
-    line-height: 13px;
+  margin-top:8px;
+  display: inline-block;
+  border-radius: 50%;
+  padding:1px 3px;
+  background-color: #e42b2b;
+  color: #FFFFFF;
+  font-size: 12px;
+  height: 14px;
+  line-height: 13px;
 }
 .vu_m-cs-cs{float: left;width: 52%;}
 .vu_m-xiang{
-	margin:3px 0 0 10px;
-	width:105px;
-	text-align: left;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
-	color: #bbbbbb;
+  margin:3px 0 0 10px;
+  width:105px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  color: #bbbbbb;
 }
 .vu_m-time{
-	position: absolute;
-	right:10px;
-	top:15px;
-	font-size: 12px;
-	color: #999999;
+  position: absolute;
+  right:10px;
+  top:15px;
+  font-size: 12px;
+  color: #999999;
 }
 .vu_m-num{
-	position: absolute;
-	right:10px;
-	top:39px;
-	display:inline-block;
-	border-radius: 50%;
-	padding:1px 3px;
-	background-color: #e42b2b;
-	color: #FFFFFF;
-	font-size: 12px;
-	height: 14px;
-    line-height:13px;
+  position: absolute;
+  right:10px;
+  top:39px;
+  display:inline-block;
+  border-radius: 50%;
+  padding:1px 3px;
+  background-color: #e42b2b;
+  color: #FFFFFF;
+  font-size: 12px;
+  height: 14px;
+  line-height:13px;
 }
 .vu_delet-li{
-	position: absolute;
-	right:18px;
-	top:23px;
-	width:14px;
-	height:14px;
-	border-radius: 50%;
-	background:#EEEEEE url(../images/qie_tu.png) -4px -23px;
-	display:none;
-	z-index: 3;
+  position: absolute;
+  right:18px;
+  top:23px;
+  width:14px;
+  height:14px;
+  border-radius: 50%;
+  background:#EEEEEE url(../images/qie_tu.png) -4px -23px;
+  display:none;
+  z-index: 3;
 }
 .vu_delet-li:hover{
-	background:#EEEEEE url(../images/qie_tu.png) -4px -44px;
+  background:#EEEEEE url(../images/qie_tu.png) -4px -44px;
 }
 .vu_submenu-name{cursor: pointer;}
 .vu_submenu-none{height: 50px;text-align: center;line-height: 50px;border-bottom: 1px solid #cccccc;font-size: 14px;color: #333333;}
@@ -401,203 +403,203 @@ ul {
 .vu_submenu-name:hover .vu_m-phone-img{display: inline-block;}
 /*历史记录*/
 #vu_history{
-	width: 550px;
-	height: 680px;
-	background-color: #f6f6f6;
-	box-shadow: 0px 0px 6px 0px
-		rgba(42, 42, 42, 0.2);
-	position: fixed;
-	left:30%;
-	/*transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);*/
-	top:7%;
-	z-index: 1000;
+  width: 550px;
+  height: 680px;
+  background-color: #f6f6f6;
+  box-shadow: 0px 0px 6px 0px
+  rgba(42, 42, 42, 0.2);
+  position: fixed;
+  left:30%;
+  /*transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);*/
+  top:7%;
+  z-index: 1000;
 }
 .vu_his-guan{
-	margin-top:10px;
-	padding: 0 10px;
-	font-size: 14px;
-	color: #999999;
-	height: 19px;
+  margin-top:10px;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #999999;
+  height: 19px;
 }
 .vu_his-guan p{float:right;width:20px;height: 20px;cursor: pointer;text-align: center;margin:-5px 10px 0 0;}
 .vu_his-guan p span{
-	display: inline-block;
-	width: 14px;
-	height: 14px;
-	background: url(../images/qie_tu.png) -4px -154px no-repeat;
-	margin:4px 0 0 0;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url(../images/qie_tu.png) -4px -154px no-repeat;
+  margin:4px 0 0 0;
 }
 .vu_his-guan p:hover{background:#BC2424;}
 .vu_his-guan p:hover span{
-	width: 15px;
-	height: 15px;
-	background: url(../images/qie_tu.png) -4px -244px no-repeat;
+  width: 15px;
+  height: 15px;
+  background: url(../images/qie_tu.png) -4px -244px no-repeat;
 }
 #vu_his-head{
-	height:640px;
-	overflow-y:scroll;
+  height:640px;
+  overflow-y:scroll;
 }
 .vu_his-main{
 
 }
 .vu_title-text span {
-    display: block;      /*设置为块级元素会独占一行形成上下居中的效果*/
-    position: relative;  /*定位横线（当横线的父元素）*/
-    color: #666666;      /*居中文字的颜色*/
-    text-align: center;
-    font-size: 12px;
-    font-size: 10px;
+  display: block;      /*设置为块级元素会独占一行形成上下居中的效果*/
+  position: relative;  /*定位横线（当横线的父元素）*/
+  color: #666666;      /*居中文字的颜色*/
+  text-align: center;
+  font-size: 12px;
+  font-size: 10px;
 }
 .vu_title-text span:before, .vu_title-text span:after {
-    content: '';
-    position: absolute;   /*定位背景横线的位置*/
-    top: 50%;
-    background: #CCCCCC;   /*背景横线颜色*/
-    width: 30%;            /*单侧横线的长度*/
-    height: 1px;
+  content: '';
+  position: absolute;   /*定位背景横线的位置*/
+  top: 50%;
+  background: #CCCCCC;   /*背景横线颜色*/
+  width: 30%;            /*单侧横线的长度*/
+  height: 1px;
 }
 .vu_title-text span:before {
-    left:8%;              /*调整背景横线的左右距离*/
+  left:8%;              /*调整背景横线的左右距离*/
 }
 .vu_title-text span:after {
-    right:8%;
+  right:8%;
 }
 .vu_his-main li{
-	padding-left:23px;
-	margin-top:16px;
-	text-align:left;
-	padding-left: 45px;
+  padding-left:23px;
+  margin-top:16px;
+  text-align:left;
+  padding-left: 45px;
 }
 .vu_oppo-title{
-	font-size: 12px;
-	color: #24a846;
-	margin: 0;
+  font-size: 12px;
+  color: #24a846;
+  margin: 0;
 }
 .vu_oppo-xiang{
-	margin-top:3px;
-	font-size: 14px;
-	color: #333333;
+  margin-top:3px;
+  font-size: 14px;
+  color: #333333;
 }
 .vu_one-title{
-	font-size: 12px;
-	color: #2089ff;
-	margin: 0;
+  font-size: 12px;
+  color: #2089ff;
+  margin: 0;
 }
 .vu_one-xiang{
-	margin-top:3px;
-	font-size: 14px;
-	color: #333333;
+  margin-top:3px;
+  font-size: 14px;
+  color: #333333;
 }
 .vu_baoliu{
-	text-align: center;
-	margin:20px auto 20px auto;
-	width:416px;
-	height: 22px;
-	font-size: 14px;
-	color: #a9a9a9;
-	background:#e8e8e8;
-	line-height: 22px;
-	cursor: pointer;
+  text-align: center;
+  margin:20px auto 20px auto;
+  width:416px;
+  height: 22px;
+  font-size: 14px;
+  color: #a9a9a9;
+  background:#e8e8e8;
+  line-height: 22px;
+  cursor: pointer;
 }
 .vu_m-list{
-	height:862px;
-	width:18%;
-	min-width: 216px;
-	overflow: auto;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  height:862px;
+  width:18%;
+  min-width: 216px;
+  overflow: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .vu_outer-container,.vu_content {
-    width:220px;
+  width:220px;
 }
 .vu_outer-container {
-    position: relative;
+  position: relative;
 }
 .vu_m-list {
-    position:fixed;
-    top:80px;
-    left:0;
-    /*overflow-x: hidden;
+  position:fixed;
+  top:80px;
+  left:0;
+  /*overflow-x: hidden;
     overflow-y: scroll;*/
 }
 
- /* for Chrome */
+/* for Chrome */
 .vu_m-list::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 /*滤镜*/
 .vu_gray {
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: gray;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
 }
 /*列表来信息,动画*/
 .vu_accordion_li{
-	animation:fadetoggle 1s infinite linear;
-	-webkit-animation:fadetoggle 1s infinite linear;
-	-moz-animation:fadetoggle 1s infinite linear;;
+  animation:fadetoggle 1s infinite linear;
+  -webkit-animation:fadetoggle 1s infinite linear;
+  -moz-animation:fadetoggle 1s infinite linear;;
 }
 @-webkit-keyframes fadetoggle {
-	0%{ opacity: 1;}
-	50%{opacity: 0;}
-	100%{ opacity: 1;}
+  0%{ opacity: 1;}
+  50%{opacity: 0;}
+  100%{ opacity: 1;}
 }
 
 /*切换*/
 .vu_active{
-    background: #525159;
+  background: #525159;
 }
 .vu_tabs{
-    width: 200px;
-    height: 20px;
-    font:0;
-    padding:0;
+  width: 200px;
+  height: 20px;
+  font:0;
+  padding:0;
 }
 .vu_li-tab{
-    width: 50%;
-    height: 100%;
-    display:inline-block;
-    text-align: center;
+  width: 50%;
+  height: 100%;
+  display:inline-block;
+  text-align: center;
 }
 .vu_divTab{
-    width: 200px;height: 300px;
+  width: 200px;height: 300px;
 }
 /*列表来消息动画*/
 #vu_accordion li .vu_link{position: relative;}
 #vu_accordion li .vu_link.vu_animate{animation: ani 800ms;}
 @keyframes ani{
-    0% {opacity:1;}
-   	70% {opacity:0;}
+  0% {opacity:1;}
+  70% {opacity:0;}
 }
 /*分组切换*/
 .vu_m_lei{
-	height: 40px;
-	border-bottom: 1px solid #ff3000;
-	/*margin: 0 10px;*/
-	position: relative;
+  height: 40px;
+  border-bottom: 1px solid #ff3000;
+  /*margin: 0 10px;*/
+  position: relative;
 }
 .vu_m_lei>li{
-	float: left;
-	width:33%;
-	text-align: center;
-	height:40px;
-	line-height: 40px;
-	cursor: pointer;
+  float: left;
+  width:33%;
+  text-align: center;
+  height:40px;
+  line-height: 40px;
+  cursor: pointer;
 }
 .vu_m_lei>li img{float: left;margin: 11px 0 0 22%;width: 16px;height: 18px;}
 .vu_m_lei>li span{color: #999999;float: left;margin-left: 3px;}
 .vu_m-active{
-	/*border-bottom: 1px solid #1a517d;*/
-	background: #ff3000;
+  /*border-bottom: 1px solid #1a517d;*/
+  background: #ff3000;
 }
 .vu_m-active>span{color: #FFFFFF!important;}
 /*添加分组*/
@@ -640,38 +642,38 @@ ul {
 	color: #FFFFFF;
 }*/
 #vu_qun-fen>div{
-	/*background: #FFFFFF;*/
-	/*margin:0 5px 10px 5px;*/
-	text-align: left;
-	/*padding-bottom: 10px;*/
-	height: ;
+  /*background: #FFFFFF;*/
+  /*margin:0 5px 10px 5px;*/
+  text-align: left;
+  /*padding-bottom: 10px;*/
+  /*height: ;*/
 }
 .vu_qunfen_yi{
-	height: 820px;
+  height: 820px;
 }
 #vu_qun-fen>div>p{
-	color: #1a517d;
-	padding:5px 0 10px 12px;
-	margin: 0;
+  color: #1a517d;
+  padding:5px 0 10px 12px;
+  margin: 0;
 }
 /*创建分组弹窗*/
 .vu_fen_zu{
-	width: 490px;
-	height: 430px;
-	background-color: #f6f6f6;
-	box-shadow: 0px 0px 6px 3px
-		rgba(42, 42, 42, 0.2);
-	position: fixed;
-	top: 7%;
-	left:30%;
-	/*transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);*/
-	z-index: 1000;
+  width: 490px;
+  height: 430px;
+  background-color: #f6f6f6;
+  box-shadow: 0px 0px 6px 3px
+  rgba(42, 42, 42, 0.2);
+  position: fixed;
+  top: 7%;
+  left:30%;
+  /*transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);*/
+  z-index: 1000;
 }
 .vu_fen_zu_title{
-	height: 30px;
-	background-color: #5c6d9d;
+  height: 30px;
+  background-color: #5c6d9d;
 }
 .vu_fen_zu_title>span{font-size: 13px;color: #ffffff;display: inline-block;line-height: 30px;padding-left: 10px;}
 .vu_fen_zu_title p{float:right;width: 30px;height: 30px;cursor: pointer;margin: 0;text-align: center;}
@@ -680,10 +682,10 @@ ul {
 .vu_fen_zu_title p:hover span{background: url(../images/qie_tu.png) -4px -242px;}
 .vu_fenzu_left{width: 250px!important;height: 350px!important;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
 .vu_fenzu_left>ul{
-	width: 270px;
-	overflow-y: scroll;
-	overflow-x:hidden;
-	height: 350px;
+  width: 270px;
+  overflow-y: scroll;
+  overflow-x:hidden;
+  height: 350px;
 }
 .vu_fenzu_right{width: 240px;float: right;height: 350px;overflow:hidden;margin-top: 20px;}
 .vu_fenzu_left_input{width: 170px;height: 21px;border: solid 1px #e9e9e9;margin:10px 0 12px 30px;padding-left: 20px;background:#ffffff url(../images/qie_tu.png) -1px -82px no-repeat;}
@@ -725,7 +727,7 @@ ul {
   display: block;
   position: absolute;
   top: 22%;
-  left: 10%;
+  left: 16%;
 }
 .vu_qunnew-que.newQunFa textarea{
   width: 92%;
@@ -743,119 +745,119 @@ ul {
   line-height: 40px;
   font-size: 14px;
 }
-  /*end*/
+/*end*/
 .vu_fenzu_right_ul li{height:45px;}
 .vu_fenzu_right_ul li a{display: inline-block;margin:16px 0 0 10px;color: #666666;}
 .vu_fenzu_right_ul li span{
-	display: inline-block;
-	width: 14px;
-	height: 14px;
-	background: url(../images/qie_tu.png) -4px 0 no-repeat;
-	float: right;
-	margin:7px 20px 0 0;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url(../images/qie_tu.png) -4px 0 no-repeat;
+  float: right;
+  margin:7px 20px 0 0;
 }
 .vu_fenzu_right_ul li:hover span{
-	background: url(../images/qie_tu.png) -4px -23px no-repeat;
+  background: url(../images/qie_tu.png) -4px -23px no-repeat;
 }
 .vu_fenzu_right>p{
-	color: #999999;
-	padding:4px 0 5px 15px;
-	margin: 0;
+  color: #999999;
+  padding:4px 0 5px 15px;
+  margin: 0;
 }
 .vu_fenzu_footer,.vu_fenzu_name_footer{
-	height: 30px;
-	background-color: #e4e4e4;
+  height: 30px;
+  background-color: #e4e4e4;
 }
 .vu_fenzu_footer span,.vu_fenzu_footer button,.vu_fenzu_name_footer span ,.vu_fenzu_name_footer button{
-	text-align: center;
-	line-height:24px;
-	margin-top:3px;
-	cursor: pointer;
-	width: 70px;
-	height: 24px;
+  text-align: center;
+  line-height:24px;
+  margin-top:3px;
+  cursor: pointer;
+  width: 70px;
+  height: 24px;
 }
 .vu_fenzu_footer button{
-	background-color: #40b1ec;
-	border: solid 1px #dddddd;
-	color: #FFFFFF;
-	margin-left: 300px;
+  background-color: #40b1ec;
+  border: solid 1px #dddddd;
+  color: #FFFFFF;
+  margin-left: 300px;
 }
 .vu_fenzu_footer button:hover,.vu_fenzu_name_footer button:hover{
-	background-color:#2ca0dc;
+  background-color:#2ca0dc;
 }
 .vu_fenzu_footer span,.vu_fenzu_name_footer span{
-	display: inline-block;
-	background-color: #f6f6f6;
-	border: solid 1px #dddddd;
-	color: #666666;
-	margin-left:20px;
+  display: inline-block;
+  background-color: #f6f6f6;
+  border: solid 1px #dddddd;
+  color: #666666;
+  margin-left:20px;
 }
 .vu_fenzu_footer span:hover,.vu_fenzu_name_footer span:hover{background-color: #eaeaea;}
 .vu_fenzu_name{
-	width: 330px;
-	height: 152px;
-	background-color: #f6f6f6;
-	box-shadow: 0px 0px 2px 0px
-		rgba(42, 42, 42, 0.2);
-	position: absolute;
-	top:140px;
-	left:60px;
-	z-index: 12;
+  width: 330px;
+  height: 152px;
+  background-color: #f6f6f6;
+  box-shadow: 0px 0px 2px 0px
+  rgba(42, 42, 42, 0.2);
+  position: absolute;
+  top:140px;
+  left:60px;
+  z-index: 12;
 }
 .vu_fenzu_name .vu_fenzu_name_na{color: #666666;padding: 20px 0 5px 25px;}
 .vu_fenzu_name input{
-	width: 280px;
-	height: 26px;
-	background-color: #eeeeee;
-	border: solid 1px #dddddd;
-	margin: 0 0 25px 25px;
-	padding-left: 10px;
+  width: 280px;
+  height: 26px;
+  background-color: #eeeeee;
+  border: solid 1px #dddddd;
+  margin: 0 0 25px 25px;
+  padding-left: 10px;
 }
 .vu_fenzu_name_footer button{
-	background-color: #40b1ec;
-	border: solid 1px #dddddd;
-	color: #FFFFFF;
-	margin-left:140px;
+  background-color: #40b1ec;
+  border: solid 1px #dddddd;
+  color: #FFFFFF;
+  margin-left:140px;
 }
 .vu_input_style input[type='radio'],.vu_input_style input[type='checkbox']{
-	width: 20px;
-	height: 20px;
-	vertical-align:middle;
-	opacity: 0;
+  width: 20px;
+  height: 20px;
+  vertical-align:middle;
+  opacity: 0;
 }
 .vu_first_title {font-size: 14px!important;max-width: 150px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 /*新群发样式*/
 .vu_input_style{
-	background: url(../images/green.png) no-repeat;
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	/*transform: scale(0.8);*/
+  background: url(../images/green.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  /*transform: scale(0.8);*/
 }
 .vu_radio_bg{
-	background-position: -118px 0 ;
+  background-position: -118px 0 ;
 }
 .vu_checkbox_bg{
-	background-position:-120px 0;
-	float: right;
-	margin: 15px 10px 0 0;
+  background-position:-120px 0;
+  float: right;
+  margin: 15px 10px 0 0;
 }
 .vu_radio_bg_check{
-	background-position: -166px 0 ;
+  background-position: -166px 0 ;
 }
 .vu_checkbox_bg_check{
-	background-position: -168px 0;
+  background-position: -168px 0;
 }
 .vu_submenu-name-div{display: inline-block;}
 .vu_fenzu_left_ul>li{position: relative;}
 .vu_fenzu_left_ul>li>div>.vu_check-all{
-	/*width: 15px;*/
-	/*height: 15px;*/
+  /*width: 15px;*/
+  /*height: 15px;*/
   /*line-height:10px;*/
-	border: solid 1px #999999;
-	border-radius: 50%;
-	position: absolute;
-	/*top:5px;*/
+  border: solid 1px #999999;
+  border-radius: 50%;
+  position: absolute;
+  /*top:5px;*/
   /*right:30px;*/
   /*新群发样式*/
   width: 17px;
@@ -864,252 +866,252 @@ ul {
   top: 7px;
   right:13px;
   /*end*/
-	text-align: center;
-	display: none;
-	cursor: pointer;
-	color: #999999;
+  text-align: center;
+  display: none;
+  cursor: pointer;
+  color: #999999;
 }
 .vu_fenzu_left_ul>li:hover .vu_check-all{
-	display: block;
+  display: block;
 }
 #vu_chat_app{width: 100%;height: 100%;}
 .vue_name_sz{
-	position: absolute;
-	top:30px;
-	left:78px;
-	width: 90px;
-	height: 105px;
-	background-color: #ffffff;
-	box-shadow: 0px 2px 4px 0px
-		rgba(0, 0, 0, 0.21);
-	border-radius: 5px;
-	padding: 3px 0;
-	z-index: 10;
-	display: none;
+  position: absolute;
+  top:30px;
+  left:78px;
+  width: 90px;
+  height: 105px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px 0px
+  rgba(0, 0, 0, 0.21);
+  border-radius: 5px;
+  padding: 3px 0;
+  z-index: 10;
+  display: none;
 }
 .vue_name_sz>li{
-	height: 25px;
-	line-height: 25px;
-	font-size: 14px;
-	color: #666666;
-	padding-left:15px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 14px;
+  color: #666666;
+  padding-left:15px;
 }
 .vue_name_sz>li:hover,.vue_name_move li:hover{
-	background: #EEEEEE;;
+  background: #EEEEEE;;
 }
 .vue_name_sz>li>span{
-	width: 6px;
-	height: 11px;
-	display: inline-block;
-	background: url(../images/yiding.png) -251px -7px;
-	margin-left: 10px;
+  width: 6px;
+  height: 11px;
+  display: inline-block;
+  background: url(../images/yiding.png) -251px -7px;
+  margin-left: 10px;
 }
 .vue_name_move{
-	position: absolute;
-	top:55px;
-	left:90px;
-	width: 80px;
-	/*height: 76px;*/
-	background-color: #ffffff;
-	box-shadow: 0px 2px 4px 0px
-		rgba(0, 0, 0, 0.21);
-	border-radius: 5px;
-	padding: 3px 0;
-	z-index: 12;
+  position: absolute;
+  top:55px;
+  left:90px;
+  width: 80px;
+  /*height: 76px;*/
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px 0px
+  rgba(0, 0, 0, 0.21);
+  border-radius: 5px;
+  padding: 3px 0;
+  z-index: 12;
 }
 .vue_name_move li{
-	height:25px;
-	line-height: 25px;
-	font-size: 14px;
-	color: #666666;
-	text-align: center;
+  height:25px;
+  line-height: 25px;
+  font-size: 14px;
+  color: #666666;
+  text-align: center;
 }
 /*分组弹窗结束*/
 /*从页面移出样式*/
 #vu_chat .vu_sidebar {
-    float: left;
-    width: 220px;
-    color: #f4f4f4;
-    background-color: #eeeeee;
-    height:539px;
-    position: relative;
+  float: left;
+  width: 220px;
+  color: #f4f4f4;
+  background-color: #eeeeee;
+  height:539px;
+  position: relative;
 }
 #vu_chat .vu_m-main {
-    position: relative;
-    overflow: hidden;
-    background-color: #e1dfee;
-    height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #e1dfee;
+  height: 100%;
 }
 #vu_chat .vu_m-text {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
 #vu_chat .vu_m-message {
-    height:85%;
+  height:85%;
 }
 .vu_input-search .vu_submenu{
   display: block;
 }
 .vu_m-card {
-    padding: 9px;
+  padding: 9px;
 }
 .vu_m-card  footer {
-    margin-top:0;
+  margin-top:0;
 }
 .vu_m-card .vu_avatar, .vu_name {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 .vu_m-card  .vu_avatar {
-    border-radius: 2px;
+  border-radius: 2px;
 }
 .vu_m-card  .vu_name {
-    display: inline-block;
-    margin: 0 0 0 15px;
-    font-size: 16px;
+  display: inline-block;
+  margin: 0 0 0 15px;
+  font-size: 16px;
 }
 .vu_m-card .vu_search {
-    padding: 0 10px;
-    width: 100%;
-    font-size: 12px;
-    color: #999999;
-    height: 30px;
-    line-height: 30px;
-    border: solid 1px #dddddd;
-    border-radius: 4px;
-    outline: none;
-    background-color: #dddddd;
+  padding: 0 10px;
+  width: 100%;
+  font-size: 12px;
+  color: #999999;
+  height: 30px;
+  line-height: 30px;
+  border: solid 1px #dddddd;
+  border-radius: 4px;
+  outline: none;
+  background-color: #dddddd;
 }
 .vu_m-list {
-    li{
-        padding: 12px 15px;
-        cursor: pointer;
-        transition: background-color .1s;
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.03);
-        }
-        &.active {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-    }
-    .vu_avatar, .vu_name {
-        vertical-align: middle;
-    }
-    .vu_avatar {
-        border-radius: 2px;
-    }
-    .vu_name {
-        display: inline-block;
-        margin: 0 0 0 15px;
-    }
+li{
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color .1s;
+&:hover {
+   background-color: rgba(255, 255, 255, 0.03);
+ }
+&.active {
+   background-color: rgba(255, 255, 255, 0.1);
+ }
+}
+.vu_avatar, .vu_name {
+  vertical-align: middle;
+}
+.vu_avatar {
+  border-radius: 2px;
+}
+.vu_name {
+  display: inline-block;
+  margin: 0 0 0 15px;
+}
 }
 .vu_m-message {
-    padding:15px 15px 10px 15px;
-    /*overflow-y: scroll;*/
-    position: relative;
+  padding:15px 15px 10px 15px;
+  /*overflow-y: scroll;*/
+  position: relative;
 }
 .vu_seemore{
-	position: absolute;
-	top:4px;
-	/*left:260px;*/
-	text-align: center;
-	cursor: pointer;
+  position: absolute;
+  top:4px;
+  /*left:260px;*/
+  text-align: center;
+  cursor: pointer;
   left: 50%;
   margin-left: -40px;
 }
 .vu_seemore span{font-size:12px;color: #2089ff;float: left;}
 .vu_seemore p{
-	display: inline-block;
-	width: 18px;
-	height: 12px;
-	background: url(../images/qie_tu.png) -4px -87px;
-	float: left;
-	margin-top: 2px;
+  display: inline-block;
+  width: 18px;
+  height: 12px;
+  background: url(../images/qie_tu.png) -4px -87px;
+  float: left;
+  margin-top: 2px;
 }
 .vu_m-message li {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .vu_m-message  .vu_time {
-    margin: 7px 0;
-    text-align: center;
+  margin: 7px 0;
+  text-align: center;
 }
 .vu_m-message  .vu_time> span {
-    display: inline-block;
-    padding: 0 18px;
-    font-size: 12px;
-    color: #999999;
-    border-radius: 2px;
+  display: inline-block;
+  padding: 0 18px;
+  font-size: 12px;
+  color: #999999;
+  border-radius: 2px;
 }
 .vu_m-message .vu_avatar {
-    float: left;
-    margin: 0 10px 0 0;
-    border-radius: 3px;
-    border-radius: 50%;
+  float: left;
+  margin: 0 10px 0 0;
+  border-radius: 3px;
+  border-radius: 50%;
 }
 .vu_m-message .vu_text {
-    display: inline-block;
-    position: relative;
-    padding: 0 10px;
-    max-width:360px;
-    min-height: 30px;
-    line-height: 2.5;
-    font-size: 12px;
-    text-align: left;
-    word-break: break-all;
-    background-color: #FFFFFF;
-    border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  padding: 0 10px;
+  max-width:360px;
+  min-height: 30px;
+  line-height: 2.5;
+  font-size: 12px;
+  text-align: left;
+  word-break: break-all;
+  background-color: #FFFFFF;
+  border-radius: 4px;
 
 }
 .vu_main .vu_text{float: left;}
 .vu_self .vu_text{float: right!important;}
 .vu_m-message .vu_text:before {
-    content: " ";
-    position: absolute;
-    top: 9px;
-    right: 100%;
-    border: 6px solid transparent;
-    border-right-color: #FFFFFF;
+  content: " ";
+  position: absolute;
+  top: 9px;
+  right: 100%;
+  border: 6px solid transparent;
+  border-right-color: #FFFFFF;
 }
 
 .vu_m-message .vu_self {
-    text-align: right;
+  text-align: right;
 }
 .vu_m-message .vu_self .vu_avatar {
-    float: right;
-    margin: 0 0 0 10px;
+  float: right;
+  margin: 0 0 0 10px;
 }
 .vu_m-message .vu_self .vu_text {
-    background-color: #2089ff;
+  background-color: #2089ff;
 }
 .vu_m-message .vu_self .vu_text:before {
-    right: inherit;
-    left: 100%;
-    border-right-color: transparent;
-    border-left-color: #2089ff;
+  right: inherit;
+  left: 100%;
+  border-right-color: transparent;
+  border-left-color: #2089ff;
 }
 .vu_m-text {
-    height:20%;
-    border-top: solid 1px #cccccc;
-    padding-left:2%;
-    padding-top: 5px;
+  height:20%;
+  border-top: solid 1px #cccccc;
+  padding-left:2%;
+  padding-top: 5px;
 }
 .vu_m-text textarea {
-    /*padding: 27px 10px 45px 10px;*/
-    /*margin:27px 0 0 10px;*/
-    height:40px;
-    line-height: 40px;
-    width:82%;
-    font-size: 14px;
-    /*overflow-y:scroll;*/
-    border: none;
-    outline: none;
-    font-family: "Micrsofot Yahei";
-    resize: none;
-    padding: 0  0 0 5px;
-    padding-left: 20px;
-   margin:0.6% 0 0 0;
-   float: left;
+  /*padding: 27px 10px 45px 10px;*/
+  /*margin:27px 0 0 10px;*/
+  height:40px;
+  line-height: 40px;
+  width:82%;
+  font-size: 14px;
+  /*overflow-y:scroll;*/
+  border: none;
+  outline: none;
+  font-family: "Micrsofot Yahei";
+  resize: none;
+  padding: 0  0 0 5px;
+  padding-left: 20px;
+  margin:0.6% 0 0 0;
+  float: left;
 }
 .vu_m-guan p .fa{color: #DDDDDD;}
 /*.vu_submenu-newname{height: 24px!important;}*/
@@ -1117,9 +1119,9 @@ ul {
 .vu_submenu-newname{height: 60px!important;}
 
 .vu_submenu-newname .vu_m-touxiang{
-	top: 2px!important;
-	width: 20px!important;
-	height: 20px!important;
+  top: 2px!important;
+  width: 20px!important;
+  height: 20px!important;
 }
 /*新群发样式*/
 .vu_submenu-newname .vu_m-touxiang.newQunFa{
@@ -1128,193 +1130,193 @@ ul {
   height: 40px!important;
 }
 .vu_submenu-newname a{
-	margin:3px 0 0 10px!important;
+  margin:3px 0 0 10px!important;
 }
 .vu_submenu-newname .vu_checkbox_bg{
-	    /*margin: 3px 27px 0 0!important;*/
+  /*margin: 3px 27px 0 0!important;*/
   /*新群发样式*/
   margin-top: 20px!important;
 
 }
 .vu_qun_fen>li>.vu_link{position: relative;}
 .vu_qun_fen>li>.vu_link:hover .vu_check-all{
-	display: block;
+  display: block;
 }
 .vu_qun_fen>li>.vu_link>.vu_check-all{
-	width: 14px;
-	height: 14px;
-	border: solid 1px #999999;
-	border-radius: 50%;
-	position: absolute;
-	top:6px;
-	right:13px;
-	text-align: center;
-	line-height:13px;
-	display: none;
-	cursor: pointer;
-	color: #999999;
+  width: 14px;
+  height: 14px;
+  border: solid 1px #999999;
+  border-radius: 50%;
+  position: absolute;
+  top:6px;
+  right:13px;
+  text-align: center;
+  line-height:13px;
+  display: none;
+  cursor: pointer;
+  color: #999999;
 }
 .vu_qun_fen>li>.vu_link>.vu_check-all:hover{
-	border: solid 1px #e42b2b;
-	color: #e42b2b;
+  border: solid 1px #e42b2b;
+  color: #e42b2b;
 }
 .vu_ren-dele{
-	width: 20px;
-	height: 20px;
-	float: right;
-	margin: 16px 15px 0 0;
-	background: url(../images/qie_tu.png) -4px -21px no-repeat;
-	display: none;
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin: 16px 15px 0 0;
+  background: url(../images/qie_tu.png) -4px -21px no-repeat;
+  display: none;
 }
 .vu_submenu .vu_submenu-name:hover .vu_ren-dele{display: block;}
 .vu_submenu .vu_submenu-name .vu_ren-dele:hover{
-	background: url(../images/qie_tu.png) -4px -42px no-repeat;
+  background: url(../images/qie_tu.png) -4px -42px no-repeat;
 }
 .vu_qun-name{
-    width:20px;
-    height: 15px;
-    background: url(../images/yiding.png) -71px -124px;
-    cursor: pointer;
-    position: absolute;
-    top:10px;
-    right:22px;
-    /*z-index: 10;*/
+  width:20px;
+  height: 15px;
+  background: url(../images/yiding.png) -71px -124px;
+  cursor: pointer;
+  position: absolute;
+  top:10px;
+  right:22px;
+  /*z-index: 10;*/
 }
 .vu_qun_fen>li>.vu_link:hover .vu_qun-name{display: block;}
 /*//修改群组样式*/
 .vu_qunzu_name{
-	width: 211px;
-    height:135px;
-    background-color: #f6f6f6;
-    -webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
-    box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
-    position: absolute;
-    top: 140px;
-    left: 18px;
-    z-index: 10;
+  width: 211px;
+  height:135px;
+  background-color: #f6f6f6;
+  -webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
+  box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
+  position: absolute;
+  top: 140px;
+  left: 18px;
+  z-index: 10;
 }
 .vu_qunzu_name input{
-	margin: 10px 0 20px 15px;
-	padding-left: 10px;
+  margin: 10px 0 20px 15px;
+  padding-left: 10px;
 }
 .vu_qunzu_name>p{margin:10px 0 0 5px;}
 .vu_qunzu_name button{
-	margin-left: 20px!important;
+  margin-left: 20px!important;
 }
 .vu_del-popup{
-	position: absolute;
-    top: 140px;
-    left:25px;
-    z-index: 10;
-    background-color: #f6f6f6;
-    -webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
-    box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
+  position: absolute;
+  top: 140px;
+  left:25px;
+  z-index: 10;
+  background-color: #f6f6f6;
+  -webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
+  box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
 }
 .vu_del-popup>p{
-	margin: 10px 0;
-	text-align: center;
+  margin: 10px 0;
+  text-align: center;
 }
 .vu_del-popup button{
-	margin-left: 20px;
+  margin-left: 20px;
 }
 .vu_del-popup .vu_fenzu_name_footer span{
-	margin-right:5px;
+  margin-right:5px;
 }
 .vu_m-message-new{
-	text-align: center;
-	color: #666666;
-	padding: 20px 0;
+  text-align: center;
+  color: #666666;
+  padding: 20px 0;
 }
 /*群发消息样式start*/
 .vu_qun-fenzu{
-	width: 740px;
+  width: 740px;
 }
 .vu_qun-fenzu .vu_fenzu_right{
-	width: 490px;
+  width: 490px;
 }
 .vu_qun-fenzu .vu_fenzu_right_ul{
-	width: 490px;
-	height:150px;
+  width: 490px;
+  height:150px;
 }
 .vu_qun-fenzu .vu_fenzu_right_ul>li{
-	height:28px!important;
-	float: left;
-	width:102px;
-	background: #FFFFFF;
-	border-radius: 5px;
-	margin: 12px  0 0 12px;
-	position: relative;
+  height:28px!important;
+  float: left;
+  width:102px;
+  background: #FFFFFF;
+  border-radius: 5px;
+  margin: 12px  0 0 12px;
+  position: relative;
 }
 .vu_qun-fenzu .vu_fenzu_right_ul>li div{
-	margin: 2px 0 0 5px;
+  margin: 2px 0 0 5px;
 }
 .vu_qun-fenzu .vu_fenzu_right_ul>li a{
-	margin:0 0 0 5px!important;
-	height: 28px;
-	line-height: 28px;
-	max-width: 66px;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
+  margin:0 0 0 5px!important;
+  height: 28px;
+  line-height: 28px;
+  max-width: 66px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .vu_qun-fenzu .vu_fenzu_right_ul>li span{
-	position: absolute;
-	margin: 0;
-	top: -3px;
-	right: -5px;
+  position: absolute;
+  margin: 0;
+  top: -3px;
+  right: -5px;
 }
 .vu_qunnew-que{
-	height: 175px;
+  height: 175px;
 }
 .vu_qunnew-que div{
-	color: #ff5959;
-	padding-left:15px;
+  color: #ff5959;
+  padding-left:15px;
 }
 /*.vu_qunnew-que textarea{*/
-	/*width:480px;*/
-	/*height:145px;*/
-	/*background-color: #ffffff;*/
-	/*border-radius: 5px;*/
-	/*border: solid 1px #dddddd;*/
-	/*margin:5px 0 0 10px;*/
-	/*overflow-y:scroll ;*/
-	/*resize:none*/
+/*width:480px;*/
+/*height:145px;*/
+/*background-color: #ffffff;*/
+/*border-radius: 5px;*/
+/*border: solid 1px #dddddd;*/
+/*margin:5px 0 0 10px;*/
+/*overflow-y:scroll ;*/
+/*resize:none*/
 /*}*/
 .vu_qun-fenzu .vu_fenzu_footer button{
-	margin-left:555px;
+  margin-left:555px;
 }
 /*群发消息样式end*/
 /*返回顶部stary*/
 #fanhui{
-	position: fixed;
-	right: 0;
-	bottom: 30px;
-	width: 40px;
-	height: 50px;
-	background: #FFFFFF;
-	display: none;
-	box-shadow: 1px 0px 2px 2px rgba(0,0,0,0.1);
-	z-index: 1000;
+  position: fixed;
+  right: 0;
+  bottom: 30px;
+  width: 40px;
+  height: 50px;
+  background: #FFFFFF;
+  display: none;
+  box-shadow: 1px 0px 2px 2px rgba(0,0,0,0.1);
+  z-index: 1000;
 }
 #fanhui span{
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	background: url(../images/qie_tu.png) -4px -214px no-repeat;
-	margin:15px 0 0 13px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../images/qie_tu.png) -4px -214px no-repeat;
+  margin:15px 0 0 13px;
 }
 /*返回顶部end*/
 .vu_m-minimum{
-	position: absolute;
-	top:12px;
-	right:40px;
-	width: 20px;
-	height: 20px;
-	background: url(../images/qie_tu.png) -1px -263px no-repeat;
-	cursor:pointer;
+  position: absolute;
+  top:12px;
+  right:40px;
+  width: 20px;
+  height: 20px;
+  background: url(../images/qie_tu.png) -1px -263px no-repeat;
+  cursor:pointer;
 }
 .vu_m-minimum:hover{
-	background:#EEEEEE url(../images/qie_tu.png) -1px -263px no-repeat;
+  background:#EEEEEE url(../images/qie_tu.png) -1px -263px no-repeat;
 }
 
 
@@ -1322,309 +1324,309 @@ ul {
 /*分组*/
 .vu_qunfen_new{height: 77px;}
 .vu_qunfen_new>div{
-	width: 150px;
-	height: 36px;
-	background-color: #0f151f;
-	border-radius: 5px;
-	float: left;
-	margin-top:20px;
-	margin-left: 50%;
-	transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	font-size: 16px;
-	color: #cccccc;
-	text-align: center;
-	line-height: 36px;
-	cursor: pointer;
+  width: 150px;
+  height: 36px;
+  background-color: #0f151f;
+  border-radius: 5px;
+  float: left;
+  margin-top:20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  font-size: 16px;
+  color: #cccccc;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
 }
 /*//删除组/重命名*/
 .vu_first_selt{
-	position: absolute;
-	top:15px;
-	right: -15px;
-	width: 90px;
-	height: 56px;
-	background-color: #ffffff;
-	border-radius: 5px;
-	z-index: 10;
-	padding: 3px 0;
-	display: none;
+  position: absolute;
+  top:15px;
+  right: -15px;
+  width: 90px;
+  height: 56px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  z-index: 10;
+  padding: 3px 0;
+  display: none;
 }
 .vu_first_selt li{
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-	color: #666666;
-	font-size: 14px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  color: #666666;
+  font-size: 14px;
 }
 .vu_first_selt li:hover{
-	background: #EEEEEE;
+  background: #EEEEEE;
 }
 /*图表块设置start*/
 #vue_echart{
-	/*padding:38% 0 0;*/
-	/*margin-left: 19%;*/
-	width: 100%;
-	height:72%;
-	/*background:#101a29;*/
-	position:relative;
+  /*padding:38% 0 0;*/
+  /*margin-left: 19%;*/
+  width: 100%;
+  height:72%;
+  /*background:#101a29;*/
+  position:relative;
 }
 .vue_echart{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .vue_chat_main{
-	width: 100%;
-	height:56.1%;
-	/*padding: 45% 0 0;*/
-	background-color: #070e19;
-	margin-top: 10px;
-	position: relative;
+  width: 100%;
+  height:56.1%;
+  /*padding: 45% 0 0;*/
+  background-color: #070e19;
+  margin-top: 10px;
+  position: relative;
 }
 #vue-myChart{
-	position: absolute!important;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute!important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .vue_chart_yi{
-	height:13.5%;
-	/*padding:9% 0 0;*/
-	background-color: #101a29;
-	position: relative;
+  height:13.5%;
+  /*padding:9% 0 0;*/
+  background-color: #101a29;
+  position: relative;
 }
 .vue-chart-head{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .vue-chart-foot{
-	width: 100%;
-	height: 28.7%;
-	background:#101a29;
+  width: 100%;
+  height: 28.7%;
+  background:#101a29;
   margin-top: 10px;
   position: relative;
 }
 /*头切换选项*/
 .vue-chart-head>div{
-	height: 33.3%;
-	border-bottom:1px solid #172739;
-	position: relative;
-    clear: both;
-}
-.vue-chart-head>div ul{
-	margin-bottom: 0;
-}
-.vue-chart-head>div p{
-	margin: 0;
+  height: 33.3%;
+  border-bottom:1px solid #172739;
+  position: relative;
   clear: both;
 }
-	.vue_kind_ul{
-		position: absolute;
-		top: 0;
-		left:120px;
-		background-color: #ffffff;
-		border-radius: 5px;
-		max-height:95px;
-		overflow-y:auto ;
-		z-index: 10;
-	}
-	.vue_kind_ul li{
-		width: 139px;
-		height: 24px;
-		line-height: 24px;
-		padding-left: 10px;
-		color: #999999;
-	}
-	.vue_kind_ul li:hover{
-		background-color: #eeeeee;
-		color: #fd3000!important;
-		font-size: 12px;
-		cursor: pointer;
-	}
-	.vue_chat_div{
-		height: 100%;
-		float: left;
-		width: 12.6%;
-		border-right: 1px solid #172739;
-		cursor: pointer;
-	}
-  .vue_chat_div .choose{
+.vue-chart-head>div ul{
+  margin-bottom: 0;
+}
+.vue-chart-head>div p{
+  margin: 0;
+  clear: both;
+}
+.vue_kind_ul{
+  position: absolute;
+  top: 0;
+  left:120px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  max-height:95px;
+  overflow-y:auto ;
+  z-index: 10;
+}
+.vue_kind_ul li{
+  width: 139px;
+  height: 24px;
+  line-height: 24px;
+  padding-left: 10px;
+  color: #999999;
+}
+.vue_kind_ul li:hover{
+  background-color: #eeeeee;
+  color: #fd3000!important;
+  font-size: 12px;
+  cursor: pointer;
+}
+.vue_chat_div{
+  height: 100%;
+  float: left;
+  width: 12.6%;
+  border-right: 1px solid #172739;
+  cursor: pointer;
+}
+.vue_chat_div .choose{
   color:#fd3000;
-  }
-  .vue_chatkind_tubiao.chooseIco{
-    background: url(/static/img/yiding.f14cb8c.png) -105px -34px;
-  }
-  .vue_company_tubiao.chooseIco{
-    background: url(/static/img/yiding.f14cb8c.png) -141px -34px;
-  }
-  .vue_people_tubiao.chooseIco{
-    background: url(/static/img/yiding.f14cb8c.png) -174px -34px;
-  }
-	.vue_chatkind_tubiao{
-		display: inline-block;
-		width:18px;
-		height:19px;
-		background: url(../images/yiding.png) -105px 0;
-	}
-	.vue_chat_div span{
-		color: #999999;
-		font-size:14px;
-	}
-	.vue_chat_jiantou{
-		display: inline-block;
-		width: 12px;
-		height: 12px;
-		background: url(../images/yiding.png) -42px -96px;
-		margin:9px 0 0 12px;
-		float: left;
-	}
-	.vue_chatkind_tubiao{margin:5px 0 0 10px;float: left;}
-	.vue_chatkind_name{margin:5px 0 0 10px;float: left;}
-	.vue_kind_species,.vue_company_species{float:left;height: 100%;color: #fd3000;font-size: 14px;margin-left: 10px;}
-	.vue_kind_species li{height: 100%;line-height: 30px;}
-	.vue_kind_species li:hover{color: #4385f5;cursor:pointer;}
-	.vue_kind_species li p{
-		display: inline-block;
-		background: ;
-	}
-	/*公司开*/
-	.vue_company_tubiao{
-		float: left;
-		margin: 5px 0 0 10px;
-		display: inline-block;
-		width:18px;
-		height:19px;
-		background: url(../images/yiding.png) -141px 0;
-	}
-	.vue_company_ul{
-		position: absolute;
-		top:32px;
-		left: 0;
-		width: 210px;
-		max-height: 168px;
-		background-color: #ffffff;
-		border-radius: 5px;
-		z-index: 10;
-		padding: 3px 0;
-		overflow-y:auto ;
-	}
-	.vue_company_ul li{
-		height: 24px;
-		line-height: 24px;
-		padding-left: 5px;
-		width: 210px;
-		overflow: hidden;
-		text-overflow:ellipsis;
-		white-space: nowrap;
-	}
-	.vue_company_ul li:hover{
-		background-color: #eeeeee;
-		color: #fd3000!important;
-		cursor: pointer;
-	}
-	.vue_company_ul span{
-		display: inline-block;
-		width: 14px;
-		height:14px;
-		background: url(../images/yiding.png) -141px -71px;
-		margin-right: 6px;
-	}
-	.vue_company_species li{
-		padding: 2px 3px;
-		border: 1px dashed #fd3000;
-		border-radius: 5px;
-		margin: 3px 10px 0 0;
-		float: left;
-	}
-	.vue_company_species li:hover{
-		color: #4385f5;
-		cursor: pointer;
-	}
-	.vue_company_species p{
-		display: inline-block;
-		width: 20px;
-		height: 20px;
-		text-align: center;
-	}
-	.vue_company_species p:hover{
-		background: #fd3000;
-	}
-	.vue_company_species p:hover span{
-		display: inline-block;
-		width: 11px;
-		height: 10px;
-		background: url(../images/yiding.png) -212px -39px;
-	}
-	.vue_company_species p span{
-		display: inline-block;
-		width: 11px;
-		height: 10px;
-		background: url(../images/yiding.png) -212px -7px;
-	}
-	/*公司始*/
-	/*人员开*/
-	.vue_people_tubiao{
-		float: left;
-		margin: 5px 0 0 10px;
-		display: inline-block;
-		width:18px;
-		height:19px;
-		background: url(../images/yiding.png) -174px 0;
-	}
-	.vue_people_ul{
-		position: absolute;
-		top: 30px;
-		left: 0;
-		width: 140px;
-		max-height: 168px;
-		background-color: #ffffff;
-		border-radius: 5px;
-		z-index: 10;
-		padding:5px 0;
-		overflow-y: auto;
-	}
-	.vue_people_ul span{
-		display: inline-block;
-		width: 18px;
-		height: 18px;
-		overflow: hidden;
-		background-color: #eeeeee;
-		margin: 3px 5px 0 0;
-		float: left;
-	}
-	.vue_people_ul span img{
-		width: 100%;height: 100%;
-	}
-	.vue_people_ul li{height: 24px;line-height: 24px;padding: 0 5px;}
-	.vue_people_ul li:hover{background-color: #eeeeee;color: #fd3000!important;}
-	.vue_people_ul p{display: inline-block;}
-	/*人员始*/
-	/*头切换选项end*/
+}
+.vue_chatkind_tubiao.chooseIco{
+  background: url(/static/img/yiding.f14cb8c.png) -105px -34px;
+}
+.vue_company_tubiao.chooseIco{
+  background: url(/static/img/yiding.f14cb8c.png) -141px -34px;
+}
+.vue_people_tubiao.chooseIco{
+  background: url(/static/img/yiding.f14cb8c.png) -174px -34px;
+}
+.vue_chatkind_tubiao{
+  display: inline-block;
+  width:18px;
+  height:19px;
+  background: url(../images/yiding.png) -105px 0;
+}
+.vue_chat_div span{
+  color: #999999;
+  font-size:14px;
+}
+.vue_chat_jiantou{
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(../images/yiding.png) -42px -96px;
+  margin:9px 0 0 12px;
+  float: left;
+}
+.vue_chatkind_tubiao{margin:5px 0 0 10px;float: left;}
+.vue_chatkind_name{margin:5px 0 0 10px;float: left;}
+.vue_kind_species,.vue_company_species{float:left;height: 100%;color: #fd3000;font-size: 14px;margin-left: 10px;}
+.vue_kind_species li{height: 100%;line-height: 30px;}
+.vue_kind_species li:hover{color: #4385f5;cursor:pointer;}
+.vue_kind_species li p{
+  display: inline-block;
+  background: ;
+}
+/*公司开*/
+.vue_company_tubiao{
+  float: left;
+  margin: 5px 0 0 10px;
+  display: inline-block;
+  width:18px;
+  height:19px;
+  background: url(../images/yiding.png) -141px 0;
+}
+.vue_company_ul{
+  position: absolute;
+  top:32px;
+  left: 0;
+  width: 210px;
+  max-height: 168px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  z-index: 10;
+  padding: 3px 0;
+  overflow-y:auto ;
+}
+.vue_company_ul li{
+  height: 24px;
+  line-height: 24px;
+  padding-left: 5px;
+  width: 210px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.vue_company_ul li:hover{
+  background-color: #eeeeee;
+  color: #fd3000!important;
+  cursor: pointer;
+}
+.vue_company_ul span{
+  display: inline-block;
+  width: 14px;
+  height:14px;
+  background: url(../images/yiding.png) -141px -71px;
+  margin-right: 6px;
+}
+.vue_company_species li{
+  padding: 2px 3px;
+  border: 1px dashed #fd3000;
+  border-radius: 5px;
+  margin: 3px 10px 0 0;
+  float: left;
+}
+.vue_company_species li:hover{
+  color: #4385f5;
+  cursor: pointer;
+}
+.vue_company_species p{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.vue_company_species p:hover{
+  background: #fd3000;
+}
+.vue_company_species p:hover span{
+  display: inline-block;
+  width: 11px;
+  height: 10px;
+  background: url(../images/yiding.png) -212px -39px;
+}
+.vue_company_species p span{
+  display: inline-block;
+  width: 11px;
+  height: 10px;
+  background: url(../images/yiding.png) -212px -7px;
+}
+/*公司始*/
+/*人员开*/
+.vue_people_tubiao{
+  float: left;
+  margin: 5px 0 0 10px;
+  display: inline-block;
+  width:18px;
+  height:19px;
+  background: url(../images/yiding.png) -174px 0;
+}
+.vue_people_ul{
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 140px;
+  max-height: 168px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  z-index: 10;
+  padding:5px 0;
+  overflow-y: auto;
+}
+.vue_people_ul span{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  background-color: #eeeeee;
+  margin: 3px 5px 0 0;
+  float: left;
+}
+.vue_people_ul span img{
+  width: 100%;height: 100%;
+}
+.vue_people_ul li{height: 24px;line-height: 24px;padding: 0 5px;}
+.vue_people_ul li:hover{background-color: #eeeeee;color: #fd3000!important;}
+.vue_people_ul p{display: inline-block;}
+/*人员始*/
+/*头切换选项end*/
 .vue-real-img{
-	height:30px;
+  height:30px;
 }
 .vue-real-img span{font-size:16px;color: #FFFFFF;float: left;margin:7px 0 0 6px ;}
 .vue-real-img-img{
-	    display: inline-block;
-    width: 22px;
-    height: 20px;
-    background: url(../images/souye_tu.png) 0 0;
-    float: left;
-    margin: 10px 0 0 10px;
+  display: inline-block;
+  width: 22px;
+  height: 20px;
+  background: url(../images/souye_tu.png) 0 0;
+  float: left;
+  margin: 10px 0 0 10px;
 }
 /*.vue-realtime-auto{width: 98%;margin:5px 0 5px 2%;height:150px;overflow-y: auto;}*/
 .vue-tealtime-time {
-    height: 150px;
-    outline: initial!important;
-    width: 97.5%;
-    margin: 5px 0 5px 2%;
+  height: 150px;
+  outline: initial!important;
+  width: 97.5%;
+  margin: 5px 0 5px 2%;
 }
 .vue-realtime-auto li{width:100%;float: left;height: 30px;line-height: 30px;padding-left: 0.8%;}
 .vue-realtime-auto li:nth-child(even){border-right: 0;}
@@ -1635,154 +1637,154 @@ ul {
 .vue-realtime-auto-num{width: 12%;}
 .vue-realtime-buy_price,.vue-realtime-sell_price{width:15%!important;}
 .vue-realtime-buy{
-	color: #ff1400!important;
-	width: 5%;
+  color: #ff1400!important;
+  width: 5%;
 }
 .vue-realtime-sell{
-	color: #00d700!important;
-	width: 5%;
+  color: #00d700!important;
+  width: 5%;
 }
 /*图表块设置end*/
 
 /*聊天对话框*/
 #tuo{
-	float: left;
-	height: 100%;
-	width: 22.4%;
+  float: left;
+  height: 100%;
+  width: 22.4%;
 }
 .vue_m_m_foot{
-	margin-left:10%;
-	text-align: center;
-	font-size: 12px;
-	color: #FFFFFF;
-	background: #383d72;
-	height: 22px;
-	line-height: 22px;
+  margin-left:10%;
+  text-align: center;
+  font-size: 12px;
+  color: #FFFFFF;
+  background: #383d72;
+  height: 22px;
+  line-height: 22px;
 }
 #vue_main_main{
-	float: left;
-	/*width: 65.8%;*/
+  float: left;
+  /*width: 65.8%;*/
   width: 62.8%;
   height: 100%;
-	margin-left: 18.6%;
-	margin-top: 40px;
+  margin-left: 18.6%;
+  margin-top: 40px;
 }
 .comactive,.peoactive{color: #4385f5!important;}
 /*左边列表start*/
 #leftlist{
-	/*position: absolute;
-	top: 40px;
-	right: 0;*/
+  /*position: absolute;
+    top: 40px;
+    right: 0;*/
   width: 18%;
-	/*width: 15%;*/
-	height: 100%;
-	background-color: #e1dfee;
-	float: right;
-	margin-top: 40px;
+  /*width: 15%;*/
+  height: 100%;
+  background-color: #e1dfee;
+  float: right;
+  margin-top: 40px;
 }
 .vue_leftlist{
-	height: 370px;
+  height: 370px;
 }
 .vue_leftlist>p{
-	height: 40px;
-	width: 96%;
-	margin:0 2% 0 2%;
-	line-height: 40px;
-	color: #333333;
-	font-size: 16px;
-	border-bottom: 1px solid #CCCCCC;
+  height: 40px;
+  width: 96%;
+  margin:0 2% 0 2%;
+  line-height: 40px;
+  color: #333333;
+  font-size: 16px;
+  border-bottom: 1px solid #CCCCCC;
 }
 .vue_leftlist_ul{
-	height: 310px;
-	overflow-y: auto;
-	margin-top: 10px;
+  height: 310px;
+  overflow-y: auto;
+  margin-top: 10px;
 }
 .vue_leftlist_ul li{
-	height:31px;
-	line-height: 31px;
-	font-size: 14px;
-	color: #666666;
-	width: 97%;
-	margin: 0 1% 0 2%;
+  height:31px;
+  line-height: 31px;
+  font-size: 14px;
+  color: #666666;
+  width: 97%;
+  margin: 0 1% 0 2%;
 }
 .vue_leftlist_ul li a{display: inline-block;color: #666666;cursor: pointer;width: 100%;height: 100%;}
 .vue_leftlist_ul li:hover a{color: #fd3000!important;}
 .vue_leftlist_ul span{
-	float: left;
+  float: left;
 }
 .vue_leftlist_ul p{
-	display: inline-block;
-	float: left;
-	width:72%;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
-	margin-left:3%;
+  display: inline-block;
+  float: left;
+  width:72%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  margin-left:3%;
 }
 
 .vue_leftlist_people{
 
 }
 .vue_leftlist_people>p{
-	height: 40px;
-	background-color: #dddddd;
-	line-height: 40px;
-	padding-left: 10px;
-	font-size: 15px;
-	color: #333333;
+  height: 40px;
+  background-color: #dddddd;
+  line-height: 40px;
+  padding-left: 10px;
+  font-size: 15px;
+  color: #333333;
 }
 .vue_leftlist_search{
-	height: 30px;
-	background-color: #d0cedb;
-	border: 0;
-	margin: 3% 0 0 7%;
-	padding-left: 10px;
-	width: 85%;
+  height: 30px;
+  background-color: #d0cedb;
+  border: 0;
+  margin: 3% 0 0 7%;
+  padding-left: 10px;
+  width: 85%;
 }
 .leftlist_people_ul li{
-	position: relative;
-	height:48px;
-	border-bottom: 1px solid #d8d6e8;
+  position: relative;
+  height:48px;
+  border-bottom: 1px solid #d8d6e8;
   overflow:hidden;
 }
 .leftlist_people_ul li:hover{background-color: #efedf8;cursor: pointer;}
 .leftlist_people_photo{
-	float: left;
-	width: 40px;
-	height: 40px;
-	background-color:#efedf8;
-	border-radius: 5px;
-	margin:5px 0 0 8px;
+  float: left;
+  width: 40px;
+  height: 40px;
+  background-color:#efedf8;
+  border-radius: 5px;
+  margin:5px 0 0 8px;
 }
 .leftlist_people_photo img{
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .leftlist_people_cuo{
-	width:15px;
-	height:15px;
-	position: absolute;
-	top:31px;
-	left: 34px;
-	background: url(../images/yiding.png) -3px -121px;
+  width:15px;
+  height:15px;
+  position: absolute;
+  top:31px;
+  left: 34px;
+  background: url(../images/yiding.png) -3px -121px;
 }
 .leftlist_people_jiao{
-	width:15px;
-	height:15px;
-	position: absolute;
-	top:31px;
-	left: 34px;
-	background: url(../images/yiding.png) -4px -145px;
+  width:15px;
+  height:15px;
+  position: absolute;
+  top:31px;
+  left: 34px;
+  background: url(../images/yiding.png) -4px -145px;
 }
 .leftlist_people_ul{
-	margin-top: 10px;
-	height:458px;
+  margin-top: 10px;
+  height:458px;
   overflow: auto;
   /*min-width:206px;*/
 }
 .leftlist_people_name{
-	float: left;
-	margin: 5px 0 0 10px;
+  float: left;
+  margin: 5px 0 0 10px;
 }
 .leftlist_people_name.ellipsis{
   width: 65%;
@@ -1792,66 +1794,72 @@ ul {
 }
 .leftlist_people_name span{color: #333333;font-size: 14px;font-weight: 550;}
 .leftlist_people_name p{font-size: 12px;color: #666666;margin-top:2px;}
-  /*左列表加好友*/
- .vue_leftlist_tan{
- 	position: absolute;
- 	top: 350px;
- 	right: 18%;
- 	width: 320px;
-	height: 340px;
-	background-color: #EEEDF6;
-	border-radius: 10px;
- }
- .vue_leftlist_img{
- 	position: absolute;
- 	top:34px;
- 	left: 50%;
- 	transform: translateX(-50%);
- 	-webkit-transform: translateX(-50%);
- 	width: 60px;
-	height: 60px;
-	background-color: #EEEDF6;
-	border-radius: 50%;
- }
-  .vue_leftlist_img img{
-  	width: 100%;
-  	height: 100%;
-  	border-radius: 50%;
-  }
+/*左列表加好友*/
+.vue_leftlist_tan{
+  position: absolute;
+  top: 350px;
+  right: 18%;
+  width: 320px;
+  height: 340px;
+  background-color: #EEEDF6;
+  border-radius: 10px;
+}
+.vue_leftlist_tan.addFriLeft{
+  position: fixed;
+  top: 25%;
+  right: 38%;
+}
+.vue_leftlist_img{
+  position: absolute;
+  top:34px;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background-color: #EEEDF6;
+  border-radius: 50%;
+}
+.vue_leftlist_img img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 .vue_leftlist_companycuo,.vue_leftlist_companyjiao{
-	margin:30px 0 10px 0;
-	padding-left:30px;
-	color: #666666;
+  margin:30px 0 10px 0;
+  padding-left:30px;
+  color: #666666;
 }
 .vue_leftlist_companycuo span{
-	color: #ff5400!important;
+  color: #ff5400!important;
 }
 .vue_leftlist_companyjiao span{
-	color: #36a91c!important;
+  color: #36a91c!important;
 }
 .vue_leftlist_companyname{
-	padding-left:30px;
-	color: #666666;
-	margin-bottom: 10px;
+  padding-left:30px;
+  color: #666666;
+  margin-bottom: 10px;
 }
 .vue_leftlist_line{
-	width: 260px;
-	text-align: center;
-	padding:50px 0 25px 0;
-	margin: 0 30px;
-	border-bottom:1px solid #DDDDDD ;
-	font-size: 14px;
-	font-weight: 550;
+  width: 260px;
+  text-align: center;
+  padding:50px 0 25px 0;
+  margin: 0 30px;
+  border-bottom:1px solid #DDDDDD ;
+  font-size: 14px;
+  font-weight: 550;
 }
 .vue_leftlist_tan textarea{
   width: 256px;height: 50px;margin-left: 30px;resize:none;line-height: 25px;
   padding: 0 10px;
+  border:1px solid #79ADFF;
 }
 .vue_leftlist_line.verify{
   padding: 30px 0 15px 0;
 }
 .vue_leftlist_companycuo.verify, .vue_leftlist_companyjiao.verify{
-  margin: 15px 0 10px 0;
+  margin: 10px 0 10px 0;
 }
 .vue_leftlist_tan .verifyMsg{
   width: 256px;height: 50px;margin-left: 30px;
@@ -1865,229 +1873,230 @@ ul {
   -webkit-line-clamp:2;
 }
 .vue_leftlist_companysz{
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 51px;
-	border-top: 1px solid #DDDDDD;
-	font-size: 14px;
-	color:#666666;
-	border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 51px;
+  border-top: 1px solid #DDDDDD;
+  font-size: 14px;
+  color:#666666;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .vue_leftlist_companysz span{
-	display: inline-block;
-	width: 50%;
-	border-right: 1px solid #DDDDDD;
-	float: left;
-	text-align: center;
-	line-height: 50px;
-	cursor: pointer;
+  display: inline-block;
+  width: 50%;
+  border-right: 1px solid #DDDDDD;
+  float: left;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
 }
 .vue_leftlist_companysz_yi{
-	background: #FFFFFF;
-	color: #666666;
-	border-bottom-left-radius: 10px;
+  background: #FFFFFF;
+  color: #666666;
+  border-bottom-left-radius: 10px;
 }
 .vue_leftlist_companysz_er{
-	color: #fd3000;
-	border-bottom-right-radius: 10px;
+  color: #fd3000;
+  border-bottom-right-radius: 10px;
 }
 .vue_leftlist_close{
-	position: absolute;
-	top:3px;
-	right: 3px;
-	width: 20px;
-	height: 20px;
+  position: absolute;
+  top:3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
 }
 .vue_leftlist_close span{
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	background:url(../images/yiding.png) -71px -68px ;
-	margin: 2px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background:url(../images/yiding.png) -71px -68px ;
+  margin: 2px;
 }
 .vue_leftlist_close:hover{
-	background-color: #ef6e6e;
+  background-color: #ef6e6e;
 }
 /*左边列表end*/
 .vu_m-new{
-	padding: 0 20px;
-	height:30px;
-	line-height:30px;
-	border-bottom: 1px solid #e1dfee;
+  padding: 0 20px;
+  height:30px;
+  line-height:30px;
+  border-bottom: 1px solid #e1dfee;
 }
 .vu_m-newqun{
-	height: 60px;
-	text-align: center;
-	margin: 10px 0;
+  height: 60px;
+  text-align: center;
+  margin: 10px 0;
 }
 .vu_m-newqun img{
-	width:60px;
-	height: 60px;
-	border-radius: 5px;
+  width:60px;
+  height: 60px;
+  border-radius: 5px;
 }
 .vu_m-new_com{
-	color: #999999;
-	text-align: center;
-	margin-bottom: 5px;
-	margin-top: 36px;
+  color: #999999;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 36px;
 }
 .vu_m-new_phone{
-	color: #999999;
-	text-align: center;
+  color: #999999;
+  text-align: center;
 }
 .vu_m-new_phone span{
-	color: #4385f5!important;
+  color: #4385f5!important;
 }
 .vu_m-new_friend{
-	width: 76px;
-	height: 24px;
-	line-height: 24px;
-	text-align: center;
-	background-color: #4385f5;
-	border-radius: 5px;
-	color: #ffffff;
-	font-size: 14px;
-	margin:6px auto;
+  width: 76px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background-color: #4385f5;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 14px;
+  margin:16px auto;
+  cursor: pointer;
 }
 /*确认删除好友弹窗start*/
 .vue_del_friend{
-	position: fixed;
-	top:20%;
-	left:300px;
-	width: 380px;
-	height: 230px;
-	background-color: #f4f4f4;
-	box-shadow: 0px 2px 22px 1px
-		rgba(0, 0, 0, 0.09);
-	border-radius: 5px;
-	z-index: 10;
+  position: fixed;
+  top:20%;
+  left:300px;
+  width: 380px;
+  height: 230px;
+  background-color: #f4f4f4;
+  box-shadow: 0px 2px 22px 1px
+  rgba(0, 0, 0, 0.09);
+  border-radius: 5px;
+  z-index: 10;
 }
 .vue_del_friend_yi{
-	height:35px;
-	line-height: 35px;
-	padding-left: 20px;
-	font-size: 14px;
-	color: #666666;
+  height:35px;
+  line-height: 35px;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #666666;
 }
 .vue_del_friend_yi p{
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 32px;
-	height: 25px;
-	background: #ff3000;
-	cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 25px;
+  background: #ff3000;
+  cursor: pointer;
 }
 .vue_del_friend_yi p span{
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	background: url(../images/yiding.png) -71px -68px;
-	float: left;
-	margin: 4px 0 0 8px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../images/yiding.png) -71px -68px;
+  float: left;
+  margin: 4px 0 0 8px;
 }
 .vue_del_friend_er{
-	margin:50px 0;
-	text-align: center;
-	font-size: 14px;
-	color: #333333;
+  margin:50px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #333333;
 }
 .vue_del_friend_san{
-	text-align: center;
-	line-height: 24px;
-	font-size: 14px;
-	margin-top:60px;
+  text-align: center;
+  line-height: 24px;
+  font-size: 14px;
+  margin-top:60px;
 }
 .vue_del_friend_que{
-	display: inline-block;
-	width: 70px;
-	height: 24px;
-	background-color: #4385f5;
-	color: #FFFFFF;
-	margin: 0 15px 0 180px;
-	cursor: pointer;
+  display: inline-block;
+  width: 70px;
+  height: 24px;
+  background-color: #4385f5;
+  color: #FFFFFF;
+  margin: 0 15px 0 180px;
+  cursor: pointer;
 }
 .vue_del_friend_xiao{
-	display: inline-block;
-	width: 70px;
-	height: 24px;
-	background-color: #ffffff;
-	color: #666666;
-	cursor: pointer;
+  display: inline-block;
+  width: 70px;
+  height: 24px;
+  background-color: #ffffff;
+  color: #666666;
+  cursor: pointer;
 }
 /*确认删除好友弹窗end*/
 .vu_m_tubiao{
-	position:absolute;
-	top:-9px;
-	left:50%;
-	transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	width: 76px;
-	height: 9px;
-	background: url(../images/yiding.png) 0 -183px;
-	z-index: 10;
-	cursor: pointer;
+  position:absolute;
+  top:-9px;
+  left:50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  width: 76px;
+  height: 9px;
+  background: url(../images/yiding.png) 0 -183px;
+  z-index: 10;
+  cursor: pointer;
 }
 .vu_m_tubiao:hover{background: url(../images/yiding.png) 0 -217px;}
 .vu_m_tubiao_er{
-	position:absolute;
-	top:0;
-	left:50%;
-	transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	width: 76px;
-	height: 9px;
-	background: url(../images/yiding.png) -89px -181px;
-	z-index: 10;
-	cursor: pointer;
+  position:absolute;
+  top:0;
+  left:50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  width: 76px;
+  height: 9px;
+  background: url(../images/yiding.png) -89px -181px;
+  z-index: 10;
+  cursor: pointer;
 }
 .vu_m_tubiao_er:hover{background: url(../images/yiding.png) -89px -214px;}
 #resizable{height: 100%;width:100%;max-height: 916px;}
 .ui-resizable{position: absolute!important;}
 .vue_new_news{
-	position: absolute;
-	top:9px;
-	left: 59%;
-	border-radius: 50%;
-	width: 6px;
-	height: 6px;
-	background-color: #db2100;
+  position: absolute;
+  top:9px;
+  left: 59%;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: #db2100;
 }
 /*群发报价start*/
 .vue_qun_offer{
-	position: fixed;
-	left:4%;
-	bottom:23px;
-	width: 162px;
-	height: 40px;
-	line-height: 40px;
-	background-color: #4385f5;
-	border-radius: 5px;
-	z-index: 999;
-	text-align: center;
-	cursor: pointer;
+  position: fixed;
+  left:4%;
+  bottom:23px;
+  width: 162px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #4385f5;
+  border-radius: 5px;
+  z-index: 999;
+  text-align: center;
+  cursor: pointer;
 }
 .vue_qun_offer.closeQunFa{
   background-color: #fd3000;
 }
 .vue_qun_offer p{
-	width: 20px;
-	height: 20px;
-	background: url(../images/yiding.png) -107px -65px;
-	display: inline-block;
-	float: left;
-	margin:9px 5px 0 34px;
+  width: 20px;
+  height: 20px;
+  background: url(../images/yiding.png) -107px -65px;
+  display: inline-block;
+  float: left;
+  margin:9px 5px 0 34px;
 }
 .vue_qun_offer.closeQunFa p{
   background: url(../images/yiding.png) -67px -65px;
 }
 .vue_qun_offer span{
-	float: left;
-	font-size: 16px;
-	color: #FFFFFF;
+  float: left;
+  font-size: 16px;
+  color: #FFFFFF;
 }
 /*群发报价end*/
 
@@ -2099,13 +2108,13 @@ ul {
 }
 .c_qunPeo{
   float: left;
-  width: 30%;
+  width: 22.4%;
   height: 100%;
   background-color: #eeedf6;
 }
 .c_qunBaoJia{
   float: left;
-  width:70%;
+  width:77.6%;
   height: 100%;
   background-color: #fff;
 }

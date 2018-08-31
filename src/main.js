@@ -18,6 +18,8 @@ import './js/jquery-ui.min.js'
 import 'babel-polyfill'
 import 'jquery'
 import 'jquery.nicescroll'
+import 'bootstrap'
+import 'bootstrap-table'
 
 Vue.config.productionTip = false
 

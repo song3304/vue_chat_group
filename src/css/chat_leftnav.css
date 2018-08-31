@@ -1,18 +1,18 @@
 * {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-   /* background: #fff;*/
-    font: 12px Microsoft YaHei, arial, sans-serif;
+  /* background: #fff;*/
+  font: 12px Microsoft YaHei, arial, sans-serif;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 /*a {
@@ -24,19 +24,19 @@ ul {
  * Contenedor Principal
  ===========================*/
 .vu_list-title{
-    display: inline-block;
-    width: 100%;
-    max-width: 200px;
-    border-top: solid 1px #ccc;
-    border-left: solid 1px #ccc;
-    border-right: solid 1px #ccc;
-    background: #FFF;
-    text-align: center;
-    height: 60px;
-    line-height: 60px;
-    font-size: 20px;
-    color: #f39800;
-    cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  max-width: 200px;
+  border-top: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  background: #FFF;
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #f39800;
+  cursor: pointer;
 }
 /*h1 {
     color: #FFF;
@@ -49,20 +49,20 @@ h1 a {
     font-size: 16px;
 }*/
 .vu_accordion {
-	/*height: 310px;*/
-    width: 100%;
-    /*margin-top: 20px;*/
-    /*overflow-y:scroll;*/
+  /*height: 310px;*/
+  width: 100%;
+  /*margin-top: 20px;*/
+  /*overflow-y:scroll;*/
 }
 .vu_accordion .vu_link {
-    cursor: pointer;
-    display: block;
-    padding:2px 15px 3px 25px;
-    color: #cccccc;
-    font-size: 14px;
-    position: relative;
-    text-align: left;
-    height: 28px;
+  cursor: pointer;
+  display: block;
+  padding:2px 15px 3px 25px;
+  color: #cccccc;
+  font-size: 14px;
+  position: relative;
+  text-align: left;
+  height: 28px;
 }
 /*新群发样式*/
 .vu_accordion .vu_link.newQunFa{
@@ -71,60 +71,60 @@ h1 a {
   padding-right: 0px;
 }
 .vu_accordion li:last-child .vu_link {
-    border-bottom: 0;
+  border-bottom: 0;
 }
 .vu_accordion li div i {
-    position: absolute;
-    top:2px;
-    left: 12px;
-    font-size: 18px;
-    color: #595959;
-    -webkit-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
+  position: absolute;
+  top:2px;
+  left: 12px;
+  font-size: 18px;
+  color: #595959;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .vu_accordion li i.fa-caret-right {
-    font-size:20px;
-    color: #a4a4a4;
+  font-size:20px;
+  color: #a4a4a4;
 }
 .vu_accordion li.vu_open i.fa-caret-right {
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-    color:#666666;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  color:#666666;
 }
 /**
  * Submenu
  -----------------------------*/
 .vu_submenu {
-    font-size: 14px;
-    display: none;
+  font-size: 14px;
+  display: none;
 }
 
 .vu_submenu>li {
-    height:60px;
-    position: relative;
-    text-align: left;
+  height:60px;
+  position: relative;
+  text-align: left;
 }
 .vu_submenu_com{
-	float: left;
-	margin-top: 10px;
+  float: left;
+  margin-top: 10px;
 }
 .vu_submenu a{
-    display: inline-block;
-    text-decoration: none;
-    color: #EEEEEE;
-    -webkit-transition: all 0.25s ease;
-    -o-transition: all 0.25s ease;
-    transition: all 0.25s ease;
-    margin:0 0 0 10px;
-    max-width:130px;
-    overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
-    /*float: left;*/
+  display: inline-block;
+  text-decoration: none;
+  color: #EEEEEE;
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  margin:0 0 0 10px;
+  max-width:130px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  /*float: left;*/
 }
 /*新群发报价*/
 .vu_submenu a.newQunFa{
@@ -132,37 +132,37 @@ h1 a {
   padding-top: 6px;
 }
 .vu_submenu .vue_submen_company{
-	/*float: left;*/
-	color: #cccccc;
-	font-size: 12px;
-	margin:1px 0 0 10px;
-	max-width: 170px;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
+  /*float: left;*/
+  color: #cccccc;
+  font-size: 12px;
+  margin:1px 0 0 10px;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .vu_submenu_com span{
-	display: inline-block;
-	width: 28px;
-	height: 12px;
-	background: url(../images/yiding.png) -31px -147px;
-	margin-left: 8px;
+  display: inline-block;
+  width: 28px;
+  height: 12px;
+  background: url(../images/yiding.png) -31px -147px;
+  margin-left: 8px;
 }
 .vu_ren-add{
-	width: 44px;
-	height: 20px;
-	background-color: #24b75b;
-	float: right;
-	margin: 19px 3% 0 0;
-	font-size: 12px;
-	color: #FFFFFF;
-	text-align: center;
-	line-height: 20px;
+  width: 44px;
+  height: 20px;
+  background-color: #24b75b;
+  float: right;
+  margin: 19px 3% 0 0;
+  font-size: 12px;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 20px;
 }
 .vu_ren-add:hover{background-color: #1c994b;}
 .vu_submenu>li:hover ,.vu_submenu>li.vu_current{
-    background-color: #45444b;
-    color: #666666;
+  background-color: #45444b;
+  color: #666666;
 }
 .vu_submenu>li.newQunFa:hover ,.vu_submenu>li.vu_current.newQunFa{
   background-color: #dfdee9;
@@ -175,18 +175,18 @@ h1 a {
 }
 /*http://www.jq22.com*/
 .vu_accordion .vu_link:hover{
-	background-color:#45444b;
+  background-color:#45444b;
 }
 /*新群发增加样式 newQunFa*/
 .vu_accordion .vu_link.newQunFa:hover{
   background-color:#dbd9e6;
 }
 .vu_accordion .vu_link span{
-	font-size: 10px;
-	padding-left:5px;
-	display: inline-block;
-	float: left;
-	height: 20px;
+  font-size: 10px;
+  padding-left:5px;
+  display: inline-block;
+  float: left;
+  height: 20px;
   line-height: 20px;
 }
 .vu_accordion .vu_link.newQunFa:hover{
