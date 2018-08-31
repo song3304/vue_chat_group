@@ -13,11 +13,11 @@
 			</ul>
 		</div>
 		<!--大厅成员-->
-		<div class="vue_leftlist_people" v-if="onlineUserList">
+		<div class="vue_leftlist_people" v-if="searchData">
       <p>大厅成员</p>
       <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
       <ul class="leftlist_people_ul">
-        <li v-for="(item,key,index) in searchData" @click="firendchat(key)" v-if="item.plat!='user'">
+        <li v-for="item in searchData" @click="firendchat(item.id)" v-if="item.plat!='user'">
           <div class="leftlist_people_photo"> <!--头像-->
             <img :src="item.img" alt="" />
           </div>
@@ -87,23 +87,25 @@
         searchKey:'',
         infoId:2,
 			  leftList:match_hall_cms,
+        chat_hall_members: _chat_hall_members,
         sendfirendtan:false,
         verifymsg:'',//验证信息
   		}
   	},
     computed: {
       searchData: function () {
+
+        var search_data;
         if (this.searchKey === '') {
-          return this.onlineUserList
+          search_data = this.chat_hall_members
         } else {
-          this.searchList ={};
-          for (var index in this.onlineUserList){
-            if(this.onlineUserList[index].name.indexOf(this.searchKey)>=0){
-              this.searchList[index] = this.onlineUserList[index];
-            }
-          }
-          return this.searchList;
+          search_data = this.chat_hall_members.filter(item=>item.name.indexOf(this.searchKey)>=0)
         }
+        for(var i=0,lg=search_data.length;i<lg;i++){
+          search_data[i].isOnline = this.onlineUserList.hasOwnProperty(search_data[i].id)
+        }
+        search_data.sort(function(a,b){return a.isOnline?false:(b.isOnline?true:false)})
+        return search_data;
       },
     isNull: function() {
       for(var key in this.userList) {

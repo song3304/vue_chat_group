@@ -95,7 +95,7 @@ export default {
             <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
         </div>
       </div>
-        <div class="vue_leftlist_tan addFriLeft" v-if="session!=null" v-show="addFriTag">   <!--加好友弹窗-->
+        <div class="vue_leftlist_tan addFriLeft" v-if="session!=null && session.type=='user'" v-show="addFriTag">   <!--加好友弹窗-->
           <img v-if="userList[session.id].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
           <img v-if="userList[session.id].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
           <div class="vue_leftlist_img"><img :src="userList[session.id].img" alt="" /></div>
