@@ -66,8 +66,8 @@
 
     <!----曲线图表 start-->
 
-        <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
-            <div v-for='(catalog,index) in catalogList' class="tab-pane fade in active" v-bind:id="'pan_'+catalog.id" v-show="catalog.show==1?true:false">
+        <div id="myTabContent" class="tab-content tab_mm">
+            <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
                 <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
                 <div class="clear"></div>
                 <div class="ckdp_icon"><a href="javascript:;"></a></div>
@@ -144,9 +144,7 @@
         <div class="vu_qunnew-que newQunFa">
           <!--<div>*请您核对群发消息内容:</div>-->
           <form id="addQuickForm" action="http://www.energy.cn/match/offer/create" method="post"
-                class="form-horizontal form form-builder">
-          <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
-          </form>
+                class="form-horizontal form form-builder">          <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
         </div>
         <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="showShibie($event)" id='quick_parse_create'>
           报价识别
@@ -155,30 +153,6 @@
         <!--<button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>-->
         <!--<span class="vu_fen_zu_tiyi" @click="close" @mousedown="jinzhi">取消</span>-->
         <!--</div>-->
-      </div>
-      <div id="quick_parse_new" style="margin-left: 0">
-        <div class="cuohe_bao_tan" style="width:80%;">
-          <div class="roleindex_tittle">
-            <img src="/static/img/match/tijiaobaojia.png" alt="" style="margin-left: 20px;float:left;margin-top:15px;margin-right:5px;">
-            <span class="tijia-jiaos">提交报价</span>
-            <a class="primary" onClick ="$('#quick_parse_new_data_table').tableExport({ type: 'excel', escape: 'false' })" hidden>导出</a>
-            <div style="display: inline-block;float: right;width:60px;height:60px;cursor: pointer;" class="xiaoshi" id="quick_parse_close">
-              <img src="/static/img/trade/quxiao_shou.png" alt="">
-            </div>
-          </div>
-          <div style="height: 505px;overflow: auto;border-top:1px solid #dddddd;">
-            <table id="quick_parse_new_data_table">
-
-            </table>
-          </div>
-          <div class="cuohe_bao_que">
-            <div>
-              <button id="quick_parse_submit_price">提交报价</button>
-              <p class="cuohe_quxiao">取消</p>
-
-            </div>
-          </div>
-        </div>
       </div>
       <img src="../images/tips.png" alt="" class="c_qunTips" v-show="formData.userIds.length==0">
     </div>
@@ -235,6 +209,12 @@
             cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
             autohidemode: false, // 隐藏滚动条的方式, 可用的值:
         });
+        $('#myTabContent>div').eq(0).css('height','auto')
+        $('.vue_kind_ul li').on('click',function(){
+        	var index=$('.vue_kind_ul li').index(this)
+        	$('#myTabContent>div').css('height','0')
+        	$('#myTabContent>div').eq(index).css('height','auto')
+        })
     },
   methods: {
     //qunNew部分内容
@@ -581,6 +561,7 @@
     },
     changecom(comspitem,comindex){//公司切换
         this.selectCid=comspitem.id;
+        this.selectUid=0;
         this.peopleList=comspitem.members;//联动人员下拉框
         this.peosplist=[];
         $('.vue_company_species>li').attr('class','');
@@ -594,6 +575,9 @@
         this.selectCid='';
         this.selectUid=0;
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+        if(comindex==0){
+        	
+        }
     },
     addpeo(peopleitem,index){//人员追加到右侧
     	this.peopleshow=false;
@@ -634,78 +618,4 @@
 </script>
 
 <style>
-  /*报价识别弹框样式*/
-  .roleindex_tittle {
-    height: 60px;
-  }
-  .tijia-jiaos {
-    display: inline-block;
-    margin: 14px 0 0 10px;
-    font-size: 18px;
-  }
-  .roleindex_tittle>div {
-    text-align: center;
-    line-height: 40px;
-  }
-  .cuohe_bao_que {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    width: 100%;
-    height: 72px;
-    background-color: #f6f6f6;
-  }
-  .cuohe_bao_que div {
-    width: 370px;
-    margin: 15px auto;
-  }
-  .cuohe_bao_que button {
-    width: 148px;
-    height: 40px;
-    background-color: #77a7fb;
-    border-radius: 5px;
-    border: 0;
-    font-family: MicrosoftYaHei-Bold;
-    font-size: 16px;
-    color: #ffffff;
-    float: left;
-    cursor: pointer;
-  }
-  .cuohe_bao_que p {
-    width: 148px;
-    height: 40px;
-    background-color: #cccccc;
-    border-radius: 5px;
-    font-family: MicrosoftYaHei-Bold;
-    font-size: 16px;
-    color: #666666;
-    float: left;
-    text-align: center;
-    line-height: 40px;
-    margin-left: 70px;
-    display: inline-block;
-    cursor: pointer;
-  }
-  .btn-danger {
-    right: 20%;
-  }
-  .cuohe_bao_tan {
-    width: 1100px;
-    height: 620px;
-    background-color: #ffffff;
-    box-shadow: 4px 2px 5px 0px rgba(51, 51, 51, 0.13);
-    border: solid 1px #cccccc;
-    /* margin: 10% auto; */
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-  }
 </style>

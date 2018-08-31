@@ -69,7 +69,7 @@ export default {
  mounted(){
     $("#resizable").resizable({
 			 handles: "n",
-			 minHeight:211,
+			 minHeight:265,
 			 maxHeight:916
 		});
  }
