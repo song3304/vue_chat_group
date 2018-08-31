@@ -207,7 +207,7 @@ export default {
 //      cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 //      autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 //  });
-  },
+  }
 }
 
 </script>
@@ -232,7 +232,7 @@ export default {
           </div>
           <div class="vu_ren-add" @click="lookInfo(index)">查看</div>
           <!--验证好友的资料卡-->
-          <div class="vue_leftlist_tan" style="left: 300px;top:40px;position:fixed" v-if="userList[addfriList.uid]" v-show="lookInfoTag==index">   <!--加好友弹窗-->
+          <div class="vue_leftlist_tan" style="left: 300px;top:40px;position:fixed;z-index: 999;" v-if="userList[addfriList.uid]" v-show="lookInfoTag==index">   <!--加好友弹窗-->
             <img src="../../images/addfri_bg.png" alt="" />
             <div class="vue_leftlist_img"><img :src="userList[addfriList.uid].img" alt="" /></div>
             <p class="vue_leftlist_line verify">{{userList[addfriList.uid].name}}</p>

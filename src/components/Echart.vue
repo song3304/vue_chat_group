@@ -114,7 +114,7 @@
 
     <!-- 群发框 -->
     <div class="c_qunBox" v-show="showQunFa">
-      <div class="c_qunBaoJiaTitle">{{selectCatalogName}}-群发报价 <img src="../images/closeQF.png" alt="" @click="closeQunFa"></div>
+      <div class="c_qunBaoJiaTitle">乙二醇-群发报价 <img src="../images/closeQF.png" alt="" @click="closeQunFa"></div>
       <div class="c_qunContent">
         <div class="c_qunPeo">
           <div class="c_qunPeoTitle">选择群发人员</div>
