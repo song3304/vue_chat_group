@@ -69,7 +69,7 @@
       <!----曲线图表 start-->
 
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
-        <div v-for='(catalog,index) in catalogList' class="tab-pane fade in active" v-bind:id="'pan_'+catalog.id" v-show="catalog.show==1?true:false">
+        <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
           <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
           <div class="clear"></div>
           <div class="ckdp_icon"><a href="javascript:;"></a></div>

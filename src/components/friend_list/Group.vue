@@ -28,7 +28,10 @@ export default {
           verifyCount ++;
         }
       }
-      return verifyCount;
+      if($('#new_firenfd_peo>div').length>0){      	
+      	$('.vue_new_news').show()
+      }      
+      return verifyCount;    
     },
     onMyVerify: function () {
       var onverifyC = 0;
@@ -214,7 +217,7 @@ export default {
 <template>
   <ul class="vu_qun_fen">
   	<!--有新加好友时-->
-  	<li>
+  	<li id="new_firenfd_peo">
   			<div class="vu_link " @click="accordion" v-if="myVerify">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">新的好友</span>
