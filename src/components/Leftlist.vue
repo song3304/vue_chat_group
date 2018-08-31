@@ -128,6 +128,9 @@
       this.$emit('openTempTalkEvent', otherUid)
     },
     addFriend: function (otherUid, msg) {
+      if(msg==''){
+        alert('验证信息未填写')
+      }
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false
