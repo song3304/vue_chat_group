@@ -14,13 +14,12 @@ ul {
     list-style: none;
 }
 #chat_app{
-	background-size: cover;*/
-
+	background-size: cover;
 }
 #vu_chat {
-	left:300px;
-    bottom:0;*/
-
+  /*left: 300px;*/
+  bottom: 0;
+}
 .vu_m-chatmain{
 	height:26.2%;	position: relative;
   z-index: 99;
