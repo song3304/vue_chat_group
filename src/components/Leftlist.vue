@@ -126,6 +126,8 @@
     },
     openTempTalk: function (otherUid) {
       this.$emit('openTempTalkEvent', otherUid)
+      this.firendtan = false;
+      this.sendfirendtan = false;
     },
     addFriend: function (otherUid, msg) {
       if(msg==''){
