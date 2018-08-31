@@ -633,7 +633,7 @@ ul {
   background: #eee;
   border-radius: 5px;
   margin-left:22px;
-  margin-top: 16px;
+  margin-top: 8px;
   position: relative;
 }
 .newQunFa .vu_submenu-newname .vu_m-touxiang{
@@ -647,6 +647,7 @@ ul {
   height: 40px;
   line-height: 40px;
   margin: 0 10px!important;
+  text-decoration: none;
 }
 .vu_fenzu_right_ul.newQunFa li span{
   width: 18px;
@@ -1856,13 +1857,13 @@ margin: 36px auto 5px auto;
 .c_qunPeo{
   float: left;
   width: 22.4%;
-  height: 668px;
+  height: 100%;
   background-color: #eeedf6;
 }
 .c_qunBaoJia{
   float: left;
   width:77.6%;
-  height: 668px;
+  height: 100%;
   background-color: #fff;
 }
 .c_qunPeoTitle{
@@ -1890,12 +1891,29 @@ margin: 36px auto 5px auto;
   float: right;
   margin-top: 20px;
   margin-right: 20px;
+  cursor: pointer;
+}
+.c_qunBaoJiaTitle img:hover{
+  animation:zhuan 1s infinite;
+  -webkit-animation:zhuan 1s infinite;
+}
+@keyframes zhuan{
+  0%{transform:rotate(0deg);
+    -ms-transform:rotate(0deg); 	/* IE 9 */
+    -moz-transform:rotate(0deg); 	/* Firefox */
+    -webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+    -o-transform:rotate(0deg); }
+  100%{transform:rotate(180deg);
+    -ms-transform:rotate(180deg); 	/* IE 9 */
+    -moz-transform:rotate(180deg); 	/* Firefox */
+    -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+    -o-transform:rotate(180deg); }
 }
 .c_qunBaoJia p{
   padding:0 20px;
   padding-top: 16px;
   color: #999;
-  font-size: 16px;
+  font-size: 14px;
 }
 .c_shiBieButton{
   width:120px;
@@ -1907,7 +1925,7 @@ margin: 36px auto 5px auto;
   font-size: 16px;
   position: absolute;
   right: 2.5%;
-  margin-top: 12px;
+  margin-top: 16px;
   cursor: pointer;
 }
 .c_qunDiv{
