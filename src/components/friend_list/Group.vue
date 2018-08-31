@@ -269,13 +269,22 @@ export default {
 
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
-          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseleave="mouseLeave" @mouseenter="nameSz">
+          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" >
             <div> <!--有消息头像动加类名 touxiang-->
             	<div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}">
               	<img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               </div>
               <!--//不在线，添加class=gray-->
-	              <ul class="vue_name_sz">
+	              
+            </div>
+            <div class="vu_submenu_com">
+            	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}<b v-if="!userList[userItem].friend_name">({{userList[userItem].friend_name}})</b> </a>
+            	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
+            	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
+            </div>
+            <div class="vu_submenu_shez" @mouseleave="mouseLeave" @mouseenter="nameSz">
+            	<img src="../../images/shezhi.png" alt="" />
+            	<ul class="vue_name_sz">
 			          	<li @click="openChat(userItem)">发消息</li>
 			          	<li @click="delPen($event,companyItem.groupId,userItem)">删除好友</li>  <!--@click="delfri"--><!--盯盘好友不可删除-->
 			          	<li @mouseenter="vueMove" @mouseleave="vueLeave">移动到<span></span>
@@ -286,11 +295,6 @@ export default {
 			          	<li @click="changeName">重命名</li>
 			          	<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
 		          	</ul>
-            </div>
-            <div class="vu_submenu_com">
-            	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}</a>
-            	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
-            	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
             </div>
 
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->

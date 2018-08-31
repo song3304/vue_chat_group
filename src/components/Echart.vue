@@ -22,15 +22,15 @@
 					</ul>
 				</div>
 				<div class="vue_chat_company">
-					<div class="vue_chat_div" @click="companyclick">
+					<div class="vue_chat_div" @mouseenter="companyclick" @mouseleave="companyleav">
             <span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
             <span :class="{vue_chatkind_name:true,choose:chooseTag==2}">公司</span>
 						<span class="vue_chat_jiantou"></span>
-					</div>
-					<!--下拉表-->
-					<ul class="vue_company_ul" v-show="companyshow">
-						<li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
-					</ul>
+						<!--下拉表-->
+						<ul class="vue_company_ul" v-show="companyshow">
+							<li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+						</ul>
+					</div>										
 					<!--右边切换选项-->
 					<ul class="vue_company_species">
 						<li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" >
@@ -40,18 +40,19 @@
 					</ul>
 				</div>
 				<div class="vue_chat_people">
-					<div class="vue_chat_div" @click="peopleclick">
+					<div class="vue_chat_div" @mouseenter="peopleclick" @mouseleave="peopleleave">
             <span :class="{vue_people_tubiao:true,chooseIco:chooseTag==3}"></span>
             <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
 						<span class="vue_chat_jiantou"></span>
+						<!--下拉表-->
+						<ul class="vue_people_ul" v-show="peopleshow">
+							<li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
+							    <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
+							    <p>{{peopleitem.username}}</p>
+							</li>
+						</ul>
 					</div>
-					<!--下拉表-->
-					<ul class="vue_people_ul" v-show="peopleshow">
-						<li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
-						    <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
-						    <p>{{peopleitem.username}}</p>
-						</li>
-					</ul>
+					
 					<!--右边切换选项-->
 					<ul class="vue_company_species vue_people_species">
 						<li v-for="(peospitem,peoindex) in peosplist" :class="{'peoactive': peospitem.isActive}">
@@ -317,18 +318,27 @@
       //this.chooseTag=1
   	},
   	companyclick: function (){
-  		this.companyshow=!this.companyshow,
+  		this.companyshow=true,
   		this.kindshow=false,
   		this.peopleshow=false
 //      this.chooseTag=2
   	},
+  	companyleav: function(){
+  		this.companyshow=false,
+  		this.kindshow=false,
+  		this.peopleshow=false
+  	},
   	peopleclick: function (){
-  		this.peopleshow=!this.peopleshow,
+  		this.peopleshow=true,
   		this.companyshow=false,
   		this.kindshow=false
       //this.chooseTag=3
   	},
-
+    peopleleave:function(){
+    	this.peopleshow=false,
+  		this.companyshow=false,
+  		this.kindshow=false
+    },
     addcatalog(catalogItem,index){//种类切换
         this.catalogList.map((v,i)=>{
             if(index!=i){
