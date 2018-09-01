@@ -227,7 +227,7 @@ export default {
             <!--//不在线，添加class=gray-->
           </div>
           <div class="vu_submenu_com">
-            <a>{{addfriList.user_info.nickname}}</a>
+            <a >{{addfriList.user_info.nickname}}</a>
             <p class="vue_submen_company">{{addfriList.message}}</p>
           </div>
           <div class="vu_ren-add" @click="lookInfo(index)">查看</div>

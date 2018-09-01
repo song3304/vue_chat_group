@@ -733,7 +733,11 @@ ul {
 	background: url(../images/qie_tu.png) -4px -44px no-repeat;
 }
 .c_qunTips{
-  left: 20%;}
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+}
 .vu_qunnew-que.newQunFa textarea{
 
 	width: 94%;
@@ -1925,7 +1929,7 @@ li{
 	border-bottom-left-radius: 10px;
 }
 .vue_leftlist_companysz_yi:hover,.vue_leftlist_companysz_er:hover{
-	background: #EEEDF6;	
+	background: #EEEDF6;
 	border-bottom-left-radius: 10px;
 }
 .vue_leftlist_companysz_er{
@@ -2097,67 +2101,79 @@ li{
 }
 /*群发报价start*/
 .vue_qun_offer{
-	position: fixed;
-	left:4%;
-	bottom:23px;
-	width: 162px;
-	height: 40px;
-	line-height: 40px;
-	background-color: #4385f5;
-	border-radius: 5px;
-	z-index: 999;
-	text-align: center;
-	cursor: pointer;
+  position: fixed;
+  left:4%;
+  bottom:23px;
+  width: 162px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #4385f5;
+  border-radius: 5px;
+  z-index: 999;
+  text-align: center;
+  cursor: pointer;
 }
 .vue_qun_offer.closeQunFa{
   background-color: #fd3000;
 }
 .vue_qun_offer p{
+  width: 20px;
+  height: 20px;
+  background: url(../images/yiding.png) -107px -65px;
+  display: inline-block;
+  float: left;
   margin:9px 5px 0 34px;
 }
 .vue_qun_offer.closeQunFa p{
   background: url(../images/yiding.png) -67px -65px;
 }
 .vue_qun_offer span{
+  float: left;
+  font-size: 16px;
   color: #FFFFFF;
 }
 /*群发报价end*/
 
 /*新群发报价*/
 .c_qunBox{
-	width: 100%;
-	height: 728px;
-	overflow: hidden;
+  width: 100%;
+  height: 728px;
+  overflow: hidden;
   background: #fff;
 }
 .c_qunPeo{
+  float: left;
+  width: 22.4%;
+  height: 100%;
   background-color: #eeedf6;
 }
 .c_qunBaoJia{
-	float: left;
-	width:77.6%;
-	height: 668px;
-	background-color: #fff;
+  float: left;
+  width:77.6%;
+  height: 100%;
+  background-color: #fff;
 }
 .c_qunPeoTitle{
-	width: 100%;
-	padding-left: 14px;
-	margin-top: 10px;
-	height: 30px;
-	line-height: 30px;
-	font-size: 14px;
-	color: #666;
+  width: 100%;
+  padding-left: 14px;
+  margin-top: 10px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #666;
 }
 .c_qunBaoJiaTitle{
+  width: 100%;
+  height: 60px;
+  padding-left: 20px;
+  font-size: 18px;
+  color: #333;
+  line-height: 60px;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
   background: #fff;
 }
-
 .c_qunBaoJiaTitle span{
-  display: block;
-  float: right;
-  margin-top: 20px;
-  margin-right: 20px;
-  cursor: pointer;
   display: block;
   float: right;
   width: 24px;
@@ -2173,16 +2189,34 @@ li{
 }
 .c_qunBaoJiaTitle img:hover{
   background: #ef4344;
-}.c_qunBaoJia p{
+}
+
+.c_qunBaoJia p{
+  padding:0 20px;
+  padding-top: 16px;
+  color: #999;
   font-size: 14px;
 }
 .c_shiBieButton{
+  width:120px;
+  height: 40px;
+  background: #fd3000;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  right: 2.5%;
+  margin-top: 16px;
   cursor: pointer;
 }
 .c_qunDiv{
-	height: 315px;
-	border-bottom: 1px solid #ddd;
+  height: 315px;
+  border-bottom: 1px solid #ddd;
 }
+.c_qunContent{
+  background: #fff;
+  overflow: hidden;
 }
 .vu_submenu_shez{
 	position: absolute;
