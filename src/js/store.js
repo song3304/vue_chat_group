@@ -51,6 +51,19 @@ if (!localStorage.getItem(key)) {
         isCalling: false // 是否来消息
       }
     },
+    // 公司列表
+    companyList: [
+      {
+        orgId: 1,
+        orgName: '华塑汇',
+        userIds: [2, 3]
+      },
+      {
+        orgId: 2,
+        orgName: '汇商通',
+        userIds: [3]
+      }
+    ],
     // 分组列表
     groupList: {
       // 普通分组
@@ -340,6 +353,9 @@ export default {
     }
     if (store.hasOwnProperty('followList')) {
       oldData.followList = store.followList
+    }
+    if (store.hasOwnProperty('companyList')) {
+      oldData.companyList = store.companyList
     }
     localStorage.setItem(key, JSON.stringify(oldData))
   }

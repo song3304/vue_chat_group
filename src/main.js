@@ -39,6 +39,8 @@ new Vue({
     },
     // 登录用户
     user: serverData.user,
+    // 被关注人员的公司分组
+    companyList: serverData.companyList,
     // 盯盘或者被关注用户ids
     followList: serverData.followList,
     // 用户列表
@@ -71,9 +73,9 @@ new Vue({
     targetObj: null,
     // socket
     socket: null,
-    //是否是临时消息
+    // 是否是临时消息
     is_temp: false,
-    //乙二醇种类
+    // 乙二醇种类
     chooseCatalog:0
   },
   // sockets: {
@@ -92,7 +94,7 @@ new Vue({
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat" @addFriendEvent="addFriend" ></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
-				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
+				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :companyList="companyList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
 				<leftlist :user="user" :onlineUserList="onlineUserList" :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend"></leftlist>
@@ -168,6 +170,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({followList: this.followList})
+      }
+    },
+    companyList: {
+      deep: true,
+      handler () {
+        store.update({companyList: this.companyList})
       }
     }
   },
@@ -333,6 +341,9 @@ new Vue({
       }
       if (data.hasOwnProperty('followList')) {
         this.followList = data.followList
+      }
+      if (data.hasOwnProperty('companyList')) {
+        this.companyList = data.companyList
       }
     },
     // 格式化时间
