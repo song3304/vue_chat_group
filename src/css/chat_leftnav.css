@@ -133,9 +133,10 @@ h1 a {
 }
 /*新群发报价*/
 .vu_submenu a.newQunFa{
-  color:#666;
+  color:#666!important;
   padding-top: 6px;
   width: 37%;
+  text-decoration: none;
 }
 .vu_submenu .vue_submen_company{
 	/*float: left;*/
