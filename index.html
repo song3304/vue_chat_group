@@ -23,10 +23,12 @@
 
 
   <!----实时报价 start---->
+  <link href="http://www.egy.cn/static/css/vue_chat_group_hall.css" rel="stylesheet">
   <link href="http://www.egy.cn/static/css/index/front.css" rel="stylesheet">
   <link href="http://www.egy.cn/static/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="http://www.egy.cn/static/css/vue_chat_group_hall.css" rel="stylesheet">
+  <link href="http://www.egy.cn/static/css/match/quick.css" rel="stylesheet">
 
+  <script src="http://www.egy.cn/static/js/socket_chat_group.js"></script>
   <script src="http://www.egy.cn/static/js/match/jquery-1.11.0.min.js"></script>
   <script src="http://www.egy.cn/static/js/match/jquery-ui-1.10.4.min.js"></script>
   <script src="http://www.egy.cn/static/js/custom.js"></script>
@@ -39,6 +41,23 @@
       !function($){
           var echartsObj = [], panObj = [],panObj1 = [];
           var ninestamp=this.ninestamp();
+          var resizeChart=function(){
+						$=jQuery;
+				        var param=(document.body.clientWidth<1340)?0.96:0.75;
+				        var realWidth=$("#myTabContent").width();
+				        for(var i=0;i<echartsObj.length;i++){
+				            panObj[i].width(realWidth*param-31);
+				            echartsObj[i].myDataChart.resize();
+				        }
+				        $price_list = $('.price-list');
+				        if(document.body.clientWidth>1340) {
+				        	$('.price-list').width(realWidth*0.25-81);
+				        	$('#trend').css('height','408px').css('background','#ffffff');
+				        }else{
+				        	$price_list.width(realWidth-65).css("margin-left", "0").css("margin-top", "5px");
+				        	$('#trend').css('height','780px').css('background','#ffffff');
+				        }
+				 	};
           document.ready = function() {
               var uid=0;
               // 连接服务端
@@ -57,6 +76,7 @@
                       chartArr[chartName].init('pan_data_' + product_id, 'bird_price_banner_' + product_id, 5);
                   });
               }
+              resizeChart();
               // 连接后登录
               var first_connected = false;
               socket.on('connect', function(){
@@ -121,7 +141,9 @@
                       }
                   });
               });
-
+						window.onresize = function () {
+						    resizeChart();
+						};
           }
       }(jQuery);
 
