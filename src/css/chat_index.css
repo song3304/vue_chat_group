@@ -40,7 +40,7 @@ ul {
 }
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
-	height:27.2%;
+	height:25.2%;
 	position:absolute;
 	bottom: 22px;
   z-index: 99;
@@ -1777,6 +1777,7 @@ li{
 	height:75%;
 	overflow-y: auto;
 	margin-top: 10px;
+	margin-right: 5px;
 }
 .vue_leftlist_ul li{
 	height:31px;
@@ -1861,6 +1862,7 @@ li{
 	/*height:458px;*/
     height:82%;
 	overflow: auto;
+	margin-right: 5px;
 	/*min-width:206px;*/
 }
 .leftlist_people_name{
