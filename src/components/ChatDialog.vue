@@ -89,16 +89,16 @@ export default {
         		<p class="vu_m-new_com">公司：{{userList[session.id].company_name}}</p>
         		<p class="vu_m-new_phone">电话：<span>{{userList[session.id].phone}}</span></p>
         		<div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" @click="openVerify">加为好友</div>  <!--//加好友-->
-        </div>   
-        <div class="vu_m-na" id="tuo"  v-if="session.type!='user'">
-        		<p class="vu_m-new">暂无信息</p>       		
-        </div> 
-        <div id="No_chat" v-if="session.type!='user'"><img src="../images/wuxinxi.png" alt="" /><p>空空如也，赶紧去找小伙伴聊天吧！</p></div>
+        </div>
+        <div class="vu_m-na" id="tuo"   v-if="session!=null && session.type!='user'">
+        		<p class="vu_m-new">暂无信息</p>
+        </div>
+        <div id="No_chat" v-if="session!=null && session.type!='user'"><img src="../images/wuxinxi.png" alt="" /><p>空空如也，赶紧去找小伙伴聊天吧！</p></div>
         <div class="vu_m-main" >
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
             <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
         </div>
-        
+
       </div>
         <div class="vue_leftlist_tan addFriLeft" v-if="session!=null && session.type=='user'" v-show="addFriTag">   <!--加好友弹窗-->
           <img v-if="userList[session.id].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
