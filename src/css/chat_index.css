@@ -41,7 +41,8 @@ ul {
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
 	height:25.2%;
-	position:absolute;
+	/*position:absolute;*/
+  position: fixed;
 	bottom: 22px;
   z-index: 99;
   margin-top: 20px;
@@ -2288,6 +2289,9 @@ li{
   margin-right: 16px;
   margin-top: 16px;
   cursor: pointer;
+}
+.c_shiBieButton:hover{
+  background: #ff5f39;
 }
 .c_openShibie{
   float: right;
