@@ -55,16 +55,17 @@ export default {
     },
     messscroll:function(session) {
 			this.scroll = document.getElementById('chat_message_main').scrollTop
-		  if(this.scroll==0){
-		  	if (session != null) {
-	        this.$emit('todayMsgEvent', session)
-	      }
-	      setTimeout(function () {
-	        var el = document.getElementById('chat_message_main')
-	        el.scrollTop = el.scrollHeight - localStorage.aa
-	        localStorage.aa = el.scrollHeight
-	      }, 10)
-		  }
+//		  if(this.scroll==0){
+//		  	if (session != null) {
+//	        this.$emit('todayMsgEvent', session)
+//	      }
+//	      setTimeout(function () {
+//	        var el = document.getElementById('chat_message_main')
+//	        el.scrollTop = el.scrollHeight - localStorage.aa
+//	        localStorage.aa = el.scrollHeight
+//	      }, 10)
+//		  }
+     console.log(this.scroll)
 		},
   },
   mounted() {
@@ -86,7 +87,7 @@ export default {
     		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today&& session.type=='user'&&session.messages.length>3" @click="todayMsg(session)">
     				<p></p><span>查看更多</span>
     		</div>
-        <ul v-if="session!=null && session.type=='user'">
+        <ul v-if="session!=null && session.type=='user'" id="vu_m_mess_new">
             <li v-if="session.messages.length<1" class="vu_m-message-new">暂无最新消息！</li>
             <li v-for="item in session.messages">
                 <p class="vu_time"><span>{{item.date}}</span></p>

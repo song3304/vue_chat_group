@@ -13,7 +13,7 @@ body {
 	font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
 	/*background-size: cover;*/
 	font-smoothing: antialiased;
-	background: #383D72;
+	
 }
 ul {
 	list-style: none;
@@ -21,7 +21,7 @@ ul {
 #chat_app{
 	width: 100%;
 	min-width: 1200px;
-	height:1012px;
+	height:1012px;	
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
 
@@ -118,11 +118,11 @@ ul {
 	left: 0;
 	width: 100%;
 	height: 40px;
-	z-index: 100;
+	z-index: 1000;
 	min-width: 1200px;
 	background:url(../images/bg.png);
 }
-.vue-head span{
+.vue-head>span{
 	position: absolute;
 	top:7px;
 	left: 19%;
@@ -133,6 +133,17 @@ ul {
 	background-size: cover;
 	/*margin: 7px 0 0 25px;*/
 }
+.vue-head p{
+	position: absolute;
+	top:7px;
+	left:105px;
+	color: #FFFFFF;
+	font-size:18px;
+	line-height: 18px;
+	overflow: hidden;
+	width: 125px;
+}
+.vue-head p b{color: #565fa8;}
 /*新消息跳动*/
 .vu_jump{
 	animation:jump .6s infinite linear;
@@ -181,7 +192,7 @@ ul {
 	left: 0;
 	width:18%;
 	min-width: 216px;
-	height:1040px;
+	height:100%;
 	background-color: rgba(46, 46, 46, 0.8);
 	/*opacity: 0.8;
 	z-index: 1000;*/
@@ -248,12 +259,12 @@ ul {
 }
 .vu_m-phone-input{
 	display: none;
-	margin-top:15px;
-	margin-left: 10px;
 	position: absolute;
-	top: -35px;
-	left: -32px;
-	width: 54%;
+	top:7px;
+	left:57px;
+    width:57%;
+    background: #000;
+    color: #fff;
 }
 .vu_m-phone-img{
 	display:none;
@@ -959,10 +970,11 @@ ul {
 	left: 0;
 }
 #vu_chat .vu_m-message {
-	height:85%;
+	height:75%;
 	position: relative;
 }
 #vu_chat .vu_m-message ul{
+	margin-top: 10px;
 	/*height:95%;*/
 }
 .vu_input-search .vu_submenu{
@@ -1021,7 +1033,7 @@ li{
 }
 }
 .vu_m-message {
-	padding:15px 15px 10px 15px;
+	padding:5px 15px 5px 15px;
 	/*overflow-y: scroll;*/
 	position: relative;
 }
@@ -1389,7 +1401,7 @@ li{
 	/*padding:38% 0 0;*/
 	/*margin-left: 19%;*/
 	width: 100%;
-	height:72.6%;
+	height:71%;
 	/*background:#101a29;*/
 	position:relative;
 }
@@ -1416,17 +1428,17 @@ li{
 	height: 100%;
 }
 .vue_chart_yi{
-	height:13.5%;
-	/*padding:9% 0 0;*/
-	background-color: #101a29;
+	height:9%;
+	/*padding:9% 0 0;*/	
 	position: relative;
+	background-color: #101a29;
 }
 .vue-chart-head{
 	position: absolute;
-	top: 0;
+	top:0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height:100%;
 }
 .vue-chart-foot{
 	width: 100%;
@@ -1437,10 +1449,18 @@ li{
 }
 /*头切换选项*/
 .vue-chart-head>div{
-	height: 33.3%;
+	height:50%;
 	border-bottom:1px solid #172739;
 	position: relative;
 	clear: both;
+}
+.vue_chat_kind{
+	position: absolute!important;
+	top:11%;
+	left: 0;
+	z-index: 100;
+	width:73%;
+	height: 4%;
 }
 .vue-chart-head>div ul{
 	margin-bottom: 0;
@@ -1452,24 +1472,26 @@ li{
 .vue_kind_ul{
 	position: absolute;
 	top: 0;
-	left:120px;
-	background-color: #ffffff;
+	left:10px;
+	/*background-color: #ffffff;*/
 	border-radius: 5px;
 	max-height:95px;
 	overflow-y:auto ;
 	z-index: 10;
 }
 .vue_kind_ul li{
-	width: 139px;
-	height: 24px;
-	line-height: 24px;
-	padding-left: 10px;
+	/*width: 139px;*/
+	height:30px;
+	line-height:30px;
+	margin-left: 10px;
+	padding: 0 3px;
 	color: #999999;
+	float: left;
 }
 .vue_kind_ul li:hover{
-	background-color: #eeeeee;
-	color: #fd3000!important;
-	font-size: 12px;
+	/*background-color: #eeeeee;*/
+	color: #4385f5;
+	font-size: 14px;
 	cursor: pointer;
 }
 .vue_chat_div{
@@ -1490,6 +1512,15 @@ li{
 }
 .vue_people_tubiao.chooseIco{
 	background: url(/static/img/yiding.f14cb8c.png) -174px -34px;
+}
+.vue_chat_div:hover .vue_company_tubiao{
+	background: url(/static/img/yiding.f14cb8c.png) -141px -35px;
+}
+.vue_chat_div:hover .vue_people_tubiao{
+	background: url(/static/img/yiding.f14cb8c.png) -174px -34px;
+}
+.vue_chat_div:hover .vue_chatkind_name,.vue_chat_div:hover .vue_people_name{
+	color: #fd3000;
 }
 .vue_chatkind_tubiao{
 	display: inline-block;
@@ -1545,7 +1576,7 @@ li{
 	max-height: 168px;
 	background-color: #ffffff;
 	border-radius: 5px;
-	z-index: 10;
+	z-index: 101;
 	padding: 3px 0;
 	overflow-y:auto ;
 }
@@ -1620,7 +1651,7 @@ li{
 	max-height: 168px;
 	background-color: #ffffff;
 	border-radius: 5px;
-	z-index: 10;
+	z-index: 101;
 	padding:5px 0;
 	overflow-y: auto;
 }
@@ -1695,12 +1726,13 @@ li{
 	bottom: 0;
 	margin-bottom:0;
 	width: 81.7%;
+	z-index: 1100;
 }
 #vue_main_main{
 	float: left;
 	/*width: 65.8%;*/
 	width: 62.8%;
-	height: 100%;
+	height:98%;
 	margin-left: 18.6%;
 	margin-top: 40px;
 }
@@ -1712,7 +1744,7 @@ li{
 	right: 0;*/
 	width: 17.8%;
 	/*width: 15%;*/
-	height:97.8%;
+	height:96%;
 	background-color: #e1dfee;
 	float: right;
 	margin-top: 40px;
@@ -1980,7 +2012,7 @@ li{
 	border-radius: 5px;
 }
 .vu_m-new_com{
-	color: #999999;
+	color: #666666;
 	text-align: center;
 	margin: 36px 0 5px 5%;
 	width: 90%;
@@ -1990,7 +2022,7 @@ li{
 	white-space: nowrap;
 }
 .vu_m-new_phone{
-	color: #999999;
+	color: #666666;
 	text-align: center;
 }
 .vu_m-new_phone span{
@@ -2224,3 +2256,4 @@ li{
 }
 .vu_submenu_shez img{margin-top: 20px;}
 .vu_submenu_shez:hover{background: #4A4A51;}
+.vue_kind-active{background-color: #4385f5;color: #FFFFFF!important;}

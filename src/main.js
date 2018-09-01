@@ -85,7 +85,8 @@ new Vue({
   // },
   components: {friendList, chatdialog, historylist, groupdialog, qunnew,echart,leftlist},
   template: `<div id="chat_app">
-  				<div class="vue-head"><span></span></div>
+  				<div class="loader"></div>
+  				<div class="vue-head"><span><p><b>|</b>乙二醇直播间</p></span></div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
 		    <div id="vue_main_main">
 		    <echart :user="user" :userList="userList" :groupList="groupList" :groupMsg="groupMsg" @sendGroupMsgEvent="sendGroupMsg"></echart>

@@ -62,7 +62,7 @@ export default {
     },
     changeName: function (event) {
       var el = event.currentTarget
-      $(el).next().show()
+      $(el).parent().parent().next().show()
     },
     modifyUserName: function (event) {
       var el = event.currentTarget
@@ -272,7 +272,7 @@ export default {
 
         </div>
         <ul class="vu_submenu vu_submenu_ul ">
-          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" >
+          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)"  @mouseleave="mouseLeave" @dblclick="openChat(userItem)">
             <div> <!--有消息头像动加类名 touxiang-->
             	<div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}">
               	<img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
@@ -281,11 +281,11 @@ export default {
 	              
             </div>
             <div class="vu_submenu_com">
-            	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}<b v-if="!userList[userItem].friend_name">({{userList[userItem].friend_name}})</b> </a>
+            	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}<b v-if="userList[userItem].friend_name!==userList[userItem].name">({{userList[userItem].name}})</b> </a>
             	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
             	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
             </div>
-            <div class="vu_submenu_shez" @mouseleave="mouseLeave" @mouseenter="nameSz">
+            <div class="vu_submenu_shez" @mouseenter="nameSz">
             	<img src="../../images/shezhi.png" alt="" />
             	<ul class="vue_name_sz">
 			          	<li @click="openChat(userItem)">发消息</li>
@@ -296,10 +296,10 @@ export default {
 						          </ul>
 			          	</li>
 			          	<li @click="changeName">重命名</li>
-			          	<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
+			          	
 		          	</ul>
             </div>
-
+						<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
            <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>--> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
@@ -329,7 +329,7 @@ export default {
       		<span>修改群组名称</span>
       		<p class="vu_fen_zu_tier"  @click="quncancel"><span></span></p>
       	</div>
-      	<p class="vu_fenzu_name_na">请输入组名称(最多六个字)：</p>
+      	<p class="vu_fenzu_name_na">请输入组名称(最多)：</p>
       	<input type="text" name="groupName" :placeholder="groupPlaceHolder" v-model="groupName" maxlength="6">
       	<div class="vu_fenzu_name_footer"><button @click="modifyGroupName">确认</button> <span class="vu_fen_zu_tier" @click="quncancel">取消</span></div>
       </div>
