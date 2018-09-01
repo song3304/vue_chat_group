@@ -63,6 +63,8 @@ new Vue({
     verifyMsg: serverData.verifyMsg,
     // 搜索key
     search: '',
+    // 群发是否解析报价
+    is_parse_price: false,
     // 选中的会话Index
     sessionIndex: 0,
     // 默认创建分组
@@ -425,6 +427,7 @@ new Vue({
       if (this.socket !== null) {
         this.socket._del_person(gid, gtype, uid)
       }
+      console.log(this.chat_hall_members)
     },
     // 修改组名
     modifyGroupName: function (gid, gtype, gname) {

@@ -122,8 +122,8 @@
       <div class="c_imgntent">
         <div class="c_qunPeo">
           <div class="c_qunPeoTitle">选择群发人员</div>
-          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 604px!important;">
-            <ul class="vu_fenzu_left_ul" style="width: 100%;height: 604px;">
+          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 514px!important;">
+            <ul class="vu_fenzu_left_ul" style="width: 100%;height: 514px;">
               <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
                 <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
                 <ul class="vu_submenu vu_submenu_ul">
@@ -153,8 +153,11 @@
               <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
             </form>
           </div>
-          <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'style="margin-top: 14px;">
-            报价识别
+          <div class="c_openBox">
+            <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'style="margin-top: 14px;">
+              群发
+            </div>
+            <div class="c_openShibie"><span :class={gou:chooseG} @click="chooseGou"></span>是否开启报价识别</div>
           </div>
           <!--<div class="vu_fenzu_footer">-->
           <!--<button @click="sendGroupMsg" @mousedown="jinzhi">确认</button>-->
@@ -191,6 +194,7 @@
 
     <!-- 群发报价 -->
     <div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
+    <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>批量询价</span></div>
   </div>
 
 
@@ -230,7 +234,8 @@
           userIds: []
         },
         placeholder: '请输入群发内容.',
-        groupMsg:''//群发内容
+        groupMsg:'',//群发内容
+        chooseG:false,
       }
     },
     mounted() {
@@ -254,6 +259,9 @@
     methods: {
       //qunNew部分内容
       /* qunNew部分开始 */
+      chooseGou:function () {
+        this.chooseG = !this.chooseG
+      },
       sendGroupMsg: function () {
         console.log(this.formData.userIds)
         if (this.formData.userIds.length < 1) {
