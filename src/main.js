@@ -442,9 +442,10 @@ new Vue({
       this.panel_show.is_qun_show = true
     },
     // 触发群发
-    sendGroupMsg: function (uids, msg) {
+    sendGroupMsg: function (uids, msg, isParsePrice) {
       if (this.socket !== null) {
-        this.socket._sendGroupHair(uids, msg)
+        this.is_parse_price = isParsePrice
+        this.socket._sendGroupHair(uids, msg, isParsePrice)
       }
     }
   }

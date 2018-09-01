@@ -42,7 +42,8 @@ ul {
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
 	height:25.2%;
-	position:absolute;
+	/*position:absolute;*/
+  position: fixed;
 	bottom: 22px;
   z-index: 99;
   margin-top: 20px;
@@ -772,7 +773,7 @@ ul {
 .vu_qunnew-que.newQunFa textarea{
 
 	width: 94%;
-	height: 220px;
+	height: 80%;
 	background-color: #ffffff;
 	border-radius: 5px;
 	border: solid 1px #4385F5;
@@ -2216,10 +2217,13 @@ li{
 /*群发报价end*/
 
 /*新群发报价*/
+.c_imgntent{
+  height:90%;
+}
 .c_qunBox{
   width: 100%;
-  /*height: 728px;*/
-  height: 610px;
+  /*height: 610px;*/
+  height: 96%;
   overflow: hidden;
   background: #fff;
 }
@@ -2246,7 +2250,7 @@ li{
 }
 .c_qunBaoJiaTitle{
   width: 100%;
-  height: 60px;
+  height: 10%;
   padding-left: 20px;
   font-size: 18px;
   color: #333;
@@ -2281,7 +2285,7 @@ li{
 }
 .c_qunDiv{
   /*height: 315px;*/
-  height: 204px;
+  height:43%;
   overflow: hidden;
   border-bottom: 1px solid #ddd;
 }
@@ -2291,6 +2295,7 @@ li{
 }
 .c_openBox{
   overflow: hidden;
+  height: 12%;
 }
 .c_shiBieButton{
   float: right;
@@ -2304,6 +2309,9 @@ li{
   margin-right: 16px;
   margin-top: 16px;
   cursor: pointer;
+}
+.c_shiBieButton:hover{
+  background: #ff5f39;
 }
 .c_openShibie{
   float: right;
