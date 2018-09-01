@@ -425,6 +425,7 @@ new Vue({
       if (this.socket !== null) {
         this.socket._del_person(gid, gtype, uid)
       }
+      console.log(this.chat_hall_members)
     },
     // 修改组名
     modifyGroupName: function (gid, gtype, gname) {

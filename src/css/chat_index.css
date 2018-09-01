@@ -749,6 +749,7 @@ ul {
   position: absolute;
   top: 20%;
   left: 20%;
+  width: 60%;
 }
 .vu_qunnew-que.newQunFa textarea{
 
@@ -2248,19 +2249,6 @@ li{
   color: #999;
   font-size: 14px;
 }
-.c_shiBieButton{
-  width:120px;
-  height: 40px;
-  background: #fd3000;
-  text-align: center;
-  line-height: 40px;
-  color: #fff;
-  font-size: 16px;
-  position: absolute;
-  right: 2.5%;
-  margin-top: 16px;
-  cursor: pointer;
-}
 .c_qunDiv{
   /*height: 315px;*/
   height: 294px;
@@ -2270,6 +2258,47 @@ li{
 .c_qunContent{
   background: #fff;
   overflow: hidden;
+}
+.c_openBox{
+  overflow: hidden;
+}
+.c_shiBieButton{
+  float: right;
+  width:120px;
+  height: 40px;
+  background: #fd3000;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 16px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+.c_openShibie{
+  float: right;
+  width: 150px;
+  height: 40px;
+  background: #fff;
+  /*text-align: center;*/
+  line-height: 40px;
+  color: #fff;
+  font-size: 14px;
+  margin-right: 20px;
+  margin-top: 16px;
+  color: #4385f5;
+}
+.c_openShibie span{
+  display: block;
+  float: left;
+  background: url(../images/green.png) -22px 0px no-repeat;
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  margin-right: 4px;
+}
+.c_openShibie span.gou{
+  background: url(../images/green.png) -46px 0px no-repeat;
 }
 .vu_submenu_shez{
 	position: absolute;
