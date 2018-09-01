@@ -289,7 +289,7 @@ export default {
             	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
             	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
             </div>
-            <div class="vu_submenu_shez" @mouseenter="nameSz">
+            <div class="vu_submenu_shez" @click="nameSz">
             	<img src="../../images/shezhi.png" alt="" />
             	<ul class="vue_name_sz">
 			          	<li @click="openChat(userItem)">发消息</li>

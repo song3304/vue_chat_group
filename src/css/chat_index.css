@@ -3,8 +3,9 @@
 }
 body, html {
 	height: 100%;
-	background-color:#383d72!important;
+	background:#383d72!important;
 }
+a:hover{text-decoration:none!important;}
 body, ul {
 	margin: 0;
 	padding: 0;
@@ -71,7 +72,7 @@ ul {
 	color: #333333;
 	font-weight: 550;
     /*新增*/
-    padding-bottom: 20px;
+    padding-bottom:10px;
 }
 .vu_send{
 	float: left;
@@ -85,6 +86,9 @@ ul {
 	text-align: center;
 	cursor: pointer;
 	margin:0 0 0 1%;
+}
+.vu_send:hover{
+	background-color: #ff5f39;
 }
 .vu_history{
 	width:13%;
@@ -122,6 +126,19 @@ ul {
 	z-index: 1000;
 	min-width: 1200px;
 	background:url(../images/bg.png);
+}
+.vue-head a{
+	font-size: 14px;
+	color: #FFFFFF;
+	float: left;
+	margin: 12px 20px 0 15px;
+}
+.vue-head a:hover{color: #FFFFFF;}
+.vue-head a span{
+	display: inline-block;
+	width:16px;
+	height: 8px;
+	background: url(../images/fanhui12.png);
 }
 .vue-head>span{
 	position: absolute;
@@ -1408,7 +1425,7 @@ li{
 	/*margin-left: 19%;*/
 	width: 100%;
 	/*height:71%;*/
-  height: 73%;
+  height: 72%;
 	/*background:#101a29;*/
 	position:relative;
 }
@@ -2029,7 +2046,7 @@ li{
 .vu_m-new_com{
 	color: #666666;
 	text-align: center;
-	margin: 36px 0 5px 5%;
+	margin: 36px 0 0 5%;
 	width: 90%;
     height: 23px;
     overflow: hidden;
@@ -2173,6 +2190,9 @@ li{
   z-index: 999;
   text-align: center;
   cursor: pointer;
+}
+.vue_qun_offer:hover{
+	background-color: #5292ff;
 }
 .vue_qun_offer.closeQunFa{
   background-color: #fd3000;
@@ -2320,8 +2340,8 @@ li{
 	text-align: center;
 }
 .vu_submenu_shez img{margin-top: 20px;}
-.vu_submenu_shez:hover{background: #4A4A51;}
-.vue_kind-active{background-color: #4385f5;color: #FFFFFF!important;}
+
+.vue_kind-active{background-color: #4385f5;color: #FFFFFF!important;border-radius: 5px;}
 #No_chat{
 	position: absolute;
 	top:46px;
