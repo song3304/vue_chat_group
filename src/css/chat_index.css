@@ -2363,3 +2363,15 @@ li{
 	text-align: center;
 }
 #No_chat p{color: #999999;margin-top: 10px;font-size: 12px;}
+#leftlist_nowdate{
+	position: fixed;
+	top:5px;
+	right: 30px;
+	z-index: 20000;
+}
+#leftlist_nowdate img{
+	width:30px;
+	height:30px;
+	border-radius: 50%;
+}
+#leftlist_nowdate span,#leftlist_nowdate a{color: #FFFFFF;font-size: 14px;}

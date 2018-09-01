@@ -1,5 +1,10 @@
 <template>
 	<div id="leftlist">
+		<div id="leftlist_nowdate">
+			<a target="_blank" href='/match/profile/index.html'><img :src="user.img" alt="" /></a>
+			<span>{{user.name}}</span>
+			<a href='/match/auth/logout.html'>[退出]</a>
+		</div>
 		<!--资讯列表-->
 		<div class="vue_leftlist">
 			<p>资讯列表</p>
