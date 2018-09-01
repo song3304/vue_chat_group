@@ -45,7 +45,7 @@
 import $ from 'jquery'
 export default {
   name: 'GroupHairMsg',
-  props: ['user', 'userList', 'groupList', 'groupMsg'],
+  props: ['user', 'userList', 'groupList', 'groupMsg','companyList'],
   data: function () {
     return {
       formData: {
@@ -147,6 +147,9 @@ export default {
       userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
       return onlineCnt
     }
+  },
+  mounted(){
+    console.log('111',this.companyList)
   }
 }
 </script>

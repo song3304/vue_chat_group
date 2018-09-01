@@ -111,7 +111,8 @@ h1 a {
 .vu_submenu_com{
 	float: left;
 	margin-top: 10px;
-	width: 60%;
+	/*width: 60%;*/
+  width: 50%;
 }
 .vu_submenu a{
     display: inline-block;

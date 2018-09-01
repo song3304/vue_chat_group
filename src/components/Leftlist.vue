@@ -40,31 +40,31 @@
 				<!--</li>					-->
 			</ul>
 		</div>
-		<div class="vue_leftlist_tan" v-if="onlineUserList[infoId]" v-show="firendtan">   <!--加好友弹窗-->
-      <img v-if="onlineUserList[infoId].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-      <img v-if="onlineUserList[infoId].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
-      <div class="vue_leftlist_img"><img :src="onlineUserList[infoId].img" alt="" /></div>
-      <p class="vue_leftlist_line">{{onlineUserList[infoId].name}}</p>
-      <p v-if="onlineUserList[infoId].plat=='match'" class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
-      <p v-if="onlineUserList[infoId].plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>
-      <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].company_name}}</p>
-      <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
-      <div class="vue_leftlist_companysz" v-if="onlineUserList[infoId].id!=user.id" v-show="isNull||userList[infoId]==undefined||userList[infoId].friend_type!='friend'">
-        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
+		<div class="vue_leftlist_tan" v-if="tingList" v-show="firendtan">   <!--加好友弹窗-->
+      <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
+      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+      <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
+      <p class="vue_leftlist_line">{{tingList.name}}</p>
+      <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
+      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>
+      <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
+      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
+      <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
+        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)">临时会话</span>
         <span class="vue_leftlist_companysz_er" @click="openVerify">添加好友</span>
         <!--<p>聊天</p>-->
       </div>
 			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
 		</div>
-    <div class="vue_leftlist_tan" v-if="onlineUserList[infoId]" v-show="sendfirendtan">   <!--加好友弹窗-->
-      <img v-if="onlineUserList[infoId].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-      <img v-if="onlineUserList[infoId].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
-      <div class="vue_leftlist_img"><img :src="onlineUserList[infoId].img" alt="" /></div>
-      <p class="vue_leftlist_line verify">{{onlineUserList[infoId].name}}</p>
-      <p v-if="onlineUserList[infoId].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
-      <p v-if="onlineUserList[infoId].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
-      <p class="vue_leftlist_companyname">所属公司：{{onlineUserList[infoId].company_name}}</p>
-      <p class="vue_leftlist_companyname">手机号：{{onlineUserList[infoId].phone||'无'}}</p>
+    <div class="vue_leftlist_tan" v-if="tingList" v-show="sendfirendtan">   <!--加好友弹窗-->
+      <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
+      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+      <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
+      <p class="vue_leftlist_line verify">{{tingList.name}}</p>
+      <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
+      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+      <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
+      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
       <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
       <div class="vue_leftlist_companysz">
         <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
@@ -89,6 +89,7 @@
 			  leftList:match_hall_cms,
         chat_hall_members: _chat_hall_members,
         sendfirendtan:false,
+        tingList:null,
         verifymsg:'',//验证信息
   		}
   	},
@@ -112,6 +113,20 @@
         return false;
       }
         return true;
+      },
+      isFriNull:function () {
+        if(this.userList[this.infoId]==undefined){
+          return true
+        }else {
+          false
+        }
+      },
+      isFriType:function () {
+        if(this.userList[this.infoId].friend_type!='friend'){
+          return true
+        }else{
+          return false
+        }
       }
     },
   methods: {
@@ -122,6 +137,14 @@
     firendchat: function (key) {
       this.firendtan = !this.firendtan
       this.infoId = key
+      for(var index in this.chat_hall_members){
+        if(this.chat_hall_members[index].id==this.infoId){
+          this.tingList = this.chat_hall_members[index]
+          break;
+        }
+      }
+      // console.log(this.tingList)
+      // console.log(this.chat_hall_members)
     },
     leftlistclose: function () {
       this.firendtan = false
@@ -132,9 +155,9 @@
       this.sendfirendtan = false;
     },
     addFriend: function (otherUid, msg) {
-      if(msg==''){
-        alert('验证信息未填写')
-      }
+      // if(msg==''){
+      //   alert('验证信息未填写')
+      // }
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false

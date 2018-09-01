@@ -76,7 +76,10 @@ new Vue({
     // 是否是临时消息
     is_temp: false,
     // 乙二醇种类
-    chooseCatalog:0
+    chooseCatalog:0,
+    //全部成员
+    chat_hall_members: _chat_hall_members,
+
   },
   // sockets: {
   // 所有sockect 事件放在这
@@ -91,7 +94,7 @@ new Vue({
   				<div class="vue-head"><span><p><b>&nbsp;|</b>&nbsp;乙二醇直播间</p></span></div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
 		    <div id="vue_main_main">
-		    <echart :user="user" :userList="userList" :groupList="groupList" :groupMsg="groupMsg" @sendGroupMsgEvent="sendGroupMsg"></echart>
+		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" @sendGroupMsgEvent="sendGroupMsg"></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat" @addFriendEvent="addFriend" ></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
@@ -205,7 +208,20 @@ new Vue({
           userList[uid] = userItem
           this.updateData({userList: userList})
         } else {
-          alert('数据错误,请刷新页面.')
+          var userList = this.userList
+          for(var index in this.chat_hall_members){
+            if(this.chat_hall_members[index].id==uid){
+              var userItem = this.chat_hall_members[index];
+              break;
+            }
+          }
+          console.log(userItem)
+          userItem.isCalling = 0
+          userItem.isOnline = 0
+          userItem.friend_type = 'offline'
+          userList[uid] = userItem
+          this.updateData({userList: userList})
+          // alert('数据错误,请刷新页面.')
         }
       }
       this.is_temp = true
