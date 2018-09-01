@@ -2038,11 +2038,28 @@ li{
 	height: 60px;
 	text-align: center;
 	margin: 10px 0;
+	position: relative;
 }
 .vu_m-newqun img{
 	width:60px;
 	height: 60px;
 	border-radius: 5px;
+}
+.vu_m-newqun span{
+	position: absolute;
+	bottom: 15px;
+	left: 50%;
+	width: 24px;
+	height: 12px;
+	background: url(../images/linshi_1.png);
+}
+.vu_m-list ul li>span{
+	position: absolute;
+	top: 35px;
+	left:23px;
+	width: 24px;
+	height: 12px;
+	background: url(../images/linshi_1.png);
 }
 .vu_m-new_com{
 	color: #666666;

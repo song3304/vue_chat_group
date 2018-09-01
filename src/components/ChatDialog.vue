@@ -84,7 +84,7 @@
         <div id="resizable">
           <div class="vu_m-na" id="tuo" v-if="session!=null && session.type=='user'">
             <p class="vu_m-new">个人信息</p>
-            <div class="vu_m-newqun"><img :src="userList[session.id].img" alt="" /></div>
+            <div class="vu_m-newqun"><img :src="userList[session.id].img" alt="" /><span v-if="userList[session.id].friend_type!=='friend'"></span></div>
             <span class="vu_m-na-name">{{session!=null ? userList[session.id].name : ''}}</span>
             <p class="vu_m-new_com">公司：{{userList[session.id].company_name}}</p>
             <p class="vu_m-new_phone">电话：<span>{{userList[session.id].phone}}</span></p>
