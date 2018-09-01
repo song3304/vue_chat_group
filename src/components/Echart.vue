@@ -271,7 +271,7 @@
           alert('群发消息不能为空.')
           return
         }
-        this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
+        this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg, this.chooseG)
         this.formData.userIds = []
         // this.close() // 关闭窗口
         this.groupMsg = ''
