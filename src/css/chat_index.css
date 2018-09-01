@@ -13,7 +13,7 @@ body {
 	font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
 	/*background-size: cover;*/
 	font-smoothing: antialiased;
-	
+
 }
 ul {
 	list-style: none;
@@ -21,7 +21,7 @@ ul {
 #chat_app{
 	width: 100%;
 	min-width: 1200px;
-	height:1012px;	
+	height:1012px;
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
 
@@ -1402,7 +1402,8 @@ li{
 	/*padding:38% 0 0;*/
 	/*margin-left: 19%;*/
 	width: 100%;
-	height:71%;
+	/*height:71%;*/
+  height: 73%;
 	/*background:#101a29;*/
 	position:relative;
 }
@@ -1430,7 +1431,7 @@ li{
 }
 .vue_chart_yi{
 	height:9%;
-	/*padding:9% 0 0;*/	
+	/*padding:9% 0 0;*/
 	position: relative;
 	background-color: #101a29;
 }
@@ -1459,7 +1460,8 @@ li{
 	position: absolute!important;
 	top:11%;
 	left: 0;
-	z-index: 100;
+	/*z-index: 100;*/
+  z-index: 98;
 	width:73%;
 	height: 4%;
 }
@@ -2185,7 +2187,8 @@ li{
 /*新群发报价*/
 .c_qunBox{
   width: 100%;
-  height: 728px;
+  /*height: 728px;*/
+  height: 704px;
   overflow: hidden;
   background: #fff;
 }
@@ -2259,7 +2262,9 @@ li{
   cursor: pointer;
 }
 .c_qunDiv{
-  height: 315px;
+  /*height: 315px;*/
+  height: 294px;
+  overflow: hidden;
   border-bottom: 1px solid #ddd;
 }
 .c_qunContent{

@@ -49,7 +49,7 @@
       <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>
       <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
       <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
-      <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||userList[infoId]==undefined||userList[infoId].friend_type!='friend'">
+      <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
         <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)">临时会话</span>
         <span class="vue_leftlist_companysz_er" @click="openVerify">添加好友</span>
         <!--<p>聊天</p>-->
@@ -113,6 +113,20 @@
         return false;
       }
         return true;
+      },
+      isFriNull:function () {
+        if(this.userList[this.infoId]==undefined){
+          return true
+        }else {
+          false
+        }
+      },
+      isFriType:function () {
+        if(this.userList[this.infoId].friend_type!='friend'){
+          return true
+        }else{
+          return false
+        }
       }
     },
   methods: {
@@ -141,9 +155,9 @@
       this.sendfirendtan = false;
     },
     addFriend: function (otherUid, msg) {
-      if(msg==''){
-        alert('验证信息未填写')
-      }
+      // if(msg==''){
+      //   alert('验证信息未填写')
+      // }
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false

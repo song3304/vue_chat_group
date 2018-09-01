@@ -4,7 +4,7 @@
       <!--切换选项-->
       <div class="vue_chart_yi">
         <div class="vue-chart-head">
-          
+
           <div class="vue_chat_company">
             <div class="vue_chat_div" @mouseenter="companyclick" @mouseleave="companyleav">
               <span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
@@ -58,7 +58,7 @@
           <span class="vue_chat_jiantou"></span>
         </div>-->
         <!--下拉表-->
-        <ul class="vue_kind_ul">  <!--v-show="kindshow"--> 
+        <ul class="vue_kind_ul">  <!--v-show="kindshow"-->
           <li v-for="(catalogItem,index) in catalogList" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
         </ul>
         <!--右边切换选项-->
@@ -69,7 +69,7 @@
         </ul>-->
       </div>
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
-      	
+
         <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
           <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
           <div class="clear"></div>
@@ -122,8 +122,8 @@
       <div class="c_imgntent">
         <div class="c_qunPeo">
           <div class="c_qunPeoTitle">选择群发人员</div>
-          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 628px!important;">
-            <ul class="vu_fenzu_left_ul" style="width: 100%;height: 628px;">
+          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 604px!important;">
+            <ul class="vu_fenzu_left_ul" style="width: 100%;height: 604px;">
               <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
                 <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
                 <ul class="vu_submenu vu_submenu_ul">
@@ -205,7 +205,7 @@
   //require('echarts/lib/component/title')
   export default {
     name: 'hello',
-    props: ['user', 'userList', 'groupList', 'groupMsg', 'companyLists'],
+    props: ['user', 'userList', 'groupList', 'companyLists'],
     data() {
       return {
       	activeIndex:0,
@@ -229,7 +229,8 @@
         formData: {
           userIds: []
         },
-        placeholder: '请输入群发内容.'
+        placeholder: '请输入群发内容.',
+        groupMsg:''//群发内容
       }
     },
     mounted() {
@@ -253,6 +254,7 @@
       //qunNew部分内容
       /* qunNew部分开始 */
       sendGroupMsg: function () {
+        console.log(this.formData.userIds)
         if (this.formData.userIds.length < 1) {
           alert('请先选择群发人员')
           return
@@ -263,7 +265,7 @@
         this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
         this.formData.userIds = []
         // this.close() // 关闭窗口
-        this.this.groupMsg = ''
+        this.groupMsg = ''
       },
       checkAll: function (event, userIds) {
         var el = event.currentTarget

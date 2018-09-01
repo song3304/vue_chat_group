@@ -28,10 +28,10 @@ export default {
           verifyCount ++;
         }
       }
-      if($('#new_firenfd_peo>div').length>0){      	
+      if($('#new_firenfd_peo>div').length>0){
       	$('.vue_new_news').show()
-      }      
-      return verifyCount;    
+      }
+      return verifyCount;
     },
     onMyVerify: function () {
       var onverifyC = 0;
@@ -121,11 +121,15 @@ export default {
       this.Qunpopup = false
     },
     delPen: function (event, groupId, uid) {
-      event.stopPropagation()
-      this.Qunpopup = true
-      this.groupId = groupId
-      this.uid = uid
-      this.delType = 'person'
+      if(this.followList.indexOf(this.userList[uid].id)>=0){
+        alert('请先取消盯盘')
+      }else{
+        event.stopPropagation()
+        this.Qunpopup = true
+        this.groupId = groupId
+        this.uid = uid
+        this.delType = 'person'
+      }
     },
     isCalling (userIds, userList) {
       return userIds.some(uid => userList[uid].isCalling)
@@ -296,7 +300,7 @@ export default {
 						          </ul>
 			          	</li>
 			          	<li @click="changeName">重命名</li>
-			          	
+
 		          	</ul>
             </div>
 						<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
