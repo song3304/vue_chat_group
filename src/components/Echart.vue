@@ -123,8 +123,8 @@
           <div class="c_qunPeoTitle">选择群发人员</div>
           <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 628px!important;">
             <ul class="vu_fenzu_left_ul" style="width: 100%;height: 628px;">
-              <li v-for="companyItem in groupList.common" :class="{'vu_accordion_li': companyItem.isCalling}">
-                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.groupName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
                 <ul class="vu_submenu vu_submenu_ul">
                   <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
                     <div class="vu_m-touxiang newQunFa">
@@ -204,7 +204,7 @@
   //require('echarts/lib/component/title')
   export default {
     name: 'hello',
-    props: ['user', 'userList', 'groupList', 'groupMsg'],
+    props: ['user', 'userList', 'groupList', 'groupMsg', 'companyLists'],
     data() {
       return {
         kindshow:false,
