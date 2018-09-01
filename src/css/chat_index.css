@@ -39,7 +39,7 @@ ul {
 }
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
-	height:26.2%;
+	height:27.2%;
 	position:fixed;
 	bottom: 22px;
   z-index: 99;
@@ -75,28 +75,29 @@ ul {
 .vu_send{
 	float: left;
 	display: inline-block;
-	height:40px;
-	line-height: 40px;
+	height:35px;
+	line-height: 35px;
 	width: 10%;
 	background-color: #fd3000;
 	font-size: 16px;
 	color: #FFFFFF;
 	text-align: center;
 	cursor: pointer;
-	margin:0.3% 0 0 0;
+	margin:0 0 0 1%;
 }
 .vu_history{
-	width:6%;
-	height:40px;
+	width:13%;
+	max-width: 90px;
+	height:35px;
 	text-align: center;
-	line-height: 18px;
+	line-height:35px;
 	font-size: 12px;
 	cursor: pointer;
 	float: left;
-	background: #f8f4f2;
-	margin: 0.3% 0 0 0;
+	margin: 0 0 0 0;
 }
-.vu_history img{margin-top:10px;}
+.vu_history img{float: left;margin: 11px 6px 0 5%;}
+.vu_history span{float: left;}
 /*.vu_history:hover,.vu_history:active,.vu_history:focus{
 	background-color: #dddddd;
 }
@@ -1093,8 +1094,16 @@ li{
 }
 .vu_m-message .vu_self .vu_avatar {
 	float: right;
-	margin: 0 0 0 10px;
+	margin: 5px 5px 0 10px;
+	display: block;
 }
+.vu_m-message .vu_main .vu_avatar1 {
+	float:left;
+	margin: 5px 8px 0 10px;
+	color: #ff4800;
+	display: block;
+}
+.vu_main>span{display: none;}
 .vu_m-message .vu_self .vu_text {
 	background-color: #2089ff;
 }
@@ -1107,15 +1116,15 @@ li{
 .vu_m-text {
 	height:20%;
 	border-top: solid 1px #cccccc;
-	padding-left:2%;
+	padding-left:1%;
 	padding-top: 5px;
 }
 .vu_m-text textarea {
 	/*padding: 27px 10px 45px 10px;*/
 	/*margin:27px 0 0 10px;*/
-	height:40px;
-	line-height: 40px;
-	width:82%;
+	height:35px;
+	line-height: 35px;
+	width:75%;
 	font-size: 14px;
 	/*overflow-y:scroll;*/
 	border: none;
@@ -1124,7 +1133,7 @@ li{
 	resize: none;
 	padding: 0  0 0 5px;
 	padding-left: 20px;
-	margin:0.3% 0 0 0;
+	margin:0 0 0 0;
 	float: left;
 }
 .vu_m-guan p .fa{color: #DDDDDD;}
@@ -1381,7 +1390,7 @@ li{
 	/*padding:38% 0 0;*/
 	/*margin-left: 19%;*/
 	width: 100%;
-	height:72%;
+	height:72.6%;
 	/*background:#101a29;*/
 	position:relative;
 }
@@ -1687,6 +1696,7 @@ li{
 	bottom: 0;
 	margin-bottom:0;
 	width: 81.7%;
+  z-index: 99;
 }
 #vue_main_main{
 	float: left;
@@ -1806,7 +1816,8 @@ li{
 }
 .leftlist_people_ul{
 	margin-top: 10px;
-	height:458px;
+	/*height:458px;*/
+  height: 500px;
 	overflow: auto;
 	/*min-width:206px;*/
 }
@@ -1832,6 +1843,7 @@ li{
 	background-color: #EEEDF6;
 	border-radius: 10px;
 	box-shadow:0 2px 3px #aaaaaa;
+	z-index: 100;
 }
 .vue_leftlist_tan.addFriLeft{
 	position: fixed;
@@ -1973,8 +1985,12 @@ li{
 .vu_m-new_com{
 	color: #999999;
 	text-align: center;
-	margin-bottom: 5px;
-	margin-top: 36px;
+	margin: 36px 0 5px 5%;
+	width: 90%;
+    height: 23px;
+    overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 .vu_m-new_phone{
 	color: #999999;
@@ -2098,6 +2114,7 @@ li{
 	width: 6px;
 	height: 6px;
 	background-color: #db2100;
+	display: none;
 }
 /*群发报价start*/
 .vue_qun_offer{

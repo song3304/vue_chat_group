@@ -115,7 +115,7 @@ export default {
         this.panelShow.groupShow = false   //群隐藏
         this.panelShow.searchShow = false
         $('.vu_m-list').hide()
-      }
+      };      
     },
     // 搜索事件
     search: function (event) {
@@ -173,5 +173,8 @@ export default {
       this.$emit('modifyGroupEvent', groupId, groupType, groupName)
     },
   },
+  computed: {
+  	
+  }
 }
 </script>
