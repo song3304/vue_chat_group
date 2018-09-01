@@ -2,7 +2,7 @@
 
   <div id="vu_history" @mousedown="drag">
     <div class="vu_his-guan">
-      <span>{{historyUid!=0?userList[historyUid].name:''}}</span>
+      <span>{{historyUid.type=='user'&&historyUid.id!=0?userList[historyUid.id].name:''}}</span>
       <p class="vu_his-hide" @click="close" @mousedown="jinzhi"><span></span></p>
     </div>
     <div id="vu_his-head">
@@ -13,9 +13,9 @@
         <!--//时间-->
         <p class="vu_title-text"><span>{{item.date}}</span></p>
         <!--对方信息-->
-        <li v-for="date_item in item.items" :class="{'vu_opposite':!date_item.self,'vu_oneself':date_item.self}">
-          <p :class="{'vu_oppo-title':!date_item.self,'vu_one-title':date_item.self}">{{date_item.self?'自己':userList[historyUid].name}} {{date_item.createTime}}</p>
-          <p :class="{'vu_oppo-xiang':!date_item.self,'vu_one-xiang':date_item.self}" v-html="textFormat(date_item.content)"></p>
+        <li v-for="date_item in item.items" :class="{'vu_opposite':date_item.userId!==user.id,'vu_oneself':date_item.userId===user.id}">
+          <p :class="{'vu_oppo-title':date_item.userId!==user.id,'vu_one-title':date_item.userId===user.id}">{{date_item.userId===user.id?'自己':userList[historyUid.id].name}} {{date_item.createTime}}</p>
+          <p :class="{'vu_oppo-xiang':date_item.userId!==user.id,'vu_one-xiang':date_item.userId===user.id}" v-html="textFormat(date_item.content)"></p>
         </li>
       </div>
       <div class="vu_baoliu">为您保留一周的聊天记录</div>
@@ -35,12 +35,12 @@ export default {
     }
   },
   computed: {
-  },  
+  },
   methods: {
   	menuscroll () {
 			this.scroll = document.getElementById('vu_his-head').scrollTop
 		  if(this.scroll==0){
-		  	this.$emit('getMoreMsgEvent', this.historyUid)
+		  	this.$emit('getMoreMsgEvent', this.historyUid.id, this.historyUid.type)
 	      setTimeout(function () {
 	        var el = document.getElementById('vu_his-head')
 	        el.scrollTop = el.scrollHeight - localStorage.a
@@ -49,8 +49,8 @@ export default {
 		  }
 		},
     contents: function (data) {
-      if (data !== {} && this.historyUid !== 0 && data.hasOwnProperty(this.historyUid) && data[this.historyUid].hasOwnProperty('contents')) {
-        return data[this.historyUid].contents
+      if (data[this.historyUid.type] !== {} && this.historyUid.id !== 0 && data[this.historyUid.type].hasOwnProperty(this.historyUid.id) && data[this.historyUid.type][this.historyUid.id].hasOwnProperty('contents')) {
+        return data[this.historyUid.type][this.historyUid.id].contents
       } else {
         return []
       }
@@ -98,20 +98,20 @@ export default {
       ev.stopPropagation()
     },
     is_all: function (data) {
-      if (data.hasOwnProperty(this.historyUid)) {
-        return data[this.historyUid].is_all
+      if (this.historyUid.type === 'user' && data.user.hasOwnProperty(this.historyUid)) {
+        return data.user[this.historyUid].is_all
       } else {
         return false
       }
     },
     is_show: function (data) {
-      return data.hasOwnProperty(this.historyUid)
+      return this.historyUid.type === 'user' && data.user.hasOwnProperty(this.historyUid.id)
     },
     textFormat: function (text) {
       return text.replace(/\n/g, '<br/>')
     },
-    
-  },	
+
+  },
   mounted () {
 	  document.getElementById("vu_his-head").addEventListener('scroll', this.menuscroll)
 	},

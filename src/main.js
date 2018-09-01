@@ -56,7 +56,8 @@ new Vue({
     // 历史记录列表
     historyList: serverData.historyList,
     // 当前历史记录用户id
-    historyUid: 0,
+    historyUid: {id: 0, type: 'user'},
+
     // 大厅成员列表
     onlineUserList: serverData.onlineUserList,
     // 验证消息
@@ -307,10 +308,10 @@ new Vue({
       }
     },
     // 打开历史记录
-    openHistory: function (uid) {
-      this.historyUid = uid
+    openHistory: function (uid, type) {
+      this.historyUid = {id: uid, type: type}
       this.panel_show.is_history_show = true
-      this.getMoreMsg(uid)
+      this.getMoreMsg(uid, type)
     },
     // 更新索引
     updateIndex: function (index) {
@@ -395,24 +396,24 @@ new Vue({
       }
     },
     // 获取历史数据
-    getMoreMsg: function (uid) {
-      if (this.historyList.hasOwnProperty(uid)) {
-        if (!this.historyList[uid].is_all) {
+    getMoreMsg: function (uid, type) {
+      if (this.historyList.hasOwnProperty(type) && this.historyList[type].hasOwnProperty(uid)) {
+        if (!this.historyList[type][uid].is_all) {
           if (this.socket !== null) {
-            this.socket._getHistoryMsg(uid, this.historyList[uid].page + 1)
+            this.socket._getHistoryMsg(uid, this.historyList[type][uid].page + 1, type)
           }
         }
       } else {
         // 初始化 historyList
         if (this.socket !== null) {
-          this.socket._getHistoryMsg(uid, 1)
+          this.socket._getHistoryMsg(uid, 1, type)
         }
       }
     },
     // 聊天发送数据
-    toChat: function (toUid, msg, is_temp) {
+    toChat: function (toUid, msg, isTemp) {
       if (this.socket !== null) {
-        this.socket._sendMsg(toUid, msg, is_temp)
+        this.socket._sendMsg(toUid, msg, isTemp)
       }
       this.is_temp = false
     },
