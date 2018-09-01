@@ -21,7 +21,8 @@ ul {
 #chat_app{
 	width: 100%;
 	min-width: 1200px;
-	height:1012px;
+	height:100%;
+	min-height: 780px;	
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
 
@@ -40,7 +41,7 @@ ul {
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
 	height:27.2%;
-	position:fixed;
+	position:absolute;
 	bottom: 22px;
   z-index: 99;
   margin-top: 20px;
@@ -260,7 +261,7 @@ ul {
 .vu_m-phone-input{
 	display: none;
 	position: absolute;
-	top:7px;
+	top:9px;
 	left:57px;
     width:57%;
     background: #000;
@@ -525,7 +526,7 @@ ul {
 	cursor: pointer;
 }
 .vu_m-list{
-	height:862px;
+	max-height:720px;
 	width:18%;
 	min-width: 216px;
 	overflow: auto;
@@ -970,10 +971,13 @@ ul {
 	width: 100%;
 	bottom: 0;
 	left: 0;
+	z-index: 1;
 }
 #vu_chat .vu_m-message {
 	height:75%;
 	position: relative;
+	z-index: 1;
+	background-color: #e1dfee;
 }
 #vu_chat .vu_m-message ul{
 	margin-top: 10px;
@@ -1450,6 +1454,7 @@ li{
 /*	margin-top: 10px;*/
 	position: relative;
 }
+.vue-chart-foot>div,.vue-chart-foot>div>div{height: 100%;}
 /*头切换选项*/
 .vue-chart-head>div{
 	height:50%;
@@ -1478,7 +1483,6 @@ li{
 	top: 0;
 	left:10px;
 	/*background-color: #ffffff;*/
-	border-radius: 5px;
 	max-height:95px;
 	overflow-y:auto ;
 	z-index: 10;
@@ -1491,6 +1495,7 @@ li{
 	padding: 0 3px;
 	color: #999999;
 	float: left;
+	font-size: 14px;
 }
 .vue_kind_ul li:hover{
 	/*background-color: #eeeeee;*/
@@ -1505,18 +1510,18 @@ li{
 	border-right: 1px solid #172739;
 	cursor: pointer;
 }
-.vue_chat_div .choose{
+/*.vue_chat_div .choose{
 	color:#fd3000;
-}
+}*/
 .vue_chatkind_tubiao.chooseIco{
 	background: url(/static/img/yiding.f14cb8c.png) -105px -34px;
 }
-.vue_company_tubiao.chooseIco{
+/*.vue_company_tubiao.chooseIco{
 	background: url(/static/img/yiding.f14cb8c.png) -141px -34px;
 }
 .vue_people_tubiao.chooseIco{
 	background: url(/static/img/yiding.f14cb8c.png) -174px -34px;
-}
+}*/
 .vue_chat_div:hover .vue_company_tubiao{
 	background: url(/static/img/yiding.f14cb8c.png) -141px -35px;
 }
@@ -1690,11 +1695,12 @@ li{
 }
 /*.vue-realtime-auto{width: 98%;margin:5px 0 5px 2%;height:150px;overflow-y: auto;}*/
 .vue-tealtime-time {
-	height: 150px;
+	height: 78%;
 	outline: initial!important;
 	width: 97.5%;
 	margin: 5px 0 5px 2%;
 }
+.vue-tealtime-time>ul{height:93%;margin: 0}
 .vue-realtime-auto li{height: 30px;line-height: 30px;padding-left: 0.8%;}
 .vue-realtime-auto li:nth-child(even){border-right: 0;}
 .vue-realtime-auto li span{text-align: center;color: #FFFFFF;display: inline-block;}
@@ -1718,6 +1724,8 @@ li{
 	float: left;
 	height: 100%;
 	width: 22.4%;
+	position: relative;
+	z-index: 1;
 }
 .vue_m_m_foot{
 	text-align: center;
@@ -1736,11 +1744,11 @@ li{
 	float: left;
 	/*width: 65.8%;*/
 	width: 62.8%;
-	height:98%;
+	height:95%;
 	margin-left: 18.6%;
 	margin-top: 40px;
 }
-.comactive,.peoactive{color: #4385f5!important;}
+.comactive,.peoactive{color: #4385f5!important;border: 1px dashed #4385f5!important;}
 /*左边列表start*/
 #leftlist{
 	/*position: absolute;
@@ -1748,13 +1756,13 @@ li{
 	right: 0;*/
 	width: 17.8%;
 	/*width: 15%;*/
-	height:96%;
+	height:94%;
 	background-color: #e1dfee;
 	float: right;
 	margin-top: 40px;
 }
 .vue_leftlist{
-	height: 370px;
+	height: 30%;
 }
 .vue_leftlist>p{
 	height: 40px;
@@ -1766,7 +1774,7 @@ li{
 	border-bottom: 1px solid #CCCCCC;
 }
 .vue_leftlist_ul{
-	height: 310px;
+	height:75%;
 	overflow-y: auto;
 	margin-top: 10px;
 }
@@ -1794,7 +1802,7 @@ li{
 }
 
 .vue_leftlist_people{
-
+	height: 70%;
 }
 .vue_leftlist_people>p{
 	height: 40px;
@@ -1851,7 +1859,7 @@ li{
 .leftlist_people_ul{
 	margin-top: 10px;
 	/*height:458px;*/
-  height: 500px;
+    height:82%;
 	overflow: auto;
 	/*min-width:206px;*/
 }
@@ -2311,3 +2319,16 @@ li{
 .vu_submenu_shez img{margin-top: 20px;}
 .vu_submenu_shez:hover{background: #4A4A51;}
 .vue_kind-active{background-color: #4385f5;color: #FFFFFF!important;}
+#No_chat{
+	position: absolute;
+	top:46px;
+	left:55%;
+	z-index: 2;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	width: 230px;
+	height: 115px;
+	text-align: center;
+}
+#No_chat p{color: #999999;margin-top: 10px;font-size: 12px;}
