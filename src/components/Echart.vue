@@ -249,6 +249,7 @@
         $('#myTabContent>div').css('height','0')
         $('#myTabContent>div').eq(index).css('height','auto')
       })
+	 	
     },
     methods: {
       //qunNew部分内容
@@ -658,7 +659,8 @@
         userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
         return onlineCnt
       }
-    }
+    },
+    
   }
 </script>
 
