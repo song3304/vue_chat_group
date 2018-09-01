@@ -4,23 +4,7 @@
       <!--切换选项-->
       <div class="vue_chart_yi">
         <div class="vue-chart-head">
-          <div class="vue_chat_kind">
-            <div class="vue_chat_div" @click="kindclick">
-              <span :class="{vue_chatkind_tubiao:true,chooseIco:chooseTag==1}"></span>
-              <span :class="{vue_chatkind_name:true,choose:chooseTag==1}">种类</span>
-              <span class="vue_chat_jiantou"></span>
-            </div>
-            <!--下拉表-->
-            <ul class="vue_kind_ul" v-show="kindshow" >
-              <li v-for="(catalogItem,index) in catalogList" @click="addcatalog(catalogItem,index)">{{catalogItem.name}}</li>
-            </ul>
-            <!--右边切换选项-->
-            <ul class="vue_kind_species">
-              <li>
-                <span>{{selectCatalogName}}</span>
-              </li>
-            </ul>
-          </div>
+          
           <div class="vue_chat_company">
             <div class="vue_chat_div" @mouseenter="companyclick" @mouseleave="companyleav">
               <span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
@@ -67,8 +51,25 @@
 
 
       <!----曲线图表 start-->
-
+			<div class="vue_chat_kind">  <!--//品种分类·-->
+        <!--<div class="vue_chat_div" @click="kindclick">
+          <span :class="{vue_chatkind_tubiao:true,chooseIco:chooseTag==1}"></span>
+          <span :class="{vue_chatkind_name:true,choose:chooseTag==1}">种类</span>
+          <span class="vue_chat_jiantou"></span>
+        </div>-->
+        <!--下拉表-->
+        <ul class="vue_kind_ul">  <!--v-show="kindshow"--> 
+          <li v-for="(catalogItem,index) in catalogList" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
+        </ul>
+        <!--右边切换选项-->
+        <!--<ul class="vue_kind_species">
+          <li>
+            <span>{{selectCatalogName}}</span>
+          </li>
+        </ul>-->
+      </div>
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
+      	
         <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
           <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
           <div class="clear"></div>
@@ -207,6 +208,7 @@
     props: ['user', 'userList', 'groupList', 'groupMsg', 'companyLists'],
     data() {
       return {
+      	activeIndex:0,
         kindshow:false,
         companyshow:false,
         peopleshow:false,
@@ -238,6 +240,7 @@
         background: "", // 轨道的背景颜色
         cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
         autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
       });
       $('#myTabContent>div').eq(0).css('height','auto')
       $('.vue_kind_ul li').on('click',function(){
@@ -568,6 +571,7 @@
     },
 
       addcatalog(catalogItem,index){//种类切换
+      	this.activeIndex = index
         this.catalogList.map((v,i)=>{
           if(index!=i){
             v.show=0
