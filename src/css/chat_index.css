@@ -935,7 +935,6 @@ ul {
 	line-height: 25px;
 	font-size: 14px;
 	color: #666666;
-	padding-left:15px;
 }
 .vue_name_sz>li:hover,.vue_name_move li:hover{
 	background: #EEEEEE;
@@ -951,21 +950,24 @@ ul {
 	position: absolute;
 	top:55px;
 	left:90px;
-	width: 80px;
-	/*height: 76px;*/
+	width: 90px;
 	background-color: #ffffff;
 	box-shadow: 0px 2px 4px 0px
 	rgba(0, 0, 0, 0.21);
 	border-radius: 5px;
 	padding: 3px 0;
-	z-index: 12;
+	z-index: 12;	
 }
 .vue_name_move li{
+	width: 100%;
 	height:25px;
 	line-height: 25px;
 	font-size: 14px;
 	color: #666666;
 	text-align: center;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 /*分组弹窗结束*/
 /*从页面移出样式*/
@@ -1452,7 +1454,7 @@ li{
 	height: 100%;
 }
 .vue_chart_yi{
-	height:9%;
+	height:9.5%;
 	/*padding:9% 0 0;*/
 	position: relative;
 	background-color: #101a29;
@@ -1481,7 +1483,7 @@ li{
 }
 .vue_chat_kind{
 	position: absolute!important;
-	top:11%;
+	top:11.5%;
 	left: 0;
 	/*z-index: 100;*/
   z-index: 98;
@@ -1596,7 +1598,7 @@ li{
 }
 .vue_company_ul{
 	position: absolute;
-	top:32px;
+	top:27px;
 	left: 0;
 	width: 210px;
 	max-height: 168px;
@@ -1628,7 +1630,7 @@ li{
 	margin-right: 6px;
 }
 .vue_company_species li{
-	padding: 2px 3px;
+	padding: 1px 3px;
 	border: 1px dashed #fd3000;
 	border-radius: 5px;
 	margin: 3px 10px 0 0;
@@ -1671,7 +1673,7 @@ li{
 }
 .vue_people_ul{
 	position: absolute;
-	top: 30px;
+	top: 27px;
 	left: 0;
 	width: 140px;
 	max-height: 168px;

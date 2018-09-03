@@ -218,7 +218,7 @@
         peopleshow:false,
         catalogList:match_hall_catalogs,
         companyList:match_hall_companies,
-        peopleList:[{username:'清先选择公司'}],
+        peopleList:[{username:'请先选择公司'}],
         comsplist:[],
         peosplist:[],
         selectCatalogName:match_hall_catalogs[0].name,
@@ -640,7 +640,9 @@
         if (peoedItem) {
           $('.vue_people_species>li').attr('class','')
           $('.vue_people_species>li').eq(index).attr('class','peoactive')
-        } else {
+        }else if(this.selectUid==undefined){
+          	return false;
+        }else {
           $('.vue_people_species>li').attr('class','')
           this.peosplist.push({
             ...peopleitem,isActive:true
