@@ -64,6 +64,9 @@ export default {
       var el = event.currentTarget
       $(el).parent().parent().next().show()
     },
+    channame:function(){
+    	 $('.vue_name_sz').hide()
+    },
     modifyUserName: function (event) {
       var el = event.currentTarget
       var userId = $(el).data('uid')
@@ -311,7 +314,7 @@ export default {
 
 		          	</ul>
             </div>
-						<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName"/>
+						<input class="vu_m-phone-input" type="text" :value="userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name" :data-uid="userList[userItem].id" :data-gid="companyItem.groupId" @keyup.enter="modifyUserName" @blur="modifyUserName" @click="channame"/>
             <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
            <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/>--> <!--data-uid="{{userList[userItem].id}} "  placeholder="{{userList[userItem].name}} "-->
             <!--删除人员-->
