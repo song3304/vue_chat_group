@@ -192,6 +192,16 @@
       <img src="../images/tips.png" alt="" class="c_qunTips" v-show="formData.userIds.length==0">
     </div>
 
+    <!--提示框-->
+    <div class="vu_del-popup" v-show="tipsTag" style="left:25%;">
+      <div class="vu_fen_zu_title">
+        <span>提示</span>
+        <p class="vu_fen_zu_tier"  @click="tipscancel"><span></span></p>
+      </div>
+      <p>{{this.tipsMsg}}</p>
+      <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
+    </div>
+
     <!-- 群发报价 -->
     <div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
     <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>批量询价</span></div>
@@ -236,6 +246,8 @@
         placeholder: '请输入群发内容.',
         groupMsg:'',//群发内容
         chooseG:false,
+        tipsTag:false,//提示框
+        tipsMsg:'',//提示信息
       }
     },
     mounted() {
@@ -259,16 +271,21 @@
     methods: {
       //qunNew部分内容
       /* qunNew部分开始 */
-      chooseGou:function () {
+      tipscancel: function () {//关闭提示框
+        this.tipsTag = false
+      },
+      chooseGou: function () {//是否勾选报价识别
         this.chooseG = !this.chooseG
       },
       sendGroupMsg: function () {
-        console.log(this.formData.userIds)
+        // console.log(this.formData.userIds)
         if (this.formData.userIds.length < 1) {
-          alert('请先选择群发人员')
+          this.tipsTag = true
+          this.tipsMsg = '请先选择群发人员'
           return
         } else if (this.groupMsg === '') {
-          alert('群发消息不能为空.')
+          this.tipsTag = true
+          this.tipsMsg = '群发消息不能为空.'
           return
         }
         this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg, this.chooseG)
