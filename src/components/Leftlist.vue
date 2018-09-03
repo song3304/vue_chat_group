@@ -56,7 +56,7 @@
       <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
       <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
         <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)">临时会话</span>
-        <span class="vue_leftlist_companysz_er" @click="openVerify">添加好友</span>
+        <span class="vue_leftlist_companysz_er" @click="openVerify()">{{relation()}}</span>
         <!--<p>聊天</p>-->
       </div>
 			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
@@ -76,7 +76,7 @@
         <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,verifymsg)" style="color: #4385F5;">发送</span>
         <!--<p>聊天</p>-->
       </div>
-      <div class="vue_leftlist_close" @click="openVerify"><span></span></div>
+      <div class="vue_leftlist_close" @click="openVerify()"><span></span></div>
     </div>
 	</div>
 </template>
@@ -90,12 +90,12 @@
   		return{
   			firendtan:false,
         searchKey:'',
-        infoId:2,
+        infoId:0,
 			  leftList:match_hall_cms,
         chat_hall_members: _chat_hall_members,
         sendfirendtan:false,
         tingList:null,
-        verifymsg:'',//验证信息
+        verifymsg:''//验证信息
   		}
   	},
     computed: {
@@ -136,8 +136,10 @@
     },
   methods: {
     openVerify: function () {
-      this.firendtan = false
-      this.sendfirendtan = !this.sendfirendtan
+      if(this.isCanSendVerify()){
+        this.firendtan = false
+        this.sendfirendtan = !this.sendfirendtan
+      }
     },
     firendchat: function (key) {
       this.firendtan = !this.firendtan
@@ -165,6 +167,33 @@
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false
+
+    },
+    relation: function () { // 关系
+      if(this.userList.hasOwnProperty(this.infoId)){
+        if(this.userList[this.infoId].friend_type=='friend'){
+          return '已是好友'
+        }else if(this.userList[this.infoId].friend_type=='verify'){
+          return '已发验证'
+        }else {
+          return '添加好友'
+        }
+      }else{
+        return '添加好友'
+      }
+    },
+    isCanSendVerify: function () {
+      if(this.userList.hasOwnProperty(this.infoId)){
+        if(this.userList[this.infoId].friend_type=='friend'){
+          return false
+        }else if(this.userList[this.infoId].friend_type=='verify'){
+          return false
+        }else {
+          return true
+        }
+      }else{
+        return true
+      }
     }
   },
 	mounted() {
