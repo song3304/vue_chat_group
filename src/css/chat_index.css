@@ -23,7 +23,7 @@ ul {
 	width: 100%;
 	min-width: 1200px;
 	height:100%;
-	min-height: 780px;
+	min-height: 896px;
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
 
@@ -1058,9 +1058,10 @@ li{
 }
 }
 .vu_m-message {
-	padding:5px 15px 5px 15px;
-	/*overflow-y: scroll;*/
+	padding:5px 13px 5px 15px;
+	overflow-y: auto;
 	position: relative;
+	margin-right: 2px;
 }
 .vu_seemore{
 	position: absolute;

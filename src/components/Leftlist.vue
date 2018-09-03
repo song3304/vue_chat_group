@@ -166,6 +166,7 @@
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false
+      toastr.warning('验证信息已发送')
     }
   },
 	mounted() {
