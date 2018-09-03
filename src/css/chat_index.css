@@ -2407,3 +2407,7 @@ li{
 	border-radius: 50%;
 }
 #leftlist_nowdate span,#leftlist_nowdate a{color: #FFFFFF;font-size: 14px;}
+.toast-top-right{
+  left: 50%;
+  top: 50%;
+}
