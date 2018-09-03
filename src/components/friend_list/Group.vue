@@ -114,7 +114,15 @@ export default {
     },
     delConfirm: function () {
       if (this.delType === 'group') {
-        this.$emit('delGroupEvent', this.groupId, this.group_type)
+        for(var index in this.companyList){
+          if(this.companyList[index].groupId==this.groupId){
+            if(this.companyList[index].userIds.length==0){
+              this.$emit('delGroupEvent', this.groupId, this.group_type)
+            }else{
+              alert('请先将分组内的好友移动到其他分组')
+            }
+          }
+        }
       } else if (this.delType === 'person') {
         this.$emit('delPersonEvent', this.groupId, this.group_type, this.uid)
       }
