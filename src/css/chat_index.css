@@ -126,7 +126,6 @@ ul {
 	height: 40px;
 	z-index: 1000;
 	min-width: 1200px;
-	background:url(../images/bg.png);
 }
 .vue-head a{
 	font-size: 14px;
