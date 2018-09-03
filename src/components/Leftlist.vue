@@ -85,7 +85,7 @@
 	export default {
   	components:{},
   	// props:{},
-    props: ['onlineUserList','user', 'userList'],
+    props: ['onlineUserList','user', 'userList', 'verifyList'],
     data(){
   		return{
   			firendtan:false,
@@ -160,9 +160,8 @@
       this.sendfirendtan = false;
     },
     addFriend: function (otherUid, msg) {
-      // if(msg==''){
-      //   alert('验证信息未填写')
-      // }
+      //如果已经发送验证
+      console.log(otherUid,this.userList)
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false
