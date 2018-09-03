@@ -17,6 +17,8 @@ export default {
       groupNew:false, //移动列表隐藏
       friendDel:false,//删除框隐藏
       lookInfoTag:-1,//验证资料卡隐藏
+      tipsTag:false,//提示框
+      tipsMsg:'',//提示信息
     }
   },
   props: ['user', 'userList', 'companyList', 'group_type', 'followList','verifyMsg'],
@@ -109,6 +111,9 @@ export default {
     popcancel: function () { // 关闭删除弹框
       this.Qunpopup = false
     },
+    tipscancel:function () {//关闭提示框
+      this.tipsTag = false
+    },
     Qundel: function (event, groupId) { // 点击弹出删除框
       event.stopPropagation()
       this.Qunpopup = true
@@ -122,7 +127,8 @@ export default {
             if(this.companyList[index].userIds.length==0){
               this.$emit('delGroupEvent', this.groupId, this.group_type)
             }else{
-              alert('请先将分组内的好友移动到其他分组')
+              this.tipsMsg = '请先移出分组内的好友';
+              this.tipsTag = true;
             }
           }
         }
@@ -133,7 +139,8 @@ export default {
     },
     delPen: function (event, groupId, uid) {
       if(this.followList.indexOf(this.userList[uid].id)>=0){
-        alert('请先取消盯盘')
+        this.tipsMsg = '请先取消盯盘'
+        this.tipsTag = true
       }else{
         event.stopPropagation()
         this.Qunpopup = true
@@ -356,6 +363,15 @@ export default {
       	</div>
       	<p>是否确认删除？</p>
       	<div class="vu_fenzu_name_footer"><button @click="delConfirm">确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
+      </div>
+      <!--提示框-->
+      <div class="vu_del-popup" v-show="tipsTag">
+        <div class="vu_fen_zu_title">
+          <span>提示</span>
+          <p class="vu_fen_zu_tier"  @click="tipscancel"><span></span></p>
+        </div>
+        <p>{{this.tipsMsg}}</p>
+        <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
       </div>
     </ul>
 </template>
