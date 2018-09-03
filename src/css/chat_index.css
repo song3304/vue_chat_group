@@ -719,7 +719,11 @@ ul {
 .vu_fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -155px;text-align: center;margin-top: 7px;}
 .vu_fen_zu_title p:hover{background: #BC2424;}
 .vu_fen_zu_title p:hover span{background: url(../images/qie_tu.png) -4px -242px;}
-.vu_fenzu_left{width: 250px!important;height: 350px!important;float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
+.vu_fenzu_left{
+  width: 250px!important;
+  height: 90%;
+  /*height: 350px!important;*/
+  float: left;border-right: 1px solid #e4e4e4;overflow: hidden;}
 .vu_fenzu_left>ul{
 	width: 270px;
 	overflow-y: scroll;
@@ -2354,6 +2358,18 @@ li{
 }
 .c_openShibie span.gou{
   background: url(../images/green.png) -46px 0px no-repeat;
+}
+.c_dingTips{
+  width: 100%;
+  height: 80px;
+  color: #999;
+  text-align: center;
+  font-size: 14px;
+  line-height: 25px;
+  padding:32px 20px;
+}
+.c_dingTips a{
+  color: #4385f5;
 }
 .vu_submenu_shez{
 	position: absolute;
