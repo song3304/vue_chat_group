@@ -14,7 +14,7 @@
         <p class="vu_title-text"><span>{{item.date}}</span></p>
         <!--对方信息-->
         <li v-for="date_item in item.items" :class="{'vu_opposite':date_item.userId!==user.id,'vu_oneself':date_item.userId===user.id}">
-          <p :class="{'vu_oppo-title':date_item.userId!==user.id,'vu_one-title':date_item.userId===user.id}">{{date_item.userId===user.id?'自己':userList[historyUid.id].name}} {{date_item.createTime}}</p>
+          <p :class="{'vu_oppo-title':date_item.userId!==user.id,'vu_one-title':date_item.userId===user.id}">{{date_item.userId===user.id?'自己':userList[date_item.userId].name}} {{date_item.createTime}}</p>
           <p :class="{'vu_oppo-xiang':date_item.userId!==user.id,'vu_one-xiang':date_item.userId===user.id}" v-html="textFormat(date_item.content)"></p>
         </li>
       </div>
