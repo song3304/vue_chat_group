@@ -25,6 +25,15 @@ export default {
         this.$emit('chatEvent', this.session.id, this.text)
         this.text = ''
       }
+	      $("#vu_m_mess_new").niceScroll({
+	    		cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "8px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
+	    	});
     },
     openHistoryDialog: function (uid, type) {
       this.$emit('openHistoryEvent', uid, type)

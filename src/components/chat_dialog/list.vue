@@ -10,11 +10,11 @@ export default {
   },
   computed: {
     searchData: function () {
-      if (this.search === '') {
-        return this.sessionList
-      } else {
+//    if (this.search === '') {
+//      return this.sessionList
+//    } else {
         return this.sessionList.filter(item => item.type === 'user' && this.userList[item.id].name.indexOf(this.search) > -1)
-      }
+//    }
     },
     isUserMsg: function () {
       var userMsgCount = 0
@@ -97,7 +97,7 @@ export default {
                 	<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{item|noReadCnt}}</p>
                 	<div class="vu_delet-li"  @click.stop="deletePerson(index)"></div>
                 </div>
-                <!--<span  v-if="userList[session.id].friend_type!=='friend'"></span>-->
+                <span  v-if="userList[item.id].friend_type!='friend'"></span>
           </li>
         </ul>
         <div v-show="isUserMsg==0" style="color:#ccc; text-align:center;line-height:50px;">

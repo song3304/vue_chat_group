@@ -143,7 +143,7 @@ ul {
 .vue-head>span{
 	position: absolute;
 	top:7px;
-	left: 19%;
+	left: 16%;
 	display: inline-block;
 	width: 103px;
 	height: 26px;
@@ -151,12 +151,23 @@ ul {
 	background-size: cover;
 	/*margin: 7px 0 0 25px;*/
 }
-.vue-head p{
+.vue-head .Vue_souye{
 	position: absolute;
-	top:7px;
-	left:105px;
+	top:-5px;
+	left:115px;
 	color: #FFFFFF;
 	font-size:18px;
+	line-height: 18px;
+	font-weight: 550;
+	overflow: hidden;
+	width: 125px;
+}
+.vue-head .Vue_meg{
+	position: absolute;
+	top:-5px;
+	left:230px;
+	color: #FFFFFF;
+	font-size:16px;
 	line-height: 18px;
 	overflow: hidden;
 	width: 125px;
@@ -271,7 +282,6 @@ ul {
 	100%{top: 7px;}
 }
 .vu_m-touxiang img{
-	border-radius: 50%;
 	width: 100%;
 	height: 100%;
 }
@@ -923,7 +933,7 @@ ul {
 #vu_chat_app{width: 100%;height: 100%;}
 .vue_name_sz{
 	position: absolute;
-	top:30px;
+	top:-44px;
 	left:30px;
 	width: 90px;
 	height: 105px;
@@ -959,8 +969,7 @@ ul {
 	background-color: #ffffff;
 	box-shadow: 0px 2px 4px 0px
 	rgba(0, 0, 0, 0.21);
-	border-radius: 5px;
-	padding: 3px 0;
+	/*border-radius: 5px;*/
 	z-index: 12;	
 }
 .vue_name_move li{
@@ -998,7 +1007,7 @@ ul {
 	z-index: 1;
 }
 #vu_chat .vu_m-message {
-	height:75%;
+	height:80%;
 	position: relative;
 	z-index: 1;
 	background-color: #e1dfee;
@@ -1063,8 +1072,8 @@ li{
 }
 }
 .vu_m-message {
-	padding:5px 13px 5px 15px;
-	overflow-y: auto;
+	padding:5px 5px 5px 15px;
+	/*overflow-y: auto;*/
 	position: relative;
 	margin-right: 2px;
 }
@@ -2054,8 +2063,8 @@ li{
 }
 .vu_m-newqun span{
 	position: absolute;
-	bottom: 15px;
-	left: 50%;
+	bottom:1px;
+	left: 53%;
 	width: 24px;
 	height: 12px;
 	background: url(../images/linshi_1.png);
@@ -2417,4 +2426,8 @@ li{
   left: 50%;
   top: 50%;
 }
-
+#vu_m_mess_new{
+	width: 100%;
+	height: 100%;
+	padding-right: 8px;
+}
