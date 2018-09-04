@@ -86,7 +86,7 @@ export default {
 <template>
     <div class="vu_m-list">
         <ul v-if="session!=null">
-          <li v-for="(item,index) in searchData" v-if="item.type==='user'" :class="{ vu_active: session.id === item.id }" @click="select(item,$event)">         			
+          <li v-for="(item,index) in searchData" v-if="item.type==='user'" :class="{ vu_active: session.id === item.id }" @click="select(item,$event)">
                 <img class="vu_avatar"  width="30" height="30" :alt="userList[item.id].name" :src="userList[item.id].img" :class="{'vu_gray':!userList[item.id].isOnline}">
                 <div class="vu_m-cs-cs">
                 	<p class="vu_name">{{userList[item.id].name}}</p>
