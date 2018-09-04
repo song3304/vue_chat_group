@@ -286,7 +286,7 @@ export default {
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
-        	<div class="vu_qun-name" @click="changefenzhu(companyItem)" @mouseleave="closefenzhu" v-if="index">
+        	<div class="vu_qun-name" @click="changefenzhu(companyItem)" @mouseleave="closefenzhu" v-if="companyItem.groupName!='我的好友'">
 		        	<ul class="vu_first_selt">
 			        		<li @click="Qundel($event,companyItem.groupId)">删除组</li>
 			        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
