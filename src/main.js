@@ -93,7 +93,7 @@ new Vue({
   components: {friendList, chatdialog, historylist, groupdialog, qunnew,echart,leftlist},
   template: `<div id="chat_app">
   				<div class="loader"></div>
-  				<div class="vue-head"><a :href="'/'+user.plat+'/index/index'"><span></span>返回系统主页</a>	<span><p><b>&nbsp;|</b>&nbsp;乙二醇直播间</p></span></div>
+  				<div class="vue-head"><a :href="'/'+user.plat+'/index/index'"><span></span>返回系统主页</a>	<span><a href="#" class="Vue_souye">直播间首页</a><a class="Vue_meg" href="/pindao">MEG资讯</a></span></div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
 		    <div id="vue_main_main">
 		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" @sendGroupMsgEvent="sendGroupMsg"></echart>

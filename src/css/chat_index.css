@@ -23,7 +23,7 @@ ul {
 	width: 100%;
 	min-width: 1200px;
 	height:100%;
-	min-height: 780px;
+	min-height: 896px;
 	/*background:url(../images/bg.png);
 	background-size: cover;*/
 
@@ -143,7 +143,7 @@ ul {
 .vue-head>span{
 	position: absolute;
 	top:7px;
-	left: 19%;
+	left: 16%;
 	display: inline-block;
 	width: 103px;
 	height: 26px;
@@ -151,12 +151,23 @@ ul {
 	background-size: cover;
 	/*margin: 7px 0 0 25px;*/
 }
-.vue-head p{
+.vue-head .Vue_souye{
 	position: absolute;
-	top:7px;
-	left:105px;
+	top:-5px;
+	left:115px;
 	color: #FFFFFF;
 	font-size:18px;
+	line-height: 18px;
+	font-weight: 550;
+	overflow: hidden;
+	width: 125px;
+}
+.vue-head .Vue_meg{
+	position: absolute;
+	top:-5px;
+	left:230px;
+	color: #FFFFFF;
+	font-size:16px;
 	line-height: 18px;
 	overflow: hidden;
 	width: 125px;
@@ -271,7 +282,6 @@ ul {
 	100%{top: 7px;}
 }
 .vu_m-touxiang img{
-	border-radius: 50%;
 	width: 100%;
 	height: 100%;
 }
@@ -923,7 +933,7 @@ ul {
 #vu_chat_app{width: 100%;height: 100%;}
 .vue_name_sz{
 	position: absolute;
-	top:30px;
+	top:-44px;
 	left:30px;
 	width: 90px;
 	height: 105px;
@@ -940,7 +950,6 @@ ul {
 	line-height: 25px;
 	font-size: 14px;
 	color: #666666;
-	padding-left:15px;
 }
 .vue_name_sz>li:hover,.vue_name_move li:hover{
 	background: #EEEEEE;
@@ -956,21 +965,23 @@ ul {
 	position: absolute;
 	top:55px;
 	left:90px;
-	width: 80px;
-	/*height: 76px;*/
+	width: 90px;
 	background-color: #ffffff;
 	box-shadow: 0px 2px 4px 0px
 	rgba(0, 0, 0, 0.21);
-	border-radius: 5px;
-	padding: 3px 0;
-	z-index: 12;
+	/*border-radius: 5px;*/
+	z-index: 12;	
 }
 .vue_name_move li{
+	width: 100%;
 	height:25px;
 	line-height: 25px;
 	font-size: 14px;
 	color: #666666;
 	text-align: center;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 /*分组弹窗结束*/
 /*从页面移出样式*/
@@ -996,7 +1007,7 @@ ul {
 	z-index: 1;
 }
 #vu_chat .vu_m-message {
-	height:75%;
+	height:80%;
 	position: relative;
 	z-index: 1;
 	background-color: #e1dfee;
@@ -1061,9 +1072,10 @@ li{
 }
 }
 .vu_m-message {
-	padding:5px 15px 5px 15px;
-	/*overflow-y: scroll;*/
+	padding:5px 5px 5px 15px;
+	/*overflow-y: auto;*/
 	position: relative;
+	margin-right: 2px;
 }
 .vu_seemore{
 	position: absolute;
@@ -1457,7 +1469,7 @@ li{
 	height: 100%;
 }
 .vue_chart_yi{
-	height:9%;
+	height:9.5%;
 	/*padding:9% 0 0;*/
 	position: relative;
 	background-color: #101a29;
@@ -1486,7 +1498,7 @@ li{
 }
 .vue_chat_kind{
 	position: absolute!important;
-	top:12%;
+	top:11.5%;
 	left: 0;
 	/*z-index: 100;*/
   z-index: 98;
@@ -1511,10 +1523,10 @@ li{
 }
 .vue_kind_ul li{
 	/*width: 139px;*/
-	/*height:30px;*/
-	/*line-height:30px;*/
+	height:30px;
+	line-height:30px;
 	margin-left: 10px;
-	padding: 4px 8px;
+	padding: 0 3px;
 	color: #999999;
 	float: left;
 	font-size: 14px;
@@ -1601,7 +1613,7 @@ li{
 }
 .vue_company_ul{
 	position: absolute;
-	top:32px;
+	top:27px;
 	left: 0;
 	width: 210px;
 	max-height: 168px;
@@ -1633,7 +1645,7 @@ li{
 	margin-right: 6px;
 }
 .vue_company_species li{
-	padding: 2px 3px;
+	padding: 1px 3px;
 	border: 1px dashed #fd3000;
 	border-radius: 5px;
 	margin: 3px 10px 0 0;
@@ -1676,7 +1688,7 @@ li{
 }
 .vue_people_ul{
 	position: absolute;
-	top: 30px;
+	top: 27px;
 	left: 0;
 	width: 140px;
 	max-height: 168px;
@@ -2051,8 +2063,8 @@ li{
 }
 .vu_m-newqun span{
 	position: absolute;
-	bottom: 15px;
-	left: 50%;
+	bottom:1px;
+	left: 53%;
 	width: 24px;
 	height: 12px;
 	background: url(../images/linshi_1.png);
@@ -2413,4 +2425,9 @@ li{
 .toast-top-right{
   left: 50%;
   top: 50%;
+}
+#vu_m_mess_new{
+	width: 100%;
+	height: 100%;
+	padding-right: 8px;
 }

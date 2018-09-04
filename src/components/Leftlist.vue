@@ -1,7 +1,7 @@
 <template>
 	<div id="leftlist">
 		<div id="leftlist_nowdate">
-			<a target="_blank" href='/match/profile/index.html'><img :src="user.img" alt="" /></a>
+			<a target="_blank" href="'/'+user.plat+'/index/index'"><img :src="user.img" alt="" /></a>
 			<span>{{user.name}}</span>
 			<a href='/match/auth/logout.html'>[退出]</a>
 		</div>

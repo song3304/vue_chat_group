@@ -49,29 +49,39 @@ export default {
         el.scrollTop = el.scrollHeight - localStorage.b
         localStorage.b = el.scrollHeight
       }, 10)
+	      $("#vu_m_mess_new").niceScroll({
+	    		cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "8px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
+	    });
     },
     textFormat: function (text) {
       return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
     },
     messscroll:function(session) {
-			this.scroll = document.getElementById('chat_message_main').scrollTop
-//		  if(this.scroll==0){
-//		  	if (session != null) {
-//	        this.$emit('todayMsgEvent', session)
-//	      }
-//	      setTimeout(function () {
-//	        var el = document.getElementById('chat_message_main')
-//	        el.scrollTop = el.scrollHeight - localStorage.aa
-//	        localStorage.aa = el.scrollHeight
-//	      }, 10)
-//		  }
+			this.scroll = document.getElementById('vu_m_mess_new').scrollTop
+		  if(this.scroll==0){
+		  	if (session != null) {
+	        this.$emit('todayMsgEvent', session)	        
+	     }
+	      setTimeout(function () {
+	        var el = document.getElementById('vu_m_mess_new')
+	        el.scrollTop = el.scrollHeight - localStorage.aa
+	        localStorage.aa = el.scrollHeight
+	        console.log(el.scrollHeight)
+	      }, 80)
+		  }
 		},
   },
   mounted() {
-    $("#chat_message_main").niceScroll({
+    $("#vu_m_mess_new").niceScroll({
     	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+        cursorwidth: "8px", // 滚动条的宽度，单位：便素
         background: "", // 轨道的背景颜色
         cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
         autohidemode: false, // 隐藏滚动条的方式, 可用的值:
@@ -82,23 +92,26 @@ export default {
 </script>
 
 <template>
-    <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)" @scroll="messscroll(session)">
-    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today&& session.type=='user'&&session.messages.length>3" @click="todayMsg(session)">
+    <div class="vu_m-message" id = "chat_message_main" @click="toRead(session)">
+    		<div class="vu_seemore" v-show="session!=null&&!session.has_send_today&& session.type=='user'&&session.messages.length>0" @click="todayMsg(session)">
     				<p></p><span>查看更多</span>
     		</div>
-        <ul v-if="session!=null && session.type=='user'" id="vu_m_mess_new">
-            <li v-if="session.messages.length<1" class="vu_m-message-new">暂无最新消息！</li>
-            <li v-for="item in session.messages">
-                <p class="vu_time"><span>{{item.date}}</span></p>
-                <div class="vu_main" :class="{ vu_self: item.userId === user.id}">
-                		<span :class="{vu_avatar: item.userId === user.id}">{{user.name}}</span>
-                		<span :class="{vu_avatar1: item.userId !== user.id}">{{userList[session.id].name}}</span>
-                    <!--<img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.id].img" />-->
-                    <div class="vu_text" v-html="textFormat(item.text)"></div>
-                    <br clear="all"/>
-                </div>
-            </li>
-        </ul>
+    		<div @scroll="messscroll(session)" id="vu_m_mess_new">
+		    		<ul v-if="session!=null && session.type=='user'"  >
+		            <li v-if="session.messages.length<1" class="vu_m-message-new">暂无最新消息！</li>
+		            <li v-for="item in session.messages">
+		                <p class="vu_time"><span>{{item.date}}</span></p>
+		                <div class="vu_main" :class="{ vu_self: item.userId === user.id}">
+		                		<span :class="{vu_avatar: item.userId === user.id}">{{user.name}}</span>
+		                		<span :class="{vu_avatar1: item.userId !== user.id}">{{userList[session.id].name}}</span>
+		                    <!--<img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.id].img" />-->
+		                    <div class="vu_text" v-html="textFormat(item.text)"></div>
+		                    <br clear="all"/>
+		                </div>
+		            </li>
+		        </ul>
+    		</div>
+        
     </div>
 </template>
 
