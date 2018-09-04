@@ -161,7 +161,7 @@
             <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'style="margin-top: 14px;">
               群发
             </div>
-            <div class="c_openShibie" v-if="user.plat=='match'"><span :class={gou:chooseG} @click="chooseGou"></span>是否开启报价识别</div>
+            <div class="c_openShibie" v-if="user.plat=='match'"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
         </div>
       </div>
