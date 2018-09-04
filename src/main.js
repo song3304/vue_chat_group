@@ -87,7 +87,6 @@ new Vue({
   // sockets: {
   // 所有sockect 事件放在这
   //  connect: function(){
-  //    console.log('socket connected')
   //   }
   // 发送emit用:this.$scoket.emit(key,val)
   // },
@@ -104,7 +103,7 @@ new Vue({
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :companyList="companyList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
-				<leftlist :user="user" :onlineUserList="onlineUserList" :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend"></leftlist>
+				<leftlist :user="user" :onlineUserList="onlineUserList"  :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend"></leftlist>
 				</div>`,
   created: function () {
     // 初始化数据 套接字
@@ -218,13 +217,11 @@ new Vue({
               break;
             }
           }
-          console.log(userItem)
           userItem.isCalling = 0
           userItem.isOnline = 0
           userItem.friend_type = 'offline'
           userList[uid] = userItem
           this.updateData({userList: userList})
-          // alert('数据错误,请刷新页面.')
         }
       }
       this.is_temp = true
@@ -428,7 +425,6 @@ new Vue({
       if (this.socket !== null) {
         this.socket._del_person(gid, gtype, uid)
       }
-      console.log(this.chat_hall_members)
     },
     // 修改组名
     modifyGroupName: function (gid, gtype, gname) {
