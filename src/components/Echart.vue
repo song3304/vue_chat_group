@@ -122,7 +122,8 @@
       <div class="c_imgntent">
         <div class="c_qunPeo">
           <div class="c_qunPeoTitle">选择群发人员</div>
-          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;">
+          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;position: relative;
+    z-index: 3;">
             <div v-if="user.plat=='match'&&this.companyLists.length==0" class="c_dingTips">暂无盯盘</div>
             <div v-if="user.plat=='trade'&&this.companyLists.length==0" class="c_dingTips">您还没有对任何人进行盯盘<br/>请<a href="/trade/collect/create">[添加盯盘]</a>
             </div>
@@ -260,7 +261,6 @@
         this.chooseG = !this.chooseG
       },
       sendGroupMsg: function () {
-        // console.log(this.formData.userIds)
         if (this.formData.userIds.length < 1) {
           this.tipsTag = true
           this.tipsMsg = '请先选择群发人员'
@@ -343,11 +343,10 @@
       /* qunNew.vue部分结束 */
       //群发种类
       qunFa: function () {
-        // alert(this.chooseCatalog)
         if(this.chooseCatalog!=0){
           this.showQunFa = true;
         }else{
-          alert('请选择种类');
+          // alert('请选择种类');
         }
       },
       closeQunFa: function () {

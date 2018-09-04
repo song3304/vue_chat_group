@@ -65,7 +65,6 @@ export default {
 //	        localStorage.aa = el.scrollHeight
 //	      }, 10)
 //		  }
-     console.log(this.scroll)
 		},
   },
   mounted() {

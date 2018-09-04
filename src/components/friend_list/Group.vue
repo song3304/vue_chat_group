@@ -178,10 +178,8 @@ export default {
     },
     changefenzhu(companyItem){//分组设置
 //    	if (companyItem.firstselt == false) {
-//    		console.log(3)
 //         this.$set(companyItem, "firstselt", true);
 //      } else {
-//      	console.log(345)
 //         companyItem.firstselt = !companyItem.firstselt;
 //      }
 				event.stopPropagation();

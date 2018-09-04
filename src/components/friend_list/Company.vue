@@ -79,22 +79,25 @@ export default {
 
 </script>
 <template>
-  <ul id="vu_accordion" class="vu_accordion vu_qie_div">
-    <li v-for="companyItem in companyList">
-        <div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_link vu_accordion_li': isCalling(companyItem.userIds, userList)}" @click="accordion"><i class="fa fa-caret-right "></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>
-        <ul class="vu_submenu vu_submenu_ul ">
-          <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)" @mouseleave="mouseLeave">
-            <div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"> <!--有消息头像动加类名 vu_touxiang-->
-              <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
-              <!--//不在线，添加class=gray-->
-            </div>
-            <a>{{userList[userItem].name}}</a>
-            <!--<span class="vu_m-phone-img " @click="changeName"></span>-->
-            <!--<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> <!-- "  placeholder="{{userList[userItem].name}} "-->
-          </li>
-        </ul>
-      </li>
-    </ul>
+  <!--<ul id="vu_accordion" class="vu_accordion vu_qie_div">-->
+    <!--<li v-for="companyItem in companyList">-->
+        <!--<div :class="{'vu_link':!isCalling(companyItem.userIds, userList),'vu_link vu_accordion_li': isCalling(companyItem.userIds, userList)}" @click="accordion"><i class="fa fa-caret-right "></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span></div>-->
+        <!--<ul class="vu_submenu vu_submenu_ul ">-->
+          <!--<li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)" @mouseover="mouseOver" @mouseout="mouseOut" @dblclick="openChat(userItem)" @mouseleave="mouseLeave">-->
+            <!--<div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}"> &lt;!&ndash;有消息头像动加类名 vu_touxiang&ndash;&gt;-->
+              <!--<img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/>&lt;!&ndash;class="gray "&ndash;&gt;-->
+              <!--&lt;!&ndash;//不在线，添加class=gray&ndash;&gt;-->
+            <!--</div>-->
+            <!--<a>{{userList[userItem].name}}</a>-->
+            <!--&lt;!&ndash;<span class="vu_m-phone-img " @click="changeName"></span>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input class="vu_m-phone-input" type="text" :value="userList[userItem].name" :data-uid="userList[userItem].id" @keyup.enter="modifyUserName" @blur="modifyUserName"/> &lt;!&ndash; "  placeholder="{{userList[userItem].name}} "&ndash;&gt;-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <div id="vu_accordion" class="vu_accordion vu_qie_div" style="color: #ccc;height: 50px;line-height: 50px;text-align: center;">
+    功能正在开发中...
+  </div>
 </template>
 
 <style>

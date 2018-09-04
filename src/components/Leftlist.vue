@@ -150,8 +150,6 @@
           break;
         }
       }
-      // console.log(this.tingList)
-      // console.log(this.chat_hall_members)
     },
     leftlistclose: function () {
       this.firendtan = false
@@ -163,7 +161,6 @@
     },
     addFriend: function (otherUid, msg) {
       //如果已经发送验证
-      console.log(otherUid,this.userList)
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false
@@ -197,7 +194,6 @@
     }
   },
 	mounted() {
-    // console.log('大厅',typeof (this.onlineUserList))
 	    $(".vue_leftlist_ul").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
