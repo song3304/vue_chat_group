@@ -222,6 +222,12 @@ export default {
     }
   },
   mounted() {
+    //有新的好友默认展开
+    if($('#new_firenfd_peo>div').length){
+      var _this = $('.newsFri')
+      _this.next('ul').slideToggle()
+      _this.parent('li').toggleClass('vu_open')
+    }
 //  $(".vu_qunfen_yi").niceScroll({
 //  	cursorcolor: "#525159", // 改变滚动条颜色，使用16进制颜色值
 //      cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
@@ -238,7 +244,7 @@ export default {
   <ul class="vu_qun_fen">
   	<!--有新加好友时-->
   	<li id="new_firenfd_peo">
-  			<div class="vu_link " @click="accordion" v-if="myVerify">
+  			<div class="vu_link newsFri" @click="accordion" v-if="myVerify">
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">新的好友</span>
           <span>{{onMyVerify}}/{{myVerify}}</span>

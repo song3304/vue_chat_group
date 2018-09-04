@@ -94,9 +94,9 @@
             <p class="vu_m-new">暂无信息</p>
           </div>
           <div id="No_chat" v-if="session!=null && session.type!='user'"><img src="../images/wuxinxi.png" alt="" /><p>空空如也，赶紧去找小伙伴聊天吧！</p></div>
-          <div class="vu_m-main" >
+          <div class="vu_m-main">
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
-            <send :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
+            <send v-show="session!=null && session.type=='user'" :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
           </div>
 
         </div>
