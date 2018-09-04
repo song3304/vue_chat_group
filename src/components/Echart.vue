@@ -6,7 +6,7 @@
         <div class="vue-chart-head">
 
           <div class="vue_chat_company">
-            <div class="vue_chat_div" @mouseenter="companyclick" @mouseleave="companyleav">
+            <div class="vue_chat_div" @click="companyclick" @mouseleave="companyleav">
               <span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
               <span :class="{vue_chatkind_name:true,choose:chooseTag==2}">公司</span>
               <span class="vue_chat_jiantou"></span>
@@ -25,7 +25,7 @@
             </ul>
           </div>
           <div class="vue_chat_people">
-            <div class="vue_chat_div"  @mouseenter="peopleclick" @mouseleave="peopleleave">
+            <div class="vue_chat_div"  @click="peopleclick" @mouseleave="peopleleave">
               <span :class="{vue_people_tubiao:true,chooseIco:chooseTag==3}"></span>
               <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
               <span class="vue_chat_jiantou"></span>
@@ -180,7 +180,7 @@
 
     <!-- 群发报价 -->
     <div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
-    <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>批量询价</span></div>
+    <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键寻价</span></div>
   </div>
 
 
@@ -204,7 +204,7 @@
         peopleshow:false,
         catalogList:match_hall_catalogs,
         companyList:match_hall_companies,
-        peopleList:[{username:'清先选择公司'}],
+        peopleList:[{username:'请先选择公司'}],
         comsplist:[],
         peosplist:[],
         selectCatalogName:match_hall_catalogs[0].name,
@@ -443,7 +443,9 @@
         if (peoedItem) {
           $('.vue_people_species>li').attr('class','')
           $('.vue_people_species>li').eq(index).attr('class','peoactive')
-        } else {
+        }else if(this.selectUid==undefined){
+          	return false;
+        }else {
           $('.vue_people_species>li').attr('class','')
           this.peosplist.push({
             ...peopleitem,isActive:true

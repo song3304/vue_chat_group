@@ -109,6 +109,7 @@ export default {
         this.panelShow.groupShow = false
         this.panelShow.searchShow = false
         $('.vu_m-list').hide()
+        $('.vue_new_news').hide()
       }else{
       	this.panelShow.chatShow = false
         this.panelShow.companyShow = false
