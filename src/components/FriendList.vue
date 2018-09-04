@@ -112,10 +112,10 @@ export default {
       }else{
       	this.panelShow.chatShow = false
         this.panelShow.companyShow = false
-        this.panelShow.groupShow = false   //群隐藏
+        this.panelShow.groupShow = true   //群隐藏
         this.panelShow.searchShow = false
         $('.vu_m-list').hide()
-      };      
+      };
     },
     // 搜索事件
     search: function (event) {
@@ -174,7 +174,7 @@ export default {
     },
   },
   computed: {
-  	
+
   }
 }
 </script>

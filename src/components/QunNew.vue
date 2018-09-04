@@ -64,10 +64,10 @@ export default {
     },
     sendGroupMsg: function () {
       if (this.formData.userIds.length < 1) {
-        alert('请先选择群发人员')
+        // alert('请先选择群发人员')
         return
       } else if (this.groupMsg === '') {
-        alert('群发消息不能为空.')
+        // alert('群发消息不能为空.')
         return
       }
       this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg)
@@ -149,7 +149,6 @@ export default {
     }
   },
   mounted(){
-    console.log('111',this.companyList)
   }
 }
 </script>
