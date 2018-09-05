@@ -26,7 +26,7 @@ export default {
     // 发送消息后滚动到底部
     session: {
       handler () {
-        var el = document.getElementById('chat_message_main')
+        var el = document.getElementById('vu_m_mess_new')
         Vue.nextTick(() => {
           el.scrollTop = el.scrollHeight - el.clientHeight
         })
@@ -45,7 +45,7 @@ export default {
         this.$emit('todayMsgEvent', session)
       }
       setTimeout(function () {
-        var el = document.getElementById('chat_message_main')
+        var el = document.getElementById('vu_m_mess_new')
         el.scrollTop = el.scrollHeight - localStorage.b
         localStorage.b = el.scrollHeight
       }, 10)
