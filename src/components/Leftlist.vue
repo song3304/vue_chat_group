@@ -110,7 +110,7 @@
         for(var i=0,lg=search_data.length;i<lg;i++){
           search_data[i].isOnline = this.onlineUserList.hasOwnProperty(search_data[i].id)
         }
-        search_data.sort(function(a,b){return a.isOnline?false:(b.isOnline?true:false)})
+        search_data.sort(function(a,b){return a.isOnline?-1:(b.isOnline?1:-1)})
         return search_data;
       },
     isNull: function() {

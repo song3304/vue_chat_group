@@ -246,7 +246,7 @@ export default {
   	<li id="new_firenfd_peo">
   			<div class="vu_link newsFri" @click="accordion" v-if="myVerify">
         	<i class="fa fa-caret-right"></i>
-        	<span class="vu_first_title ">新的好友</span>
+        	<span class="vu_first_title ">好友验证</span>
           <span>{{onMyVerify}}/{{myVerify}}</span>
         </div>
       <ul class="vu_submenu vu_submenu_ul ">
