@@ -33,7 +33,9 @@
     },
     methods: {
       openVerify: function () {
-        this.addFriTag = !this.addFriTag
+        if(this.relationNew()=='加为好友'){
+          this.addFriTag = !this.addFriTag
+        }
       },
       toRead: function (value) {
         var msgIds = []
@@ -64,7 +66,22 @@
         this.$emit('addFriendEvent', otherUid, msg)
         this.verifymsg = ''
         this.addFriTag = false
-      }
+        this.userList[this.session.id].friend_type='verify'
+      },
+      //是否已发送好友
+      relationNew: function () { // 关系
+        if(this.userList.hasOwnProperty(this.session.id)){
+          if(this.userList[this.session.id].friend_type=='friend'){
+            return '已是好友'
+          }else if(this.userList[this.session.id].friend_type=='verify'){
+            return '已发验证'
+          }else {
+            return '加为好友'
+          }
+        }else{
+          return '加为好友'
+        }
+      },
     },
     mounted(){
       $("#resizable").resizable({
@@ -88,7 +105,7 @@
             <span class="vu_m-na-name">{{session!=null ? userList[session.id].name : ''}}</span>
             <p class="vu_m-new_com">公司：{{userList[session.id].company_name}}</p>
             <p class="vu_m-new_phone">电话：<span>{{userList[session.id].phone}}</span></p>
-            <div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" @click="openVerify">加为好友</div>  <!--//加好友-->
+            <div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" v-show="relationNew()!='已是好友'" @click="openVerify">{{relationNew()}}</div>  <!--//加好友-->
           </div>
           <div class="vu_m-na" id="tuo"  v-if="session!=null && session.type!='user'">
             <p class="vu_m-new">暂无信息</p>
