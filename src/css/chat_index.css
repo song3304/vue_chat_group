@@ -553,7 +553,7 @@ ul {
 	cursor: pointer;
 }
 .vu_m-list{
-	max-height:720px;
+	max-height:80%;
 	width:18%;
 	min-width: 216px;
 	overflow: auto;

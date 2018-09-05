@@ -86,7 +86,7 @@
     mounted(){
       $("#resizable").resizable({
         handles: "n",
-//      minHeight:249,
+        minHeight:30,
         maxHeight:787
       });
     }
