@@ -49,15 +49,7 @@ export default {
         el.scrollTop = el.scrollHeight - localStorage.b
         localStorage.b = el.scrollHeight
       }, 10)
-	      $("#vu_m_mess_new").niceScroll({
-	    		cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
-	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-	        cursorwidth: "8px", // 滚动条的宽度，单位：便素
-	        background: "", // 轨道的背景颜色
-	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
-	        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
-	    });
+	      
     },
     textFormat: function (text) {
       return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
@@ -68,25 +60,24 @@ export default {
 		  	if (session != null) {
 	        this.$emit('todayMsgEvent', session)	        
 	     }
-	      setTimeout(function () {
-	        var el = document.getElementById('vu_m_mess_new')
-	        el.scrollTop = el.scrollHeight - localStorage.aa
-	        localStorage.aa = el.scrollHeight
-	        console.log(el.scrollHeight)
-	      }, 80)
+		  	var el = document.getElementById('vu_m_mess_new')
+	      var i=setTimeout(function () {		      	
+	        el.scrollTop = el.scrollHeight - localStorage.aa+1
+	        localStorage.aa = el.scrollHeight-1
+	      }, 10)
 		  }
 		},
   },
   mounted() {
-    $("#vu_m_mess_new").niceScroll({
-    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
-        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-        cursorwidth: "8px", // 滚动条的宽度，单位：便素
-        background: "", // 轨道的背景颜色
-        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
-        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
-    });
+//  $("#vu_m_mess_new").niceScroll({
+//  	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
+//      cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+//      cursorwidth: "8px", // 滚动条的宽度，单位：便素
+//      background: "", // 轨道的背景颜色
+//      cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+//      autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+//      disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
+//  });
   },
 }
 </script>

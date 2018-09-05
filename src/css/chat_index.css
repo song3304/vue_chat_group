@@ -2430,4 +2430,5 @@ li{
 	width: 100%;
 	height: 100%;
 	padding-right: 8px;
+	overflow-y: auto;
 }
