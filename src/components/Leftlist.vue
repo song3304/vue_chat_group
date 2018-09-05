@@ -24,7 +24,7 @@
       <ul class="leftlist_people_ul">
         <li v-for="item in searchData" @click="firendchat(item.id)" v-if="item.plat!='user'">
           <div class="leftlist_people_photo"> <!--头像-->
-            <img :src="item.img" alt="" />
+            <img :src="item.img" alt="" :class="{ 'vu_gray':item.isOnline==false} "/>
           </div>
           <span v-if="item.plat=='match'" class="leftlist_people_cuo"></span> <!--撮合公司-->
           <span v-if="item.plat=='trade'" class="leftlist_people_jiao"></span> <!--交易公司-->
