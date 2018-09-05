@@ -160,11 +160,10 @@
       this.sendfirendtan = false;
     },
     addFriend: function (otherUid, msg) {
-      //如果已经发送验证
       this.$emit('addFriendEvent', otherUid, msg)
       this.verifymsg = ''
       this.sendfirendtan = false
-
+      this.userList[otherUid].friend_type = 'verify'
     },
     relation: function () { // 关系
       if(this.userList.hasOwnProperty(this.infoId)){

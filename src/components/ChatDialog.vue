@@ -66,7 +66,7 @@
         this.$emit('addFriendEvent', otherUid, msg)
         this.verifymsg = ''
         this.addFriTag = false
-        this.userList[this.session.id].friend_type='verify'
+        this.userList[otherUid].friend_type = 'verify'
       },
       //是否已发送好友
       relationNew: function () { // 关系
