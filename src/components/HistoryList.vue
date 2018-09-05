@@ -98,8 +98,8 @@ export default {
       ev.stopPropagation()
     },
     is_all: function (data) {
-      if (this.historyUid.type === 'user' && data.user.hasOwnProperty(this.historyUid)) {
-        return data.user[this.historyUid].is_all
+      if (this.historyUid.type === 'user' && data.user.hasOwnProperty(this.historyUid.id)) {
+        return data.user[this.historyUid.id].is_all
       } else {
         return false
       }
