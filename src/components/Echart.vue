@@ -6,7 +6,7 @@
         <div class="vue-chart-head">
 
           <div class="vue_chat_company">
-            <div class="vue_chat_div" @click="companyclick" @mouseleave="companyleav">
+            <div class="vue_chat_div" @mouseenter="companyclick" @mouseleave="companyleav">
               <span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
               <span :class="{vue_chatkind_name:true,choose:chooseTag==2}">公司</span>
               <span class="vue_chat_jiantou"></span>
@@ -25,7 +25,7 @@
             </ul>
           </div>
           <div class="vue_chat_people">
-            <div class="vue_chat_div"  @click="peopleclick" @mouseleave="peopleleave">
+            <div class="vue_chat_div"  @mouseenter="peopleclick" @mouseleave="peopleleave">
               <span :class="{vue_people_tubiao:true,chooseIco:chooseTag==3}"></span>
               <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
               <span class="vue_chat_jiantou"></span>
