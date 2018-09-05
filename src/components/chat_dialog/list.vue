@@ -51,7 +51,20 @@ export default {
     lastTime: function (item) {
       if (item.messages.length > 0) {
         var date = item.messages[item.messages.length - 1].date
-        return date.substring(11, 16)
+        function p(s) {
+		        return s < 10 ? '0' + s: s;
+		    }
+        var myDate = new Date();
+        var yue = myDate.getMonth() + 1;
+        var ri = myDate.getDate();
+        var day1 = p(yue) + '-' + p(ri);
+        var day2 = date.substring(5, 10)
+        if(day1==day2){
+        	return date.substring(11, 16)
+        }else{
+        	return date.substring(5, 10)
+        }
+        
       } else {
         return ''
       }
