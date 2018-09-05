@@ -59,7 +59,7 @@ export default {
       this.$emit('closeEvent', {is_history_show: false})
     },
     getMoreMsg: function () {
-      this.$emit('getMoreMsgEvent', this.historyUid)
+      this.$emit('getMoreMsgEvent', this.historyUid.id, this.historyUid.type)
       setTimeout(function () {
         var el = document.getElementById('vu_his-head')
         el.scrollTop = el.scrollHeight - localStorage.a
@@ -98,8 +98,8 @@ export default {
       ev.stopPropagation()
     },
     is_all: function (data) {
-      if (this.historyUid.type === 'user' && data.user.hasOwnProperty(this.historyUid)) {
-        return data.user[this.historyUid].is_all
+      if (this.historyUid.type === 'user' && data.user.hasOwnProperty(this.historyUid.id)) {
+        return data.user[this.historyUid.id].is_all
       } else {
         return false
       }
