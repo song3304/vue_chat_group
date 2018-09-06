@@ -125,11 +125,11 @@
         </div>
         <div class="vue_leftlist_tan addFriLeft" v-if="session!=null && session.type=='user'" v-show="addFriTag">   <!--加好友弹窗-->
           <img v-if="userList[session.id].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-          <img v-if="userList[session.id].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+          <img v-if="userList[session.id].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
           <div class="vue_leftlist_img"><img :src="userList[session.id].img" alt="" /></div>
           <p class="vue_leftlist_line verify">{{userList[session.id].name}}</p>
           <p v-if="userList[session.id].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
-          <p v-if="userList[session.id].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+          <p v-if="userList[session.id].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>贸易公司</span></p>
           <p class="vue_leftlist_companyname">所属公司：{{userList[session.id].company_name}}</p>
           <p class="vue_leftlist_companyname">手机号：{{userList[session.id].phone||'无'}}</p>
           <textarea v-model="verifymsg" placeholder="验证信息："></textarea>

@@ -261,7 +261,7 @@ export default {
             <div class="vue_leftlist_img"><img :src="userList[addfriList.uid].img" alt="" /></div>
             <p class="vue_leftlist_line verify">{{userList[addfriList.uid].name}}</p>
             <p v-if="userList[addfriList.uid].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
-            <p v-if="userList[addfriList.uid].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+            <p v-if="userList[addfriList.uid].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>贸易公司</span></p>
             <p class="vue_leftlist_companyname">所属公司：{{userList[addfriList.uid].company_name}}</p>
             <p class="vue_leftlist_companyname">手机号：{{userList[addfriList.uid].phone||'无'}}</p>
             <div class="verifyMsg">验证信息：{{addfriList.message}}</div>
