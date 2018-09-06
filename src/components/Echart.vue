@@ -41,7 +41,7 @@
             <!--右边切换选项-->
             <ul class="vue_company_species vue_people_species">
               <li v-for="(peospitem,peoindex) in peosplist" :class="{'peoactive': peospitem.isActive}">
-                <span @click="changepeo(peospitem,peoindex)">{{peospitem.username}}</span>
+                <span @click="changepeo(peospitem,peoindex)">{{peospitem.nickname}}</span>
                 <p @click="delpeo(peoindex)"><span></span></p>
               </li>
             </ul>
