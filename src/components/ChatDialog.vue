@@ -84,9 +84,10 @@
       },
     },
     mounted(){
+    	var height=$("#resizable").height()
       $("#resizable").resizable({
         handles: "n",
-        minHeight:30,
+        minHeight:height,
         maxHeight:787
       });
     }

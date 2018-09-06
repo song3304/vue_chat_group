@@ -1,6 +1,10 @@
 *, *:before, *:after {
 	box-sizing: border-box;
 }
+:root {
+  /*overflow-y: auto;*/
+   overflow-x: auto!important; 
+}
 body, html {
 	height: 100%;
 	background:#383d72!important;
@@ -1797,6 +1801,7 @@ li{
 	margin-top: 40px;
 }
 .vue_leftlist{
+	position: relative;
 	height: 30%;
 }
 .vue_leftlist>p{
@@ -1815,8 +1820,7 @@ li{
 	margin-right: 5px;
 }
 .vue_leftlist_ul li{
-	height:31px;
-	line-height: 31px;
+	height:50px;
 	font-size: 14px;
 	color: #666666;
 	width: 97%;
@@ -1824,19 +1828,6 @@ li{
 }
 .vue_leftlist_ul li a{display: inline-block;color: #666666;cursor: pointer;width: 100%;height: 100%;}
 .vue_leftlist_ul li:hover a{color: #fd3000!important;}
-.vue_leftlist_ul span{
-	float: left;
-}
-.vue_leftlist_ul p{
-	display: inline-block;
-	float: left;
-	width:72%;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
-	margin-left:3%;
-}
-
 .vue_leftlist_people{
 	height: 70%;
 }
@@ -1890,7 +1881,7 @@ li{
 	position: absolute;
 	top:31px;
 	left: 34px;
-	background: url(../images/yiding.png) -4px -145px;
+	background: url(../images/yiding.png) -240px -208px;
 }
 .leftlist_people_ul{
 	margin-top: 10px;
@@ -2438,4 +2429,110 @@ li{
 	position: absolute;
 	top: -7px;
 	width: 100%;
+	cursor: n-resize;
 }
+/*热点资讯start*/
+.vue_leftlist_ul .vue_leftlist_left{
+	float: left;
+	width: 31%;
+	height: 100%;
+	font-size: 14px;
+	color: #2c3037;
+}
+.vue_leftlist_left span{
+	float: right;
+	margin: 0 2px 0 0;
+}
+.vue_leftlist_left p{
+	margin: 0;
+}
+.vue_leftlist_ul .vue_leftlist_center{
+	float: left;
+	width: 15px;
+	height: 100%;
+}
+.vue_leftlist_center span{
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #CCCCCC;
+	display: block;
+	margin-left: 5px;
+}
+.vue_leftlist_center p{
+	width: 1px;
+	height: 30px;
+	background: #CCCCCC;
+	margin: 3px 0 0 7px;
+}
+.vue_leftlist_ul .vue_leftlist_main{
+	float: left;
+	width: 60%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	margin-top: 1px;
+}
+
+.vue_left_message{
+	position:absolute;
+	top: 15%;
+	left:10%;
+	width: 80%;
+	height:122px;
+	box-shadow: 0px 0px 6px 3px rgba(42, 42, 42, 0.2);
+	background: #FFFFFF;
+	border-radius: 3px;	
+	overflow: hidden;
+}
+#vue-message{
+	animation: message 2s forwards;
+	-webkit-animation: message 2s forwards;
+	-moz-animation: message 2s forwards;
+	-ms-animation: message 2s forwards;
+}
+.vue_left_message_time{
+	height: 25px;
+	line-height: 25px;
+	font-size: 12px;
+	color: #666666;
+	background: #F6F6F6;
+}
+.vue_left_message_time p{float: left;margin: 0;}
+.vue_left_message_time p img{margin-left: 14px;}
+.vue_left_message_time>span{
+	float: right;
+	margin-right:5px;
+}
+.vue_left_message_title{
+	font-size: 14px;
+	color: #FD3000;
+	height: 20px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	margin: 5px 14px;
+}
+.vue_left_message_main{
+	font-size: 12px;
+	color: #666666;
+	margin: 0 14px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+@-moz-keyframes message{
+	from{width: 80%;height: 122px;opacity: 1;}
+	to{width:0;height: 0;opacity: 0;}
+}
+@-ms-keyframes message{
+	ffrom{width: 80%;height: 122px;opacity: 1;}
+	to{width:0;height: 0;opacity: 0;}
+}
+@-webkit-keyframes message{
+	from{width: 80%;height: 122px;opacity: 1;}
+	to{width:0;height: 0;opacity: 0;}
+}
+/*热点资讯end*/
+/*.vue-realtime-buy_mai{background:#0066ff;}*/
