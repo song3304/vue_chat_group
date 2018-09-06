@@ -204,7 +204,7 @@
         peopleshow:false,
         catalogList:match_hall_catalogs,
         companyList:match_hall_companies,
-        peopleList:[{username:'请先选择公司'}],
+        peopleList:[{nickname:'请先选择公司'}],
         comsplist:[],
         peosplist:[],
         selectCatalogName:match_hall_catalogs[0].name,
@@ -429,7 +429,7 @@
       },
       delcom(comindex){//公司删除
         this.comsplist.splice(comindex,1);
-        this.peopleList=[{username:'请先选择公司'}];//清空人员下拉框
+        this.peopleList=[{nickname:'请先选择公司'}];//清空人员下拉框
         this.peosplist=[];
         this.selectCid='';
         this.selectUid=0;
