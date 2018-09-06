@@ -13,6 +13,7 @@
         search: '',
         addFriTag:false,//添加好友标识
         verifymsg:'',//验证信息
+        addTipsTag:false,//提示信息
       }
     },
     computed: {
@@ -35,6 +36,8 @@
       openVerify: function () {
         if(this.relationNew()=='加为好友'){
           this.addFriTag = !this.addFriTag
+        }else{
+         this.addTipsTag = true
         }
       },
       toRead: function (value) {
@@ -82,6 +85,9 @@
           return '加为好友'
         }
       },
+      tipscancel: function () {//关闭提示框
+        this.addTipsTag = false
+      }
     },
     mounted(){
     	var height=$("#resizable").height()
@@ -120,11 +126,11 @@
         </div>
         <div class="vue_leftlist_tan addFriLeft" v-if="session!=null && session.type=='user'" v-show="addFriTag">   <!--加好友弹窗-->
           <img v-if="userList[session.id].plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-          <img v-if="userList[session.id].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+          <img v-if="userList[session.id].plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
           <div class="vue_leftlist_img"><img :src="userList[session.id].img" alt="" /></div>
           <p class="vue_leftlist_line verify">{{userList[session.id].name}}</p>
           <p v-if="userList[session.id].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
-          <p v-if="userList[session.id].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+          <p v-if="userList[session.id].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>贸易公司</span></p>
           <p class="vue_leftlist_companyname">所属公司：{{userList[session.id].company_name}}</p>
           <p class="vue_leftlist_companyname">手机号：{{userList[session.id].phone||'无'}}</p>
           <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
@@ -137,7 +143,15 @@
         </div>
       </div>
     </div>
-
+    <!--提示框-->
+    <div class="vu_del-popup" v-show="addTipsTag" style="left:25%;top: -100%;">
+      <div class="vu_fen_zu_title">
+        <span>提示</span>
+        <p class="vu_fen_zu_tier"  @click="tipscancel"><span></span></p>
+      </div>
+      <p>已发送好友验证</p>
+      <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
+    </div>
   </div>
 </template>
 

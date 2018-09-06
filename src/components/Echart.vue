@@ -33,7 +33,7 @@
 	            <ul class="vue_people_ul" v-show="peopleshow">
 	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
 	                <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
-	                <p>{{peopleitem.username}}</p>
+	                <p>{{peopleitem.nickname}}</p>
 	              </li>
 	            </ul>
             </div>
@@ -41,7 +41,7 @@
             <!--右边切换选项-->
             <ul class="vue_company_species vue_people_species">
               <li v-for="(peospitem,peoindex) in peosplist" :class="{'peoactive': peospitem.isActive}">
-                <span @click="changepeo(peospitem,peoindex)">{{peospitem.username}}</span>
+                <span @click="changepeo(peospitem,peoindex)">{{peospitem.nickname}}</span>
                 <p @click="delpeo(peoindex)"><span></span></p>
               </li>
             </ul>
@@ -118,7 +118,7 @@
     <!-- 群发框 -->
     <div class="c_qunBox" v-show="showQunFa">
       <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'">乙二醇-群发报价<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
-      <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'">乙二醇-批量询价<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
+      <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'">乙二醇-一键询价<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
       <div class="c_imgntent">
         <div class="c_qunPeo">
           <div class="c_qunPeoTitle">选择群发人员</div>
@@ -180,7 +180,7 @@
 
     <!-- 群发报价 -->
     <div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>群发报价</span></div>
-    <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键寻价</span></div>
+    <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键询价</span></div>
   </div>
 
 

@@ -176,12 +176,7 @@ export default {
       })
       return tempIds
     },
-    changefenzhu(companyItem){//分组设置
-//    	if (companyItem.firstselt == false) {
-//         this.$set(companyItem, "firstselt", true);
-//      } else {
-//         companyItem.firstselt = !companyItem.firstselt;
-//      }
+    changefenzhu(event,companyItem){//分组设置
 				event.stopPropagation();
 				var el = event.currentTarget
 			  $('.vu_first_selt').hide()
@@ -266,7 +261,7 @@ export default {
             <div class="vue_leftlist_img"><img :src="userList[addfriList.uid].img" alt="" /></div>
             <p class="vue_leftlist_line verify">{{userList[addfriList.uid].name}}</p>
             <p v-if="userList[addfriList.uid].plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
-            <p v-if="userList[addfriList.uid].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+            <p v-if="userList[addfriList.uid].plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>贸易公司</span></p>
             <p class="vue_leftlist_companyname">所属公司：{{userList[addfriList.uid].company_name}}</p>
             <p class="vue_leftlist_companyname">手机号：{{userList[addfriList.uid].phone||'无'}}</p>
             <div class="verifyMsg">验证信息：{{addfriList.message}}</div>
@@ -286,7 +281,7 @@ export default {
         	<i class="fa fa-caret-right"></i>
         	<span class="vu_first_title ">{{companyItem.groupName}}</span>
         	<span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span>
-        	<div class="vu_qun-name" @click="changefenzhu(companyItem)" @mouseleave="closefenzhu" v-if="companyItem.groupName!='我的好友'">
+        	<div class="vu_qun-name" @click="changefenzhu($event,companyItem)" @mouseleave="closefenzhu" v-if="companyItem.groupName!='我的好友'">
 		        	<ul class="vu_first_selt">
 			        		<li @click="Qundel($event,companyItem.groupId)">删除组</li>
 			        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
