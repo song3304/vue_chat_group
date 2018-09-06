@@ -266,6 +266,9 @@ function OfferBird()
                 html+='	</li>';
             this.dyncObj.prepend(html);
         }
+        setTimeout(function(){
+    		$('.vue-realtime-auto li span').removeClass('vue-realtime-buy_mai')
+    	},1000)
 		if(this.buy_price.length==0&&this.sell_price.length==0){
 			var html = '<li style="margin-left:20px;font-size:12px;">暂无数据</li>';
             this.dyncObj.prepend(html);

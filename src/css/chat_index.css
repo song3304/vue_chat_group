@@ -1739,7 +1739,7 @@ li{
 	margin: 5px 0 5px 2%;
 }
 .vue-tealtime-time>ul{height:93%;margin: 0}
-.vue-realtime-auto li{height: 30px;line-height: 30px;padding-left: 0.8%;}
+.vue-realtime-auto li{height: 26px;line-height: 26px;padding-left: 0.8%;margin: 0 0 8px 0;}
 .vue-realtime-auto li:nth-child(even){border-right: 0;}
 .vue-realtime-auto li span{text-align: center;color: #FFFFFF;display: inline-block;}
 .vue-realtime-auto-time{width:12%;}
@@ -1882,6 +1882,14 @@ li{
 	top:31px;
 	left: 34px;
 	background: url(../images/yiding.png) -240px -208px;
+}
+.leftlist_people_factory{
+	width:15px;
+	height:15px;
+	position: absolute;
+	top:31px;
+	left: 34px;
+	background: url(../images/yiding.png) -240px -175px;
 }
 .leftlist_people_ul{
 	margin-top: 10px;
@@ -2435,6 +2443,7 @@ li{
 .vue_leftlist_ul .vue_leftlist_left{
 	float: left;
 	width: 31%;
+	max-width: 63px;
 	height: 100%;
 	font-size: 14px;
 	color: #2c3037;
@@ -2468,6 +2477,7 @@ li{
 .vue_leftlist_ul .vue_leftlist_main{
 	float: left;
 	width: 60%;
+	max-width: 80%;
 	overflow: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;
@@ -2535,4 +2545,4 @@ li{
 	to{width:0;height: 0;opacity: 0;}
 }
 /*热点资讯end*/
-/*.vue-realtime-buy_mai{background:#0066ff;}*/
+.vue-realtime-buy_mai{background:#0066ff;}

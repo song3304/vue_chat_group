@@ -25,7 +25,7 @@
 					</a>
 				</li>
 			</ul>
-			<div class="vue_left_message" id="vue-message">
+			<!--<div class="vue_left_message" id="vue-message">
 				<div class="vue_left_message_time">
 					<p>
 						<img src="../images/xiaoxi.png" alt="" />
@@ -35,7 +35,7 @@
 				</div>
 				<p class="vue_left_message_title">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货</p>
 				<p class="vue_left_message_main">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货恒大、乐居等地产大咖分享干货,地产大咖分享干货</p>
-			</div>
+			</div>-->
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people" v-if="searchData">
@@ -47,7 +47,8 @@
             <img :src="item.img" alt="" :class="{ 'vu_gray':item.isOnline==false} "/>
           </div>
           <span v-if="item.plat=='match'" class="leftlist_people_cuo"></span> <!--撮合公司-->
-          <span v-if="item.plat=='trade'" class="leftlist_people_jiao"></span> <!--贸易公司-->
+          <span v-if="item.plat=='trade' && item.trade_type=='trade'" class="leftlist_people_jiao"></span> <!--贸易公司-->
+          <span v-if="item.plat=='trade' && item.trade_type=='factory'" class="leftlist_people_factory"></span> <!--工厂-->
           <div class="leftlist_people_name ellipsis"> <!--名称-->
             <span>{{item.name}}</span>
             <p>{{item.company_name}}</p>
