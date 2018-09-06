@@ -33,7 +33,7 @@
 	            <ul class="vue_people_ul" v-show="peopleshow">
 	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
 	                <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
-	                <p>{{peopleitem.username}}</p>
+	                <p>{{peopleitem.nickname}}</p>
 	              </li>
 	            </ul>
             </div>
