@@ -2433,3 +2433,9 @@ li{
 	padding-right: 8px;
 	overflow-y: auto;
 }
+.ui-resizable-handle{
+	height: 7px;
+	position: absolute;
+	top: -7px;
+	width: 100%;
+}
