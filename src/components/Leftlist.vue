@@ -7,15 +7,35 @@
 		</div>
 		<!--资讯列表-->
 		<div class="vue_leftlist">
-			<p>资讯列表</p>
+			<p>热点资讯</p>
 			<ul class="vue_leftlist_ul">
 				<li v-for="leftitem in leftList" v-bind:cms_id="leftitem.id">
 					<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" >
-						<span>{{leftitem.time}}</span>
-						<p>{{leftitem.title}}</p>
+						<!--<span>{{leftitem.time}}</span>
+						<p>{{leftitem.title}}</p>-->
+						<div class="vue_leftlist_left">
+							<p>{{leftitem|lastDate}}</p>
+							<span>{{leftitem|lastTime}}</span>
+						</div>
+						<div class="vue_leftlist_center">
+							<span></span>
+							<p></p>
+						</div>
+						<p class="vue_leftlist_main">{{leftitem.title}}</p>
 					</a>
 				</li>
 			</ul>
+			<div class="vue_left_message" id="vue-message">
+				<div class="vue_left_message_time">
+					<p>
+						<img src="../images/xiaoxi.png" alt="" />
+						<span>新消息提醒</span>
+					</p>
+					<span>4:30</span>
+				</div>
+				<p class="vue_left_message_title">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货</p>
+				<p class="vue_left_message_main">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货恒大、乐居等地产大咖分享干货,地产大咖分享干货</p>
+			</div>
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people" v-if="searchData">
@@ -27,7 +47,7 @@
             <img :src="item.img" alt="" :class="{ 'vu_gray':item.isOnline==false} "/>
           </div>
           <span v-if="item.plat=='match'" class="leftlist_people_cuo"></span> <!--撮合公司-->
-          <span v-if="item.plat=='trade'" class="leftlist_people_jiao"></span> <!--交易公司-->
+          <span v-if="item.plat=='trade'" class="leftlist_people_jiao"></span> <!--贸易公司-->
           <div class="leftlist_people_name ellipsis"> <!--名称-->
             <span>{{item.name}}</span>
             <p>{{item.company_name}}</p>
@@ -37,7 +57,7 @@
 					<!--<div class="leftlist_people_photo"> &lt;!&ndash;头像&ndash;&gt;-->
 						<!--<img src="../images/15.png" alt="" />-->
 					<!--</div>-->
-					<!--<span class="leftlist_people_jiao"></span> &lt;!&ndash;交易公司&ndash;&gt;-->
+					<!--<span class="leftlist_people_jiao"></span> &lt;!&ndash;贸易公司&ndash;&gt;-->
 					<!--<div class="leftlist_people_name"> &lt;!&ndash;名称&ndash;&gt;-->
 						<!--<span>小张</span>-->
 						<!--<p>化塑汇</p>-->
@@ -47,11 +67,11 @@
 		</div>
 		<div class="vue_leftlist_tan" v-if="tingList" v-show="firendtan">   <!--加好友弹窗-->
       <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
       <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
       <p class="vue_leftlist_line">{{tingList.name}}</p>
       <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
-      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>交易公司</span></p>
+      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>贸易公司</span></p>
       <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
       <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
       <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
@@ -63,11 +83,11 @@
 		</div>
     <div class="vue_leftlist_tan" v-if="tingList" v-show="sendfirendtan">   <!--加好友弹窗-->
       <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 交易公司 -->
+      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
       <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
       <p class="vue_leftlist_line verify">{{tingList.name}}</p>
       <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
-      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>交易公司</span></p>
+      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>贸易公司</span></p>
       <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
       <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
       <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
@@ -210,9 +230,20 @@
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
 	},
+	filters: {
+		lastTime: function (leftitem) {	        
+		    return leftitem.create_time.substring(11, 16)		        		        
+	    },
+	    lastDate: function(leftitem){
+	    	var yue=leftitem.create_time.substring(5, 7)
+	    	var tian=leftitem.create_time.substring(8, 10)
+	    	return yue+'月'+tian+'日'
+	    }
+	},
 
 }
 </script>
 
 <style>
 </style>
+
