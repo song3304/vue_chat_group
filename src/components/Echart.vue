@@ -30,9 +30,9 @@
               <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
               <span class="vue_chat_jiantou"></span>
               <!--下拉表-->
-	            <ul class="vue_people_ul" v-show="peopleshow" v-if="peopleList.length>0">
+	            <ul class="vue_people_ul" v-show="peopleshow">
 	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
-	                <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
+	                <span><img v-bind:src="peopleitem.pic_url" alt="" v-if="peopleitem.hasOwnProperty('pic_url')"/></span>
 	                <p>{{peopleitem.nickname}}</p>
 	              </li>
 	            </ul>
@@ -152,14 +152,13 @@
           </div>
           <div class="vu_qunnew-que newQunFa">
             <!--<div>*请您核对群发消息内容:</div>-->
-            <form id="addQuickForm" action="http://www.energy.cn/match/offer/create" method="post"
-                  class="form-horizontal form form-builder" style="height: 100%">
+            <form id="addQuickForm" class="form-horizontal form form-builder" style="height: 100%">
               <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
             </form>
           </div>
           <div class="c_openBox">
             <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'style="margin-top: 14px;">
-              群发
+              发送
             </div>
             <div class="c_openShibie" v-if="user.plat=='match'"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
@@ -344,13 +343,24 @@
       //群发种类
       qunFa: function () {
         if(this.chooseCatalog!=0){
-          this.showQunFa = true;
+          if(!this.showQunFa){
+            $('.vue_qun_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+              $('.vue_qun_offer p').removeClass('flyaway ' )})
+          }
+            var _this = this;
+            setTimeout(function () {
+              _this.showQunFa = true
+            },1000)
         }else{
           // alert('请选择种类');
         }
       },
       closeQunFa: function () {
         this.showQunFa = false;
+        if(!this.showQunFa){
+          $('.vue_qun_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $('.vue_qun_offer').removeClass('animated bounce' )})
+        }
       },
       showShibie: function (event) {
       },
