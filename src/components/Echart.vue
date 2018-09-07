@@ -30,7 +30,7 @@
               <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
               <span class="vue_chat_jiantou"></span>
               <!--下拉表-->
-	            <ul class="vue_people_ul" v-show="peopleshow">
+	            <ul class="vue_people_ul" v-show="peopleshow" v-if="peopleList.length>0">
 	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
 	                <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
 	                <p>{{peopleitem.nickname}}</p>
@@ -429,7 +429,7 @@
       },
       delcom(comindex){//公司删除
         this.comsplist.splice(comindex,1);
-        this.peopleList=[{username:'请先选择公司'}];//清空人员下拉框
+        this.peopleList=[{nickname:'请先选择公司'}];//清空人员下拉框
         this.peosplist=[];
         this.selectCid='';
         this.selectUid=0;
