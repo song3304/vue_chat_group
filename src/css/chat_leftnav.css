@@ -210,3 +210,169 @@ h1 a {
   height: 45%;
   border-bottom: 1px solid #ddd;
 }
+/*一键按钮的动态图*/
+@-webkit-keyframes flyaway {
+  0% {
+    -webkit-transform: translate(0, 0) rotate(0deg) scale(2);
+    transform: translate(0, 0) rotate(0deg) scale(2);
+  }
+  5% {
+    -webkit-transform: translate(15px, -2px) rotate(10deg) scale(2.5);
+    transform: translate(15px, -2px) rotate(10deg) scale(2.5);
+    top:-50px;
+  }
+  20% {
+    -webkit-transform: translate(130px, -2px) rotate(-20deg) scale(3);
+    transform: translate(130px, -2px) rotate(-20deg) scale(3);
+    top:-150px;
+  }
+  40% {
+    -webkit-transform: translate(280px, -40px) rotate(10deg) scale(3.5);
+    transform: translate(280px, -40px) rotate(10deg) scale(3.5);
+    opacity: .8;
+    top:-250px;
+  }
+  60% {
+    -webkit-transform: translate(500px, -90px) rotate(30deg) scale(4);
+    transform: translate(500px, -90px) rotate(30deg) scale(4);
+    opacity: .6;
+    top:-350px;
+  }
+  80% {
+    -webkit-transform: translate(700px, -140px) rotate(50deg) scale(4.5);
+    transform: translate(700px, -140px) rotate(50deg) scale(4.5);
+    opacity: .3;
+    top:-450px;
+  }
+  100% {
+    -webkit-transform: translate(1000px, -200px) rotate(60deg) scale(0);
+    transform: translate(1000px, -200px) rotate(60deg) scale(0);
+    opacity: 0;
+    top:-550px;
+  }
+}
+
+@keyframes flyaway {
+  0% {
+    -webkit-transform: translate(0, 0) rotate(0deg) scale(2);
+    transform: translate(0, 0) rotate(0deg) scale(2);
+  }
+  5% {
+    -webkit-transform: translate(15px, -2px) rotate(10deg) scale(2.5);
+    transform: translate(15px, -2px) rotate(10deg) scale(2.5);
+    top:-50px;
+  }
+  20% {
+    -webkit-transform: translate(130px, -2px) rotate(-20deg) scale(3);
+    transform: translate(130px, -2px) rotate(-20deg) scale(3);
+    top:-150px;
+  }
+  40% {
+    -webkit-transform: translate(280px, -40px) rotate(10deg) scale(3.5);
+    transform: translate(280px, -40px) rotate(10deg) scale(3.5);
+    opacity: .8;
+    top:-250px;
+  }
+  60% {
+    -webkit-transform: translate(500px, -90px) rotate(30deg) scale(4);
+    transform: translate(500px, -90px) rotate(30deg) scale(4);
+    opacity: .6;
+    top:-350px;
+  }
+  80% {
+    -webkit-transform: translate(700px, -140px) rotate(50deg) scale(4.5);
+    transform: translate(700px, -140px) rotate(50deg) scale(4.5);
+    opacity: .3;
+    top:-450px;
+  }
+  100% {
+    -webkit-transform: translate(1000px, -200px) rotate(60deg) scale(0);
+    transform: translate(1000px, -200px) rotate(60deg) scale(0);
+    opacity: 0;
+    top:-550px;
+  }
+}
+
+.flyaway {
+  -webkit-animation: flyaway 1s linear;
+  animation: flyaway 1s linear;
+}
+
+@-webkit-keyframes bounce {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}

@@ -152,14 +152,13 @@
           </div>
           <div class="vu_qunnew-que newQunFa">
             <!--<div>*请您核对群发消息内容:</div>-->
-            <form id="addQuickForm" action="http://www.energy.cn/match/offer/create" method="post"
-                  class="form-horizontal form form-builder" style="height: 100%">
+            <form id="addQuickForm" class="form-horizontal form form-builder" style="height: 100%">
               <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
             </form>
           </div>
           <div class="c_openBox">
             <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'style="margin-top: 14px;">
-              群发
+              发送
             </div>
             <div class="c_openShibie" v-if="user.plat=='match'"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
@@ -344,13 +343,24 @@
       //群发种类
       qunFa: function () {
         if(this.chooseCatalog!=0){
-          this.showQunFa = true;
+          if(!this.showQunFa){
+            $('.vue_qun_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+              $('.vue_qun_offer p').removeClass('flyaway ' )})
+          }
+            var _this = this;
+            setTimeout(function () {
+              _this.showQunFa = true
+            },1000)
         }else{
           // alert('请选择种类');
         }
       },
       closeQunFa: function () {
         this.showQunFa = false;
+        if(!this.showQunFa){
+          $('.vue_qun_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $('.vue_qun_offer').removeClass('animated bounce' )})
+        }
       },
       showShibie: function (event) {
       },
