@@ -204,7 +204,7 @@
         peopleshow:false,
         catalogList:match_hall_catalogs,
         companyList:match_hall_companies,
-        peopleList:[{username:'请先选择公司'}],
+        peopleList:[{nickname:'请先选择公司'}],
         comsplist:[],
         peosplist:[],
         selectCatalogName:match_hall_catalogs[0].name,
