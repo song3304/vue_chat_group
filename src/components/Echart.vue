@@ -30,9 +30,9 @@
               <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
               <span class="vue_chat_jiantou"></span>
               <!--下拉表-->
-	            <ul class="vue_people_ul" v-show="peopleshow" v-if="peopleList.length>0">
+	            <ul class="vue_people_ul" v-show="peopleshow">
 	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
-	                <span><img v-bind:src="peopleitem.pic_url" alt="" /></span>
+	                <span><img v-bind:src="peopleitem.pic_url" alt="" v-if="peopleitem.hasOwnProperty('pic_url')"/></span>
 	                <p>{{peopleitem.nickname}}</p>
 	              </li>
 	            </ul>
