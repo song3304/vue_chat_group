@@ -18,6 +18,8 @@ body {
 	font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
 	/*background-size: cover;*/
 	font-smoothing: antialiased;
+	background: url(../images/5-150331205.gif) center no-repeat!important;
+	background-size: contain;
 
 }
 ul {
@@ -1083,7 +1085,7 @@ li{
 }
 .vu_seemore{
 	position: absolute;
-	top:4px;
+	top:0;
 	/*left:260px;*/
 	text-align: center;
 	cursor: pointer;
@@ -2211,6 +2213,15 @@ li{
 	background-color: #db2100;
 	display: none;
 }
+.vue_qun_line{
+	width:18%;
+	height: 1px;
+	background:#3c3945;
+	position: fixed;
+	left:0;
+	bottom:85px;
+	z-index: 100;
+}
 /*群发报价start*/
 .vue_qun_offer{
   position: fixed;
@@ -2545,4 +2556,29 @@ li{
 	to{width:0;height: 0;opacity: 0;}
 }
 /*热点资讯end*/
-.vue-realtime-buy_mai{background:#0066ff;}
+.vue-realtime-buy_mai{
+	background:rgba(0,102,255,0);
+	padding: 0 8px;
+	display: inline-block;
+	animation: newbao .7s linear forwards .2s;
+}
+@keyframes newbao{
+	from{background:rgba(0,102,255,0);}
+	50%{background:rgba(0,102,255,1);}
+	to{background:rgba(0,102,255,0);}
+}
+@-moz-keyframes newbao{
+	from{background:rgba(0,102,255,0);}
+	50%{background:rgba(0,102,255,1);}
+	to{background:rgba(0,102,255,0);}
+}
+@-ms-keyframes newbao{
+	from{background:rgba(0,102,255,0);}
+	50%{background:rgba(0,102,255,1);}
+	to{background:rgba(0,102,255,0);}
+}
+@-webkit-keyframes newbao{
+	from{background:rgba(0,102,255,0);}
+	50%{background:rgba(0,102,255,1);}
+	to{background:rgba(0,102,255,0);}
+}

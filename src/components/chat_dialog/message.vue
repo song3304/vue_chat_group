@@ -65,6 +65,9 @@ export default {
 	        el.scrollTop = el.scrollHeight - localStorage.aa+1
 	        localStorage.aa = el.scrollHeight-1
 	      }, 10)
+	      if(el.scrollTop==0){
+	      	return false;
+	      }
 		  }
 		},
   },

@@ -260,15 +260,12 @@ function OfferBird()
                 html+='			<span class="vue-realtime-auto-time">'+(item.create_time).substr(-8,5)+'</span>';
                 html+='			<span class="vue-realtime-auto-company">'+item.mather_name+'</span>';
                 html+='			<span class="'+(parseInt(item.trade_type)==1?'vue-realtime-buy':'vue-realtime-sell')+'">'+(parseInt(item.trade_type)==1?'买':'卖')+'</span>';
-                html+='			<span class="'+(parseInt(item.trade_type)==1?'vue-realtime-buy vue-realtime-buy_price vue-realtime-buy_mai':'vue-realtime-sell vue-realtime-sell_price vue-realtime-buy_mai')+'">'+parseInt(item.trade_price)+'</span>';
+                html+='			<span class="'+(parseInt(item.trade_type)==1?'vue-realtime-buy vue-realtime-buy_price':'vue-realtime-sell vue-realtime-sell_price')+'"><b class="vue-realtime-buy_mai">'+parseInt(item.trade_price)+'</b></span>';
                 html+='			<span class="vue-realtime-auto-data">'+item.delivery_start+'至'+item.delivery_end+'</span>';
                 html+='			<span class="vue-realtime-auto-num">'+((parseInt(item.trade_amount)==0 || item.trade_amount=='')?'500':item.trade_amount)+'</span>';
                 html+='	</li>';
             this.dyncObj.prepend(html);
         }
-        setTimeout(function(){
-    		$('.vue-realtime-auto li span').removeClass('vue-realtime-buy_mai')
-    	},1000)
 		if(this.buy_price.length==0&&this.sell_price.length==0){
 			var html = '<li style="margin-left:20px;font-size:12px;">暂无数据</li>';
             this.dyncObj.prepend(html);
