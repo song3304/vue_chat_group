@@ -18,7 +18,7 @@ body {
 	font: 14px/1.4em 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
 	/*background-size: cover;*/
 	font-smoothing: antialiased;
-	background: url(../images/5-150331205.gif) center no-repeat!important;
+	background: url(../images/1234.gif) center no-repeat!important;
 	background-size: contain;
 
 }
@@ -644,7 +644,7 @@ ul {
 }
 .vu_m_lei>li{
 	float: left;
-	width:33%;
+	width:33.333%;
 	text-align: center;
 	height:40px;
 	line-height: 40px;
@@ -2509,10 +2509,10 @@ li{
 	overflow: hidden;
 }
 #vue-message{
-	animation: message 2s forwards;
-	-webkit-animation: message 2s forwards;
-	-moz-animation: message 2s forwards;
-	-ms-animation: message 2s forwards;
+	animation: message 2s linear forwards;
+	-webkit-animation: message 2s linear forwards;
+	-moz-animation: message 2s linear forwards;
+	-ms-animation: message 2s linear forwards;
 }
 .vue_left_message_time{
 	height: 25px;
@@ -2546,16 +2546,16 @@ li{
 	overflow: hidden;
 }
 @-moz-keyframes message{
-	from{width: 80%;height: 122px;opacity: 1;}
-	to{width:0;height: 0;opacity: 0;}
+	from{height: 122px;opacity: 1;}
+	to{height: 0;opacity: 0;}
 }
 @-ms-keyframes message{
-	ffrom{width: 80%;height: 122px;opacity: 1;}
-	to{width:0;height: 0;opacity: 0;}
+	from{height: 122px;opacity: 1;}
+	to{height: 0;opacity: 0;}
 }
 @-webkit-keyframes message{
-	from{width: 80%;height: 122px;opacity: 1;}
-	to{width:0;height: 0;opacity: 0;}
+	from{height: 122px;opacity: 1;}
+	to{height: 0;opacity: 0;}
 }
 /*热点资讯end*/
 .vue-realtime-buy_mai{
