@@ -3,8 +3,9 @@
 		<div id="leftlist_nowdate">
 			<a target="_blank" href="'/'+user.plat+'/index/index'"><img :src="user.img" alt="" /></a>
 			<span>{{user.name}}</span>
-			<a href='/match/auth/logout.html'>[退出]</a>
-		</div>
+			<a v-if="user.plat=='match'" href='/match/auth/logout.html'>[退出]</a>
+      <a v-if="user.plat=='trade'" href='/trade/auth/logout.html'>[退出]</a>
+    </div>
 		<!--资讯列表-->
 		<div class="vue_leftlist">
 			<p>热点资讯</p>
@@ -232,8 +233,8 @@
 	    });
 	},
 	filters: {
-		lastTime: function (leftitem) {	        
-		    return leftitem.create_time.substring(11, 16)		        		        
+		lastTime: function (leftitem) {
+		    return leftitem.create_time.substring(11, 16)
 	    },
 	    lastDate: function(leftitem){
 	    	var yue=leftitem.create_time.substring(5, 7)
