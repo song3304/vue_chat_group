@@ -117,7 +117,7 @@
 
     <!-- 群发框 -->
     <div class="c_qunBox" v-show="showQunFa">
-      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'">乙二醇-群发报价<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
+      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'">乙二醇-一键报盘<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
       <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'">乙二醇-一键询价<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
       <div class="c_imgntent">
         <div class="c_qunPeo">
