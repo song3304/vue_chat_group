@@ -176,7 +176,7 @@
       <p>{{this.tipsMsg}}</p>
       <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
     </div>
-		<div class="vue_qun_line"></div>
+		<div class="vue_qun_line" v-if="user.plat=='trade'"></div>
     <!-- 群发报价 -->
     <div class="c_btn_box" v-if="user.plat=='match'">
       <div class="vue_bp_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>

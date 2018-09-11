@@ -2590,7 +2590,7 @@ li{
 /*普通报盘start*/
 .vue_cj_offer{
   float: right;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-right: 10px;
   width: 130px;
   height: 40px;
@@ -2626,7 +2626,7 @@ li{
 }
 .vue_bp_offer{
   float: right;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-right: 10px;
   width: 130px;
   height: 40px;
@@ -2671,5 +2671,6 @@ li{
   text-align: center;
   cursor: pointer;
   padding-right: 30px;
+  border-top:1px solid #3c3945 ;
 }
 /*普通报盘end*/
