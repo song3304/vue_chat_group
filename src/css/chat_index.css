@@ -2227,7 +2227,8 @@ li{
   position: fixed;
   left:4%;
   bottom:23px;
-  width: 162px;
+  /*width: 162px;*/
+  width: 130px;
   height: 40px;
   line-height: 40px;
   background-color: #4385f5;
@@ -2248,7 +2249,8 @@ li{
   background: url(../images/yiding.png) -107px -65px;
   display: inline-block;
   float: left;
-  margin:9px 5px 0 34px;
+  margin:9px 5px 0 18px;
+  /*margin:9px 5px 0 34px;*/
   position: relative;
   z-index: 999;
 }
@@ -2584,3 +2586,90 @@ li{
 	50%{background:rgba(0,102,255,1);}
 	to{background:rgba(0,102,255,0);}
 }
+
+/*普通报盘start*/
+.vue_cj_offer{
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #4385f5;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.vue_cj_offer:hover{
+  background-color: #5292ff;
+}
+.vue_cj_offer.closeQunFa{
+  background-color: #fd3000;
+}
+.vue_cj_offer p{
+  width: 20px;
+  height: 20px;
+  background: url(../images/yiding.png) -107px -65px;
+  display: inline-block;
+  float: left;
+  margin:9px 5px 0 18px;
+  position: relative;
+  z-index: 999;
+}
+.vue_cj_offer.closeQunFa p{
+  background: url(../images/yiding.png) -67px -65px;
+}
+.vue_cj_offer span{
+  float: left;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.vue_bp_offer{
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #4385f5;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.vue_bp_offer:hover{
+  background-color: #5292ff;
+}
+.vue_bp_offer.closeQunFa{
+  background-color: #fd3000;
+}
+.vue_bp_offer p{
+  width: 13px;
+  height: 20px;
+  background: url(../images/cjbj.png);
+  display: inline-block;
+  float: left;
+  margin:9px 12px 0 18px;
+  position: relative;
+  z-index: 999;
+}
+.vue_bp_offer.closeQunFa p{
+  background: url(../images/cjbj.png);
+}
+.vue_bp_offer span{
+  float: left;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.c_btn_box{
+  position: fixed;
+  left: 0;
+  bottom:20px;
+  width: 18%;
+  min-width: 216px;
+  border-radius: 5px;
+  z-index: 999;
+  text-align: center;
+  cursor: pointer;
+  padding-right: 30px;
+}
+/*普通报盘end*/
