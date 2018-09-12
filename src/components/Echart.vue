@@ -180,7 +180,7 @@
     <!-- 群发报价 -->
     <div class="c_btn_box" v-if="user.plat=='match'">
       <div class="vue_bp_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>
-      <div class="vue_cj_offer"><p></p><span>成交报价</span></div>
+      <div class="vue_cj_offer" @click="cjbj()"><p></p><span>成交报价</span></div>
     </div>
     <!--<div v-if="user.plat=='match'" class="vue_cj_offer" @click="qunFa()"><p></p><span>成交报盘</span></div>-->
     <!--<div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>-->
@@ -228,6 +228,7 @@
         chooseG:false,
         tipsTag:false,//提示框
         tipsMsg:'',//提示信息
+        showCjbj:false,//成交报价
       }
     },
     mounted() {
@@ -258,6 +259,11 @@
     methods: {
       //qunNew部分内容
       /* qunNew部分开始 */
+      cjbj: function () {
+          this.showCjbj = true
+          $('#mytrade_form').show();
+          this.showCjbj = false
+      },
       tipscancel: function () {//关闭提示框
         this.tipsTag = false
       },
