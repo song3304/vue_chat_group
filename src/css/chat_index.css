@@ -1827,6 +1827,7 @@ li{
 	color: #666666;
 	width: 97%;
 	margin: 0 1% 0 2%;
+	cursor: pointer;
 }
 .vue_leftlist_ul li a{display: inline-block;color: #666666;cursor: pointer;width: 100%;height: 100%;}
 .vue_leftlist_ul li:hover a{color: #fd3000!important;}
@@ -2583,4 +2584,100 @@ li{
 	from{background:rgba(0,102,255,0);}
 	50%{background:rgba(0,102,255,1);}
 	to{background:rgba(0,102,255,0);}
+}
+/*热点资讯详情弹窗start*/
+.vueleft_left_main{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-width: 1200px;
+	height: 100%;
+	min-height: 660px;
+	background: rgba(0,0,0,0.4);
+	z-index: 300000;
+}
+.vue_left_main{
+	width: 540px;
+	height: 71%;
+	background: #FFFFFF;
+	margin: 6% auto;
+	position: relative
+}
+.vue_left_main_yi{
+	position: absolute;
+	top: 1.5%;
+	left: 1%;
+	width: 98%;
+	height:97%;
+	overflow-y: auto;
+}
+.vue_left_main h2{
+	text-align: center;
+	font-size: 18px;
+	margin-top:20px;
+	color: #333;
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.vueleft-center-main{
+	font-size: 14px;
+	margin:30px 18px 0 18px;		
+	color: #666666;
+	line-height: 28px;
+	text-align: justify;
+    text-indent: 2em;
+}
+.vueleft-center-title{
+	text-align: center;
+}
+.vueleft-center-title span{
+	display: inline-block;
+	margin-right: 10px;
+	font-size: 12px;
+	color: #999999;
+}
+.vue_left_main>img{
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	z-index: 10000;
+	cursor: pointer;
+}
+/*热点资讯详情弹窗end*/
+#vu_chitch{
+	position: fixed;
+	top:-128px;
+	right:100px;
+	width: 160px;
+	height: 128px;
+	cursor: pointer;
+	z-index: 2000;
+	animation: myfirst .5s forwards;
+}
+@keyframes myfirst
+{
+from {top: -128px;}
+to {top: 0;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+from {top: -128px;}
+to {top: 0;}
+}
+
+@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+from {top: -128px;}
+to {top: 0;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+from {top: -128px;}
+to {top: 0;}
 }

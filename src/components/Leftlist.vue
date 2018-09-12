@@ -10,8 +10,8 @@
 		<div class="vue_leftlist">
 			<p>热点资讯</p>
 			<ul class="vue_leftlist_ul">
-				<li v-for="leftitem in leftList" v-bind:cms_id="leftitem.id">
-					<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" >
+				<li v-for="(leftitem,$index) in leftList" v-bind:cms_id="leftitem.id" @click="wenxiang($index)">
+					<!--<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" @click="wenxiang">-->
 						<!--<span>{{leftitem.time}}</span>
 						<p>{{leftitem.title}}</p>-->
 						<div class="vue_leftlist_left">
@@ -23,7 +23,23 @@
 							<p></p>
 						</div>
 						<p class="vue_leftlist_main">{{leftitem.title}}</p>
-					</a>
+						<!--热点资讯弹框-->
+					    <div class="vueleft_left_main" v-show="$index === lefttan">
+					     	<div class="vue_left_main">
+					     		<img src="../images/shanchu.png" alt="" @click.stop="leftshan()"/>
+					     		<div class="vue_left_main_yi">	     	     		
+						     		<h2>{{leftitem.title}}</h2>
+						     		<div class="vueleft-center-title">
+										<span>作者：{{leftitem.author}}</span>
+										<span>来源：{{leftitem.origin}}</span>
+										<span>发布时间：{{leftitem.create_time}}</span>
+									</div>
+									<div class="vueleft-center-main">
+										{{leftitem.contents}}
+									</div>
+								</div>
+					     	</div>
+					    </div>
 				</li>
 			</ul>
 			<!--<div class="vue_left_message" id="vue-message">
@@ -100,6 +116,7 @@
       </div>
       <div class="vue_leftlist_close" @click="openVerify()"><span></span></div>
     </div>
+     
 	</div>
 </template>
 
@@ -111,13 +128,14 @@
     data(){
   		return{
   			firendtan:false,
-        searchKey:'',
-        infoId:0,
-			  leftList:match_hall_cms,
-        chat_hall_members: _chat_hall_members,
-        sendfirendtan:false,
-        tingList:null,
-        verifymsg:''//验证信息
+	        searchKey:'',
+	        infoId:0,
+			leftList:match_hall_cms,
+	        chat_hall_members: _chat_hall_members,
+	        sendfirendtan:false,
+	        tingList:null,
+	        verifymsg:'',//验证信息
+	        lefttan:-1
   		}
   	},
     computed: {
@@ -212,6 +230,22 @@
       }else{
         return true
       }
+    },
+    wenxiang:function($index){ //点击详情
+    	$(".vue_left_main_yi").niceScroll({
+	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	    });	    
+	    this.lefttan=$index
+    },
+    leftshan:function(){//点击关闭删除详情弹窗
+    	$('.vueleft_left_main').hide()
+    	this.lefttan=-1
+    	return false;   	
     }
   },
 	mounted() {
@@ -224,6 +258,14 @@
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
 	    $(".leftlist_people_ul").niceScroll({
+	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	    });
+	    $(".vue_left_main_yi").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
 	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
