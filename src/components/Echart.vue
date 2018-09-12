@@ -176,9 +176,14 @@
       <p>{{this.tipsMsg}}</p>
       <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
     </div>
-		<div class="vue_qun_line"></div>
+		<div class="vue_qun_line" v-if="user.plat=='trade'"></div>
     <!-- 群发报价 -->
-    <div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>
+    <div class="c_btn_box" v-if="user.plat=='match'">
+      <div class="vue_bp_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>
+      <div class="vue_cj_offer"><p></p><span>成交报价</span></div>
+    </div>
+    <!--<div v-if="user.plat=='match'" class="vue_cj_offer" @click="qunFa()"><p></p><span>成交报盘</span></div>-->
+    <!--<div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>-->
     <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键询价</span></div>
   </div>
 
@@ -346,6 +351,9 @@
           if(!this.showQunFa){
             $('.vue_qun_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
               $('.vue_qun_offer p').removeClass('flyaway ' )})
+
+            $('.vue_bp_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+              $('.vue_bp_offer p').removeClass('flyaway ' )})
           }
             var _this = this;
             setTimeout(function () {
