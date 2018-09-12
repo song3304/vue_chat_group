@@ -57,7 +57,10 @@ new Vue({
     historyList: serverData.historyList,
     // 当前历史记录用户id
     historyUid: {id: 0, type: 'user'},
-
+    // 当前详情cms弹框
+    currentCms: null,
+    // 推送资讯
+    popCms: null,
     // 大厅成员列表
     onlineUserList: serverData.onlineUserList,
     // 验证消息
@@ -103,7 +106,7 @@ new Vue({
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :companyList="companyList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
-				<leftlist :user="user" :onlineUserList="onlineUserList"  :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend"></leftlist>
+				<leftlist :user="user" :currentCms="currentCms" :popCms="popCms" :onlineUserList="onlineUserList"  :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend" @getCmsDetailEvent="getCmsDetail"></leftlist>
 				</div>`,
   created: function () {
     // 初始化数据 套接字
@@ -146,6 +149,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({qunList: this.qunList})
+      }
+    },
+    popCms: {
+      deep: true,
+      handler () {
+        $('#vue-message').show()
       }
     },
     groupList: {
@@ -286,6 +295,10 @@ new Vue({
     // 接收拒绝验证
     receiveFriend: function (msgId, isAgree) {
       this.socket._toReceiveFreind(msgId, isAgree)
+    },
+    // 获取资讯详情
+    getCmsDetail: function (cmsId) {
+      this.socket._getCmsDetail(cmsId)
     },
     // 移动用户到其他分组
     moveFriend: function (friendId, groupId, toGroupId) {

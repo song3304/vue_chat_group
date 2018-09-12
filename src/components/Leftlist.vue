@@ -10,7 +10,7 @@
 		<div class="vue_leftlist">
 			<p>热点资讯</p>
 			<ul class="vue_leftlist_ul">
-				<li v-for="(leftitem,$index) in leftList" v-bind:cms_id="leftitem.id" @click="wenxiang($index)">
+				<li v-for="(leftitem,$index) in leftList" v-bind:cms_id="leftitem.id" @click="wenxiang($index,leftitem.id)">
 					<!--<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" @click="wenxiang">-->
 						<!--<span>{{leftitem.time}}</span>
 						<p>{{leftitem.title}}</p>-->
@@ -27,7 +27,7 @@
 					    <div class="vueleft_left_main" v-show="$index === lefttan">
 					     	<div class="vue_left_main">
 					     		<img src="../images/shanchu.png" alt="" @click.stop="leftshan()"/>
-					     		<div class="vue_left_main_yi">	     	     		
+					     		<div class="vue_left_main_yi">
 						     		<h2>{{leftitem.title}}</h2>
 						     		<div class="vueleft-center-title">
 										<span>作者：{{leftitem.author}}</span>
@@ -42,29 +42,29 @@
 					    </div>
 				</li>
 			</ul>
-			<div class="vue_left_message" id="vue-message" @click="vuenew"> <!--新消息-->
+			<div class="vue_left_message" id="vue-message" @click="vuenew" style="display:none;" v-if="popCms!=null"> <!--新消息-->
 				<div class="vue_left_message_time">
 					<p>
 						<img src="../images/xiaoxi.png" alt="" />
 						<span>新消息提醒</span>
 					</p>
-					<span>4:30</span>
+					<span>{{popCms.create_time}}</span>
 				</div>
-				<p class="vue_left_message_title">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货</p>
-				<p class="vue_left_message_main">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货恒大、乐居等地产大咖分享干货,地产大咖分享干货</p>
+				<p class="vue_left_message_title">{{popCms.title}}</p>
+				<p class="vue_left_message_main">{{popCms.contents}}</p>
 			</div>
-			<div class="vueleft_left_main" v-show="vuenewxiang"> <!--新消息详情-->
+			<div class="vueleft_left_main" v-show="vuenewxiang" v-if="currentCms!=null"> <!--新消息详情-->
 		     	<div class="vue_left_main">
 		     		<img src="../images/shanchu.png" alt="" @click="newxiangshan()"/>
-		     		<div class="vue_left_main_yi">	     	     		
-			     		<h2>标题</h2>
+		     		<div class="vue_left_main_yi">
+			     		<h2>{{currentCms.title}}</h2>
 			     		<div class="vueleft-center-title">
-							<span>作者：</span>
-							<span>来源：</span>
-							<span>发布时间：</span>
+							<span>作者：{{currentCms.author}}</span>
+							<span>来源：{{currentCms.origin}}</span>
+							<span>发布时间：{{currentCms.create_time}}</span>
 						</div>
 						<div class="vueleft-center-main">
-							详细内容详细内容公寓市场未来前景如何?恒大、乐居等地产大咖分享干货恒大、乐居等地产大咖分享干货,地产大咖分享干货
+              {{currentCms.contents}}
 						</div>
 					</div>
 		     	</div>
@@ -132,7 +132,7 @@
       </div>
       <div class="vue_leftlist_close" @click="openVerify()"><span></span></div>
     </div>
-     
+
 	</div>
 </template>
 
@@ -140,13 +140,13 @@
 	export default {
   	components:{},
   	// props:{},
-    props: ['onlineUserList','user', 'userList', 'verifyList'],
+    props: ['onlineUserList','user', 'userList', 'verifyList', 'currentCms', 'popCms'],
     data(){
   		return{
   			firendtan:false,
 	        searchKey:'',
 	        infoId:0,
-			leftList:match_hall_cms,
+			    leftList:match_hall_cms,
 	        chat_hall_members: _chat_hall_members,
 	        sendfirendtan:false,
 	        tingList:null,
@@ -248,7 +248,7 @@
         return true
       }
     },
-    wenxiang:function($index){ //点击详情
+    wenxiang:function($index,cmsId){ //点击详情
     	$(".vue_left_main_yi").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
@@ -256,13 +256,14 @@
 	        background: "", // 轨道的背景颜色
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
-	    });	    
+	    });
 	    this.lefttan=$index
+      this.$emit('getCmsDetailEvent', cmsId)
     },
     leftshan:function(){//点击关闭删除详情弹窗
     	$('.vueleft_left_main').hide()
     	this.lefttan=-1
-    	return false;   	
+    	return false;
     },
     vuenew:function(){
     	this.vuenewxiang=true
