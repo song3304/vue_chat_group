@@ -351,6 +351,9 @@
           if(!this.showQunFa){
             $('.vue_qun_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
               $('.vue_qun_offer p').removeClass('flyaway ' )})
+
+            $('.vue_bp_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+              $('.vue_bp_offer p').removeClass('flyaway ' )})
           }
             var _this = this;
             setTimeout(function () {
