@@ -2512,10 +2512,10 @@ li{
 	overflow: hidden;
 }
 #vue-message{
-	animation: message 2s linear forwards;
-	-webkit-animation: message 2s linear forwards;
-	-moz-animation: message 2s linear forwards;
-	-ms-animation: message 2s linear forwards;
+	animation: message .5s linear forwards 3s;
+	-webkit-animation: message .5s linear forwards 3s;
+	-moz-animation: message .5s linear forwards 3s;
+	-ms-animation: message .5s linear forwards 3s;
 }
 .vue_left_message_time{
 	height: 25px;

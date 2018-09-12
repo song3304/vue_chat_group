@@ -42,7 +42,7 @@
 					    </div>
 				</li>
 			</ul>
-			<!--<div class="vue_left_message" id="vue-message">
+			<div class="vue_left_message" id="vue-message" @click="vuenew"> <!--新消息-->
 				<div class="vue_left_message_time">
 					<p>
 						<img src="../images/xiaoxi.png" alt="" />
@@ -52,7 +52,23 @@
 				</div>
 				<p class="vue_left_message_title">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货</p>
 				<p class="vue_left_message_main">公寓市场未来前景如何?恒大、乐居等地产大咖分享干货恒大、乐居等地产大咖分享干货,地产大咖分享干货</p>
-			</div>-->
+			</div>
+			<div class="vueleft_left_main" v-show="vuenewxiang"> <!--新消息详情-->
+		     	<div class="vue_left_main">
+		     		<img src="../images/shanchu.png" alt="" @click="newxiangshan()"/>
+		     		<div class="vue_left_main_yi">	     	     		
+			     		<h2>标题</h2>
+			     		<div class="vueleft-center-title">
+							<span>作者：</span>
+							<span>来源：</span>
+							<span>发布时间：</span>
+						</div>
+						<div class="vueleft-center-main">
+							详细内容详细内容公寓市场未来前景如何?恒大、乐居等地产大咖分享干货恒大、乐居等地产大咖分享干货,地产大咖分享干货
+						</div>
+					</div>
+		     	</div>
+		    </div>
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people" v-if="searchData">
@@ -135,7 +151,8 @@
 	        sendfirendtan:false,
 	        tingList:null,
 	        verifymsg:'',//验证信息
-	        lefttan:-1
+	        lefttan:-1,
+	        vuenewxiang:false
   		}
   	},
     computed: {
@@ -246,6 +263,12 @@
     	$('.vueleft_left_main').hide()
     	this.lefttan=-1
     	return false;   	
+    },
+    vuenew:function(){
+    	this.vuenewxiang=true
+    },
+    newxiangshan:function(){
+    	this.vuenewxiang=false
     }
   },
 	mounted() {
