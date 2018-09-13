@@ -2510,6 +2510,7 @@ li{
 	background: #FFFFFF;
 	border-radius: 3px;
 	overflow: hidden;
+	display: none;
 }
 #vue-message{
 	animation: message .5s linear forwards 3s;
