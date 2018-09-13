@@ -154,7 +154,14 @@ new Vue({
     popCms: {
       deep: true,
       handler () {
-        $('#vue-message').show()
+      	setTimeout(function(){
+      		$('.vue_left_message').css('display','block')
+      		$('.vue_left_message').attr('id','vue-message')
+      	},.5)      	
+        setTimeout(function(){
+        	$('.vue_left_message').removeAttr('id')
+        	$('.vue_left_message').css('display','none')
+        },4000)
       }
     },
     groupList: {

@@ -24,25 +24,23 @@
 						</div>
 						<p class="vue_leftlist_main">{{leftitem.title}}</p>
 						<!--热点资讯弹框-->
-					    <div class="vueleft_left_main" v-show="$index === lefttan">
+					    <div class="vueleft_left_main" v-show="$index === lefttan" v-if="currentCms!=null">
 					     	<div class="vue_left_main">
 					     		<img src="../images/shanchu.png" alt="" @click.stop="leftshan()"/>
 					     		<div class="vue_left_main_yi">
 						     		<h2>{{leftitem.title}}</h2>
 						     		<div class="vueleft-center-title">
-										<span>作者：{{leftitem.author}}</span>
-										<span>来源：{{leftitem.origin}}</span>
+										<span>作者：{{currentCms.author}}</span>
+										<span>来源：{{currentCms.origin}}</span>
 										<span>发布时间：{{leftitem.create_time}}</span>
 									</div>
-									<div class="vueleft-center-main">
-										{{leftitem.contents}}
-									</div>
+									<div class="vueleft-center-main" v-html="currentCms.contents"></div>
 								</div>
 					     	</div>
 					    </div>
 				</li>
 			</ul>
-			<div class="vue_left_message" id="vue-message" @click="vuenew" style="display:none;" v-if="popCms!=null"> <!--新消息-->
+			<div class="vue_left_message" id="vue-message" @click="vuenew" v-if="popCms!=null"> <!--新消息-->
 				<div class="vue_left_message_time">
 					<p>
 						<img src="../images/xiaoxi.png" alt="" />
@@ -63,9 +61,7 @@
 							<span>来源：{{currentCms.origin}}</span>
 							<span>发布时间：{{currentCms.create_time}}</span>
 						</div>
-						<div class="vueleft-center-main">
-              {{currentCms.contents}}
-						</div>
+						<div class="vueleft-center-main" v-html="currentCms.contents"></div>
 					</div>
 		     	</div>
 		    </div>
@@ -248,7 +244,7 @@
         return true
       }
     },
-    wenxiang:function($index,cmsId){ //点击详情
+    wenxiang:function($index,cmsId){ //点击详情    	 
     	$(".vue_left_main_yi").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
@@ -257,8 +253,8 @@
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
-	    this.lefttan=$index
-      this.$emit('getCmsDetailEvent', cmsId)
+	    this.$emit('getCmsDetailEvent', cmsId)  
+	    this.lefttan=$index	 	           
     },
     leftshan:function(){//点击关闭删除详情弹窗
     	$('.vueleft_left_main').hide()
@@ -266,6 +262,15 @@
     	return false;
     },
     vuenew:function(){
+    	$(".vue_left_main_yi").niceScroll({
+	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	    });
+    	$('.vue_left_message').css('display','block')
     	this.vuenewxiang=true
     },
     newxiangshan:function(){
