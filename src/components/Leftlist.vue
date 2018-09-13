@@ -46,7 +46,7 @@
 						<img src="../images/xiaoxi.png" alt="" />
 						<span>新消息提醒</span>
 					</p>
-					<span>{{popCms.create_time}}</span>
+					<span>{{popCms|shifen}}</span>
 				</div>
 				<p class="vue_left_message_title">{{popCms.title}}</p>
 				<p class="vue_left_message_main">{{popCms.contents}}</p>
@@ -310,6 +310,10 @@
 	    	var yue=leftitem.create_time.substring(5, 7)
 	    	var tian=leftitem.create_time.substring(8, 10)
 	    	return yue+'月'+tian+'日'
+	    },
+	    shifen: function(popCms){
+	    	var yue=popCms.create_time.substring(11,16)	    	
+	    	return yue
 	    }
 	},
 
