@@ -271,7 +271,7 @@
         this.chooseG = !this.chooseG
       },
       sendGroupMsg: function () {
-        if (this.formData.userIds.length < 1) {
+        if (this.formData.userIds.length < 1 && !this.chooseG) {
           this.tipsTag = true
           this.tipsMsg = '请先选择群发人员'
           return
