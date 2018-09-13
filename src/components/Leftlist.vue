@@ -10,7 +10,7 @@
 		<div class="vue_leftlist">
 			<p>热点资讯</p>
 			<ul class="vue_leftlist_ul">
-				<li v-for="(leftitem,$index) in leftList" v-bind:cms_id="leftitem.id" @click="wenxiang($index,leftitem.id)">
+				<li v-for="(leftitem,$index) in match_hall_cms" v-bind:cms_id="leftitem.id" @click="wenxiang($index,leftitem.id)">
 					<!--<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" @click="wenxiang">-->
 						<!--<span>{{leftitem.time}}</span>
 						<p>{{leftitem.title}}</p>-->
@@ -136,14 +136,12 @@
 	export default {
   	components:{},
   	// props:{},
-    props: ['onlineUserList','user', 'userList', 'verifyList', 'currentCms', 'popCms'],
+    props: ['onlineUserList','user', 'userList', 'verifyList', 'currentCms', 'popCms', 'match_hall_cms','chat_hall_members'],
     data(){
   		return{
   			firendtan:false,
 	        searchKey:'',
 	        infoId:0,
-			    leftList:match_hall_cms,
-	        chat_hall_members: _chat_hall_members,
 	        sendfirendtan:false,
 	        tingList:null,
 	        verifymsg:'',//验证信息
@@ -244,7 +242,7 @@
         return true
       }
     },
-    wenxiang:function($index,cmsId){ //点击详情    	 
+    wenxiang:function($index,cmsId){ //点击详情
     	$(".vue_left_main_yi").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
@@ -253,8 +251,8 @@
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
-	    this.$emit('getCmsDetailEvent', cmsId)  
-	    this.lefttan=$index	 	           
+	    this.$emit('getCmsDetailEvent', cmsId)
+	    this.lefttan=$index
     },
     leftshan:function(){//点击关闭删除详情弹窗
     	$('.vueleft_left_main').hide()
@@ -270,7 +268,7 @@
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
-	    this.$emit('getCmsDetailEvent', cmsId)  
+	    this.$emit('getCmsDetailEvent', cmsId)
     	$('.vue_left_message').css('display','block')
     	this.vuenewxiang=true
     },

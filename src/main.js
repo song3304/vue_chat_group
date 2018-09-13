@@ -83,9 +83,10 @@ new Vue({
     is_temp: false,
     // 乙二醇种类
     chooseCatalog:0,
-    //全部成员
+    // 全部成员
     chat_hall_members: _chat_hall_members,
-
+    // 全部快讯消息
+    match_hall_cms:match_hall_cms
   },
   // sockets: {
   // 所有sockect 事件放在这
@@ -106,7 +107,7 @@ new Vue({
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :companyList="companyList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
 				</div>
-				<leftlist :user="user" :currentCms="currentCms" :popCms="popCms" :onlineUserList="onlineUserList"  :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend" @getCmsDetailEvent="getCmsDetail"></leftlist>
+				<leftlist :match_hall_cms="match_hall_cms" :chat_hall_members="chat_hall_members" :user="user" :currentCms="currentCms" :popCms="popCms" :onlineUserList="onlineUserList"  :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend" @getCmsDetailEvent="getCmsDetail"></leftlist>
 				</div>`,
   created: function () {
     // 初始化数据 套接字
@@ -157,7 +158,7 @@ new Vue({
       	setTimeout(function(){
       		$('.vue_left_message').css('display','block')
       		$('.vue_left_message').attr('id','vue-message')
-      	},.5)      	
+      	},.5)
         setTimeout(function(){
         	$('.vue_left_message').removeAttr('id')
         	$('.vue_left_message').css('display','none')
