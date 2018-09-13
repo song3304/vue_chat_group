@@ -146,6 +146,7 @@
         <div class="c_qunBaoJia">
           <div class="c_qunDiv">
             <p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
+            <p v-show="formData.userIds.length==0">请从左侧选择人员</p>
             <ul class="vu_fenzu_right_ul newQunFa">
               <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
             </ul>
@@ -164,7 +165,7 @@
           </div>
         </div>
       </div>
-      <img src="../images/tips.png" alt="" class="c_qunTips" v-show="formData.userIds.length==0">
+      <!--<img src="../images/tips.png" alt="" class="c_qunTips" v-show="formData.userIds.length==0">-->
     </div>
 
     <!--提示框-->
