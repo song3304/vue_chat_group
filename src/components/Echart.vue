@@ -147,6 +147,15 @@
           <div class="c_qunDiv">
             <p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
             <p v-show="formData.userIds.length==0">请从左侧选择人员</p>
+            <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
+              <ul>
+                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups)"><div>{{groups.groupName}}</div><span></span></li>
+              </ul>
+              <div class="c_newQunBox">
+                <div>保存群组</div>
+                <div @click="openSetZu">+创建群组</div>
+              </div>
+            </div>
             <ul class="vu_fenzu_right_ul newQunFa">
               <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" /></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
             </ul>
@@ -177,6 +186,21 @@
       <p>{{this.tipsMsg}}</p>
       <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
     </div>
+
+    <!--设置组名称-->
+    <div class="vu_fenzu_name" style="z-index: 98;background: #fff;left: 40%" v-show="newZuTag">
+      <div class="vu_fen_zu_title">
+        <span>设置组名称</span>
+        <p class="vu_fen_zu_tier" @click="closeSetName"><span></span></p>
+      </div>
+      <p class="vu_fenzu_name_na">请输入组名称(最多六个字)：</p>
+      <input type="text" class="vu_fenzu_name_input" name="groupName" v-model="createGroupName" :placeholder="placeholder" maxlength="6" />
+      <div class="vu_fenzu_name_footer" style="background: #f6f6f6;">
+        <button @click="submitGroup">确认</button>
+        <span class="vu_fen_zu_tier" @click="closeSetName">取消</span>
+      </div>
+    </div>
+
 		<div class="vue_qun_line" v-if="user.plat=='trade'"></div>
     <!-- 群发报价 -->
     <div class="c_btn_box" v-if="user.plat=='match'">
@@ -222,17 +246,23 @@
         showQunFa:false,//显示群发
         //qunNew部分内容
         formData: {
-          userIds: []
+          userIds: [],
+          groupName: ''
         },
-        placeholder: '请输入群发内容.',
+        placeholder: '请输入分组名称.',
+        newZuTag:false,
         groupMsg:'',//群发内容
         chooseG:false,
         tipsTag:false,//提示框
         tipsMsg:'',//提示信息
         showCjbj:false,//成交报价
+        activeTag:this.groupList.groupHair[0].groupName,//组选中标识
+        createGroupName:'',//新建群组名称
       }
     },
     mounted() {
+      this.formData.groupName = this.groupList.groupHair[0].groupName
+      this.formData.userIds = this.groupList.groupHair[0].userIds
       $(".vue-tealtime-time>ul").niceScroll({
         cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
@@ -259,6 +289,39 @@
     },
     methods: {
       //qunNew部分内容
+      onGroup: function (group) {
+        this.activeTag = group.groupName
+        this.formData.groupName = group.groupName
+        this.formData.userIds = group.userIds
+      },
+      openSetZu: function () {
+        if(!this.newZuTag){
+          this.newZuTag = true
+        }
+        console.log(this.formData)
+      },
+      closeSetName: function () {
+        this.newZuTag = false
+      },
+      submitGroup: function () {
+       if (this.formData.userIds.length < 1) {
+         alert('请先选择人员，再创建组')
+         return false
+       } else{
+          if (this.createGroupName === '') {
+            this.placeholder = '请输入分组名称，再提交'
+            return false
+          }
+          this.formData.groupName = this.createGroupName
+          console.log(this.formData)
+          this.newZuTag = false
+          this.formData.groupType = 'group'
+          this.$emit('createGroupEvent', this.formData)
+          this.activeTag = this.formData.groupName
+          this.formData.userIds = []
+          this.formData.groupName = ''
+        }
+      },
       /* qunNew部分开始 */
       cjbj: function () {
           this.showCjbj = true

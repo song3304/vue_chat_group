@@ -376,3 +376,65 @@ h1 a {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+/*新群发的新分组*/
+.c_zuBox{
+  height: 40px;
+  width: 95.5%;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: #f6f6f6;
+  overflow: hidden;
+}
+.c_zuBox ul{
+  display: block;
+  float: left;
+  width: 70%;
+  overflow: hidden;
+  white-space:nowrap;
+  font-size: 18px;
+  margin: 0;
+  margin-top: 5px;
+}
+.c_zuBox li{
+  list-style: none;
+  display: inline-block;
+  padding:4px 6px;
+  padding-left: 10px;
+  height: 30px;
+  margin-left:5px;
+  overflow: hidden;
+}
+.c_zuBox li div{
+  float: left;
+}
+.c_zuBox .c_active{
+  background: #ffff;
+}
+.c_zuBox .c_active span{
+  float: right;
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: url(../images/qie_tu.png) -4px -23px no-repeat;
+  margin-top: 4px;
+  margin-left: 6px;
+}
+.c_zuBox .c_active:hover span{
+  background: url(../images/qie_tu.png) -4px -44px no-repeat;
+}
+.c_newQunBox{
+  width: 30%;
+  float: right;
+  font-size: 14px;
+  color: #4385f5;
+}
+.c_newQunBox div{
+  height: 40px;
+  line-height: 40px;
+  float: right;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.c_newQunBox div:hover{
+  text-decoration: underline;
+}
