@@ -149,7 +149,7 @@
             <p v-show="formData.userIds.length==0">请从左侧选择人员</p>
             <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
               <ul>
-                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups)"><div>{{groups.groupName}}</div><span></span></li>
+                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups)"><div>{{groups.groupName}}</div><span @click="zuDel($event,groups.groupId)"></span></li>
               </ul>
               <div class="c_newQunBox">
                 <div>保存群组</div>
@@ -183,12 +183,12 @@
         <span>提示</span>
         <p class="vu_fen_zu_tier"  @click="tipscancel"><span></span></p>
       </div>
-      <p>{{this.tipsMsg}}</p>
+      <p>{{tipsMsg}}</p>
       <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
     </div>
 
     <!--设置组名称-->
-    <div class="vu_fenzu_name" style="z-index: 98;background: #fff;left: 40%" v-show="newZuTag">
+    <div class="vu_fenzu_name" style="z-index: 98;background: #fff;left: 25%" v-show="newZuTag">
       <div class="vu_fen_zu_title">
         <span>设置组名称</span>
         <p class="vu_fen_zu_tier" @click="closeSetName"><span></span></p>
@@ -199,6 +199,15 @@
         <button @click="submitGroup">确认</button>
         <span class="vu_fen_zu_tier" @click="closeSetName">取消</span>
       </div>
+    </div>
+    <!--删除确认弹窗-->
+    <div class="vu_del-popup" v-show="Qunpopup">
+      <div class="vu_fen_zu_title">
+        <span>删除</span>
+        <p class="vu_fen_zu_tier"  @click="popcancel"><span></span></p>
+      </div>
+      <p>是否确认删除？</p>
+      <div class="vu_fenzu_name_footer"><button @click="delConfirm">确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
     </div>
 
 		<div class="vue_qun_line" v-if="user.plat=='trade'"></div>
@@ -258,6 +267,8 @@
         showCjbj:false,//成交报价
         activeTag:this.groupList.groupHair[0].groupName,//组选中标识
         createGroupName:'',//新建群组名称
+        Qunpopup: false, // 确认弹窗关闭
+        groupId:'',//删除组的id
       }
     },
     mounted() {
@@ -289,6 +300,21 @@
     },
     methods: {
       //qunNew部分内容
+      delConfirm: function () {
+        console.log(this.groupId)
+        this.$emit('delGroupEvent', this.groupId, 'groupHair')
+        this.Qunpopup = false
+        this.formData.userIds = []
+        this.formData.groupName = ''
+      },
+      zuDel: function (event, groupId) {
+        event.stopPropagation()
+        this.Qunpopup = true
+        this.groupId = groupId
+      },
+      popcancel: function () { // 关闭删除弹框
+        this.Qunpopup = false
+      },
       onGroup: function (group) {
         this.activeTag = group.groupName
         this.formData.groupName = group.groupName
@@ -305,7 +331,10 @@
       },
       submitGroup: function () {
        if (this.formData.userIds.length < 1) {
-         alert('请先选择人员，再创建组')
+         // alert('请先选择人员，再创建组')
+         // this.tipsTag = true
+         // this.tipsMsg = '请先选择人员，再创建组'
+         this.placeholder = '请先选择人员，再创建组'
          return false
        } else{
           if (this.createGroupName === '') {
@@ -318,8 +347,9 @@
           this.formData.groupType = 'group'
           this.$emit('createGroupEvent', this.formData)
           this.activeTag = this.formData.groupName
-          this.formData.userIds = []
-          this.formData.groupName = ''
+          // this.formData.userIds = []
+          // this.formData.groupName = ''
+          this.createGroupName = ''
         }
       },
       /* qunNew部分开始 */
@@ -419,16 +449,15 @@
       qunFa: function () {
         if(this.chooseCatalog!=0){
           if(!this.showQunFa){
-            $('.vue_qun_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-              $('.vue_qun_offer p').removeClass('flyaway ' )})
-
-            $('.vue_bp_offer p').addClass('flyaway ' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-              $('.vue_bp_offer p').removeClass('flyaway ' )})
+            $('.vue_qun_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+              $('.vue_qun_offer').removeClass('animated bounce' )})
+            $('.vue_bp_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+              $('.vue_bp_offer').removeClass('animated bounce' )})
           }
             var _this = this;
             setTimeout(function () {
               _this.showQunFa = true
-            },1000)
+            },700)
         }else{
           // alert('请选择种类');
         }
@@ -438,6 +467,8 @@
         if(!this.showQunFa){
           $('.vue_qun_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
             $('.vue_qun_offer').removeClass('animated bounce' )})
+          $('.vue_bp_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $('.vue_bp_offer').removeClass('animated bounce' )})
         }
       },
       showShibie: function (event) {

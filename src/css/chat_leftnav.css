@@ -403,6 +403,9 @@ h1 a {
   height: 30px;
   margin-left:5px;
   overflow: hidden;
+  min-width: 60px;
+  text-align: center;
+  cursor: pointer;
 }
 .c_zuBox li div{
   float: left;
@@ -418,6 +421,7 @@ h1 a {
   background: url(../images/qie_tu.png) -4px -23px no-repeat;
   margin-top: 4px;
   margin-left: 6px;
+  cursor: pointer;
 }
 .c_zuBox .c_active:hover span{
   background: url(../images/qie_tu.png) -4px -44px no-repeat;
