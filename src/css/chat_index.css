@@ -2613,7 +2613,6 @@ li{
 	left: 1%;
 	width: 98%;
 	height:97%;
-	overflow-y: auto;
 }
 .vue_left_main h2{
 	text-align: center;
@@ -2628,11 +2627,16 @@ li{
 }
 .vueleft-center-main{
 	font-size: 14px;
-	margin:30px 18px 0 18px;		
+	margin:30px 0 0 18px;
+	padding-right: 10px;		
 	color: #666666;
 	line-height: 28px;
 	text-align: justify;
     text-indent: 2em;
+    height:86%;
+}
+.vueleft-center-main img{
+	width: 100%;
 }
 .vueleft-center-title{
 	text-align: center;
