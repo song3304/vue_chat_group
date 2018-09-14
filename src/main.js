@@ -43,6 +43,8 @@ new Vue({
     companyList: serverData.companyList,
     // 盯盘或者被关注用户ids
     followList: serverData.followList,
+    // 默认群发组用户ids
+    groupHairUsers: serverData.groupHairUsers,
     // 用户列表
     userList: serverData.userList,
     // 群聊
@@ -193,6 +195,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({followList: this.followList})
+      }
+    },
+    groupHairUsers: {
+      deep: true,
+      handler () {
+        store.update({groupHairUsers: this.groupHairUsers})
       }
     },
     companyList: {
@@ -379,6 +387,9 @@ new Vue({
       }
       if (data.hasOwnProperty('followList')) {
         this.followList = data.followList
+      }
+      if (data.hasOwnProperty('groupHairUsers')) {
+        this.groupHairUsers = data.groupHairUsers
       }
       if (data.hasOwnProperty('companyList')) {
         this.companyList = data.companyList

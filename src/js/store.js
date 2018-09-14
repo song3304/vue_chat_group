@@ -16,7 +16,10 @@ if (!localStorage.getItem(key)) {
       company_name: 'Acompany',
       company_short_name: 'sp'
     },
+    // 盯盘人员
     followList: [2, 3, 4],
+    // 默认群发人员
+    groupHairUsers: [2, 3],
     // 当前在线大厅用户列表
     onlineUserList: {
       2: {
@@ -353,6 +356,9 @@ export default {
     }
     if (store.hasOwnProperty('followList')) {
       oldData.followList = store.followList
+    }
+    if (store.hasOwnProperty('groupHairUsers')) {
+      oldData.groupHairUsers = store.groupHairUsers
     }
     if (store.hasOwnProperty('companyList')) {
       oldData.companyList = store.companyList
