@@ -152,7 +152,7 @@
                 <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups)"><div>{{groups.groupName}}</div><span @click="zuDel($event,groups.groupId)"></span></li>
               </ul>
               <div class="c_newQunBox">
-                <div>保存群组</div>
+                <div @click="saveZu">保存群组</div>
                 <div @click="openSetZu">+创建群组</div>
               </div>
             </div>
@@ -268,7 +268,7 @@
         activeTag:this.groupList.groupHair[0].groupName,//组选中标识
         createGroupName:'',//新建群组名称
         Qunpopup: false, // 确认弹窗关闭
-        groupId:'',//删除组的id
+        groupId:this.groupList.groupHair[0].groupId,//删除组的id
       }
     },
     mounted() {
@@ -300,6 +300,9 @@
     },
     methods: {
       //qunNew部分内容
+      saveZu: function () {
+        this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)
+      },
       delConfirm: function () {
         console.log(this.groupId)
         this.$emit('delGroupEvent', this.groupId, 'groupHair')
@@ -316,6 +319,7 @@
         this.Qunpopup = false
       },
       onGroup: function (group) {
+        this.groupId = group.groupId
         this.activeTag = group.groupName
         this.formData.groupName = group.groupName
         this.formData.userIds = group.userIds
