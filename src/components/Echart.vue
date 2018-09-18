@@ -149,7 +149,7 @@
             <p v-show="formData.userIds.length==0">请从左侧选择人员</p>
             <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
               <ul>
-                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups)"><div>{{groups.groupName}}</div><span @click="zuDel($event,groups.groupId)"></span></li>
+                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups)" :value="groups.groupId"><div>{{groups.groupName}}</div><span @click="zuDel($event,groups.groupId)"></span></li>
               </ul>
               <div class="c_newQunBox">
                 <div @click="saveZu">保存群组</div>
@@ -305,10 +305,19 @@
     methods: {
       //qunNew部分内容
       saveZu: function () {
-        this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)
+        this.groupId = $('.c_active').val()
+        if(this.formData.groupName==""){
+          this.tipsTag = true
+          this.tipsMsg = '请先创建组'
+        }else{
+          if(this.formData.userIds.length==0){
+            this.delConfirm()
+          }else{
+            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)
+          }
+        }
       },
       delConfirm: function () {
-        console.log(this.groupId)
         this.$emit('delGroupEvent', this.groupId, 'groupHair')
         this.Qunpopup = false
         this.formData.userIds = []
@@ -332,7 +341,6 @@
         if(!this.newZuTag){
           this.newZuTag = true
         }
-        // console.log(this.formData)
       },
       closeSetName: function () {
         this.newZuTag = false
@@ -350,7 +358,6 @@
             return false
           }
           this.formData.groupName = this.createGroupName
-          console.log(this.formData)
           this.newZuTag = false
           this.formData.groupType = 'group'
           this.$emit('createGroupEvent', this.formData)
@@ -358,8 +365,6 @@
           // this.formData.userIds = []
           // this.formData.groupName = ''
           this.createGroupName = ''
-         console.log('+++:',this.groupList.groupHair.length)
-         console.log('zu:',this.groupList.groupHair)
         }
       },
       /* qunNew部分开始 */
@@ -415,6 +420,10 @@
         return false
       },
       delUser: function (uid) {
+        if(this.formData.userIds.length==1){
+          this.tipsTag = true
+          this.tipsMsg = '若清空好友，分组将被删除'
+        }
         this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
       },
       dragqun: function (ev) {
