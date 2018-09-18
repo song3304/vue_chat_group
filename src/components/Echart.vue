@@ -71,7 +71,35 @@
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
 
         <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
-          <div class="col-xs-12 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
+          <div class="col-xs-8 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
+          <div class="col-xs-3 col-md-3 col-sm-12 price-list">
+                <div class="">
+                   <div class="row trend-syn-table-title">
+                        <div class="col-md-4 col-xs-4 ">买/卖</div>
+                        <div class="col-md-4 col-xs-4 base_font1">价格</div>
+                        <div class="col-md-4 col-xs-4 base_font1">报价数</div>
+                    </div>
+                    <div v-bind:id="'bird_price_banner_'+catalog.id" class="vue_bird_price">
+                    		<div class="vue_chart_hight vue_chart_price">
+	                    			<span>最高</span>
+	                    			<span>7800</span>
+	                    			<span>1</span>
+                    		</div>
+                        <ul class="bird_sell brid_ul">
+
+                        </ul>
+                        <div class="current_price"></div>                       
+                        <ul class="bird_buy brid_ul">
+
+                        </ul>
+                        <div class="vue_chart_low vue_chart_price">
+	                    			<span>最低</span>
+	                    			<span>7800</span>
+	                    			<span>1</span>
+                    		</div>
+                    </div>
+                </div>
+            </div>
           <div class="clear"></div>
           <div class="ckdp_icon"><a href="javascript:;"></a></div>
         </div>
@@ -107,6 +135,46 @@
                     <span class="vue-realtime-auto-num">500</span>
                 </li>-->
               </ul>
+            </div>
+            <div class="vue-tealtime-right">
+	            	<div class="vue_right_yi">
+		            		<img src="../images/bj.png" alt="" />
+		            		<span>当前最多报价</span>
+	            	</div>
+	            	<div class="vue_right_er">
+		            		<span>卖：</span>
+		            		<ul>
+		            			<li>
+		            				<span>7800</span>		            				
+		            				<span>7</span>
+		            			</li>
+		            			<li>
+		            				<span>7800</span>		            				
+		            				<span>7</span>
+		            			</li>
+		            			<li>
+		            				<span>7800</span>		            				
+		            				<span>7</span>
+		            			</li>
+		            		</ul>
+	            	</div>
+	            	<div class="vue_right_san">
+		            		<span>买：</span>
+		            		<ul>
+		            			<li>
+		            				<span>7800</span>		            				
+		            				<span>7</span>
+		            			</li>
+		            			<li>
+		            				<span>7800</span>		            				
+		            				<span>7</span>
+		            			</li>
+		            			<li>
+		            				<span>7800</span>		            				
+		            				<span>7</span>
+		            			</li>
+		            		</ul>
+	            	</div>
             </div>
           </div>
           <br clear="all"/>

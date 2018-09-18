@@ -1737,8 +1737,9 @@ li{
 .vue-tealtime-time {
 	height: 78%;
 	outline: initial!important;
-	width: 97.5%;
+	width: 68%;
 	margin: 5px 0 5px 2%;
+	float: left;
 }
 .vue-tealtime-time>ul{height:93%;margin: 0}
 .vue-realtime-auto li{height: 26px;line-height: 26px;padding-left: 0.8%;margin: 0 0 8px 0;}
@@ -2776,3 +2777,58 @@ to {top: 0;}
   border-top:1px solid #3c3945 ;
 }
 /*普通报盘end*/
+/*实时报价新增右边start*/
+.vue-tealtime-right{
+	float: left;
+	width: 27%;
+	border: 1px solid #2f3641;
+	margin: -10px 0 0 0;
+	height: 80%;
+}
+.vue_right_yi{
+	height: 45px;
+}
+.vue_right_yi span{color: #FFFFFF;display: inline-block;margin: 8px 0 0 5px;float: left;}
+.vue_right_yi img{
+	margin: 10px 0 0 15px;
+	float: left;
+}
+.vue_right_er,.vue_right_san{
+	width: 50%;
+	height: 80%;
+	float: left;
+	padding-left: 15px;
+}
+.vue_right_er span,.vue_right_san span{
+	display: inline-block;
+	height: 100%;
+	float: left;
+}
+.vue_right_er ul,.vue_right_san ul{
+	width: 70%;
+	height: 100%;
+	float: left;
+	margin: 1px 0;	
+}
+.vue_right_er ul li,.vue_right_san ul li{
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 10px;	
+	margin-left: 5px;
+}
+.vue_right_er ul li span,.vue_right_san ul li span{
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+	color: #CCCCCC;
+}
+.vue_right_er>span{
+	color: #00D700;
+}.vue_right_san>span{
+	color: #FF1400;
+}
+.vue_wendong{
+	color: #FFFFFF;
+	animation: wendong 1s forwards;
+}
+/*实时报价新增右边end*/
