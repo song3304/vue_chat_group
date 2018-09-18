@@ -265,15 +265,19 @@
         tipsTag:false,//提示框
         tipsMsg:'',//提示信息
         showCjbj:false,//成交报价
-        activeTag:this.groupList.groupHair[0].groupName,//组选中标识
+        activeTag:'',//组选中标识
         createGroupName:'',//新建群组名称
         Qunpopup: false, // 确认弹窗关闭
-        groupId:this.groupList.groupHair[0].groupId,//删除组的id
+        groupId:'',//删除组的
       }
     },
     mounted() {
-      this.formData.groupName = this.groupList.groupHair[0].groupName
-      this.formData.userIds = this.groupList.groupHair[0].userIds
+      if(this.groupList.groupHair.length!=0){
+        this.activeTag = this.groupList.groupHair[0].groupName
+        this.groupId = this.groupList.groupHair[0].groupId
+        this.formData.groupName = this.groupList.groupHair[0].groupName
+        this.formData.userIds = this.groupList.groupHair[0].userIds
+      }
       $(".vue-tealtime-time>ul").niceScroll({
         cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
@@ -328,7 +332,7 @@
         if(!this.newZuTag){
           this.newZuTag = true
         }
-        console.log(this.formData)
+        // console.log(this.formData)
       },
       closeSetName: function () {
         this.newZuTag = false
@@ -354,6 +358,8 @@
           // this.formData.userIds = []
           // this.formData.groupName = ''
           this.createGroupName = ''
+         console.log('+++:',this.groupList.groupHair.length)
+         console.log('zu:',this.groupList.groupHair)
         }
       },
       /* qunNew部分开始 */
