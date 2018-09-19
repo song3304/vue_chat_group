@@ -253,6 +253,7 @@ ul {
 	float: left;
 	/*margin-top:7px;*/
 	margin-left:15px;
+	overflow: hidden;
 }
 .vu_touxiang{
 	animation:toujump .6s infinite linear;
@@ -1745,18 +1746,18 @@ li{
 .vue-realtime-auto li{height: 26px;line-height: 26px;padding-left: 0.8%;margin: 0 0 8px 0;}
 .vue-realtime-auto li:nth-child(even){border-right: 0;}
 .vue-realtime-auto li span{text-align: center;color: #FFFFFF;display: inline-block;}
-.vue-realtime-auto-time{width:12%;}
+.vue-realtime-auto-time{width:8%;}
 .vue-realtime-auto-company{width: 17%;}
-.vue-realtime-auto-data{width:34%;letter-spacing:1px;}
+.vue-realtime-auto-data{width:38%;letter-spacing:1px;}
 .vue-realtime-auto-num{width: 12%;}
 .vue-realtime-buy_price,.vue-realtime-sell_price{width:15%!important;}
 .vue-realtime-buy{
 	color: #ff1400!important;
-	width: 5%;
+	width: 4%;
 }
 .vue-realtime-sell{
 	color: #00d700!important;
-	width: 5%;
+	width: 4%;
 }
 /*图表块设置end*/
 
@@ -2797,15 +2798,16 @@ to {top: 0;}
 	width: 50%;
 	height: 80%;
 	float: left;
-	padding-left: 15px;
+	padding-left: 5px;	
 }
+.vue_right_er{padding-left: 15px!important;}
 .vue_right_er span,.vue_right_san span{
 	display: inline-block;
 	height: 100%;
 	float: left;
 }
 .vue_right_er ul,.vue_right_san ul{
-	width: 70%;
+	width: 67%;
 	height: 100%;
 	float: left;
 	margin: 1px 0;	
@@ -2818,9 +2820,12 @@ to {top: 0;}
 }
 .vue_right_er ul li span,.vue_right_san ul li span{
 	display: inline-block;
-	width: 50%;
+	width: 40%;
 	text-align: center;
 	color: #CCCCCC;
+}
+.vue_right_ersan{
+	width: 60%!important;
 }
 .vue_right_er>span{
 	color: #00D700;

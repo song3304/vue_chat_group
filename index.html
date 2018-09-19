@@ -38,7 +38,7 @@
           var ninestamp=this.ninestamp();
           var resizeChart=function(){
 						$=jQuery;
-				        var param=(document.body.clientWidth<1340)?0.96:0.75;
+				        var param=(document.body.clientWidth<1340)?0.7:0.7;
 				        var realWidth=$("#myTabContent").width();
 				        for(var i=0;i<echartsObj.length;i++){
 				            panObj[i].width(realWidth*param-31);
@@ -46,10 +46,10 @@
 				        }
 				        $price_list = $('.price-list');
 				        if(document.body.clientWidth>1340) {
-				        	$('.price-list').width(realWidth*0.25-81);
+				        	$('.price-list').width(realWidth*0.3-30);
 				        	$('#trend').css('height','408px').css('background','#ffffff');
 				        }else{
-				        	$price_list.width(realWidth-65).css("margin-left", "0").css("margin-top", "5px");
+				        	$price_list.width(realWidth*0.3-30).css("margin-left", "0").css("margin-top", "5px");
 				        	$('#trend').css('height','780px').css('background','#ffffff');
 				        }
 				 	};
@@ -65,7 +65,8 @@
                       var chartName="myChart_"+item.id;
                       chartArr[chartName]= new MyChart(product_id, uid, ninestamp);
                       var realWidth = $("#myTabContent").width();
-                      $('#pan_data_' + product_id).width(realWidth * 1 - 31);
+                      $('#pan_data_' + product_id).width(realWidth * 0.7 - 31);
+                       $('.price-list').width(realWidth*0.3-30);
                       echartsObj.push(chartArr[chartName]);
                       panObj.push($('#pan_data_' + product_id));
                       chartArr[chartName].init('pan_data_' + product_id, 'bird_price_banner_' + product_id, 5);
@@ -167,7 +168,8 @@
                       chartArray[newChartName] = new MyChart(select_product_id, select_user_id, ninestamp);
                   }
                   var realWidth = $("#myTabContent").width();
-                  $('#pan_data_' + select_product_id).width(realWidth * 1 - 31);
+                  $('#pan_data_' + select_product_id).width(realWidth * 0.7 - 31);
+                   $('.price-list').width(realWidth*0.3-30);
                   newChartObj.push(chartArray[newChartName]);
                   newPanObj.push($('#pan_data_' + select_product_id));
                   chartArray[newChartName].init('pan_data_' + select_product_id, 'bird_price_banner_' + select_product_id, 5);
