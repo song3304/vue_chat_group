@@ -70,7 +70,7 @@
       </div>
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
 
-        <div v-for='(catalog,index) in catalogList' class="" v-bind:id="'pan_'+catalog.id" >
+        <div v-for='(catalog,index) in catalogList'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
           <div class="col-xs-8 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
           <div class="col-xs-3 col-md-3 col-sm-12 price-list">
                 <div class="">
@@ -117,62 +117,21 @@
               <span>实时报价</span>
             </div>
             <div class="vue-tealtime-time">
-              <ul class="vue-realtime-auto"  v-for='(catalog,index) in catalogList' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id">
-                <!--<li>
-                    <span class="vue-realtime-auto-time">15:23</span>
-                    <span class="vue-realtime-auto-company">华塑汇</span>
-                    <span class="vue-realtime-buy">买</span>
-                    <span class="vue-realtime-buy vue-realtime-buy_price">7100</span>
-                    <span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
-                    <span class="vue-realtime-auto-num">500</span>
-                </li>
-                <li>
-                    <span class="vue-realtime-auto-time">15:23</span>
-                    <span class="vue-realtime-auto-company">华塑汇</span>
-                    <span class="vue-realtime-sell">卖</span>
-                    <span class="vue-realtime-sell vue-realtime-sell_price">7100</span>
-                    <span class="vue-realtime-auto-data">2018-08-17至2018-08-17</span>
-                    <span class="vue-realtime-auto-num">500</span>
-                </li>-->
-              </ul>
+              <ul class="vue-realtime-auto"  v-for='(catalog,index) in catalogList' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
             </div>
-            <div class="vue-tealtime-right">
+            <div class="vue-tealtime-right" v-for='(catalog,index) in catalogList' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
 	            	<div class="vue_right_yi">
 		            		<img src="../images/bj.png" alt="" />
 		            		<span>当前最多报价</span>
 	            	</div>
 	            	<div class="vue_right_er">
 		            		<span>卖：</span>
-		            		<ul>
-		            			<li>
-		            				<span>7800</span>
-		            				<span>7</span>
-		            			</li>
-		            			<li>
-		            				<span>7800</span>
-		            				<span>7</span>
-		            			</li>
-		            			<li>
-		            				<span>7800</span>
-		            				<span>7</span>
-		            			</li>
+		            		<ul class="bird_sell">
 		            		</ul>
 	            	</div>
 	            	<div class="vue_right_san">
 		            		<span>买：</span>
-		            		<ul>
-		            			<li>
-		            				<span>7800</span>
-		            				<span>7</span>
-		            			</li>
-		            			<li>
-		            				<span>7800</span>
-		            				<span>7</span>
-		            			</li>
-		            			<li>
-		            				<span>7800</span>
-		            				<span>7</span>
-		            			</li>
+		            		<ul class="bird_buy">
 		            		</ul>
 	            	</div>
             </div>

@@ -134,6 +134,8 @@
                       if(formatData.product_id==item.id){
                           mychart.init_dync_price('realtime_'+item.id);
                           mychart.OfferBird.renderDync();
+                          mychart.OfferBird.render('pan_' + item.id);
+                          mychart.OfferBird.renderStatic('static_data_' + item.id);
                       }
                   });
               });
@@ -222,6 +224,8 @@
                   mychart.OfferBird.init(formatData.data);
                   mychart.init_dync_price('realtime_' + select_product_id);
                   mychart.OfferBird.renderDync();
+                  mychart.OfferBird.render('pan_' + select_product_id);
+                  mychart.OfferBird.renderStatic('static_data_' + select_product_id);
               });
           }(jQuery);
       }
