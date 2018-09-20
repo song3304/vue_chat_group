@@ -1738,7 +1738,7 @@ li{
 .vue-tealtime-time {
 	height: 78%;
 	outline: initial!important;
-	width: 68%;
+	width: 67%;
 	margin: 5px 0 5px 2%;
 	float: left;
 }
@@ -1748,7 +1748,7 @@ li{
 .vue-realtime-auto li span{text-align: center;color: #FFFFFF;display: inline-block;}
 .vue-realtime-auto-time{width:8%;}
 .vue-realtime-auto-company{width: 17%;}
-.vue-realtime-auto-data{width:38%;letter-spacing:1px;}
+.vue-realtime-auto-data{width:39%;letter-spacing:1px;}
 .vue-realtime-auto-num{width: 12%;}
 .vue-realtime-buy_price,.vue-realtime-sell_price{width:15%!important;}
 .vue-realtime-buy{
@@ -2783,7 +2783,7 @@ to {top: 0;}
 	float: left;
 	width: 27%;
 	border: 1px solid #2f3641;
-	margin: -10px 0 0 0;
+	margin: -10px 0 0 1%;
 	height: 80%;
 }
 .vue_right_yi{
