@@ -88,7 +88,7 @@
                         <ul class="bird_sell brid_ul">
 
                         </ul>
-                        <div class="current_price"></div>                       
+                        <div class="current_price"></div>
                         <ul class="bird_buy brid_ul">
 
                         </ul>
@@ -145,15 +145,15 @@
 		            		<span>卖：</span>
 		            		<ul>
 		            			<li>
-		            				<span>7800</span>		            				
+		            				<span>7800</span>
 		            				<span>7</span>
 		            			</li>
 		            			<li>
-		            				<span>7800</span>		            				
+		            				<span>7800</span>
 		            				<span>7</span>
 		            			</li>
 		            			<li>
-		            				<span>7800</span>		            				
+		            				<span>7800</span>
 		            				<span>7</span>
 		            			</li>
 		            		</ul>
@@ -162,15 +162,15 @@
 		            		<span>买：</span>
 		            		<ul>
 		            			<li>
-		            				<span>7800</span>		            				
+		            				<span>7800</span>
 		            				<span>7</span>
 		            			</li>
 		            			<li>
-		            				<span>7800</span>		            				
+		            				<span>7800</span>
 		            				<span>7</span>
 		            			</li>
 		            			<li>
-		            				<span>7800</span>		            				
+		            				<span>7800</span>
 		            				<span>7</span>
 		            			</li>
 		            		</ul>
@@ -488,7 +488,7 @@
         return false
       },
       delUser: function (uid) {
-        if(this.formData.userIds.length==1){
+        if(this.groupList.groupHair.length!=0&&this.formData.userIds.length==1){
           this.tipsTag = true
           this.tipsMsg = '若清空好友，分组将被删除'
         }

@@ -800,9 +800,9 @@ ul {
 	border: solid 1px #4385F5;
 	/*margin: 5px 0 0 10px;*/
 	/*overflow-y: scroll;*/
-	margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 30px;
+	margin-left: 3%!important;
+	margin-right: 3%!important;
+	margin-top: 30px!important;
 	resize: none;
 	padding:0 20px;
 	line-height: 40px;
@@ -2630,7 +2630,7 @@ li{
 .vueleft-center-main{
 	font-size: 14px;
 	margin:30px 0 0 18px;
-	padding-right: 10px;		
+	padding-right: 10px;
 	color: #666666;
 	line-height: 28px;
 	text-align: justify;
@@ -2798,7 +2798,7 @@ to {top: 0;}
 	width: 50%;
 	height: 80%;
 	float: left;
-	padding-left: 5px;	
+	padding-left: 5px;
 }
 .vue_right_er{padding-left: 15px!important;}
 .vue_right_er span,.vue_right_san span{
@@ -2810,12 +2810,12 @@ to {top: 0;}
 	width: 67%;
 	height: 100%;
 	float: left;
-	margin: 1px 0;	
+	margin: 1px 0;
 }
 .vue_right_er ul li,.vue_right_san ul li{
 	height: 20px;
 	line-height: 20px;
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
 	margin-left: 5px;
 }
 .vue_right_er ul li span,.vue_right_san ul li span{
