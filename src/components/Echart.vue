@@ -215,7 +215,7 @@
     </div>
 
     <!--设置组名称-->
-    <div class="vu_fenzu_name" style="z-index: 98;background: #fff;left: 25%" v-show="newZuTag">
+    <div class="vu_fenzu_name" style="z-index: 98;background: #fff;left: 45%;top:36%;box-shadow: 5px 18px 5px #ccc;" v-show="newZuTag">
       <div class="vu_fen_zu_title">
         <span>设置组名称</span>
         <p class="vu_fen_zu_tier" @click="closeSetName"><span></span></p>
