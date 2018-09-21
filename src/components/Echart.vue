@@ -154,7 +154,7 @@
             <div v-if="user.plat=='match'&&this.companyLists.length==0" class="c_dingTips">暂无盯盘</div>
             <div v-if="user.plat=='trade'&&this.companyLists.length==0" class="c_dingTips">您还没有对任何人进行盯盘<br/>请<a href="/trade/collect/create">[添加盯盘]</a>
             </div>
-            <ul class="vu_fenzu_left_ul" style="width: 100%;height: 100%;">
+            <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height: 100%;">
               <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
                 <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
                 <ul class="vu_submenu vu_submenu_ul">
@@ -167,6 +167,104 @@
                   </li>
                 </ul>
               </li>
+              <!--假数据-->
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
+                <ul class="vu_submenu vu_submenu_ul">
+                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+                    <div class="vu_m-touxiang newQunFa">
+                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+                    </div>
+                    <a class="newQunFa">{{userList[userItem].name}}</a>
+                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                  </li>
+                </ul>
+              </li>
+              <!--假数据-->
             </ul>
           </div>
         </div>
@@ -205,7 +303,7 @@
     </div>
 
     <!--提示框-->
-    <div class="vu_del-popup" v-show="tipsTag" style="left:25%;">
+    <div class="vu_del-popup" v-show="tipsTag" style="left:45%;">
       <div class="vu_fen_zu_title">
         <span>提示</span>
         <p class="vu_fen_zu_tier"  @click="tipscancel"><span></span></p>
@@ -237,7 +335,7 @@
       </div>
     </div>
     <!--删除确认弹窗-->
-    <div class="vu_del-popup" v-show="Qunpopup">
+    <div class="vu_del-popup" v-show="Qunpopup" style="left: 45%;">
       <div class="vu_fen_zu_title">
         <span>删除</span>
         <p class="vu_fen_zu_tier"  @click="popcancel"><span></span></p>
@@ -331,14 +429,6 @@
         $('#myTabContent>div').css('height','0')
         $('#myTabContent>div').eq(index).css('height','auto')
       })
-      $(".vu_fenzu_left_ul").niceScroll({
-        cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
-        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-        cursorwidth: "5px", // 滚动条的宽度，单位：便素
-        background: "", // 轨道的背景颜色
-        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
-      });
     },
     methods: {
       //qunNew部分内容
@@ -380,37 +470,42 @@
       },
       openSetZu: function () {
         if(!this.newZuTag){
-          this.newZuTag = true
+          if(this.groupList.groupHair.length==4){
+            this.tipsTag = true
+            this.tipsMsg = '最多创建4个组'
+          }else{
+            this.newZuTag = true
+          }
         }
       },
       closeSetName: function () {
         this.newZuTag = false
       },
       submitGroup: function () {
-       if (this.formData.userIds.length < 1) {
-         // alert('请先选择人员，再创建组')
-         // this.tipsTag = true
-         // this.tipsMsg = '请先选择人员，再创建组'
-         this.placeholder = '请先选择人员，再创建组'
-         return false
-       } else{
-          if (this.createGroupName === '') {
-            this.placeholder = '请输入分组名称，再提交'
+          if (this.formData.userIds.length < 1) {
+            // alert('请先选择人员，再创建组')
+            // this.tipsTag = true
+            // this.tipsMsg = '请先选择人员，再创建组'
+            this.placeholder = '请先选择人员，再创建组'
             return false
+          } else{
+            if (this.createGroupName === '') {
+              this.placeholder = '请输入分组名称，再提交'
+              return false
+            }
+            this.formData.groupName = this.createGroupName
+            this.newZuTag = false
+            this.formData.groupType = 'group'
+            this.$emit('createGroupEvent', this.formData)
+            this.activeTag = this.formData.groupName
+            // this.formData.userIds = []
+            // this.formData.groupName = ''
+            this.createGroupName = ''
+            this.groupTag++
+            if(this.groupList.groupHair.length==0){
+              this.groupTag=0
+            }
           }
-          this.formData.groupName = this.createGroupName
-          this.newZuTag = false
-          this.formData.groupType = 'group'
-          this.$emit('createGroupEvent', this.formData)
-          this.activeTag = this.formData.groupName
-          // this.formData.userIds = []
-          // this.formData.groupName = ''
-          this.createGroupName = ''
-          this.groupTag++
-          if(this.groupList.groupHair.length==0){
-            this.groupTag=0
-          }
-        }
       },
       /* qunNew部分开始 */
       cjbj: function () {
@@ -739,5 +834,27 @@
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
+  }
+  .vu_fenzu_left_ul.scrollCss::-webkit-scrollbar
+  {
+    width: 6px;
+    height: 6px;
+    background-color: #eeedf6;
+  }
+
+  /*定义滚动条轨道 内阴影+圆角*/
+  .vu_fenzu_left_ul.scrollCss::-webkit-scrollbar-track
+  {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    border-radius: 4px;
+    background-color: #eeedf6;
+  }
+
+  /*定义滑块 内阴影+圆角*/
+  .vu_fenzu_left_ul.scrollCss::-webkit-scrollbar-thumb
+  {
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2);
+    background-color: #eee;
   }
 </style>
