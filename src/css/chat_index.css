@@ -1509,7 +1509,7 @@ li{
 	left: 0;
 	/*z-index: 100;*/
   z-index: 98;
-	width:73%;
+	/*width:73%;*/
 	height: 4%;
 }
 .vue-chart-head>div ul{
@@ -1520,9 +1520,9 @@ li{
 	clear: both;
 }
 .vue_kind_ul{
-	position: absolute;
+	/*position: absolute;
 	top: 0;
-	left:10px;
+	left:10px;*/
 	/*background-color: #ffffff;*/
 	max-height:95px;
 	overflow-y:auto ;

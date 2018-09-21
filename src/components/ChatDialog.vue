@@ -94,7 +94,7 @@
       $("#resizable").resizable({
         handles: "n",
         minHeight:height,
-        maxHeight:787
+        maxHeight:770
       });
     }
   }
