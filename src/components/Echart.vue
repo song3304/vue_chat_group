@@ -176,7 +176,7 @@
             <p v-show="formData.userIds.length==0">请从左侧选择人员</p>
             <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
               <ul>
-                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups)" :value="groups.groupId"><div>{{groups.groupName}}</div><span @click="zuDel($event,groups.groupId)"></span></li>
+                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId"><div>{{groups.groupName}}</div><span @click="zuDel($event,groups.groupId)"></span></li>
               </ul>
               <div class="c_newQunBox">
                 <div @click="saveZu">保存群组</div>
@@ -212,6 +212,15 @@
       </div>
       <p>{{tipsMsg}}</p>
       <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
+    </div>
+    <!--清空分组操作-->
+    <div class="vu_del-popup" v-show="kongTag" style="left:25%;">
+      <div class="vu_fen_zu_title">
+        <span>提示</span>
+        <p class="vu_fen_zu_tier"  @click="kongcancel"><span></span></p>
+      </div>
+      <p>清空好友，分组将被删除</p>
+      <div class="vu_fenzu_name_footer"><button @click="kongOK">确认</button> <span class="vu_fen_zu_tier" @click="kongcancel">取消</span></div>
     </div>
 
     <!--设置组名称-->
@@ -296,6 +305,8 @@
         createGroupName:'',//新建群组名称
         Qunpopup: false, // 确认弹窗关闭
         groupId:'',//删除组的
+        kongTag:false,//清空好友标识
+        groupTag:0,//组标识
       }
     },
     mounted() {
@@ -338,7 +349,9 @@
           this.tipsMsg = '请先创建组'
         }else{
           if(this.formData.userIds.length==0){
-            this.delConfirm()
+            if(this.groupList.groupHair.length!=0){
+              this.kongTag = true
+            }
           }else{
             this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)
           }
@@ -358,11 +371,12 @@
       popcancel: function () { // 关闭删除弹框
         this.Qunpopup = false
       },
-      onGroup: function (group) {
+      onGroup: function (group,index) {
         this.groupId = group.groupId
         this.activeTag = group.groupName
         this.formData.groupName = group.groupName
         this.formData.userIds = group.userIds
+        this.groupTag = index
       },
       openSetZu: function () {
         if(!this.newZuTag){
@@ -392,6 +406,10 @@
           // this.formData.userIds = []
           // this.formData.groupName = ''
           this.createGroupName = ''
+          this.groupTag++
+          if(this.groupList.groupHair.length==0){
+            this.groupTag=0
+          }
         }
       },
       /* qunNew部分开始 */
@@ -399,6 +417,13 @@
           this.showCjbj = true
           $('#mytrade_form').show();
           this.showCjbj = false
+      },
+      kongcancel: function () {//关闭清空提示框
+        this.kongTag = false
+      },
+      kongOK: function(){ //确认清空
+        this.kongTag = false
+        this.delConfirm()
       },
       tipscancel: function () {//关闭提示框
         this.tipsTag = false
@@ -447,10 +472,6 @@
         return false
       },
       delUser: function (uid) {
-        if(this.groupList.groupHair.length!=0&&this.formData.userIds.length==1){
-          this.tipsTag = true
-          this.tipsMsg = '若清空好友，分组将被删除'
-        }
         this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
       },
       dragqun: function (ev) {
@@ -509,15 +530,17 @@
         }
       },
       closeQunFa: function () {
-        this.showQunFa = false;
+        this.showQunFa = false
         if(!this.showQunFa){
           $('.vue_qun_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
             $('.vue_qun_offer').removeClass('animated bounce' )})
           $('.vue_bp_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
             $('.vue_bp_offer').removeClass('animated bounce' )})
         }
-      },
-      showShibie: function (event) {
+        console.log(this.groupTag,this.formData)
+        if(this.groupList.groupHair.length!=0&&this.formData.groupName!=""){
+          this.formData.userIds = this.groupList.groupHair[this.groupTag].userIds
+        }
       },
       /* qunNew部分结束 */
       kindclick: function (){
