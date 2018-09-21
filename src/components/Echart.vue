@@ -516,11 +516,8 @@
               $('.vue_qun_offer').removeClass('animated bounce' )})
             $('.vue_bp_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
               $('.vue_bp_offer').removeClass('animated bounce' )})
+            this.showQunFa = true
           }
-            var _this = this;
-            setTimeout(function () {
-              _this.showQunFa = true
-            },700)
         }else{
           // alert('请选择种类');
         }
