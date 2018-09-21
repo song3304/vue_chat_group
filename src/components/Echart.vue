@@ -300,7 +300,6 @@
         chooseG:false,
         tipsTag:false,//提示框
         tipsMsg:'',//提示信息
-        showCjbj:false,//成交报价
         activeTag:'',//组选中标识
         createGroupName:'',//新建群组名称
         Qunpopup: false, // 确认弹窗关闭
@@ -411,9 +410,8 @@
       },
       /* qunNew部分开始 */
       cjbj: function () {
-          this.showCjbj = true
           $('#mytrade_form').show();
-          this.showCjbj = false
+          this.showQunFa = false
       },
       kongcancel: function () {//关闭清空提示框
         this.kongTag = false
@@ -511,6 +509,7 @@
       /* qunNew.vue部分结束 */
       //群发种类
       qunFa: function () {
+        $('#mytrade_form').hide();
         if(this.chooseCatalog!=0){
           if(!this.showQunFa){
             $('.vue_qun_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
