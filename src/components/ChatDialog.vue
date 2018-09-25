@@ -14,6 +14,10 @@
         addFriTag:false,//添加好友标识
         verifymsg:'',//验证信息
         addTipsTag:false,//提示信息
+        duihuaXiao:false,//对话框缩小按钮
+        duihuaDa:true,//对话框扩大按钮
+        gerenDa:false,
+        gerenXiao:true,
       }
     },
     computed: {
@@ -87,6 +91,38 @@
       },
       tipscancel: function () {//关闭提示框
         this.addTipsTag = false
+      },
+      duihuada:function(){
+      	this.duihuaXiao=true
+      	this.duihuaDa=false
+      	$('.vu_m-chatmain').css('height','25.2%')
+      	$('.vu_xiao_main').hide()
+      	this.gerenXiao=false
+      	this.gerenDa=true
+      	$('.vu_m-text').css('height','20%')
+      	$('#vue_echart').css('height','72%')
+      	$('.vue-chart-foot').css('height','28.6%')
+      	$('.vu_resizable').attr('id','resizable')
+      	var height=$("#resizable").height()
+	      $("#resizable").resizable({
+	        handles: "n",
+	        minHeight:height,
+	        maxHeight:770
+	      });
+	      $('.ui-resizable-handle').show()
+      },
+      duihuaxiao:function(){
+      	this.duihuaXiao=false
+      	this.duihuaDa=true
+      	$('.vu_m-chatmain').css('height','5%')
+      	$('.vu_xiao_main').show()
+      	this.gerenXiao=true
+      	this.gerenDa=false
+      	$('.vu_m-text').css('height','100%')
+      	$('#vue_echart').css('height','93%')
+      	$('.vue-chart-foot').css('height','47.7%')
+      	$('.vu_resizable').removeAttr('id','resizable')
+      	$('.ui-resizable-handle').hide()
       }
     },
     mounted(){
@@ -101,24 +137,30 @@
 </script>
 
 <template>
-  <div class="vu_m-chatmain">
-    <div class="vu_m-chat">
+  <div class="vu_m-chatmain">  	
+    <div class="vu_m-chat">  	
       <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
       <div id="vu_chat" >
-        <div id="resizable">
-          <div class="vu_m-na tuo_tuo" v-if="session!=null && session.type=='user'">
+        <div class="vu_resizable">  <!--id="resizable"--> 
+        	<div class="vu_m_tubiao" @click="duihuada" v-show="duihuaDa"></div>	
+        	<div class="vu_m_tubiaoxia" @click="duihuaxiao" v-show="duihuaXiao"></div>	
+        	<div class="vu_m-na tuo_tuo" v-if="session!=null && session.type=='user'" v-show="gerenXiao">
+        		<p class="vu_m-na-p">个人信息：{{session!=null ? userList[session.id].name : ''}}</p>
+        	</div>
+          <div class="vu_m-na tuo_tuo" v-if="session!=null && session.type=='user'" v-show="gerenDa">
             <p class="vu_m-new">个人信息</p>
             <div class="vu_m-newqun"><img :src="userList[session.id].img" alt="" /><span v-if="userList[session.id].friend_type!=='friend'"></span></div>
             <span class="vu_m-na-name">{{session!=null ? userList[session.id].name : ''}}</span>
             <p class="vu_m-new_com">公司：{{userList[session.id].company_name}}</p>
             <p class="vu_m-new_phone">电话：<span>{{userList[session.id].phone}}</span></p>
-            <div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" v-show="relationNew()!='已是好友'" @click="openVerify">{{relationNew()}}</div>  <!--//加好友-->
+            <div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" v-show="relationNew()!='已是好友'" @click="openVerify">{{relationNew()}}</div> 
           </div>
           <div class="vu_m-na tuo_tuo" v-if="session==null">
             <p class="vu_m-new">暂无消息</p>
           </div>
           <div id="No_chat"  v-if="session==null"><img src="../images/wuxinxi.png" alt="" /><p>空空如也，赶紧去找小伙伴聊天吧！</p></div>
           <div class="vu_m-main">
+          	<div class="vu_xiao_main" v-if="session==null">空空如也，赶紧去找小伙伴聊天吧</div>
             <message :session="session" :user="user" :user-list="userList" @toReadEvent="toRead" @todayMsgEvent="todayMsg"></message>
             <send v-show="session!=null && session.type=='user'" :session="session" @openHistoryEvent="openHistory" @toReadEvent="toRead" @chatEvent="toChat" ></send>
           </div>
