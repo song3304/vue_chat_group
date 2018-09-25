@@ -297,7 +297,7 @@
         placeholder: '请输入分组名称.',
         newZuTag:false,
         groupMsg:'',//群发内容
-        chooseG:false,
+        chooseG:true,//默认开启报价识别
         tipsTag:false,//提示框
         tipsMsg:'',//提示信息
         activeTag:'',//组选中标识
