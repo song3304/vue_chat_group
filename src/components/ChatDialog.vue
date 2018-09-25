@@ -110,6 +110,7 @@
 	        maxHeight:770
 	      });
 	      $('.ui-resizable-handle').show()
+        $('#mytrade_form').css('height','86.6%')
       },
       duihuaxiao:function(){
       	this.duihuaXiao=false
@@ -123,6 +124,7 @@
       	$('.vue-chart-foot').css('height','47.7%')
       	$('.vu_resizable').removeAttr('id','resizable')
       	$('.ui-resizable-handle').hide()
+        $('#mytrade_form').css('height','67.2%')
       }
     },
     mounted(){
@@ -137,13 +139,13 @@
 </script>
 
 <template>
-  <div class="vu_m-chatmain">  	
-    <div class="vu_m-chat">  	
+  <div class="vu_m-chatmain">
+    <div class="vu_m-chat">
       <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
       <div id="vu_chat" >
-        <div class="vu_resizable">  <!--id="resizable"--> 
-        	<div class="vu_m_tubiao" @click="duihuada" v-show="duihuaDa"></div>	
-        	<div class="vu_m_tubiaoxia" @click="duihuaxiao" v-show="duihuaXiao"></div>	
+        <div class="vu_resizable">  <!--id="resizable"-->
+        	<div class="vu_m_tubiao" @click="duihuada" v-show="duihuaDa"></div>
+        	<div class="vu_m_tubiaoxia" @click="duihuaxiao" v-show="duihuaXiao"></div>
         	<div class="vu_m-na tuo_tuo" v-if="session!=null && session.type=='user'" v-show="gerenXiao">
         		<p class="vu_m-na-p">个人信息：{{session!=null ? userList[session.id].name : ''}}</p>
         	</div>
@@ -153,7 +155,7 @@
             <span class="vu_m-na-name">{{session!=null ? userList[session.id].name : ''}}</span>
             <p class="vu_m-new_com">公司：{{userList[session.id].company_name}}</p>
             <p class="vu_m-new_phone">电话：<span>{{userList[session.id].phone}}</span></p>
-            <div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" v-show="relationNew()!='已是好友'" @click="openVerify">{{relationNew()}}</div> 
+            <div class="vu_m-new_friend" v-if="userList[session.id].friend_type!=='friend'" v-show="relationNew()!='已是好友'" @click="openVerify">{{relationNew()}}</div>
           </div>
           <div class="vu_m-na tuo_tuo" v-if="session==null">
             <p class="vu_m-new">暂无消息</p>
