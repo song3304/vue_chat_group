@@ -110,7 +110,7 @@
 	        maxHeight:770
 	      });
 	      $('.ui-resizable-handle').show()
-        $('#mytrade_form').css('height','86.6%')
+        $('#mytrade_form').css('height','67.1%')
       },
       duihuaxiao:function(){
       	this.duihuaXiao=false
@@ -121,10 +121,10 @@
       	this.gerenDa=false
       	$('.vu_m-text').css('height','100%')
       	$('#vue_echart').css('height','93%')
-      	$('.vue-chart-foot').css('height','47.7%')
+      	$('.vue-chart-foot').css('height','44.7%')
       	$('.vu_resizable').removeAttr('id','resizable')
       	$('.ui-resizable-handle').hide()
-        $('#mytrade_form').css('height','67.2%')
+        $('#mytrade_form').css('height','86.6%')
       }
     },
     mounted(){
