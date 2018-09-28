@@ -48,7 +48,7 @@ ul {
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
 	/*height:25.2%;*/
-	height: 5%;
+	height: 5.4%;
 	/*position:absolute;*/
   position: fixed;
 	bottom: 22px;
@@ -2447,7 +2447,7 @@ li{
 .vue_kind-active{background-color: #4385f5;color: #FFFFFF!important;border-radius: 5px;}
 #No_chat{
 	position: absolute;
-	top:46px;
+	top:52px;
 	left:55%;
 	z-index: 2;
 	transform: translateX(-50%);
@@ -2814,7 +2814,7 @@ to {top: 0;}
 	width: 27%;
 	border: 1px solid #2f3641;
 	margin: -10px 0 0 1%;
-	height: 80%;
+	height: 85%;
 	overflow: hidden;
 }
 .vue_right_yi{
@@ -2870,7 +2870,7 @@ to {top: 0;}
 /*实时报价新增右边end*/
 /*2018.09.25调整发消息框start*/
 .vu_xiao_main{
-	height:30px;
+	height:50px;
 	text-align: center;
 	line-height: 45px;
 }

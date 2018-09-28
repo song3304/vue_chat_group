@@ -95,7 +95,7 @@
       duihuada:function(){
       	this.duihuaXiao=true
       	this.duihuaDa=false
-      	$('.vu_m-chatmain').css('height','25.2%')
+      	$('.vu_m-chatmain').css('height','25.6%')
       	$('.vu_xiao_main').hide()
       	this.gerenXiao=false
       	this.gerenDa=true
@@ -111,11 +111,22 @@
 	      });
 	      $('.ui-resizable-handle').show()
         $('#mytrade_form').css('height','67.1%')
+        var arr=[]
+        $("#resizable").resize(function(){
+        	var height=$("#resizable").height()        	
+        	arr.push(height)
+        	if(arr[0]<height){
+        		$('.vu_m_tubiaoxia').hide()
+        	}else if(arr[0]=height){
+        		$('.vu_m_tubiaoxia').show()
+        	}
+        })
+        
       },
       duihuaxiao:function(){
       	this.duihuaXiao=false
       	this.duihuaDa=true
-      	$('.vu_m-chatmain').css('height','5%')
+      	$('.vu_m-chatmain').css('height','5.4%')
       	$('.vu_xiao_main').show()
       	this.gerenXiao=true
       	this.gerenDa=false
@@ -132,7 +143,7 @@
       $("#resizable").resizable({
         handles: "n",
         minHeight:height,
-        maxHeight:770
+        maxHeight:770,       
       });
     }
   }

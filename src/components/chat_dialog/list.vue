@@ -34,6 +34,34 @@ export default {
       // var el = event.currentTarget
       // $('.vu_m-list-del .vu_m-list-del-num', el).hide()
       this.$emit('toReadEvent', value)
+      	this.duihuaXiao=true
+      	this.duihuaDa=false
+      	$('.vu_m-chatmain').css('height','25.6%')
+      	$('.vu_xiao_main').hide()
+      	this.gerenXiao=false
+      	this.gerenDa=true
+      	$('.vu_m-text').css('height','20%')
+      	$('#vue_echart').css('height','72%')
+      	$('.vue-chart-foot').css('height','28.6%')
+      	$('.vu_resizable').attr('id','resizable')
+      	var height=$("#resizable").height()
+	      $("#resizable").resizable({
+	        handles: "n",
+	        minHeight:height,
+	        maxHeight:770
+	      });
+	      $('.ui-resizable-handle').show()
+        $('#mytrade_form').css('height','67.1%')
+        var arr=[]
+        $("#resizable").resize(function(){
+        	var height=$("#resizable").height()        	
+        	arr.push(height)
+        	if(arr[0]<height){
+        		$('.vu_m_tubiaoxia').hide()
+        	}else if(arr[0]=height){
+        		$('.vu_m_tubiaoxia').show()
+        	}
+        })
     },
     deletePerson: function (index) {
       this.$emit('delSessionEvent', index)
