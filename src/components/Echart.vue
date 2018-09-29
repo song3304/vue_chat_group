@@ -18,9 +18,9 @@
 
             <!--右边切换选项-->
             <ul class="vue_company_species">
-              <li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" >
+              <li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" v-bind:cid="comspitem.id">
                 <span @click="changecom(comspitem,comindex)">{{comspitem.name}}</span>
-                <p @click="delcom(comindex)"><span></span></p>
+                <p @click="delcom(comspitem,comindex)"><span></span></p>
               </li>
             </ul>
           </div>
@@ -42,7 +42,7 @@
             <ul class="vue_company_species vue_people_species">
               <li v-for="(peospitem,peoindex) in peosplist" :class="{'peoactive': peospitem.isActive}">
                 <span @click="changepeo(peospitem,peoindex)">{{peospitem.nickname}}</span>
-                <p @click="delpeo(peoindex)"><span></span></p>
+                <p @click="delpeo(peospitem,peoindex)"><span></span></p>
               </li>
             </ul>
           </div>
@@ -589,8 +589,12 @@
         this.companyshow=false
         let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
         if (selectedItem) {
-          $('.vue_company_species>li').attr('class','')
-          $('.vue_company_species>li').eq(index).attr('class','comactive')
+          $('.vue_company_species>li').attr('class','');
+          $(this.comsplist).each(function(index,item){
+              if(item.id==companyitem.id){
+                  $('.vue_company_species>li').eq(index).attr('class','comactive');
+              }
+          });
         } else {
           $('.vue_company_species>li').attr('class','')
           this.comsplist.push({
@@ -608,41 +612,79 @@
         $('.vue_company_species>li').eq(comindex).attr('class','comactive');
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
-      delcom(comindex){//公司删除
-        this.comsplist.splice(comindex,1);
-        this.peopleList=[{nickname:'请先选择公司'}];//清空人员下拉框
-        this.peosplist=[];
-        this.selectCid='';
-        this.selectUid=0;
-        refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-
+      delcom(comspitem,comindex){//公司删除
+          var select_cid=this.selectCid;
+          var select_uid=this.selectUid;
+          if(comspitem.id==this.selectCid){
+                //删除列表中选中的公司
+                this.peopleList=[{nickname:'请先选择公司'}];//清空人员下拉框
+                this.peosplist=[];
+                this.selectCid='';
+                this.selectUid=0;
+                this.comsplist.splice(comindex,1);
+                $('.vue_company_species>li').attr('class','');
+          }else{
+                //删除列表中其他的公司
+                this.comsplist.splice(comindex,1);
+                $('.vue_company_species>li').attr('class','');
+                $(this.comsplist).each(function(index,element){
+                    if(element.id==select_cid){
+                        $('.vue_company_species>li').eq(index).attr('class','comactive');
+                    }
+                });
+                $(this.peosplist).each(function(index,element){
+                    if(element.id==select_uid){
+                        $('.vue_people_species>li').eq(index).attr('class','peoactive')
+                    }
+                });
+          }
+          refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
+
       addpeo(peopleitem,index){//人员追加到右侧
         this.peopleshow=false;
         this.selectUid=peopleitem.id;
         let peoedItem = this.peosplist.filter(v => v.nickname === peopleitem.nickname)[0];
         if (peoedItem) {
-          $('.vue_people_species>li').attr('class','')
-          $('.vue_people_species>li').eq(index).attr('class','peoactive')
+              $('.vue_people_species>li').attr('class','');
+              $(this.peosplist).each(function(index,item){
+                  if(item.id==peopleitem.id){
+                      $('.vue_people_species>li').eq(index).attr('class','peoactive');
+                  }
+              });
         }else if(this.selectUid==undefined){
-          	return false;
+          	  return false;
         }else {
-          $('.vue_people_species>li').attr('class','')
-          this.peosplist.push({
-            ...peopleitem,isActive:true
-          })
+              $('.vue_people_species>li').attr('class','');
+              this.peosplist.push({
+                ...peopleitem,isActive:true
+              })
         };
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       changepeo(peospitem,peoindex){//人员切换
-        this.selectUid=peospitem.id;
-        $('.vue_people_species>li').attr('class','');
-        $('.vue_people_species>li').eq(peoindex).attr('class','peoactive');
-        refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+          this.selectUid=peospitem.id;
+          $('.vue_people_species>li').attr('class','');
+          $('.vue_people_species>li').eq(peoindex).attr('class','peoactive');
+          refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
-      delpeo(peoindex){//人员删除
-        this.peosplist.splice(peoindex,1);
-        this.selectUid=0;
+      delpeo(peospitem,peoindex){//人员删除
+        var select_uid=this.selectUid;
+        if(peospitem.id==this.selectUid){
+            //删除列表中选中的人员
+            this.selectUid=0;
+            this.peosplist.splice(peoindex,1);
+            $('.vue_people_species>li').attr('class','')
+        }else{
+            //删除列表中其他的人员
+            this.peosplist.splice(peoindex,1);
+            $('.vue_people_species>li').attr('class','');
+            $(this.peosplist).each(function(index,element){
+                if(element.id==select_uid){
+                    $('.vue_people_species>li').eq(index).attr('class','peoactive');
+                }
+            });
+        }
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       }
     },
