@@ -47,8 +47,8 @@ ul {
 }
 .vu_m-chatmain{
 	/*padding:18% 0 0;*/
-	/*height:25.2%;*/
-	height: 5.4%;
+	height:25.6%;
+	/*height: 5.4%;*/
 	/*position:absolute;*/
   position: fixed;
 	bottom: 22px;
@@ -1027,6 +1027,7 @@ ul {
 	left: 0;
 	z-index: 1;
 	background-color: #e1dfee;
+  padding-bottom: 4px;
 }
 #vu_chat .vu_m-message {
 	height:80%;
@@ -1187,7 +1188,8 @@ li{
 	border-left-color: #2089ff;
 }
 .vu_m-text {
-	height:100%;
+  height:20%;
+  /*height:100%;*/
 	border-top: solid 1px #cccccc;
 	padding-left:1%;
 	padding-top: 5px;
@@ -1463,8 +1465,8 @@ li{
 	/*padding:38% 0 0;*/
 	/*margin-left: 19%;*/
 	width: 100%;
-	/*height:72%;*/
-  	height: 93%;
+	height:72%;
+  	/*height: 93%;*/
 	/*background:#101a29;*/
 	position:relative;
 }
@@ -1507,7 +1509,8 @@ li{
 .vue-chart-foot{
 	width: 100%;
 	/*height: 47.7%;*/
-  height: 44.7%;
+  /*height: 44.7%;*/
+  height: 28.6%;
 	background:#101a29;
 /*	margin-top: 10px;*/
 	position: relative;
@@ -2304,7 +2307,7 @@ li{
 .c_qunBox{
   width: 100%;
   /*height: 610px;*/
-  height: 98%;
+  height: 97.8%;
   overflow: hidden;
   background: #fff;
 }
@@ -2814,7 +2817,7 @@ to {top: 0;}
 	width: 27%;
 	border: 1px solid #2f3641;
 	margin: -10px 0 0 1%;
-	height: 85%;
+	height: 84%;
 	overflow: hidden;
 }
 .vue_right_yi{
@@ -2873,6 +2876,7 @@ to {top: 0;}
 	height:50px;
 	text-align: center;
 	line-height: 45px;
+  display: none;
 }
 .vu_resizable{height: 100%;}
 .vu_m-na-p{

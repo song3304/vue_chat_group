@@ -14,8 +14,8 @@
         addFriTag:false,//添加好友标识
         verifymsg:'',//验证信息
         addTipsTag:false,//提示信息
-        duihuaXiao:false,//对话框缩小按钮
-        duihuaDa:true,//对话框扩大按钮
+        duihuaXiao:true,//对话框缩小按钮
+        duihuaDa:false,//对话框扩大按钮
         gerenDa:false,
         gerenXiao:true,
       }
@@ -110,10 +110,10 @@
 	        maxHeight:770
 	      });
 	      $('.ui-resizable-handle').show()
-        $('#mytrade_form').css('height','67.1%')
+        $('#mytrade_form').css('height','66.8%')
         var arr=[]
         $("#resizable").resize(function(){
-        	var height=$("#resizable").height()        	
+        	var height=$("#resizable").height()
         	arr.push(height)
         	if(arr[0]<height){
         		$('.vu_m_tubiaoxia').hide()
@@ -121,7 +121,7 @@
         		$('.vu_m_tubiaoxia').show()
         	}
         })
-        
+
       },
       duihuaxiao:function(){
       	this.duihuaXiao=false
@@ -139,11 +139,27 @@
       }
     },
     mounted(){
+      this.gerenXiao=false
+      this.gerenDa=true
+      $('.vu_resizable').attr('id','resizable')
+      $('.ui-resizable-handle').show()
+      $('#mytrade_form').css('height','66.8%')
+      var arr=[]
+      $("#resizable").resize(function(){
+        var height=$("#resizable").height()
+        arr.push(height)
+        if(arr[0]<height){
+          $('.vu_m_tubiaoxia').hide()
+        }else if(arr[0]=height){
+          $('.vu_m_tubiaoxia').show()
+        }
+      })
+
     	var height=$("#resizable").height()
       $("#resizable").resizable({
         handles: "n",
         minHeight:height,
-        maxHeight:770,       
+        maxHeight:770,
       });
     }
   }
