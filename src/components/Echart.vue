@@ -582,25 +582,30 @@
       },
 
       addcom(companyitem,index){//公司添加到右侧
-        this.peopleList=companyitem.members;//联动人员下拉框
-        this.selectCid=companyitem.id;
-        this.selectUid=0;
-        this.peosplist=[];
-        this.companyshow=false
-        let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
-        if (selectedItem) {
-          $('.vue_company_species>li').attr('class','');
-          $(this.comsplist).each(function(index,item){
-              if(item.id==companyitem.id){
-                  $('.vue_company_species>li').eq(index).attr('class','comactive');
-              }
-          });
-        } else {
-          $('.vue_company_species>li').attr('class','')
-          this.comsplist.push({
-            ...companyitem ,isActive:true
-          })
-        };
+          if(this.comsplist.length>4){
+                return;//最多选择五家公司
+          }else{
+                this.peopleList=companyitem.members;//联动人员下拉框
+                this.selectCid=companyitem.id;
+                this.selectUid=0;
+                this.peosplist=[];
+                this.companyshow=false
+                let selectedItem = this.comsplist.filter(v => v.name === companyitem.name)[0];
+                if (selectedItem) {
+                      $('.vue_company_species>li').attr('class','');
+                      $(this.comsplist).each(function(index,item){
+                          if(item.id==companyitem.id){
+                              $('.vue_company_species>li').eq(index).attr('class','comactive');
+                          }
+                      });
+                } else {
+                      $('.vue_company_species>li').attr('class','');
+                      this.comsplist.push({
+                        ...companyitem ,isActive:true
+                      })
+                };
+          }
+
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       changecom(comspitem,comindex){//公司切换
@@ -642,24 +647,28 @@
       },
 
       addpeo(peopleitem,index){//人员追加到右侧
-        this.peopleshow=false;
-        this.selectUid=peopleitem.id;
-        let peoedItem = this.peosplist.filter(v => v.nickname === peopleitem.nickname)[0];
-        if (peoedItem) {
-              $('.vue_people_species>li').attr('class','');
-              $(this.peosplist).each(function(index,item){
-                  if(item.id==peopleitem.id){
-                      $('.vue_people_species>li').eq(index).attr('class','peoactive');
-                  }
-              });
-        }else if(this.selectUid==undefined){
-          	  return false;
-        }else {
-              $('.vue_people_species>li').attr('class','');
-              this.peosplist.push({
-                ...peopleitem,isActive:true
-              })
-        };
+            if(this.peosplist.length>4){
+                 return;//最多选择五个人员
+            }else{
+                this.peopleshow=false;
+                this.selectUid=peopleitem.id;
+                let peoedItem = this.peosplist.filter(v => v.nickname === peopleitem.nickname)[0];
+                if (peoedItem) {
+                      $('.vue_people_species>li').attr('class','');
+                      $(this.peosplist).each(function(index,item){
+                          if(item.id==peopleitem.id){
+                              $('.vue_people_species>li').eq(index).attr('class','peoactive');
+                          }
+                      });
+                }else if(this.selectUid==undefined){
+                      return false;
+                }else {
+                      $('.vue_people_species>li').attr('class','');
+                      this.peosplist.push({
+                        ...peopleitem,isActive:true
+                      })
+                };
+            }
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       changepeo(peospitem,peoindex){//人员切换
