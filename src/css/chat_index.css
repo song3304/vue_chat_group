@@ -1027,7 +1027,7 @@ ul {
 	left: 0;
 	z-index: 1;
 	background-color: #e1dfee;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 #vu_chat .vu_m-message {
 	height:80%;
@@ -1188,12 +1188,13 @@ li{
 	border-left-color: #2089ff;
 }
 .vu_m-text {
-  height:20%;
+  /*height:20%;*/
   /*height:100%;*/
 	border-top: solid 1px #cccccc;
 	padding-left:1%;
-	padding-top: 5px;
+	padding-top: 8px;
 }
+
 .vu_m-text textarea {
 	/*padding: 27px 10px 45px 10px;*/
 	/*margin:27px 0 0 10px;*/
