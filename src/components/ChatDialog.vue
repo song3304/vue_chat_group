@@ -139,7 +139,22 @@
       }
     },
     mounted(){
-      this.duihuada();
+      this.gerenXiao=false
+      this.gerenDa=true
+      $('.vu_resizable').attr('id','resizable')
+      $('.ui-resizable-handle').show()
+      $('#mytrade_form').css('height','66.8%')
+      var arr=[]
+      $("#resizable").resize(function(){
+        var height=$("#resizable").height()
+        arr.push(height)
+        if(arr[0]<height){
+          $('.vu_m_tubiaoxia').hide()
+        }else if(arr[0]=height){
+          $('.vu_m_tubiaoxia').show()
+        }
+      })
+
     	var height=$("#resizable").height()
       $("#resizable").resizable({
         handles: "n",
