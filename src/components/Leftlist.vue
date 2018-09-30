@@ -1,7 +1,8 @@
 <template>
 	<div id="leftlist">
 		<div id="leftlist_nowdate">
-			<a target="_blank" href="'/'+user.plat+'/index/index'"><img :src="user.img" alt="" /></a>
+      <a v-if="user.plat=='match'" target="_blank" href='/match/profile/index'><img :src="user.img" alt="" /></a>
+      <a v-if="user.plat=='trade'" target="_blank" href='/trade/profile/index'><img :src="user.img" alt="" /></a>
 			<span>{{user.name}}</span>
 			<a v-if="user.plat=='match'" href='/match/auth/logout.html'>[退出]</a>
       <a v-if="user.plat=='trade'" href='/trade/auth/logout.html'>[退出]</a>
@@ -312,7 +313,7 @@
 	    	return yue+'月'+tian+'日'
 	    },
 	    shifen: function(popCms){
-	    	var yue=popCms.create_time.substring(11,16)	    	
+	    	var yue=popCms.create_time.substring(11,16)
 	    	return yue
 	    }
 	},
