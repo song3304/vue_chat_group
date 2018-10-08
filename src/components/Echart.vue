@@ -12,6 +12,7 @@
               <span class="vue_chat_jiantou"></span>
               <!--下拉表-->
 	            <ul class="vue_company_ul" v-show="companyshow">
+	            	<li class="vue_company_ul_test">最多显示五个公司</li>
 	              <li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
 	            </ul>
             </div>

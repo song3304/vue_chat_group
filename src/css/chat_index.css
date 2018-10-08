@@ -1643,7 +1643,7 @@ li{
 	position: absolute;
 	top:27px;
 	left: 0;
-	width: 210px;
+	width: 220px;
 	max-height: 168px;
 	background-color: #ffffff;
 	border-radius: 5px;
@@ -1655,7 +1655,7 @@ li{
 	height: 24px;
 	line-height: 24px;
 	padding-left: 5px;
-	width: 210px;
+	width: 220px;
 	overflow: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;
@@ -2957,3 +2957,8 @@ to {top: 0;}
 	to{color: #FF1400;font-weight: normal;}
 }
 /*2018.09.25调整发消息框end*/
+.vue_company_ul_test{
+	font-size: 12px;
+	color: #999999;
+	text-align: center;
+}
