@@ -506,3 +506,27 @@ h1 a {
   border-color:#36a91c;
   color: #36a91c ;
 }
+/*滚动样式 start*/
+.leftlist_people_ul::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+  background-color: #eeedf6;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+.leftlist_people_ul::-webkit-scrollbar-track
+{
+  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+  border-radius: 4px;
+  background-color: #E1DFEE;
+}
+
+/*定义滑块 内阴影+圆角*/
+.leftlist_people_ul::-webkit-scrollbar-thumb
+{
+  border-radius: 4px;
+  /*-webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2);*/
+  background-color: #CCCCCC;
+}
+/*滚动样式 end*/
