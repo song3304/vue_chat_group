@@ -466,3 +466,43 @@ h1 a {
   background-color: #e1e1e1;
 }
 /*群组滚动样式 end*/
+
+/*右侧撮合贸易筛选*/
+.vue_leftlist_people .peopleChooseCuo{
+  width: 70px;
+  height: 22px;
+  line-height: 20px;
+  font-size: 14px;
+  float: right;
+  background: #fff;
+  margin-top: 9px;
+  border:1px solid #CDCDCD;
+  border-radius: 22px;
+  text-align: center;
+  color: #333;
+  margin-right:12px;
+  cursor: pointer;
+}
+.vue_leftlist_people .peopleChooseCuo.chooseCuo{
+  border-color:#EE5207;
+  color: #EE5207 ;
+}
+.vue_leftlist_people .peopleChooseMao{
+  width: 84px;
+  height: 22px;
+  line-height: 20px;
+  font-size: 14px;
+  float: right;
+  background: #fff;
+  margin-top: 9px;
+  border:1px solid #CDCDCD;
+  border-radius: 22px;
+  text-align: center;
+  color: #333;
+  margin-right:8px;
+  cursor: pointer;
+}
+.vue_leftlist_people .peopleChooseMao.chooseMao{
+  border-color:#36a91c;
+  color: #36a91c ;
+}

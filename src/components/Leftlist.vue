@@ -69,7 +69,10 @@
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people" v-if="searchData">
-      <p>大厅成员</p>
+      <p>大厅成员
+        <span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>
+        <span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合人员</span>
+      </p>
       <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
       <ul class="leftlist_people_ul">
         <li v-for="item in searchData" @click="firendchat(item.id)" v-if="item.plat!='user'">
@@ -147,22 +150,25 @@
 	        tingList:null,
 	        verifymsg:'',//验证信息
 	        lefttan:-1,
-	        vuenewxiang:false
+	        vuenewxiang:false,
+          chooseCuo:false,//撮合选中标志
+          chooseMao:false,//贸易院中标志
+          allData:'',
   		}
   	},
     computed: {
-      searchData: function () {
 
+      searchData: function () {
         var search_data;
         if (this.searchKey === '') {
-          search_data = this.chat_hall_members
+          search_data = this.allData
         } else {
-          search_data = this.chat_hall_members.filter(item=>item.name.indexOf(this.searchKey)>=0)
+          search_data = this.allData.filter(item=>item.name.indexOf(this.searchKey)>=0)
         }
         for(var i=0,lg=search_data.length;i<lg;i++){
           search_data[i].isOnline = this.onlineUserList.hasOwnProperty(search_data[i].id)
         }
-        search_data.sort(function(a,b){return a.isOnline?-1:(b.isOnline?1:-1)})
+        // search_data.sort(function(a,b){return a.isOnline?-1:(b.isOnline?1:-1)})
         return search_data;
       },
     isNull: function() {
@@ -187,6 +193,18 @@
       }
     },
   methods: {
+    choosePeople: function(choosePeo){
+      if(choosePeo=='mao'){
+        this.chooseMao = true
+        this.chooseCuo = false
+        this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('trade')>=0)
+      }
+      if(choosePeo=='cuo'){
+        this.chooseCuo = true
+        this.chooseMao = false
+        this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('match')>=0)
+      }
+    },
     openVerify: function () {
       if(this.isCanSendVerify()){
         this.firendtan = false
@@ -278,6 +296,14 @@
     }
   },
 	mounted() {
+  	  if(this.user.plat=='match'){
+  	    this.chooseMao = true
+        this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('trade')>=0)
+      }
+      if(this.user.plat=='trade'){
+        this.chooseCuo = true
+        this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('match')>=0)
+      }
 	    $(".vue_leftlist_ul").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
