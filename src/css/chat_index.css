@@ -2065,6 +2065,7 @@ li{
 	height: 16px;
 	background:url(../images/yiding.png) -71px -68px ;
 	margin: 2px;
+  cursor: pointer;
 }
 .vue_leftlist_close:hover{
 	background-color: #ef6e6e;
