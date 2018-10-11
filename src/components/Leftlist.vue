@@ -157,8 +157,17 @@
   		}
   	},
     computed: {
-
       searchData: function () {
+        if(this.user.plat=='match'){
+          this.chooseMao = true
+          this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('trade')>=0)
+          this.chooseCuo = false
+        }
+        if(this.user.plat=='trade'){
+          this.chooseCuo = true
+          this.chooseMao = false
+          this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('match')>=0)
+        }
         var search_data;
         if (this.searchKey === '') {
           search_data = this.allData
@@ -296,14 +305,6 @@
     }
   },
 	mounted() {
-  	  if(this.user.plat=='match'){
-  	    this.chooseMao = true
-        this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('trade')>=0)
-      }
-      if(this.user.plat=='trade'){
-        this.chooseCuo = true
-        this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('match')>=0)
-      }
 	    $(".vue_leftlist_ul").niceScroll({
 	    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
 	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
