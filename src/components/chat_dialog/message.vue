@@ -62,9 +62,9 @@ export default {
 	     }
 		  	var el = document.getElementById('vu_m_mess_new')
 	      var i=setTimeout(function () {		      	
-	        el.scrollTop = el.scrollHeight - localStorage.aa+1
-	        localStorage.aa = el.scrollHeight-1
-	      }, 10)
+	        el.scrollTop = el.scrollHeight - localStorage.aba+1
+	        localStorage.aba = el.scrollHeight-1
+	      }, 50)
 	      if(el.scrollTop==0){
 	      	return false;
 	      }

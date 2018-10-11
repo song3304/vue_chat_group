@@ -408,8 +408,8 @@ ul {
 	background-color: #e42b2b;
 	color: #FFFFFF;
 	font-size: 12px;
-	height: 15px;
-	width: 15px;
+	height: 16px;
+	width: 16px;
 	text-align: center;
 	line-height: 15px;
 	overflow: hidden;
@@ -455,17 +455,18 @@ ul {
 }
 .vu_delet-li{
 	position: absolute;
-	right:17.5px;
-	top:22.5px;
+	right:17px;
+	top:23px;
 	width:16px;
 	height:16px;
 	border-radius: 50%;
-	background:#EEEEEE url(../images/qie_tu.png) -3px -22px;
+	background:#EEEEEE url(../images/qie_tu.png) -4px -23px;
 	display:none;
 	z-index: 3;
+	border: 1px solid #525159;
 }
 .vu_delet-li:hover{
-	background:#EEEEEE url(../images/qie_tu.png) -3px -43px;
+	background:#EEEEEE url(../images/qie_tu.png) -4px -44px;
 }
 .vu_submenu-name{cursor: pointer;}
 .vu_submenu-none{height: 50px;text-align: center;line-height: 50px;border-bottom: 1px solid #cccccc;font-size: 14px;color: #333333;}
