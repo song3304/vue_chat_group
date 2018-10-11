@@ -154,19 +154,22 @@
           chooseCuo:false,//撮合选中标志
           chooseMao:false,//贸易院中标志
           allData:'',
+          dataTag:1,
   		}
   	},
     computed: {
       searchData: function () {
-        if(this.user.plat=='match'){
-          this.chooseMao = true
-          this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('trade')>=0)
-          this.chooseCuo = false
-        }
-        if(this.user.plat=='trade'){
-          this.chooseCuo = true
-          this.chooseMao = false
-          this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('match')>=0)
+        if(this.dataTag == 1){
+          if(this.user.plat=='match'){
+            this.chooseMao = true
+            this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('trade')>=0)
+            this.chooseCuo = false
+          }
+          if(this.user.plat=='trade'){
+            this.chooseCuo = true
+            this.chooseMao = false
+            this.allData = this.chat_hall_members.filter(item=>item.plat.indexOf('match')>=0)
+          }
         }
         var search_data;
         if (this.searchKey === '') {
@@ -203,6 +206,7 @@
     },
   methods: {
     choosePeople: function(choosePeo){
+      this.dataTag = 2
       if(choosePeo=='mao'){
         this.chooseMao = true
         this.chooseCuo = false
