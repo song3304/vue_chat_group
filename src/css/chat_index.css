@@ -168,6 +168,7 @@ ul {
 	font-weight: 550;
 	overflow: hidden;
 	width: 125px;
+  cursor: default;
 }
 .vue-head .Vue_meg{
 	position: absolute;
