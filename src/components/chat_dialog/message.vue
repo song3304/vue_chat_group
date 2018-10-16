@@ -58,16 +58,15 @@ export default {
 			this.scroll = document.getElementById('vu_m_mess_new').scrollTop
 		  if(this.scroll==0){
 		  	if (session != null) {
-	        this.$emit('todayMsgEvent', session)	        
-	     }
-		  	var el = document.getElementById('vu_m_mess_new')
-	      var i=setTimeout(function () {		      	
-	        el.scrollTop = el.scrollHeight - localStorage.aba+1
-	        localStorage.aba = el.scrollHeight-1
-	      }, 50)
-	      if(el.scrollTop==0){
-	      	return false;
-	      }
+	        this.$emit('todayMsgEvent', session)	
+	        var el = document.getElementById('vu_m_mess_new')	     
+	  	 		setTimeout(function () {		      	
+			        el.scrollTop = el.scrollHeight - localStorage.aba+1
+			        localStorage.aba = el.scrollHeight-1
+			        return false;
+		      }, 50)
+	  	 		return false;
+	     	}
 		  }
 		},
   },
