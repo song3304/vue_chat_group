@@ -191,7 +191,7 @@
           <div class="vu_qunnew-que newQunFa">
             <!--<div>*请您核对群发消息内容:</div>-->
             <form id="addQuickForm" class="form-horizontal form form-builder" style="height: 100%">
-              <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" placeholder="请您粘贴信息"></textarea>
+              <textarea class="row" id="groupHairMsg" name="groupHairMsg" v-model="groupMsg" :placeholder="placeholderMsg" @click="changePh"></textarea>
             </form>
           </div>
           <div class="c_openBox">
@@ -307,6 +307,7 @@
         groupId:'',//删除组的
         kongTag:false,//清空好友标识
         groupTag:0,//组标识
+        placeholderMsg:'请您粘贴信息',//报价框提示文字
       }
     },
     mounted() {
@@ -334,6 +335,9 @@
     },
     methods: {
       //qunNew部分内容
+      changePh:function(){
+        this.placeholderMsg = '请您粘贴信息'
+      },
       saveZu: function () {
         this.groupId = $('.c_active').val()
         if(this.formData.groupName==""){
@@ -440,6 +444,7 @@
         this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg, this.chooseG)
         // this.formData.userIds = []
         // this.close() // 关闭窗口
+        this.placeholderMsg = this.groupMsg
         this.groupMsg = ''
       },
       checkAll: function (event, userIds) {
