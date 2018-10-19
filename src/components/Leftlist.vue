@@ -15,8 +15,14 @@
 					<!--<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" @click="wenxiang">-->
 						<!--<span>{{leftitem.time}}</span>
 						<p>{{leftitem.title}}</p>-->
+						<p v-if="$index>0" class="redian_news">
+							<span class="redian_news_span" v-if="match_hall_cms[$index].time!==match_hall_cms[$index-1].time">{{leftitem|lastDate}}</span>
+						</p>
+						<p v-if="$index==0" class="redian_news">
+							<span class="redian_news_span">{{leftitem|lastDate}}</span>
+						</p>
 						<div class="vue_leftlist_left">
-							<p>{{leftitem|lastDate}}</p>
+							<!--<p>{{leftitem|lastDate}}</p>-->												
 							<span>{{leftitem|lastTime}}</span>
 						</div>
 						<div class="vue_leftlist_center">
@@ -202,7 +208,8 @@
         }else{
           return false
         }
-      }
+      },
+      
     },
   methods: {
     choosePeople: function(choosePeo){
@@ -333,6 +340,7 @@
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
+	    $('.redian_news_span').parent().parent().css('margin-top','35px')
 	},
 	filters: {
 		lastTime: function (leftitem) {

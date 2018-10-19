@@ -15,6 +15,7 @@
 	            	<li class="vue_company_ul_test">最多显示五个公司</li>
 	              <li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
 	            </ul>
+	            <br clear="all"/>
             </div>
 
             <!--右边切换选项-->

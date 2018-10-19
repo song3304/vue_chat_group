@@ -100,6 +100,7 @@ new Vue({
   template: `<div id="chat_app">
   				<div class="loader"></div>
   				<div class="vue-head"><a :href="'/'+user.plat+'/index/index'"><span></span>返回系统主页</a>	<span><a href="#" class="Vue_souye">直播间首页</a><a class="Vue_meg" href="/pindao" target="_blank">MEG资讯</a></span></div>
+  			<div class="room_homepage">
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
 		    <div id="vue_main_main">
 		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"></echart>
@@ -108,7 +109,7 @@ new Vue({
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
 				<qunnew v-show="panel_show.is_qun_show" :user="user" :userList="userList" :companyList="companyList" :groupMsg="groupMsg" :groupList="groupList" @createGroupEvent="createGroup" @closeEvent="closePanel" @sendGroupMsgEvent="sendGroupMsg" ></qunnew>
 				<p class="vue_m_m_foot">Copyright©2017 - 2022 沪ICP备16041384号-2</p>
-				</div>
+				</div></div>
 				<leftlist :match_hall_cms="match_hall_cms" :chat_hall_members="chat_hall_members" :user="user" :currentCms="currentCms" :popCms="popCms" :onlineUserList="onlineUserList"  :userList="userList" @openTempTalkEvent="openTempTalk"  @addFriendEvent="addFriend" @getCmsDetailEvent="getCmsDetail"></leftlist>
 				</div>`,
   created: function () {

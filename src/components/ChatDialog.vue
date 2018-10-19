@@ -100,7 +100,7 @@
       	this.gerenXiao=false
       	this.gerenDa=true
       	$('.vu_m-text').css('height','20%')
-      	$('#vue_echart').css('height','72%')
+      	$('#vue_echart').css('height','80%')
       	$('.vue-chart-foot').css('height','28.6%')
       	$('.vu_resizable').attr('id','resizable')
       	var height=$("#resizable").height()
@@ -131,7 +131,7 @@
       	this.gerenXiao=true
       	this.gerenDa=false
       	$('.vu_m-text').css('height','100%')
-      	$('#vue_echart').css('height','93%')
+      	$('#vue_echart').css('height','100%')
       	$('.vue-chart-foot').css('height','44.7%')
       	$('.vu_resizable').removeAttr('id','resizable')
       	$('.ui-resizable-handle').hide()

@@ -1,5 +1,7 @@
 <template>
-	<div id="vu_friend" @click="chuangjian">
+	<div id="vu_friend" @click="chuangjian" class="resizabl"> 
+			
+		
 	    <!--<div class="vu_m-search">
 	      <input type="text" id="vu_search" placeholder="查找联系人" @keyup.enter="search" />
 	      <div @click="search"></div>
@@ -92,7 +94,7 @@ export default {
     }
   },
   components: {companyPanel, groupPanel, searchDialog},
-  watch: { },
+  watch: {},
   methods: {
     // 切换
     clickTab: function (index) {
@@ -175,7 +177,21 @@ export default {
     },
   },
   computed: {
-
-  }
+		
+  },
+  mounted(){
+//    $(".resizabl").resizable({
+//      handles: "e",       
+//    });
+//    $(".resizabl").resize(function(){
+//      var widt=$("#vu_friend").width()
+//      var wid=$(".room_homepage").width()-7
+//      var nuw=(widt/wid)*100
+//      $("#vu_friend").width(nuw+"%")
+//      $("#vue_main_main").width(98-nuw+"%")
+//      $('.vu_m-chatmain').width(83.5-nuw+"%")
+//    })
+      
+    }
 }
 </script>
