@@ -88,7 +88,11 @@ new Vue({
     // 全部成员
     chat_hall_members: _chat_hall_members,
     // 全部快讯消息
-    match_hall_cms:match_hall_cms
+    match_hall_cms:match_hall_cms,
+      //全部种类
+      match_hall_catalogs:match_hall_catalogs,
+      //全部公司
+      match_hall_companies:match_hall_companies
   },
   // sockets: {
   // 所有sockect 事件放在这
@@ -102,7 +106,7 @@ new Vue({
   				<div class="vue-head"><a :href="'/'+user.plat+'/index/index'"><span></span>返回系统主页</a>	<span><a href="#" class="Vue_souye">直播间首页</a><a class="Vue_meg" href="/pindao" target="_blank">MEG资讯</a></span></div>
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
 		    <div id="vue_main_main">
-		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"></echart>
+		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" :match_hall_catalogs="match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat" @addFriendEvent="addFriend" ></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>

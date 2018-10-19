@@ -13,7 +13,7 @@
               <!--下拉表-->
 	            <ul class="vue_company_ul" v-show="companyshow">
 	            	<li class="vue_company_ul_test">最多显示五个公司</li>
-	              <li v-for="(companyitem,index) in companyList" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+	              <li v-for="(companyitem,index) in match_hall_companies" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
 	            </ul>
             </div>
 
@@ -60,7 +60,7 @@
         </div>-->
         <!--下拉表-->
         <ul class="vue_kind_ul">  <!--v-show="kindshow"-->
-          <li v-for="(catalogItem,index) in catalogList" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
+          <li v-for="(catalogItem,index) in match_hall_catalogs" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
         </ul>
         <!--右边切换选项-->
         <!--<ul class="vue_kind_species">
@@ -71,7 +71,7 @@
       </div>
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
 
-        <div v-for='(catalog,index) in catalogList'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
+        <div v-for='(catalog,index) in match_hall_catalogs'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
           <div class="col-xs-8 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
           <div class="col-xs-3 col-md-3 col-sm-12 price-list">
                 <div class="">
@@ -118,9 +118,9 @@
               <span>实时报价</span>
             </div>
             <div class="vue-tealtime-time">
-              <ul class="vue-realtime-auto"  v-for='(catalog,index) in catalogList' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
+              <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
             </div>
-            <div class="vue-tealtime-right" v-for='(catalog,index) in catalogList' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
+            <div class="vue-tealtime-right" v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
 	            	<div class="vue_right_yi">
 		            		<img src="../images/bj.png" alt="" />
 		            		<span>当前最多报价</span>
@@ -270,25 +270,23 @@
   //require('echarts/lib/component/title')
   export default {
     name: 'hello',
-    props: ['user', 'userList', 'groupList', 'companyLists'],
+    props: ['user', 'userList', 'groupList', 'companyLists','match_hall_catalogs','match_hall_companies'],
     data() {
       return {
       	activeIndex:0,
         kindshow:false,
         companyshow:false,
         peopleshow:false,
-        catalogList:match_hall_catalogs,
-        companyList:match_hall_companies,
         peopleList:[{nickname:'请先选择公司'}],
         comsplist:[],
         peosplist:[],
-        selectCatalogName:match_hall_catalogs[0].name,
-        selectPid:match_hall_catalogs[0].id,
+        selectCatalogName:this.match_hall_catalogs[0].name,
+        selectPid:this.match_hall_catalogs[0].id,
         selectUid:0,
         selectCid:'',
         isActive:false,
         chooseTag:1,//选择标识
-        chooseCatalog:match_hall_catalogs[0].catalog_id,//选中种类
+        chooseCatalog:this.match_hall_catalogs[0].catalog_id,//选中种类
         showQunFa:false,//显示群发
         //qunNew部分内容
         formData: {
@@ -573,7 +571,7 @@
 
       addcatalog(catalogItem,index){//种类切换
       	this.activeIndex = index
-        this.catalogList.map((v,i)=>{
+        this.match_hall_catalogs.map((v,i)=>{
           if(index!=i){
             v.show=0
           }else{
