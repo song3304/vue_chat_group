@@ -267,7 +267,7 @@ function OfferBird()
             this.dyncObj.prepend(html);
         }
 		if(this.buy_price.length==0&&this.sell_price.length==0){
-			var html = '<li style="margin-left:20px;font-size:12px;">暂无数据</li>';
+			var html = '<li style="margin-left:20px;font-size:12px;color:#ffffff;">暂无数据</li>';
             this.dyncObj.prepend(html);
 		}		
 	}

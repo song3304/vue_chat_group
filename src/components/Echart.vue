@@ -3,6 +3,13 @@
     <div class="vue_echart" v-show="!showQunFa">
       <!--切换选项-->
       <div class="vue_chart_yi">
+      	<div class="vue_chart_usgai"></div>
+      	<div class="vue_chart_us">     		
+      		<p v-show="chartusyi" class="chart_usyi" @click="chartus_yi"></p>
+      		<p v-show="chartuser" class="chart_user" @click="chartus_er">√</p>
+      		<span @click="chartus_yier">我的大盘</span>      		
+      	</div>     	
+      	
         <div class="vue-chart-head">
 
           <div class="vue_chat_company">
@@ -62,7 +69,17 @@
         <!--下拉表-->
         <ul class="vue_kind_ul">  <!--v-show="kindshow"-->
           <li v-for="(catalogItem,index) in match_hall_catalogs" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
-        </ul>
+          <div class="qujia_state">
+	        	<p></p>
+	        	<span>取价说明</span>
+	        	<div class="qujia_state_main">
+	        			<span>该数据为您显示：<br>
+								通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
+								价格中线线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
+								百分数：相对于价格中线的涨跌幅</span>
+	        	</div>
+        	</div>
+        </ul>       
         <!--右边切换选项-->
         <!--<ul class="vue_kind_species">
           <li>
@@ -71,7 +88,6 @@
         </ul>-->
       </div>
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
-
         <div v-for='(catalog,index) in match_hall_catalogs'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
           <div class="col-xs-8 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
           <div class="col-xs-3 col-md-3 col-sm-12 price-list">
@@ -106,7 +122,7 @@
           <div class="ckdp_icon"><a href="javascript:;"></a></div>
         </div>
       </div>
-
+			<div id="mypancontent"></div>
       <!----曲线图表 end--->
 
 
@@ -115,11 +131,45 @@
         <div class="vue-realtime">
           <div class="vue-realtime-time">
             <div class="vue-real-img">
-              <p class="vue-real-img-img"></p>
-              <span>实时报价</span>
+              <!--<p class="vue-real-img-img"></p>-->
+              <span @click="vue_real_imgyi" class="vue-real-img_active">实时报价</span>
+              <span v-if="user.plat=='match'" @click="vue_real_imger">撮合报价<i>（以下是盯盘的撮合员）</i></span>
+             	<span v-if="user.plat=='trade'" @click="vue_real_imgsan">贸易商报价</span>
             </div>
-            <div class="vue-tealtime-time">
+            <div class="vue-tealtime-time" v-show="tealtime_time">  <!--实时报价数据-->
+            	<div class="vue-tealtime-timetitle">
+            		<span class="vue-realtime-auto-timeti">时间</span>
+            		<span class="vue-realtime-auto-companyti">撮合人员</span>
+            		<span class="vue-realtime-buyti">买/卖</span>
+            		<span class="vue-realtime-buy_priceti">价格</span>
+            		<span class="vue-realtime-auto-datati">交割期</span>
+            		<span class="vue-realtime-auto-numti">吨数</span>
+            	</div>
               <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
+            </div>
+            <div class="vue-tealtime-timecuo" v-show="tealtime_timecuo"> <!--撮合报价数据-->
+            	<div class="vue-tealtime-timecuotitle">
+            			<span class="tealtime-timecuotitleyi">时间</span>
+            			<span class="tealtime-timecuotitleer">公司</span>
+            			<span class="tealtime-timecuotitlesan">撮合员</span>
+            			<span class="tealtime-timecuotitlesi">原始信息</span>
+            	</div>
+            	<ul>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">华塑汇</span>
+            			<span class="tealtime-timecuotitlesan">小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出8200
+            			</span>
+            			<br clear="all"/>
+            		</li>
+            		<li></li>
+            		<li></li>
+            	</ul>
+            </div>
+            <div class="vue-tealtime-timetrade" v-show="tealtime_timetrade"> <!--贸易商报价数据-->
+            	
             </div>
             <div class="vue-tealtime-right" v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
 	            	<div class="vue_right_yi">
@@ -140,6 +190,8 @@
           </div>
           <br clear="all"/>
         </div>
+        <div class="vue-tealtime-tubiao vue-tealtime-xiao" @click="tealtime_tubiao" v-show="tealtimetubiao"></div>
+        <div class="vue-tealtime-tubiaoxiao vue-tealtime-xiao" @click="tealtime_tubiaoxiao" v-show="tealtimetubiaoxiao"></div>
       </div>
       <!--实时报价信息 end-->
     </div>
@@ -307,6 +359,12 @@
         kongTag:false,//清空好友标识
         groupTag:0,//组标识
         placeholderMsg:'请您粘贴信息',//报价框提示文字
+        tealtimetubiao:true,
+        tealtimetubiaoxiao:false,
+        chartusyi:true,
+        chartuser:false,
+        tealtime_time:true,
+        tealtime_timecuo:false,
       }
     },
     mounted() {
@@ -700,6 +758,76 @@
             });
         }
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+      },
+      tealtime_tubiao:function(){
+      	this.tealtimetubiao=false
+      	this.tealtimetubiaoxiao=true
+      	$('#myTabContent').css('height','0')
+      	
+      	$('.vue_chat_kind').hide()
+      	var echeight=$('.vu_m-chatmain').height()
+      	if(echeight>60){
+      		$('.vue-chart-foot').css('height','86.4%')
+      	}else{
+      		$('.vue-chart-foot').css('height','89.4%')
+      	}
+      },
+      tealtime_tubiaoxiao:function(){
+      	this.tealtimetubiao=true
+      	this.tealtimetubiaoxiao=false
+      	$('#myTabContent').css('height','56.5%')
+      	$('.vue-chart-foot').css('height','29.4%')
+      	$('.vue_chat_kind').show()
+      	var echeight=$('.vu_m-chatmain').height()
+      	if(echeight>60){
+      		$('.vue-chart-foot').css('height','29.4%')
+      	}else{
+      		$('.vue-chart-foot').css('height','45.4%')
+      	}
+      },
+      chartus_yi:function(){
+      	this.chartusyi=false
+      	this.chartuser=true
+      	$('.vue_chart_usgai').show()
+      	$('#mypancontent').show()
+      },
+      chartus_er:function(){
+      	this.chartusyi=true
+      	this.chartuser=false
+      	$('.vue_chart_usgai').hide()
+      	$('#mypancontent').hide()
+      },
+      chartus_yier:function(){
+      	this.chartusyi=!this.chartusyi
+      	this.chartuser=!this.chartuser
+      	if(this.chartusyi==false){
+      		$('.vue_chart_usgai').show()
+      		$('#mypancontent').show()
+      	}else{
+      		$('.vue_chart_usgai').hide()
+      		$('#mypancontent').hide()
+      	}
+      },
+      vue_real_imgyi:function(){
+      	$('.vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-real-img span').eq(0).addClass('vue-real-img_active')  
+				this.tealtime_time=true
+				this.tealtime_timecuo=false
+				this.tealtime_timetrade=false
+      },
+      vue_real_imger:function(){
+      	$('.vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-real-img span').eq(1).addClass('vue-real-img_active')
+				this.tealtime_time=false
+				this.tealtime_timecuo=true
+				this.tealtime_timetrade=false
+      },
+      vue_real_imgsan:function(){
+      	$('.vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-real-img span').eq(1).addClass('vue-real-img_active')  
+				this.tealtime_time=false
+				this.tealtime_timecuo=false
+				this.tealtime_timetrade=true
       }
     },
     //qunNew部分内容

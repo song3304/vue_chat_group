@@ -1,12 +1,12 @@
 <template>
 	<div id="leftlist">
 		<div id="leftlist_nowdate">
-      <a v-if="user.plat=='match'" target="_blank" href='/match/profile/index'><img :src="user.img" alt="" /></a>
-      <a v-if="user.plat=='trade'" target="_blank" href='/trade/profile/index'><img :src="user.img" alt="" /></a>
-			<span>{{user.name}}</span>
-			<a v-if="user.plat=='match'" href='/match/auth/logout.html'>[退出]</a>
-      <a v-if="user.plat=='trade'" href='/trade/auth/logout.html'>[退出]</a>
-    </div>
+	      <a v-if="user.plat=='match'" target="_blank" href='/match/profile/index'><img :src="user.img" alt="" /></a>
+	      <a v-if="user.plat=='trade'" target="_blank" href='/trade/profile/index'><img :src="user.img" alt="" /></a>
+				<span>{{user.name}}</span>
+				<a v-if="user.plat=='match'" href='/match/auth/logout.html'>[退出]</a>
+	      <a v-if="user.plat=='trade'" href='/trade/auth/logout.html'>[退出]</a>
+	    </div>
 		<!--资讯列表-->
 		<div class="vue_leftlist">
 			<p>热点资讯</p>
@@ -75,24 +75,24 @@
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people" v-if="searchData">
-      <p>大厅成员
-        <span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>
-        <span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合人员</span>
-      </p>
-      <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
-      <ul class="leftlist_people_ul">
-        <li v-for="item in searchData" @click="firendchat(item.id)" v-if="item.plat!='user'">
-          <div class="leftlist_people_photo"> <!--头像-->
-            <img :src="item.img" alt="" :class="{ 'vu_gray':item.isOnline==false} "/>
-          </div>
-          <span v-if="item.plat=='match'" class="leftlist_people_cuo"></span> <!--撮合公司-->
-          <span v-if="item.plat=='trade' && item.trade_type=='trade'" class="leftlist_people_jiao"></span> <!--贸易公司-->
-          <span v-if="item.plat=='trade' && item.trade_type=='factory'" class="leftlist_people_factory"></span> <!--工厂-->
-          <div class="leftlist_people_name ellipsis"> <!--名称-->
-            <span>{{item.name}}</span>
-            <p>{{item.company_name}}</p>
-          </div>
-        </li>
+	      <p>大厅成员
+	        <span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>
+	        <span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合人员</span>
+	      </p>
+	      <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
+	      <ul class="leftlist_people_ul">
+	        <li v-for="item in searchData" @click="firendchat(item.id)" v-if="item.plat!='user'">
+	          <div class="leftlist_people_photo"> <!--头像-->
+	            <img :src="item.img" alt="" :class="{ 'vu_gray':item.isOnline==false} "/>
+	          </div>
+	          <span v-if="item.plat=='match'" class="leftlist_people_cuo"></span> <!--撮合公司-->
+	          <span v-if="item.plat=='trade' && item.trade_type=='trade'" class="leftlist_people_jiao"></span> <!--贸易公司-->
+	          <span v-if="item.plat=='trade' && item.trade_type=='factory'" class="leftlist_people_factory"></span> <!--工厂-->
+	          <div class="leftlist_people_name ellipsis"> <!--名称-->
+	            <span>{{item.name}}</span>
+	            <p>{{item.company_name}}</p>
+	          </div>
+	        </li>
 				<!--<li>-->
 					<!--<div class="leftlist_people_photo"> &lt;!&ndash;头像&ndash;&gt;-->
 						<!--<img src="../images/15.png" alt="" />-->
@@ -106,39 +106,40 @@
 			</ul>
 		</div>
 		<div class="vue_leftlist_tan" v-if="tingList" v-show="firendtan">   <!--加好友弹窗-->
-      <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
-      <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
-      <p class="vue_leftlist_line">{{tingList.name}}</p>
-      <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
-      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>贸易公司</span></p>
-      <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
-      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
-      <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
-        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)">临时会话</span>
-        <span class="vue_leftlist_companysz_er" @click="openVerify()">{{relation()}}</span>
-        <!--<p>聊天</p>-->
-      </div>
+	      <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
+	      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
+	      <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
+	      <p class="vue_leftlist_line">{{tingList.name}}</p>
+	      <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo">所属公司类型：<span>撮合公司</span></p>
+	      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao">所属公司类型：<span>贸易公司</span></p>
+	      <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
+	      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
+	      <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
+	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)">临时会话</span>
+	        <span class="vue_leftlist_companysz_er" @click="openVerify()">{{relation()}}</span>
+	        <!--<p>聊天</p>-->
+	      </div>
 			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
 		</div>
-    <div class="vue_leftlist_tan" v-if="tingList" v-show="sendfirendtan">   <!--加好友弹窗-->
-      <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
-      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
-      <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
-      <p class="vue_leftlist_line verify">{{tingList.name}}</p>
-      <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
-      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>贸易公司</span></p>
-      <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
-      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
-      <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
-      <div class="vue_leftlist_companysz">
-        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
-        <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,verifymsg)" style="color: #4385F5;">发送</span>
-        <!--<p>聊天</p>-->
-      </div>
-      <div class="vue_leftlist_close" @click="openVerify()"><span></span></div>
-    </div>
-
+	    <div class="vue_leftlist_tan" v-if="tingList" v-show="sendfirendtan">   <!--加好友弹窗-->
+	      <img v-if="tingList.plat=='match'" src="../images/cuo_bg.png" alt="" /> <!--撮合公司-->
+	      <img v-if="tingList.plat=='trade'" src="../images/jiao_bg.png" alt="" />   <!-- 贸易公司 -->
+	      <div class="vue_leftlist_img"><img :src="tingList.img" alt="" /></div>
+	      <p class="vue_leftlist_line verify">{{tingList.name}}</p>
+	      <p v-if="tingList.plat=='match'" class="vue_leftlist_companycuo verify">所属公司类型：<span>撮合公司</span></p>
+	      <p v-if="tingList.plat=='trade'" class="vue_leftlist_companyjiao verify">所属公司类型：<span>贸易公司</span></p>
+	      <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
+	      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
+	      <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
+	      <div class="vue_leftlist_companysz">
+	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
+	        <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,verifymsg)" style="color: #4385F5;">发送</span>
+	        <!--<p>聊天</p>-->
+	      </div>
+	      <div class="vue_leftlist_close" @click="openVerify()"><span></span></div>
+	    </div>
+		<div class="vue_leftlist_tubiao vue_leftlist_xiao" @click="leftlist_tubiao" v-show="leftlisttu"></div>
+		<div class="vue_leftlist_tubiaoxiao vue_leftlist_xiao" @click="leftlist_tubiaoxiao" v-show="leftlisttuxiao"></div>
 	</div>
 </template>
 
@@ -161,6 +162,8 @@
           chooseMao:false,//贸易院中标志
           allData:'',
           dataTag:1,
+          leftlisttu:true,
+          leftlisttuxiao:false,
   		}
   	},
     computed: {
@@ -313,6 +316,32 @@
     },
     newxiangshan:function(){
     	this.vuenewxiang=false
+    },
+    leftlist_tubiao:function(){
+    	this.leftlisttu = false
+    	this.leftlisttuxiao = true
+    	$('#leftlist').css('width','0')
+    	$('.room_homepage').css('width','100%')
+    	$('#ascrail2004').hide()
+    	var widthn=$('#vu_friend').width()
+    	if(widthn>200){
+    		$('.vu_m-chatmain').css('width','76.5%')
+    	}else{
+    		$('.vu_m-chatmain').css('width','94.2%')
+    	}
+    },
+    leftlist_tubiaoxiao:function(){
+    	this.leftlisttu = true
+    	this.leftlisttuxiao = false
+    	$('#leftlist').css('width','17.8%')
+    	$('.room_homepage').css('width','82%')   	
+    	$('#ascrail2004').show()
+    	var widthn=$('#vu_friend').width()
+    	if(widthn>200){
+    		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
+    	}else{
+    		$('.vu_m-chatmain').css('width','77.2%')
+    	}
     }
   },
 	mounted() {

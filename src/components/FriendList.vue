@@ -1,5 +1,5 @@
 <template>
-	<div id="vu_friend" @click="chuangjian" class="resizabl"> 
+	<div id="vu_friend" @click="chuangjian"> 
 			
 		
 	    <!--<div class="vu_m-search">
@@ -51,6 +51,8 @@
 	    	<!--<p></p>-->
 	    	<!--<span>群发报价</span>-->
 	    <!--</div>-->
+	    <div class="vu_friend_tubiao vu_friend_xiao" @click="friend_tubiao" v-show="friendtubiao"></div>
+	    <div class="vu_friend_tubiaoxiao vu_friend_xiao" @click="friend_tubiaoxiao" v-show="friendtubiaoxiao"></div>
 	</div>
 </template>
 <script>
@@ -91,6 +93,8 @@ export default {
           activSpan:'群'
         }],
       createType: 'common',
+      friendtubiao:true,
+      friendtubiaoxiao:false,
     }
   },
   components: {companyPanel, groupPanel, searchDialog},
@@ -119,6 +123,18 @@ export default {
         this.panelShow.searchShow = false
         $('.vu_m-list').hide()
       };
+      this.friendtubiao = true
+    	this.friendtubiaoxiao = false
+    	$('#vu_friend').css('width','22.5%')
+    	$('#vue_main_main').css('width','76.7%')
+    	$('.vu_m_lei').removeClass('vu_m_leier')
+    	$('.c_btn_box').removeClass('c_btn_boxer')
+		var widtnn=$('#leftlist').width()
+        if(widtnn>0){
+    		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
+    	}else if(widtnn==0){
+    		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
+    	}
     },
     // 搜索事件
     search: function (event) {
@@ -175,6 +191,41 @@ export default {
     modifyGroupName: function (groupId, groupType, groupName) {
       this.$emit('modifyGroupEvent', groupId, groupType, groupName)
     },
+    friend_tubiao:function(){//点击缩
+    	this.friendtubiao = false
+    	this.friendtubiaoxiao = true
+    	$('#vu_friend').css('width','5%')
+    	$('#vue_main_main').css('width','94.2%')
+    	$('.vu_m_lei').addClass('vu_m_leier')
+    	$('.c_btn_box').addClass('c_btn_boxer')
+    	$('#vu_qun-fen,#vu_accordion,.vu_m-list').hide()
+    	var widtnn=$('#leftlist').width()
+    	if(widtnn>0){
+    		$('.vu_m-chatmain').css({'width':'77.3%','min-width':'927.5px'})
+    	}else if(widtnn==0){
+    		$('.vu_m-chatmain').css({'width':'94.2%','min-width':'927.5px'})
+    	}
+    },
+    friend_tubiaoxiao:function(){//点击伸
+    	this.friendtubiao = true
+    	this.friendtubiaoxiao = false
+    	$('#vu_friend').css('width','22.6%')
+    	$('#vue_main_main').css('width','76.8%')
+    	$('.vu_m_lei').removeClass('vu_m_leier')
+    	$('.c_btn_box').removeClass('c_btn_boxer')
+    	this.activeIndex=0
+		this.panelShow.chatShow = true
+        this.panelShow.companyShow = false
+        this.panelShow.groupShow = false
+        this.panelShow.searchShow = false
+        $('.vu_m-list').show()
+        var widtnn=$('#leftlist').width()
+        if(widtnn>0){
+    		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
+    	}else if(widtnn==0){
+    		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
+    	}
+    }
   },
   computed: {
 		

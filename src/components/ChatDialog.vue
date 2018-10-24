@@ -95,13 +95,17 @@
       duihuada:function(){
       	this.duihuaXiao=true
       	this.duihuaDa=false
-      	$('.vu_m-chatmain').css('height','25.6%')
+      	$('.vu_m-chatmain').css('height','26%')
       	$('.vu_xiao_main').hide()
       	this.gerenXiao=false
       	this.gerenDa=true
       	$('.vu_m-text').css('height','20%')
-      	$('#vue_echart').css('height','80%')
-      	$('.vue-chart-foot').css('height','28.6%')
+      	$('#vue_echart').css('height','78%')
+      	var echaheight=$('#myTabContent').height()
+      	if(echaheight>0){
+      		$('.vue-chart-foot').css('height','29.4%')
+      	}
+      	
       	$('.vu_resizable').attr('id','resizable')
       	var height=$("#resizable").height()
 	      $("#resizable").resizable({
@@ -126,13 +130,17 @@
       duihuaxiao:function(){
       	this.duihuaXiao=false
       	this.duihuaDa=true
-      	$('.vu_m-chatmain').css('height','5.4%')
+      	$('.vu_m-chatmain').css('height','5.5%')
       	$('.vu_xiao_main').show()
       	this.gerenXiao=true
       	this.gerenDa=false
       	$('.vu_m-text').css('height','100%')
       	$('#vue_echart').css('height','100%')
-      	$('.vue-chart-foot').css('height','44.7%')
+      	var echaheight=$('#myTabContent').height()
+      	if(echaheight>0){
+      		$('.vue-chart-foot').css('height','45.7%')
+      	}
+      	
       	$('.vu_resizable').removeAttr('id','resizable')
       	$('.ui-resizable-handle').hide()
         $('#mytrade_form').css('height','86.6%')
