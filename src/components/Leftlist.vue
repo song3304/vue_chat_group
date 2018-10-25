@@ -329,6 +329,9 @@
     	}else{
     		$('.vu_m-chatmain').css('width','94.2%')
     	}
+        var realWidth=$("#myTabContent").width();        
+    	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
+    	$('.price-list').width(realWidth*0.3-30);
     },
     leftlist_tubiaoxiao:function(){
     	this.leftlisttu = true
@@ -342,6 +345,9 @@
     	}else{
     		$('.vu_m-chatmain').css('width','77.2%')
     	}
+    	var realWidth=$("#myTabContent").width();        
+    	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
+    	$('.price-list').width(realWidth*0.3-30);
     }
   },
 	mounted() {

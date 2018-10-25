@@ -1774,7 +1774,7 @@ li{
 .vue-tealtime-time>ul{height:93%;margin: 0}
 .vue-realtime-auto li{height: 26px;line-height: 26px;padding-left: 0.8%;margin: 0 0 8px 0;}
 .vue-realtime-auto li:nth-child(even){border-right: 0;}
-.vue-realtime-auto li span{text-align: center;color: #CCCCCC;display: inline-block;}
+.vue-realtime-auto li span{text-align: center;color: #CCCCCC;display: inline-block;font-size: 14px;}
 .vue-realtime-auto-time{width:8%;}
 .vue-realtime-auto-company{width: 17%;}
 .vue-realtime-auto-data{width:39%;letter-spacing:1px;}
@@ -3120,7 +3120,7 @@ to {top: 0;}
   }
   .qujia_state{
   	display: inline-block;
-  	margin: 5px 0 0 5px;
+  	margin: 8px 0 0 5px;
   	cursor: pointer;
   	position: relative;
   }
@@ -3171,12 +3171,14 @@ to {top: 0;}
   }
   .vue-tealtime-timecuotitle span{color: #CCCCCC;}
   .vue-tealtime-timetitle,.vue-tealtime-timecuotitle{display: block;border-bottom: 1px solid #323129;height: 23px;}
-  .vue-tealtime-timecuo li{border-bottom: 1px solid #101a29;}
+  .vue-tealtime-timecuo li{border-bottom: 1px solid #192941;padding: 5px 0;}
   .vue-tealtime-timecuo li span{float: left;text-align: center;color: #CCCCCC;}
   .vue-tealtime-timecuo div span{display: inline-block;text-align: center;}
   .tealtime-timecuotitleyi{width: 11%;}
-  .tealtime-timecuotitleer{width: 11%;}
-  .tealtime-timecuotitlesan{width: 11%;}
-  .tealtime-timecuotitlesi{width: 64%;text-align: left!important;}
+  .tealtime-timecuotitleer{width: 13%;}
+  .tealtime-timecuotitlesan{width: 17%;}
+  .tealtime-timecuotitlename:hover{color: #4385F5;cursor: pointer;}
+  .tealtime-timecuotitlesi{width: 56%;text-align: left!important;}
   .vue-tealtime-timecuo li .tealtime-timecuotitlesi{text-align: left;padding-left:2%;}
+  .nicescroll-rails{overflow: hidden;}
   /*中间图表end*/

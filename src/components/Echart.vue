@@ -75,7 +75,7 @@
 	        	<div class="qujia_state_main">
 	        			<span>该数据为您显示：<br>
 								通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
-								价格中线线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
+								价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
 								百分数：相对于价格中线的涨跌幅</span>
 	        	</div>
         	</div>
@@ -157,19 +157,37 @@
             	<ul>
             		<li>
             			<span class="tealtime-timecuotitleyi">17:39</span>
-            			<span class="tealtime-timecuotitleer">华塑汇</span>
-            			<span class="tealtime-timecuotitlesan">小张</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
             			<span class="tealtime-timecuotitlesi">
             				出8200
+            				<br clear="all"/>
+            				出7900
             			</span>
             			<br clear="all"/>
             		</li>
-            		<li></li>
-            		<li></li>
             	</ul>
             </div>
             <div class="vue-tealtime-timetrade" v-show="tealtime_timetrade"> <!--贸易商报价数据-->
-            	
+            		<div class="vue-tealtime-timecuotitle">
+	            			<span class="tealtime-timecuotitleyi">时间</span>
+	            			<span class="tealtime-timecuotitleer">公司</span>
+	            			<span class="tealtime-timecuotitlesan">撮合员</span>
+	            			<span class="tealtime-timecuotitlesi">原始信息</span>
+	            	</div>
+	            	<ul>
+	            		<li>
+	            			<span class="tealtime-timecuotitleyi">17:39</span>
+	            			<span class="tealtime-timecuotitleer">东方化塑</span>
+	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+	            			<span class="tealtime-timecuotitlesi">
+	            				出8200
+	            				<br clear="all"/>
+	            				出7900
+	            			</span>
+	            			<br clear="all"/>
+	            		</li>
+	            	</ul>
             </div>
             <div class="vue-tealtime-right" v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
 	            	<div class="vue_right_yi">
@@ -365,6 +383,7 @@
         chartuser:false,
         tealtime_time:true,
         tealtime_timecuo:false,
+        tealtime_timetrade:false
       }
     },
     mounted() {
@@ -670,6 +689,7 @@
           }
 
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+        
       },
       changecom(comspitem,comindex){//公司切换
         this.selectCid=comspitem.id;
@@ -769,7 +789,8 @@
       	if(echeight>60){
       		$('.vue-chart-foot').css('height','86.4%')
       	}else{
-      		$('.vue-chart-foot').css('height','89.4%')
+      		
+      		$('.vue-chart-foot').css('height','89.5%')
       	}
       },
       tealtime_tubiaoxiao:function(){

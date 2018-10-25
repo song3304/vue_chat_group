@@ -205,6 +205,9 @@ export default {
     	}else if(widtnn==0){
     		$('.vu_m-chatmain').css({'width':'94.2%','min-width':'927.5px'})
     	}
+    	var realWidth=$("#myTabContent").width();        
+    	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
+    	$('.price-list').width(realWidth*0.3-30);
     },
     friend_tubiaoxiao:function(){//点击伸
     	this.friendtubiao = true
@@ -225,6 +228,9 @@ export default {
     	}else if(widtnn==0){
     		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
     	}
+    	var realWidth=$("#myTabContent").width();        
+    	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
+    	$('.price-list').width(realWidth*0.3-30);
     }
   },
   computed: {
