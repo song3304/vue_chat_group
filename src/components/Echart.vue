@@ -133,7 +133,7 @@
             <div class="vue-real-img">
               <!--<p class="vue-real-img-img"></p>-->
               <span @click="vue_real_imgyi" class="vue-real-img_active">实时报价</span>
-              <span v-if="user.plat=='match'" @click="vue_real_imger">撮合报价<i>（以下是盯盘的撮合员）</i></span>
+              <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_real_imger">撮合报价</span><i>（以下是盯盘的撮合员）</i></p>
              	<span v-if="user.plat=='trade'" @click="vue_real_imgsan">贸易商报价</span>
             </div>
             <div class="vue-tealtime-time" v-show="tealtime_time">  <!--实时报价数据-->
@@ -155,6 +155,62 @@
             			<span class="tealtime-timecuotitlesi">原始信息</span>
             	</div>
             	<ul>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出：meg 明天上午交割 国际 500吨 7738 --新天<br clear="all"/>
+										接：meg 本周三前 国际 7649---博纳<br clear="all"/>
+										出：meg 下月底交割 国际 500吨 7551 --新天<br clear="all"/>
+										接：meg 下月底国际 7575---博纳<br clear="all"/>
+            			</span>
+            			<br clear="all"/>
+            		</li>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出8200
+            				<br clear="all"/>
+            				出7900
+            			</span>
+            			<br clear="all"/>
+            		</li>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出8200
+            				<br clear="all"/>
+            				出7900
+            			</span>
+            			<br clear="all"/>
+            		</li>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出8200
+            				<br clear="all"/>
+            				出7900
+            			</span>
+            			<br clear="all"/>
+            		</li>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出8200
+            				<br clear="all"/>
+            				出7900
+            			</span>
+            			<br clear="all"/>
+            		</li>
             		<li>
             			<span class="tealtime-timecuotitleyi">17:39</span>
             			<span class="tealtime-timecuotitleer">东方化塑</span>
@@ -407,7 +463,7 @@
         var index=$('.vue_kind_ul li').index(this)
         $('#myTabContent>div').css('height','0')
         $('#myTabContent>div').eq(index).css('height','auto')
-      })
+      })     
     },
     methods: {
       //qunNew部分内容
@@ -785,7 +841,7 @@
       tealtime_tubiao:function(){
       	this.tealtimetubiao=false
       	this.tealtimetubiaoxiao=true
-      	$('#myTabContent').css('height','0')
+      	$('#myTabContent,#mypancontent').css('height','0')
       	
       	$('.vue_chat_kind').hide()
       	var echeight=$('.vu_m-chatmain').height()
@@ -795,14 +851,16 @@
       		
       		$('.vue-chart-foot').css('height','89.5%')
       	}
+      	this.matchtiao();	
       },
       tealtime_tubiaoxiao:function(){
       	this.cfuxiao();
+      	this.matchtiao();	
       },
       cfuxiao:function(){
       	this.tealtimetubiao=true
       	this.tealtimetubiaoxiao=false
-      	$('#myTabContent').css('height','56.5%')
+      	$('#myTabContent,#mypancontent').css('height','56.5%')
       	$('.vue-chart-foot').css('height','29.4%')
       	$('.vue_chat_kind').show()
       	var echeight=$('.vu_m-chatmain').height()
@@ -844,6 +902,7 @@
 				this.tealtime_time=true
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=false
+				$('.vue-real-img i').hide();
       },
       vue_real_imger:function(){
       	$('.vue-real-img span').removeClass('vue-real-img_active')
@@ -851,6 +910,8 @@
 				this.tealtime_time=false
 				this.tealtime_timecuo=true
 				this.tealtime_timetrade=false
+				$('.vue-real-img i').css('display','inline-block');
+				this.matchtiao();	
       },
       vue_real_imgsan:function(){
       	$('.vue-real-img span').removeClass('vue-real-img_active')
@@ -858,7 +919,31 @@
 				this.tealtime_time=false
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=true
-      }
+				$('.vue-real-img i').hide();
+				this.tradetiao();
+      },
+      matchtiao:function(){
+      	$(".vue-tealtime-timecuo>ul").niceScroll({
+	        cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
+	      });	      
+      },
+      tradetiao:function(){
+      	$(".vue-tealtime-timetrade>ul").niceScroll({
+	        cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
+	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+	        background: "", // 轨道的背景颜色
+	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+	        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
+	      });
+      },
     },
     //qunNew部分内容
     filters: {

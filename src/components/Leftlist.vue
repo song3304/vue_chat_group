@@ -341,7 +341,7 @@
     	$('#ascrail2004').show()
     	var widthn=$('#vu_friend').width()
     	if(widthn>200){
-    		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
+    		$('.vu_m-chatmain').css({'width':'63%','min-width':'755px'})
     	}else{
     		$('.vu_m-chatmain').css('width','77.2%')
     	}

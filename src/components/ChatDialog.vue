@@ -95,7 +95,7 @@
       duihuada:function(){
       	this.duihuaXiao=true
       	this.duihuaDa=false
-      	$('.vu_m-chatmain').css('height','26%')
+      	$('.vu_m-chatmain').css('height','25%')
       	$('.vu_xiao_main').hide()
       	this.gerenXiao=false
       	this.gerenDa=true
