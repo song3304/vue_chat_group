@@ -689,7 +689,7 @@
           }
 
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-        
+       this.cfuxiao();
       },
       changecom(comspitem,comindex){//公司切换
         this.selectCid=comspitem.id;
@@ -699,6 +699,7 @@
         $('.vue_company_species>li').attr('class','');
         $('.vue_company_species>li').eq(comindex).attr('class','comactive');
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+        this.cfuxiao();
       },
       delcom(comspitem,comindex){//公司删除
           var select_cid=this.selectCid;
@@ -753,12 +754,14 @@
                 };
             }
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+        this.cfuxiao();
       },
       changepeo(peospitem,peoindex){//人员切换
           this.selectUid=peospitem.id;
           $('.vue_people_species>li').attr('class','');
           $('.vue_people_species>li').eq(peoindex).attr('class','peoactive');
           refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+          this.cfuxiao();
       },
       delpeo(peospitem,peoindex){//人员删除
         var select_uid=this.selectUid;
@@ -794,6 +797,9 @@
       	}
       },
       tealtime_tubiaoxiao:function(){
+      	this.cfuxiao();
+      },
+      cfuxiao:function(){
       	this.tealtimetubiao=true
       	this.tealtimetubiaoxiao=false
       	$('#myTabContent').css('height','56.5%')
@@ -811,12 +817,14 @@
       	this.chartuser=true
       	$('.vue_chart_usgai').show()
       	$('#mypancontent').show()
+      	this.cfuxiao();
       },
       chartus_er:function(){
       	this.chartusyi=true
       	this.chartuser=false
       	$('.vue_chart_usgai').hide()
       	$('#mypancontent').hide()
+      	this.cfuxiao();
       },
       chartus_yier:function(){
       	this.chartusyi=!this.chartusyi
@@ -828,6 +836,7 @@
       		$('.vue_chart_usgai').hide()
       		$('#mypancontent').hide()
       	}
+      	this.cfuxiao();
       },
       vue_real_imgyi:function(){
       	$('.vue-real-img span').removeClass('vue-real-img_active')
