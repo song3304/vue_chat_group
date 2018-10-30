@@ -55,6 +55,8 @@ new Vue({
     sessionList: serverData.sessionList,
     // 保存已删除会话列表
     delSessionList: serverData.delSessionList,
+    // 最近聊天列表
+    recentList: serverData.recentList,
     // 历史记录列表
     historyList: serverData.historyList,
     // 当前历史记录用户id
@@ -151,6 +153,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({delSessionList: this.delSessionList})
+      }
+    },
+    recentList: {
+      deep: true,
+      handler () {
+        store.update({recentList: this.recentList})
       }
     },
     qunList: {
@@ -367,6 +375,9 @@ new Vue({
       }
       if (data.hasOwnProperty('userList')) {
         this.userList = data.userList
+      }
+      if (data.hasOwnProperty('recentList')) {
+        this.recentList = data.recentList
       }
       if (data.hasOwnProperty('onlineUserList')) {
         this.onlineUserList = data.onlineUserList

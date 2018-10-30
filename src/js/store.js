@@ -37,6 +37,24 @@ if (!localStorage.getItem(key)) {
         orgName: '撮合公司2' // 是否来消息
       }
     },
+    // 最近列表
+    recentList: [
+      {
+        id: 2, // 用户id or 群id
+        type: 'user', // 类型
+        last_time: '2018-05-13 11:08:10'
+      },
+      {
+        id: 3,
+        type: 'user',
+        last_time: '2018-05-13 11:08:09'
+      },
+      {
+        id: 3,
+        type: 'qun',
+        last_time: '2018-05-13 11:08:01'
+      }
+    ],
     // 用户列表
     userList: {
       2: {
@@ -362,6 +380,9 @@ export default {
     }
     if (store.hasOwnProperty('companyList')) {
       oldData.companyList = store.companyList
+    }
+    if (store.hasOwnProperty('recentList')) {
+      oldData.recentList = store.recentList
     }
     localStorage.setItem(key, JSON.stringify(oldData))
   }
