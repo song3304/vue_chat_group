@@ -137,7 +137,6 @@ h1 a {
 /*新群发报价*/
 .vu_submenu a.newQunFa{
   color:#666!important;
-  padding-top: 6px;
   width: 37%;
   text-decoration: none;
 }
@@ -179,12 +178,12 @@ h1 a {
   color: #666666;
 }
 .vu_submenu>li.newQunFa:hover ,.vu_submenu>li.vu_current.newQunFa{
-  background-color: #dfdee9;
+  background-color: #f8faff;
   color: #666666;
 }
 /*新群发样式*/
 .vu_submenu-name.vu_submenu-newname:hover{
-  background-color: #dfdee9;
+  background-color: #f8faff;
   color: #666666;
 }
 /*http://www.jq22.com*/
@@ -193,7 +192,7 @@ h1 a {
 }
 /*新群发增加样式 newQunFa*/
 .vu_accordion .vu_link.newQunFa:hover{
-  background-color:#dbd9e6;
+  background-color:#e4edff;
 }
 .vu_accordion .vu_link span{
   font-size: 10px;
@@ -207,8 +206,7 @@ h1 a {
   color: #333;
 }
 .vu_qunnew-que.newQunFa{
-  height: 45%;
-  border-bottom: 1px solid #ddd;
+  height:160px;
 }
 /*一键按钮的动态图*/
 @-webkit-keyframes flyaway {
@@ -378,11 +376,10 @@ h1 a {
 }
 /*新群发的新分组*/
 .c_zuBox{
-  height: 40px;
-  width: 95.5%;
+  height: 38px;
+  width: 100%;
   margin: 0 auto;
-  border-radius: 4px;
-  background: #f6f6f6;
+  background: #f9fafb;
   overflow: hidden;
 }
 .c_zuBox ul{
@@ -411,21 +408,35 @@ h1 a {
   float: left;
 }
 .c_zuBox .c_active{
-  background: #ffff;
+  background: #4385F5;
+  border-radius: 5px;
+  color: #FFFFFF;
 }
 .c_zuBox .c_active span{
   float: right;
   display: block;
-  width: 18px;
-  height: 18px;
-  background: url(../images/qie_tu.png) -4px -23px no-repeat;
-  margin-top: 4px;
+  width: 14px;
+  height: 14px;
+  background: url(../images/5468.png) 0 0 no-repeat;
+  margin-top: 7px;
   margin-left: 6px;
   cursor: pointer;
 }
-.c_zuBox .c_active:hover span{
-  background: url(../images/qie_tu.png) -4px -44px no-repeat;
+.c_zuB .c_active span{
+  float: right;
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: url(../images/5468.png) 0 -85px no-repeat;
+  margin-top: 3px;
+  margin-left: 6px;
+  cursor: pointer;
 }
+.c_zuB .c_active div{display: inline-block;}
+
+/*.c_zuBox .c_active:hover span{
+  background: url(../images/qie_tu.png) -4px -44px no-repeat;
+}*/
 .c_newQunBox{
   width: 30%;
   float: right;

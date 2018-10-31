@@ -49,7 +49,6 @@ export default {
         el.scrollTop = el.scrollHeight - localStorage.b
         localStorage.b = el.scrollHeight
       }, 10)
-	      
     },
     textFormat: function (text) {
       return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
@@ -95,9 +94,9 @@ export default {
 		            <li v-for="item in session.messages">
 		                <p class="vu_time"><span>{{item.date}}</span></p>
 		                <div class="vu_main" :class="{ vu_self: item.userId === user.id}">
-		                		<span :class="{vu_avatar: item.userId === user.id}">{{user.name}}</span>
-		                		<span :class="{vu_avatar1: item.userId !== user.id}">{{userList[session.id].name}}</span>
-		                    <!--<img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.id].img" />-->
+		                		<!--<span :class="{vu_avatar: item.userId === user.id}">{{user.name}}</span>-->
+		                		<!--<span :class="{vu_avatar1: item.userId !== user.id}">{{userList[session.id].name}}</span>-->
+		                    <img class="vu_avatar" width="30" height="30" :src="item.self ? user.img : userList[session.id].img" />
 		                    <div class="vu_text" v-html="textFormat(item.text)"></div>
 		                    <br clear="all"/>
 		                </div>

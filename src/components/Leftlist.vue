@@ -323,15 +323,16 @@
     	$('#leftlist').css('width','0')
     	$('.room_homepage').css('width','100%')
     	$('#ascrail2004').hide()
-    	var widthn=$('#vu_friend').width()
-    	if(widthn>200){
-    		$('.vu_m-chatmain').css('width','76.5%')
-    	}else{
-    		$('.vu_m-chatmain').css('width','94.2%')
-    	}
+//  	var widthn=$('#vu_friend').width()
+//  	if(widthn>200){
+//  		$('.vu_m-chatmain').css('width','76.5%')
+//  	}else{
+//  		$('.vu_m-chatmain').css('width','94.2%')
+//  	}
         var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
+    	resizeChart();
     },
     leftlist_tubiaoxiao:function(){
     	this.leftlisttu = true
@@ -339,12 +340,12 @@
     	$('#leftlist').css('width','17.8%')
     	$('.room_homepage').css('width','82%')   	
     	$('#ascrail2004').show()
-    	var widthn=$('#vu_friend').width()
-    	if(widthn>200){
-    		$('.vu_m-chatmain').css({'width':'63%','min-width':'755px'})
-    	}else{
-    		$('.vu_m-chatmain').css('width','77.2%')
-    	}
+//  	var widthn=$('#vu_friend').width()
+//  	if(widthn>200){
+//  		$('.vu_m-chatmain').css({'width':'63%','min-width':'755px'})
+//  	}else{
+//  		$('.vu_m-chatmain').css('width','77.2%')
+//  	}
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);

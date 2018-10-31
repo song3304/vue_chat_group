@@ -32,7 +32,7 @@ new Vue({
     // 控制面板是否显示
     panel_show: {
       is_friend_show: true,
-      is_dialog_show: true,
+      is_dialog_show: false,
       is_history_show: false,
       is_group_show: false,
       is_qun_show: false
@@ -107,9 +107,9 @@ new Vue({
   				<div class="loader"></div>
   				<div class="vue-head"><a :href="'/'+user.plat+'/index/index'"><span></span>返回系统主页</a>	<span><a href="#" class="Vue_souye">直播间首页</a><a class="Vue_meg" href="/pindao" target="_blank">MEG资讯</a></span></div>
   			<div class="room_homepage">
-		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend"></friendList>
+		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" :recentList="recentList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend" @delSessionEvent="delSession" @todayMsgEvent="todayMsg"></friendList>
 		    <div id="vue_main_main">
-		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" :match_hall_catalogs="match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"></echart>
+		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" :match_hall_catalogs="match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"  @modifyGroupEvent="modifyGroupName"></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat" @addFriendEvent="addFriend" ></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>

@@ -10,7 +10,7 @@
 	    <div class="vu_account-l vu_fl">
 	      <!--切换-->
 	      <ul class="vu_m_lei">
-	      	<li v-for="(item,index) in tabData" @click="clickTab(index)" @openChartEvent="openChat(index)" :class="{'vu_m-active':index == activeIndex}">
+	      	<li v-for="(item,index) in tabData" @click="clickTab(index)"  :class="{'vu_m-active':index == activeIndex}">
 				<img v-show="index!=activeIndex" :src="item.imgSrc" alt="" />
 				<img v-show="index ==activeIndex" :src="item.activeImgSrc" alt="" />
 				<span>{{item.activSpan}}</span>
@@ -25,7 +25,9 @@
 	        </div>-->
 	      </ul>
 	      <!--聊天-->
-	      <div v-show="panelShow.chatShow"></div>
+	      <div v-show="panelShow.chatShow" class="vu_liaotian_left">
+	      	<hisPanel :session="session" :user="user" :userList="userList" :companyList="companyList" :recentList="recentList"  @todayMsgEvent="todayMsg" @openChartEvent="openChat" ></hisPanel>
+	      </div>
 	      <!--//分组-->
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.companyShow">
 	      	<div class="vu_qunfen_new">
@@ -59,14 +61,16 @@
 import companyPanel from './friend_list/Company'
 import groupPanel from './friend_list/Group'
 import searchDialog from './friend_list/Search'
+import hisPanel from './friend_list/His'
 import $ from 'jquery'
 
 export default {
   name: 'FriendList',
-  props: ['user', 'userList', 'companyList', 'groupList', 'followList','verifyMsg'],
+  props: ['user', 'userList', 'companyList', 'groupList', 'followList','verifyMsg','recentList','sessionList','sessionIndex'],
   data: function () {
     return {
       activeIndex: 0,
+      current_uerId: 0,
       panelShow: {
         chatShow: true,
         companyShow:false,// 公司分组面板是否显示
@@ -97,9 +101,17 @@ export default {
       friendtubiaoxiao:false,
     }
   },
-  components: {companyPanel, groupPanel, searchDialog},
+  components: {companyPanel, groupPanel, searchDialog, hisPanel},
+  computed: {
+      session: function () {
+        return this.sessionList.hasOwnProperty(this.sessionIndex) ? this.sessionList[this.sessionIndex] : null
+      }
+    },
   watch: {},
   methods: {
+  	todayMsg: function (session) {
+        this.$emit('todayMsgEvent', session)
+      },
     // 切换
     clickTab: function (index) {
       this.activeIndex = index
@@ -114,14 +126,12 @@ export default {
         this.panelShow.companyShow = true
         this.panelShow.groupShow = false
         this.panelShow.searchShow = false
-        $('.vu_m-list').hide()
         $('.vue_new_news').hide()
       }else{
       	this.panelShow.chatShow = false
         this.panelShow.companyShow = false
         this.panelShow.groupShow = true   //群隐藏
         this.panelShow.searchShow = false
-        $('.vu_m-list').hide()
       };
       this.friendtubiao = true
     	this.friendtubiaoxiao = false
@@ -129,12 +139,12 @@ export default {
     	$('#vue_main_main').css('width','76.7%')
     	$('.vu_m_lei').removeClass('vu_m_leier')
     	$('.c_btn_box').removeClass('c_btn_boxer')
-		var widtnn=$('#leftlist').width()
-        if(widtnn>0){
-    		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
-    	}else if(widtnn==0){
-    		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
-    	}
+//		var widtnn=$('#leftlist').width()
+//      if(widtnn>0){
+//  		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
+//  	}else if(widtnn==0){
+//  		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
+//  	}
     },
     // 搜索事件
     search: function (event) {
@@ -164,7 +174,7 @@ export default {
         this.panelShow.companyShow = false
         this.panelShow.groupShow = false
         this.panelShow.searchShow = false
-      this.$emit('openTalkEvent', uid, idType)
+      	this.$emit('openTalkEvent', uid, idType)
     },
     toggle: function (event) {
       event.stopPropagation()
@@ -198,13 +208,13 @@ export default {
     	$('#vue_main_main').css('width','94.2%')
     	$('.vu_m_lei').addClass('vu_m_leier')
     	$('.c_btn_box').addClass('c_btn_boxer')
-    	$('#vu_qun-fen,#vu_accordion,.vu_m-list').hide()
-    	var widtnn=$('#leftlist').width()
-    	if(widtnn>0){
-    		$('.vu_m-chatmain').css({'width':'77.3%','min-width':'927.5px'})
-    	}else if(widtnn==0){
-    		$('.vu_m-chatmain').css({'width':'94.2%','min-width':'927.5px'})
-    	}
+    	$('#vu_qun-fen,#vu_accordion,.vu_liaotian_left').hide()
+//  	var widtnn=$('#leftlist').width()
+//  	if(widtnn>0){
+//  		$('.vu_m-chatmain').css({'width':'77.3%','min-width':'927.5px'})
+//  	}else if(widtnn==0){
+//  		$('.vu_m-chatmain').css({'width':'94.2%','min-width':'927.5px'})
+//  	}
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
@@ -221,20 +231,22 @@ export default {
         this.panelShow.companyShow = false
         this.panelShow.groupShow = false
         this.panelShow.searchShow = false
-        $('.vu_m-list').show()
-        var widtnn=$('#leftlist').width()
-        if(widtnn>0){
-    		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
-    	}else if(widtnn==0){
-    		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
-    	}
+        $('.vu_liaotian_left').show()
+//      var widtnn=$('#leftlist').width()
+//      if(widtnn>0){
+//  		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
+//  	}else if(widtnn==0){
+//  		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
+//  	}
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
     }
   },
-  computed: {
-		
+  filters: {
+    lastTime: function (recentItem) {
+		return recentItem.last_time.substring(11, 16)
+	},	
   },
   mounted(){
 //    $(".resizabl").resizable({
