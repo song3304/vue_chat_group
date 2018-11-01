@@ -107,7 +107,7 @@ new Vue({
   				<div class="loader"></div>
   				<div class="vue-head"><a :href="'/'+user.plat+'/index/index'"><span></span>返回系统主页</a>	<span><a href="#" class="Vue_souye">直播间首页</a><a class="Vue_meg" href="/pindao" target="_blank">MEG资讯</a></span></div>
   			<div class="room_homepage">
-		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" :recentList="recentList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend" @delSessionEvent="delSession" @todayMsgEvent="todayMsg"></friendList>
+		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" :recentList="recentList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend" @delSessionEvent="delSessionn" @todayMsgEvent="todayMsg"></friendList>
 		    <div id="vue_main_main">
 		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" :match_hall_catalogs="match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"  @modifyGroupEvent="modifyGroupName"></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat" @addFriendEvent="addFriend" ></chatdialog>
@@ -361,6 +361,12 @@ new Vue({
       this.sessionList.splice(index, 1)
       this.sessionIndex = 0
       store.update({sessionList: this.sessionList, delSessionList: this.delSessionList})
+    },
+    delSessionn: function (index) {
+      this.delSessionList.push(this.recentList[index])
+      this.recentList.splice(index, 1)
+      this.sessionIndex = 0
+      store.update({recentList: this.recentList, delSessionList: this.delSessionList})
     },
     isCalling (userList) {
       for (var uid in userList) {

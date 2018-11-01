@@ -99,7 +99,7 @@
         this.addTipsTag = false
       },
       dragmain: function (ev) {
-        var oDiv = document.getElementById('vu_m-chatmain')
+        var oDiv = document.getElementById('vu_m-chatmainn')
         oDiv.style.zIndex=999999
         var oEvt = ev || event
         var disX = oEvt.clientX - oDiv.offsetLeft
@@ -128,7 +128,7 @@
         return false
       },
       dragmain_1:function(){
-      	var oDiv = document.getElementById('vu_m-chatmain')
+      	var oDiv = document.getElementById('vu_m-chatmainn')
         oDiv.style.zIndex=1000
       },
 //    duihuada:function(){
@@ -202,18 +202,18 @@
 //      }
 //    })
 
-    	var height=$("#resizable").height()
-      $("#resizable").resizable({
-        handles: "n",
-        minHeight:height,
-        maxHeight:770,
-      });
+//  	var height=$("#resizable").height()
+//    $("#resizable").resizable({
+//      handles: "n",
+//      minHeight:height,
+//      maxHeight:770,
+//    });
     }
   }
 </script>
 
 <template>
-  <div class="vu_m-chatmain" id="vu_m-chatmain" @mousedown="dragmain" @mouseup="dragmain_1">
+  <div class="vu_m-chatmain" id="vu_m-chatmainn" @mousedown="dragmain" @mouseup="dragmain_1">
     <div class="vu_m-chat">
       <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
       <div id="vu_chat" >
@@ -226,7 +226,7 @@
         	<!--<div class="vu_m-na tuo_tuo" v-if="session!=null && session.type=='user'" v-show="gerenXiao">
         		<p class="vu_m-na-p">个人信息：{{session!=null ? userList[session.id].name : ''}}</p>
         	</div>-->
-          <div class="vu_m-na tuo_tuo"  v-show="gerenXiao">  <!--v-if="session!=null && session.type=='user'"-->
+          <div class="vu_m-na tuo_tuo"  v-show="gerenXiao" v-if="session!=null && session.type=='user'">
             <p class="vu_m-new">信息展示</p>
             <!--<div class="vu_m-newqun"><img :src="userList[session.id].img" alt="" /><span v-if="userList[session.id].friend_type!=='friend'"></span></div>-->
             <span class="vu_m-na-name">昵称：{{session!=null ? userList[session.id].name : ''}}</span>

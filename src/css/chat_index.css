@@ -631,6 +631,7 @@ ul {
 	color: #333333;
 	padding-left: 30px;
 	border-bottom: 1px solid #DDDDDD;
+	margin-bottom: 2px;
 }
 /* for Chrome */
 .vu_m-list::-webkit-scrollbar {
@@ -1128,7 +1129,7 @@ li{
 }
 }
 .vu_m-message {
-	padding:5px 5px 5px 15px;
+	padding:18px 5px 5px 15px;
 	/*overflow-y: auto;*/
 	position: relative;
 	margin-right: 2px;
@@ -1331,7 +1332,7 @@ li{
 	position: absolute;
 	top: 140px;
 	left:25px;
-	z-index: 109;
+	z-index: 1009;
 	background-color: #f6f6f6;
 	-webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
 	box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
@@ -1955,7 +1956,7 @@ li{
 .leftlist_people_ul{
 	margin-top: 10px;
 	/*height:458px;*/
-    height:82%;
+    height:80%;
 	overflow: auto;
 	margin-right: 5px;
 	/*min-width:206px;*/
@@ -1971,7 +1972,7 @@ li{
 	white-space: nowrap;
 }
 .leftlist_people_name span{color: #333333;font-size: 14px;font-weight: 550;}
-.leftlist_people_name p{font-size: 12px;color: #666666;margin-top:2px;}
+.leftlist_people_name p{font-size: 12px;color: #666666;margin:2px 0 0 0;}
 /*左列表加好友*/
 .vue_leftlist_tan{
 	position: absolute;
@@ -1982,7 +1983,7 @@ li{
 	background-color: #EEEDF6;
 	border-radius: 10px;
 	box-shadow:0 2px 3px #aaaaaa;
-	z-index: 103;
+	z-index: 10000;
 }
 .vue_leftlist_tan.addFriLeft{
 	position: fixed;

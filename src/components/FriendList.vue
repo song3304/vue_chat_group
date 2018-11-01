@@ -26,7 +26,7 @@
 	      </ul>
 	      <!--聊天-->
 	      <div v-show="panelShow.chatShow" class="vu_liaotian_left">
-	      	<hisPanel :session="session" :user="user" :userList="userList" :companyList="companyList" :recentList="recentList"  @todayMsgEvent="todayMsg" @openChartEvent="openChat" ></hisPanel>
+	      	<hisPanel :session="session" :user="user" :userList="userList" :companyList="companyList" :recentList="recentList"  @todayMsgEvent="todayMsg" @openChartEvent="openChat" @delSessionEvent="delSession"></hisPanel>
 	      </div>
 	      <!--//分组-->
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.companyShow">
@@ -109,6 +109,9 @@ export default {
     },
   watch: {},
   methods: {
+  	delSession: function (index) {
+        this.$emit('delSessionEvent', index)
+      },
   	todayMsg: function (session) {
         this.$emit('todayMsgEvent', session)
       },

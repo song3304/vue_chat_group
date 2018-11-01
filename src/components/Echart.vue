@@ -261,7 +261,7 @@
 				            <p v-show="formData.userIds.length==0">请选择群组或创建新群组</p>
 				            <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuB">
 				              <ul>
-				                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair"  :value="groups.groupId">
+				                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair"  :value="groups.groupId" >
 				                	<div>{{groups.groupName}}</div>
 				                	<span v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>
 				                	<div class="c_newQunBo">			          	
@@ -337,7 +337,7 @@
     </div>
 
     <!--设置组名称-->
-    <div class="vu_fenzu_name" style="z-index:109;background: #fff;left: 47%;top:35%;box-shadow: 5px 18px 5px #ccc;" v-show="newZuTag">
+    <div class="vu_fenzu_name" style="z-index:1009;background: #fff;left: 47%;top:35%;box-shadow: 5px 18px 5px #ccc;" v-show="newZuTag">
       <div class="vu_fen_zu_title">
         <span>设置组名称</span>
         <p class="vu_fen_zu_tier" @click="closeSetName"><span></span></p>
@@ -395,7 +395,7 @@
     props: ['user', 'userList', 'groupList', 'companyLists','match_hall_catalogs','match_hall_companies', 'group_type'],
     data() {
       return {
-      	groupIdd:0,
+      	groupId:0,
       	activeIndex:0,
         kindshow:false,
         companyshow:false,
@@ -479,16 +479,16 @@
 	    quncancel: function () { // 关闭修改弹窗
 	      this.Qunfen = false
 	    },
-	    modifyGroupName: function () {
-	      if (this.groupName=="") {
+	    modifyGroupName: function (groupId, groupType, groupName) {
+//	      this.$emit('modifyGroupEvent', groupId, groupType, groupName)
+				this.group_Type="common" 
+	      if (this.groupName === '') {
 	        this.groupPlaceHolder = '组名不能为空，请重新输入'
-	      }else{
-	      	this.$emit('modifyGroupEvent', this.groupId,this.group_Type, this.groupName,this.userIds)
-	      	 alert(this.groupName)
-		      this.groupName = ''
-		      this.Qunfen = false
 	      }
-	     
+	      this.$emit('modifyGroupEvent',  this.groupId, this.group_Type, this.groupName)
+	      this.groupName = ''
+	      this.Qunfen = false
+//	      console.log(this.groupId, this.group_Type, this.groupName)
 	    },
       saveZu: function () {
         this.groupId = $('.c_active').val()
@@ -693,8 +693,7 @@
 //          $('.vue_qun_offer').removeClass('animated bounce' )})
 //        $('.vue_bp_offer').addClass('animated bounce' ).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 //          $('.vue_bp_offer').removeClass('animated bounce' )})
-        }
-        console.log(this.groupTag,this.formData)
+       }
         if(this.groupList.groupHair.length!=0&&this.formData.groupName!=""){
           this.formData.userIds = this.groupList.groupHair[this.groupTag].userIds
         }
