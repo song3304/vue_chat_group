@@ -4,12 +4,12 @@
       <!--切换选项-->
       <div class="vue_chart_yi">
       	<div class="vue_chart_usgai"></div>
-      	<div class="vue_chart_us">     		
+      	<div class="vue_chart_us">
       		<p v-show="chartusyi" class="chart_usyi" @click="chartus_yi"></p>
       		<p v-show="chartuser" class="chart_user" @click="chartus_er">√</p>
-      		<span @click="chartus_yier">我的大盘</span>      		
-      	</div>     	
-      	
+      		<span @click="chartus_yier">我的大盘</span>
+      	</div>
+
         <div class="vue-chart-head">
 
           <div class="vue_chat_company">
@@ -79,7 +79,7 @@
 								百分数：相对于价格中线的涨跌幅</span>
 	        	</div>
         	</div>
-        </ul>       
+        </ul>
         <!--右边切换选项-->
         <!--<ul class="vue_kind_species">
           <li>
@@ -232,7 +232,7 @@
       	<div class="vue_baojia" v-show="bianji_linshi">
 				      		<div class="vu_baojia_title"><span class="vu_m-na-na" v-show="vue_bianji">编辑</span><span class="vu_m-na-na" v-show="vue_linshi">临时加人</span>
 					        	<div class="vu_m-guan" @click="guan_bianji"><p><span></span></p></div>
-					       </div>      	
+					       </div>
 					        <div class="c_qunPeo">
 					          <div class="c_qunPeoTitle">所有成员</div>
 					          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;position: relative;
@@ -264,12 +264,12 @@
 				                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair"  :value="groups.groupId" >
 				                	<div>{{groups.groupName}}</div>
 				                	<span v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>
-				                	<div class="c_newQunBo">			          	
+				                	<div class="c_newQunBo">
 						                <div @click="saveZu" class="c_queren" >确认保存</div>
 						                <div class="c_sanchu" @click.stop="zuDel($event,groups.groupId)">删除组</div>
 						              </div>
 				                </li>
-				              </ul>				              
+				              </ul>
 				            </div>
 				            <p class="vue_main_left" v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
 				            <ul class="vu_fenzu_right_ul newQunFa">
@@ -277,7 +277,7 @@
 				              <br clear="all"/>
 				            </ul>
 				          </div>
-				          
+
 					</div>
         <div class="c_qunBaoJia">
           <div class="c_qunDiv">
@@ -365,7 +365,7 @@
       <div class="vue_bp_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>
       <div class="vue_cj_offer" @click="cjbj()"><p></p><span>成交报价</span></div>
     </div>
-    <!--//修改群分名字-->      
+    <!--//修改群分名字-->
       <div class="vu_qunzu_name" v-show="Qunfen">
       	<div class="vu_fen_zu_title">
       		<span>修改群组名称</span>
@@ -464,7 +464,7 @@
         var index=$('.vue_kind_ul li').index(this)
         $('#myTabContent>div').css('height','0')
         $('#myTabContent>div').eq(index).css('height','auto')
-      })     
+      })
     },
     methods: {
       //qunNew部分内容
@@ -481,7 +481,7 @@
 	    },
 	    modifyGroupName: function (groupId, groupType, groupName) {
 //	      this.$emit('modifyGroupEvent', groupId, groupType, groupName)
-				this.group_Type="common" 
+				this.group_Type="groupHair"
 	      if (this.groupName === '') {
 	        this.groupPlaceHolder = '组名不能为空，请重新输入'
 	      }
@@ -892,7 +892,7 @@
       },
       vue_real_imgyi:function(){
       	$('.vue-real-img span').removeClass('vue-real-img_active')
-				$('.vue-real-img span').eq(0).addClass('vue-real-img_active')  
+				$('.vue-real-img span').eq(0).addClass('vue-real-img_active')
 				this.tealtime_time=true
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=false
@@ -905,11 +905,11 @@
 				this.tealtime_timecuo=true
 				this.tealtime_timetrade=false
 				$('.vue-real-img i').css('display','inline-block');
-				this.matchtiao();	
+				this.matchtiao();
       },
       vue_real_imgsan:function(){
       	$('.vue-real-img span').removeClass('vue-real-img_active')
-				$('.vue-real-img span').eq(1).addClass('vue-real-img_active')  
+				$('.vue-real-img span').eq(1).addClass('vue-real-img_active')
 				this.tealtime_time=false
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=true
@@ -925,7 +925,7 @@
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
-	      });	      
+	      });
       },
       tradetiao:function(){
       	$(".vue-tealtime-timetrade>ul").niceScroll({
