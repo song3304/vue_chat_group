@@ -234,7 +234,33 @@
 					        	<div class="vu_m-guan" @click="guan_bianji"><p><span></span></p></div>
 					       </div>
 					        <div class="c_qunPeo">
+					        	<div class="vu_m-search">
+								      <input type="text" id="vu_search" placeholder="查找联系人" @keyup.enter="search" />
+								      <div @click="search"></div>
+								      <!--<p><span ></span></p>-->
+								    </div>
 					          <div class="c_qunPeoTitle">所有成员</div>
+					          <!--搜索页面-->
+	    							<!--<searchDialog  :searchList="searchList" ></searchDialog>-->
+	    							<div class="vu_input-search" v-show="panelShow.searchShow">
+										    <ul v-for="userItem in searchList" class="vu_submenu vu_submenu_ul vu_search_ul">
+										      <li :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem.id,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem.id,formData.userIds)}">
+										        <div class="vu_m-touxiang newQunFa">
+										          <img :src="userItem.img" :alt="userItem.name" :class="{'vu_gray':!userItem.isOnline}" />
+										          <!--class="gray"-->
+										          <!--//不在线，添加class=gray-->
+										        </div>
+										        <a>{{userItem.name}}</a>
+										        <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem.id,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem.id,formData.userIds)}" >
+										        	<input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userItem.id" >
+										        </i>
+										      </li>
+										    </ul>
+										    <ul v-if="searchList.length < 1">
+										      <li class="vu_submenu-name vu_submenu-none">暂无信息,请重新搜索!</li>
+										    </ul>
+										</div>
+	    							
 					          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;position: relative;
 					    z-index: 3;">
 					            <div v-if="user.plat=='match'&&this.companyLists.length==0" class="c_dingTips">暂无盯盘</div>
@@ -258,15 +284,19 @@
 					        </div>
 					        <div class="c_qunDi">
 				            <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->
-				            <p v-show="formData.userIds.length==0">请选择群组或创建新群组</p>
+				            <p class="c_quntitle" v-show="formData.userIds.length==0">请选择分组或创建新分组</p>
 				            <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuB">
 				              <ul>
 				                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair"  :value="groups.groupId" >
-				                	<div>{{groups.groupName}}</div>
-				                	<span v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>
+				                	<div class="c_qunname">
+				                		<span>{{groups.groupName}}</span>
+				                		<input class="vu_m-phone-input" :value="groups.groupName" type="text" :data-gid="groupList.groupHair[index].groupId" @keyup.enter="modifyGroupName" @blur="modifyGroupName"/>
+				                	</div>
+				                	<span class="c_qungaititle">(点击修改名称)</span>
+				                	<span class="c_qungainame" v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>
 				                	<div class="c_newQunBo">
 						                <div @click="saveZu" class="c_queren" >确认保存</div>
-						                <div class="c_sanchu" @click.stop="zuDel($event,groups.groupId)">删除组</div>
+						                <!--<div class="c_sanchu" @click.stop="zuDel($event,groups.groupId)">删除组</div>-->
 						              </div>
 				                </li>
 				              </ul>
@@ -285,7 +315,7 @@
             <!--<p v-show="formData.userIds.length==0">请从左侧选择人员</p>-->
             <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
               <ul>
-                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId"><div>{{groups.groupName}}</div><span @click.stop="vu_bianji"></span></li>               <!-- zuDel($event,groups.groupId)-->
+                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji"><div title="单击切换分组，双击打开编辑页">{{groups.groupName}}</div><span @click.stop="zuDel($event,groups.groupId)" title="点击删除分组"></span></li>               
               </ul>
               <div class="c_newQunBox">
                 <!--<div @click="saveZu">保存群组</div>-->
@@ -384,6 +414,7 @@
 </template>
 
 <script>
+	import searchDialog from './friend_list/Search'
   //let echarts = require('echarts/lib/echarts')
   // 引入折线图组件
   //require('echarts/lib/chart/line')
@@ -441,8 +472,13 @@
         Qunfen:false,
         groupPlaceHolder: '请输入新分组名称',
         tan_bianji:false,
+        searchList: [],
+        panelShow: {
+	        searchShow: false // 搜索面板是否显示
+	      },
       }
     },
+    components: {searchDialog},
     mounted() {
       if(this.groupList.groupHair.length!=0){
         this.activeTag = this.groupList.groupHair[0].groupName
@@ -467,6 +503,22 @@
       })
     },
     methods: {
+    	// 搜索事件
+	    search: function (event) {
+	      var searchKey = $('#vu_search').val()
+	      if (searchKey === '') {
+	        this.panelShow.searchShow = false
+	      } else {
+	        this.searchList = []
+	        for (var uid in this.userList) {
+	          var item = this.userList[uid]
+	          if (item.name.indexOf(searchKey) > -1) {
+	            this.searchList.push(item)
+	          }
+	        }
+	        this.panelShow.searchShow = true
+	      }
+	    },
       //qunNew部分内容
       changePh:function(){
         this.placeholderMsg = '请您粘贴信息'
@@ -474,21 +526,25 @@
       changeQunName: function (event,groupId) { // 点击修改群分组名称
 	      event.stopPropagation()
 	      this.groupId = groupId
-	      this.Qunfen = true
+//	      this.Qunfen = true
+				$('.vu_m-phone-input').show()
 	    },
 	    quncancel: function () { // 关闭修改弹窗
 	      this.Qunfen = false
 	    },
-	    modifyGroupName: function (groupId, groupType, groupName) {
-//	      this.$emit('modifyGroupEvent', groupId, groupType, groupName)
+	    modifyGroupName: function (event,groupId, groupType, groupName) {
 				this.group_Type="groupHair"
+				var el = event.currentTarget
+				var userName = $(el).val()
+				this.groupName=userName
 	      if (this.groupName === '') {
 	        this.groupPlaceHolder = '组名不能为空，请重新输入'
 	      }
 	      this.$emit('modifyGroupEvent',  this.groupId, this.group_Type, this.groupName)
 	      this.groupName = ''
 	      this.Qunfen = false
-//	      console.log(this.groupId, this.group_Type, this.groupName)
+	      $('.vu_m-phone-input').hide()
+	      
 	    },
       saveZu: function () {
         this.groupId = $('.c_active').val()
@@ -619,6 +675,7 @@
       },
       in_array: function (search, array) {
         for (var i in array) {
+        	
           if (array[i] === search) {
             return true
           }

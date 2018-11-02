@@ -75,10 +75,11 @@
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people" v-if="searchData">
-	      <p>大厅成员
-	        <span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>
-	        <span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合人员</span>
-	      </p>
+	      <p>大厅成员 </p>
+	      <div>
+	      	<span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合人员</span>
+	      	<span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>	        
+	      </div>
 	      <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
 	      <ul class="leftlist_people_ul">
 	        <li v-for="item in searchData" @click="firendchat(item.id)" v-if="item.plat!='user'">

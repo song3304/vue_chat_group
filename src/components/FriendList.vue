@@ -122,19 +122,19 @@ export default {
       	this.panelShow.chatShow = true
         this.panelShow.companyShow = false
         this.panelShow.groupShow = false
-        this.panelShow.searchShow = false
+//      this.panelShow.searchShow = false
         $('.vu_m-list').show()
       } else if(index == 1){
         this.panelShow.chatShow = false
         this.panelShow.companyShow = true
         this.panelShow.groupShow = false
-        this.panelShow.searchShow = false
+//      this.panelShow.searchShow = false
         $('.vue_new_news').hide()
       }else{
       	this.panelShow.chatShow = false
         this.panelShow.companyShow = false
         this.panelShow.groupShow = true   //群隐藏
-        this.panelShow.searchShow = false
+//      this.panelShow.searchShow = false
       };
       this.friendtubiao = true
     	this.friendtubiaoxiao = false
@@ -176,7 +176,7 @@ export default {
 	    this.panelShow.chatShow = true
         this.panelShow.companyShow = false
         this.panelShow.groupShow = false
-        this.panelShow.searchShow = false
+//      this.panelShow.searchShow = false
       	this.$emit('openTalkEvent', uid, idType)
     },
     toggle: function (event) {
@@ -233,7 +233,7 @@ export default {
 		this.panelShow.chatShow = true
         this.panelShow.companyShow = false
         this.panelShow.groupShow = false
-        this.panelShow.searchShow = false
+//      this.panelShow.searchShow = false
         $('.vu_liaotian_left').show()
 //      var widtnn=$('#leftlist').width()
 //      if(widtnn>0){

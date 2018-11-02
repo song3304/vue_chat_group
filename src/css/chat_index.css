@@ -258,6 +258,15 @@ ul {
 	float:left;
 	margin-top: 40px;
 }
+.c_qunPeo .vu_input-search{
+	position: absolute;
+	top:70px;
+	left: 0;
+	width:189px;
+	height: 340px;
+	background: #FFFFFF;
+	z-index: 5;
+}
 .vu_input-search{
 	position: absolute;
 	top:50px;
@@ -271,10 +280,10 @@ ul {
 }
 .vu_m-touxiang{
 	position: relative;
-	top:7px;
+	top:3px;
 	left: 0;
-	width:40px;
-	height:40px;
+	width:20px;
+	height:20px;
 	background-color: #cccccc;
 	border-radius:5px;
 	display: inline-block;
@@ -320,6 +329,20 @@ ul {
 	width: 100%;
 	height: 100%;
 }
+.c_qunname .vu_m-phone-input{
+	display: none;
+	position: absolute;
+	top:0;
+	left:0;
+    width:100%;
+    height: 100%;
+    background: #EEF0F6;
+    border: 1px solid #DDDDDD;
+    color: #666666;
+    font-size: 12px;
+    padding-left: 3px;
+    
+}
 .vu_m-phone-input{
 	display: none;
 	position: absolute;
@@ -338,13 +361,14 @@ ul {
 	margin: 19px 0 0 3px;
 }
 #vu_search{
-	width: 146px;
-	height: 26px;
+	width: 130px;
+	height: 20px;
 	border: solid 1px #cccccc;
-	margin:11px 15px;
+	margin:5px 30px;
 	padding-left: 10px;
-	background: #5c6d9d;
-	color: #CCCCCC;
+	/*background: #5c6d9d;*/
+	color: #999999;
+	font-size: 12px;
 }
 #vu_search::-webkit-input-placeholder { /* WebKit browsers */
 	color: #CCCCCC!important;
@@ -361,24 +385,24 @@ ul {
 
 .vu_m-search div{
 	position: absolute;
-	top: 12px;
-	right:100px;
+	top: 3px;
+	right:43px;
 	width:20px;
-	height: 26px;
+	height: 20px;
 	background:url(../images/qie_tu.png) -4px -102px  no-repeat;
 	cursor: pointer;
 }
 .vu_m-search{
-	height: 50px;
-	border-bottom:1px solid #eeeeee;
+	height: 28px;
+	/*border-bottom:1px solid #eeeeee;*/
 	position: relative;
-	background: #5c6d9d;
+	/*background: #5c6d9d;*/
 }
 .vu_m-guan{float: right;margin-top:4px;}
-.vu_m-search p,.vu_m-guan p{float:right;width: 20px;height: 20px;cursor: pointer;text-align: center;margin: 6px 10px 0 0;}
+.vu_m-search p,.vu_m-guan p{float:right;width: 23px;height: 23px;cursor: pointer;text-align: center;margin: 3px 10px 0 0;}
 .vu_m-search span,.vu_m-guan span{
 	display: inline-block;
-	margin-top: 3px;
+	margin-top: 6px;
 	width:15px;
 	height:15px;
 	background: url(../images/qie_tu.png) -4px -155px;
@@ -493,7 +517,7 @@ ul {
 	background:#E42B2B url(../images/qie_tu.png) -2px -42px;
 }
 .vu_submenu-name{cursor: pointer;}
-.vu_submenu-none{height: 50px;text-align: center;line-height: 50px;border-bottom: 1px solid #cccccc;font-size: 14px;color: #333333;}
+.vu_submenu-none{height: 50px;text-align: center;line-height: 50px;font-size: 14px;color: #999999;}
 /*.submenu-name .m-phone-img{display: none;}*/
 .vu_submenu-name:hover .vu_m-phone-img{display: inline-block;}
 /*历史记录*/
@@ -786,9 +810,9 @@ ul {
 .vu_fen_zu_title p:hover span{background: url(../images/qie_tu.png) -4px -242px;}
 .vu_fenzu_left{
   width: 250px!important;
-  height:89%;
+  height:84%;
   /*height: 350px!important;*/
-  float: left;border-right: 1px solid #DDDDDD;overflow: hidden;}
+  float: left;overflow: hidden;}
 .vu_fenzu_left>ul{
 	width: 270px;
 	overflow-y: scroll;
@@ -901,7 +925,7 @@ ul {
 .vu_fenzu_footer span:hover,.vu_fenzu_name_footer span:hover{background-color: #eaeaea;}
 .vu_fenzu_name{
 	width: 330px;
-	height: 175px;
+	height: 150px;
 	background-color: #f6f6f6;
 	box-shadow: 0px 0px 2px 0px
 	rgba(42, 42, 42, 0.2)!important;
@@ -910,14 +934,14 @@ ul {
 	left:60px;
 	z-index: 12;
 }
-.vu_fenzu_name .vu_fenzu_name_na{color: #666666;padding: 20px 0 5px 25px;}
+.vu_fenzu_name .vu_fenzu_name_na{color: #666666;padding: 10px 0 1px 25px;font-size: 12px;}
 .vu_fenzu_name input{
 	width: 280px;
 	height: 26px;
-	background-color: #eeeeee;
 	border: solid 1px #dddddd;
-	margin: 0 0 25px 25px;
+	margin: 0 0 13px 25px;
 	padding-left: 10px;
+	font-size: 12px;
 }
 .vu_fenzu_name_footer button{
 	background-color: #4385F5;
@@ -931,7 +955,7 @@ ul {
 	vertical-align:middle;
 	opacity: 0;
 }
-.vu_first_title {font-size: 14px!important;max-width: 150px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.vu_first_title {font-size: 12px!important;max-width: 150px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 /*新群发样式*/
 .vu_input_style{
 	background: url(../images/green.png) no-repeat;
@@ -1308,8 +1332,8 @@ li{
 .vu_qun_fen>li>.vu_link:hover .vu_qun-name{display: block;}
 /*//修改群组样式*/
 .vu_qunzu_name{
-	width: 250px;
-	height:145px;
+	width: 330px;
+	height:150px;
 	background-color: #FFFFFF;
 	-webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
 	box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
@@ -1319,32 +1343,36 @@ li{
 	z-index: 1100;
 }
 .vu_qunzu_name input{
-	margin: 10px 0 20px 15px;
+	margin: 8px 0 16px 15px;
 	padding-left: 10px;
-	width: 220px;
+	width: 280px;
+	height: 26px;
 	border: 1px solid #DDDDDD;
 }
-.vu_qunzu_name>p{margin:10px 0 0 5px;}
+.vu_qunzu_name input::-webkit-input-placeholder{
+	color: #999999;
+}
+.vu_qunzu_name>p{margin:10px 0 0 15px;color: #999999;}
 .vu_qunzu_name button{
-	margin-left: 40px!important;
+	margin-left: 70px!important;
 }
 .vu_del-popup{
 	position: absolute;
 	top: 140px;
 	left:25px;
 	z-index: 1009;
-	background-color: #f6f6f6;
+	background-color: #FFFFFF;
 	-webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
 	box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
-	width: 255px;
-	height: 140px;
+	width: 330px;
+	height: 150px;
 }
 .vu_del-popup>p{
 	margin: 25px 0;
 	text-align: center;
 }
 .vu_del-popup button{
-	margin-left: 50px;
+	margin-left: 70px;
 }
 .vu_del-popup .vu_fenzu_name_footer span{
 	margin-right:5px;
@@ -1900,6 +1928,7 @@ li{
 	padding-left: 10px;
 	font-size: 15px;
 	color: #333333;
+	margin: 0;
 }
 .vue_leftlist_search{
 	height: 30px;
@@ -2346,6 +2375,12 @@ li{
   position: relative;
 }
 .c_qunBox{
+	-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 	position: fixed;
 	top: 45px;
 	left: 30px;
@@ -2361,6 +2396,7 @@ li{
   width: 190px;
   height: 370px;
   background-color: #FFFFFF;
+  border-right: 1px solid #DDDDDD;
 }
 .c_qunBaoJia{
   float: left;
@@ -2371,11 +2407,10 @@ li{
 .c_qunPeoTitle{
   width: 100%;
   padding-left: 14px;
-  margin-top: 10px;
   height: 30px;
   line-height: 30px;
-  font-size: 14px;
-  color: #666;
+  font-size: 12px;
+  color: #999;
 }
 .c_qunBaoJiaTitle{
   width: 100%;
@@ -2387,6 +2422,8 @@ li{
   border-bottom: 1px solid #ddd;
   overflow: hidden;
   background: #eef0f6;
+  position: relative;
+  z-index: 5;
 }
 .c_qunBaoJiaTitle span{
   display: block;
@@ -3227,7 +3264,8 @@ to {top: 0;}
 	color: #999999;
 }
 .c_zuB{
-	height: 24px;
+	height: 26px;
+	margin-top: -3px;
 }
 .c_zuB li{
 	float:left;
@@ -3308,3 +3346,5 @@ to {top: 0;}
 .D_xiugai li:hover{background-color:transparent!important;}
 .vu_liaotian_left{color: #FFFFFF;}
 .vu_liaotian_left li{height: 55px;position: relative;}
+.c_quntitle{line-height: 30px;margin: 0;font-size: 12px;color:#999999;}
+.vu_submenu_ul .vu_checkbox_bg{margin-top: 5px;}
