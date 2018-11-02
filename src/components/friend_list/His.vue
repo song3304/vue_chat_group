@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<ul >
-		    <li v-for="(recentItem,index) in recentList"  @click="openChat(recentItem.id),changeCurrent,todayMsg(session)">
+		    <li v-for="(recentItem,index) in recentList"  v-if="recentItem !=null && userList.hasOwnProperty(recentItem.id) && recentItem.type=='user'" @click="openChat(recentItem.id)">
 	        	<img class="vu_avatar"  width="30" height="30" :alt="userList[recentItem.id].name" :src="userList[recentItem.id].img" :class="{'vu_gray':!userList[recentItem.id].isOnline}">
 	        	<div class="vu_m-cs-cs">
 	            	<p class="vu_name">{{userList[recentItem.id].name}}</p>
@@ -11,8 +11,8 @@
 	            	<p class="vu_m-list-del-time">{{recentItem|lastTime}}</p>
 	            	<!--<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{recentItem|noReadCnt}}</p>-->
 	            	<div class="vu_delet-li"  @click.stop="deletePerson(index)"></div>
-	            </div>    
-	             <span  v-if="userList[recentItem.id].friend_type!='friend'"></span>   
+	            </div>
+	             <span  v-if="userList[recentItem.id].friend_type!='friend'"></span>
 	        </li>
 		 </ul>
 	</div>
@@ -46,27 +46,18 @@ export default {
   methods: {
     openChat: function (uid) {
       this.$emit('openChartEvent', uid, 'user')
+      this.current_uerId = uid
       $('.vu_m-list').show()
     },
 	deletePerson: function (index) {
       this.$emit('delSessionEvent', index)
       // this.sessionList.splice(index, 1)
-    },
-
-    // 切换当前
-    changeCurrent: function (uid) {
-      this.current_uerId = uid
-    },
-	todayMsg: function (session) {
-      if (session != null) {
-        this.$emit('todayMsgEvent', session)
-      }
-    },
+    }
   },
   filters: {
     lastTime: function (recentItem) {
 		return recentItem.last_time.substring(11, 16)
-	},	
+	},
 	firstMsg: function (recentItem) {
       if (recentItem.messages.length > 0) {
         return recentItem.messages[recentItem.messages.length - 1].text

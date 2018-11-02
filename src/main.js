@@ -283,6 +283,8 @@ new Vue({
             messages: []
           }
           this.sessionList.unshift(addSessionData)
+          // 没有数据发送获取今日数据
+          this.todayMsg(addSessionData)
         } else {
           var findSessionData = this.delSessionList[delIndex]
           this.delSessionList.splice(delIndex, 1)
