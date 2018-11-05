@@ -122,7 +122,57 @@
           <div class="ckdp_icon"><a href="javascript:;"></a></div>
         </div>
       </div>
-			<div id="mypancontent"></div>
+			<div id="mypancontent">    <!--//我的大盘-->
+					<div class="vue_chat_kind mypan_kind_ul">  <!--//品种分类·-->
+		        <!--下拉表-->
+		        <ul class="vue_kind_ul">  <!--v-show="kindshow"-->
+		          <li v-for="(catalogItem,index) in match_hall_catalogs" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
+		          <div class="qujia_state">
+			        	<p></p>
+			        	<span>取价说明</span>
+			        	<div class="qujia_state_main">
+			        			<span>该数据为您显示：<br>
+										通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
+										价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
+										百分数：相对于价格中线的涨跌幅</span>
+			        	</div>
+		        	</div>
+		        </ul>
+		      </div>
+		      <!--<div v-for='(catalog,index) in match_hall_catalogs'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
+	          <div class="col-xs-8 chart-pane"  v-bind:id="'mypan_data_'+catalog.id" ></div>
+	          <div class="col-xs-3 col-md-3 col-sm-12 price-list">
+                <div class="">
+                   <div class="row trend-syn-table-title">
+                        <div class="col-md-4 col-xs-4 ">买/卖</div>
+                        <div class="col-md-4 col-xs-4 base_font1">价格</div>
+                        <div class="col-md-4 col-xs-4 base_font1">报价数</div>
+                    </div>
+                    <div v-bind:id="'bird1_price_banner_'+catalog.id" class="vue_bird_price">
+                    		<div class="vue_chart_hight vue_chart_price">
+	                    			<span>最高</span>
+	                    			<span>7800</span>
+	                    			<span>1</span>
+                    		</div>
+                        <ul class="bird_sell brid_ul">
+
+                        </ul>
+                        <div class="current_price"></div>
+                        <ul class="bird_buy brid_ul">
+
+                        </ul>
+                        <div class="vue_chart_low vue_chart_price">
+	                    			<span>最低</span>
+	                    			<span>7800</span>
+	                    			<span>1</span>
+                    		</div>
+                    </div>
+                </div>
+            </div>
+	          <div class="clear"></div>
+	          <div class="ckdp_icon"><a href="javascript:;"></a></div>
+	        </div>-->
+			</div>
       <!----曲线图表 end--->
 
 
@@ -152,7 +202,7 @@
             			<span class="tealtime-timecuotitleyi">时间</span>
             			<span class="tealtime-timecuotitleer">公司</span>
             			<span class="tealtime-timecuotitlesan">撮合员</span>
-            			<span class="tealtime-timecuotitlesi">原始信息</span>
+            			<span class="tealtime-timecuotitlesi">报价信息</span>
             	</div>
             	<ul>
             		<li>
@@ -185,7 +235,7 @@
 	            			<span class="tealtime-timecuotitleyi">时间</span>
 	            			<span class="tealtime-timecuotitleer">公司</span>
 	            			<span class="tealtime-timecuotitlesan">撮合员</span>
-	            			<span class="tealtime-timecuotitlesi">原始信息</span>
+	            			<span class="tealtime-timecuotitlesi">报价信息</span>
 	            	</div>
 	            	<ul>
 	            		<li>
@@ -541,6 +591,7 @@
 	        this.groupPlaceHolder = '组名不能为空，请重新输入'
 	      }
 	      this.$emit('modifyGroupEvent',  this.groupId, this.group_Type, this.groupName)
+	      this.activeTag = this.groupName
 	      this.groupName = ''
 	      this.Qunfen = false
 	      $('.vu_m-phone-input').hide()
@@ -621,6 +672,11 @@
               this.groupTag=0
             }
           }
+          this.bianji_linshi=true
+      		this.vue_bianji=true
+      		this.vue_linshi=false
+      		this.tan_bianji=true
+      		$('.c_queren').show()
       },
       /* qunNew部分开始 */
       cjbj: function () {
@@ -828,7 +884,7 @@
           }
 
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-       this.cfuxiao();
+//     this.cfuxiao();
       },
       changecom(comspitem,comindex){//公司切换
         this.selectCid=comspitem.id;
@@ -838,7 +894,7 @@
         $('.vue_company_species>li').attr('class','');
         $('.vue_company_species>li').eq(comindex).attr('class','comactive');
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-        this.cfuxiao();
+//      this.cfuxiao();
       },
       delcom(comspitem,comindex){//公司删除
           var select_cid=this.selectCid;
@@ -893,14 +949,14 @@
                 };
             }
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-        this.cfuxiao();
+//      this.cfuxiao();
       },
       changepeo(peospitem,peoindex){//人员切换
           this.selectUid=peospitem.id;
           $('.vue_people_species>li').attr('class','');
           $('.vue_people_species>li').eq(peoindex).attr('class','peoactive');
           refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-          this.cfuxiao();
+//        this.cfuxiao();
       },
       delpeo(peospitem,peoindex){//人员删除
         var select_uid=this.selectUid;
@@ -926,14 +982,14 @@
       	this.chartuser=true
       	$('.vue_chart_usgai').show()
       	$('#mypancontent').show()
-      	this.cfuxiao();
+//    	this.cfuxiao();
       },
       chartus_er:function(){
       	this.chartusyi=true
       	this.chartuser=false
       	$('.vue_chart_usgai').hide()
       	$('#mypancontent').hide()
-      	this.cfuxiao();
+//    	this.cfuxiao();
       },
       chartus_yier:function(){
       	this.chartusyi=!this.chartusyi
@@ -945,7 +1001,7 @@
       		$('.vue_chart_usgai').hide()
       		$('#mypancontent').hide()
       	}
-      	this.cfuxiao();
+//    	this.cfuxiao();
       },
       vue_real_imgyi:function(){
       	$('.vue-real-img span').removeClass('vue-real-img_active')

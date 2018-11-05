@@ -292,6 +292,15 @@ ul {
 	margin-left:15px;
 	overflow: hidden;
 }
+.vu_submenu_group .vu_m-touxiang{
+	width:40px;
+	height:40px;
+}
+.vu_submenu_group>li:hover, .vu_submenu_group>li.vu_current{
+	background-color: #4A4A51!important;
+}
+.vu_submenu_group .vu_submenu_com{margin-top: 0;}
+.vu_submenu_group>li{height: 50px!important;}
 .vu_touxiang{
 	animation:toujump .6s infinite linear;
 	-webkit-animation:toujump .6s infinite linear;
@@ -926,7 +935,7 @@ ul {
 .vu_fenzu_name{
 	width: 330px;
 	height: 150px;
-	background-color: #f6f6f6;
+	background-color: #FFFFFF;
 	box-shadow: 0px 0px 2px 0px
 	rgba(42, 42, 42, 0.2)!important;
 	position: absolute;
@@ -1814,7 +1823,7 @@ li{
 	margin: 10px 0 0 10px;
 }
 /*.vue-realtime-auto{width: 98%;margin:5px 0 5px 2%;height:150px;overflow-y: auto;}*/
-.vue-tealtime-time,.vue-tealtime-timecuo {
+.vue-tealtime-time,.vue-tealtime-timecuo,.vue-tealtime-timetrade {
 	height: 78%;
 	width: 67%;
 	margin: 5px 0 5px 2%;
@@ -3174,7 +3183,7 @@ to {top: 0;}
   	left: 0;
   	width: 100%;
   	height: 100%;
-  	background: rgba(0,0,0,0.5);
+  	background: rgba(0,0,0,0.8);
   	z-index: 9;
   	display: none;
   }
@@ -3234,9 +3243,9 @@ to {top: 0;}
   }
   .vue-tealtime-timecuotitle span{color: #CCCCCC;}
   .vue-tealtime-timetitle,.vue-tealtime-timecuotitle{display: block;border-bottom: 1px solid #323129;height:38px;line-height: 38px;}
-  .vue-tealtime-timecuo li{border-bottom: 1px solid #192941;padding: 10px 0;}
-  .vue-tealtime-timecuo li span{float: left;text-align: center;color: #CCCCCC;line-height: 26px;}
-  .vue-tealtime-timecuo div span{display: inline-block;text-align: center;}
+  .vue-tealtime-timecuo li,.vue-tealtime-timetrade li{border-bottom: 1px solid #192941;padding: 10px 0;}
+  .vue-tealtime-timecuo li span,.vue-tealtime-timetrade li span{float: left;text-align: center;color: #CCCCCC;line-height: 26px;}
+  .vue-tealtime-timecuo div span,.vue-tealtime-timetrade div span{display: inline-block;text-align: center;}
   .tealtime-timecuotitleyi{width: 11%;}
   .tealtime-timecuotitleer{width: 13%;}
   .tealtime-timecuotitlesan{width: 17%;}
@@ -3348,3 +3357,7 @@ to {top: 0;}
 .vu_liaotian_left li{height: 55px;position: relative;}
 .c_quntitle{line-height: 30px;margin: 0;font-size: 12px;color:#999999;}
 .vu_submenu_ul .vu_checkbox_bg{margin-top: 5px;}
+.vu_submenu_group .vu_submenu_name{color: #FFFFFF!important;}
+.mypan_kind_ul{
+	top: 9px;
+}

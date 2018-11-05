@@ -185,7 +185,7 @@
         if (this.searchKey === '') {
           search_data = this.allData
         } else {
-          search_data = this.allData.filter(item=>item.name.indexOf(this.searchKey)>=0)
+          search_data = this.allData.filter(item=>item.name.indexOf(this.searchKey)>=0||item.company_name.indexOf(this.searchKey)>=0)
         }
         for(var i=0,lg=search_data.length;i<lg;i++){
           search_data[i].isOnline = this.onlineUserList.hasOwnProperty(search_data[i].id)

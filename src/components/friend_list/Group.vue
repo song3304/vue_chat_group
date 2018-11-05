@@ -292,17 +292,15 @@ export default {
         	<!--<p title="点击删除分组" class="vu_check-all" @click="Qundel($event,companyItem.groupId)">-</p>-->
 
         </div>
-        <ul class="vu_submenu vu_submenu_ul ">
+        <ul class="vu_submenu vu_submenu_ul vu_submenu_group">
           <li v-for="userItem in sortOnline(companyItem.userIds)" :class="{'vu_submenu-name vu_current':userItem==current_uerId,'vu_submenu-name':userItem!=current_uerId}" @click="changeCurrent(userItem)"  @mouseleave="mouseLeave" @dblclick="openChat(userItem)">
-            <div> <!--有消息头像动加类名 touxiang-->
+							<!--有消息头像动加类名 touxiang-->
             	<div :class="{'vu_m-touxiang':!userList[userItem].isCalling,'vu_m-touxiang vu_touxiang':userList[userItem].isCalling}">
               	<img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--class="gray "-->
               </div>
               <!--//不在线，添加class=gray-->
-
-            </div>
             <div class="vu_submenu_com">
-            	<a>{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}<b v-if="userList[userItem].friend_name!==userList[userItem].name">({{userList[userItem].name}})</b> </a>
+            	<a class="vu_submenu_name">{{userList[userItem].friend_name?userList[userItem].friend_name:userList[userItem].name}}<b v-if="userList[userItem].friend_name!==userList[userItem].name">({{userList[userItem].name}})</b> </a>
             	<span v-if="followList.indexOf(userList[userItem].id)>=0"></span> <!--已盯盘就显示图标-->
             	<p class="vue_submen_company">{{userList[userItem].company_short_name}}</p>
             </div>

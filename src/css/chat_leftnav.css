@@ -116,7 +116,7 @@ h1 a {
 	/*width: 60%;*/
   width: 58%;
 }
-.vu_submenu a{
+.vu_submenu_name{
     display: inline-block;
     text-decoration: none;
     color: #666666!important;
