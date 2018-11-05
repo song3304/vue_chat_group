@@ -111,6 +111,17 @@ if (!localStorage.getItem(key)) {
     qunList: [
 
     ],
+    bidList: [// 报价或者询价
+      { id: 2,
+        type: 'user',
+        messages: [{
+          messageId: 3,
+          text: 'Hello',
+          date: now
+        }],
+        last_time: '2018-05-13 11:08:09'
+      }
+    ],
     // verify消息
     verifyMsg: [
       // {// 发送验证给别人
@@ -383,6 +394,9 @@ export default {
     }
     if (store.hasOwnProperty('recentList')) {
       oldData.recentList = store.recentList
+    }
+    if (store.hasOwnProperty('bidList')) {
+      oldData.bidList = store.bidList
     }
     localStorage.setItem(key, JSON.stringify(oldData))
   }
