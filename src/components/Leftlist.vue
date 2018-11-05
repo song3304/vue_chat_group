@@ -22,7 +22,7 @@
 							<span class="redian_news_span">{{leftitem|lastDate}}</span>
 						</p>
 						<div class="vue_leftlist_left">
-							<!--<p>{{leftitem|lastDate}}</p>-->												
+							<!--<p>{{leftitem|lastDate}}</p>-->
 							<span>{{leftitem|lastTime}}</span>
 						</div>
 						<div class="vue_leftlist_center">
@@ -78,7 +78,7 @@
 	      <p>大厅成员 </p>
 	      <div>
 	      	<span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合人员</span>
-	      	<span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>	        
+	      	<span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>
 	      </div>
 	      <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
 	      <ul class="leftlist_people_ul">
@@ -120,6 +120,9 @@
 	        <span class="vue_leftlist_companysz_er" @click="openVerify()">{{relation()}}</span>
 	        <!--<p>聊天</p>-->
 	      </div>
+        <div v-show="!isNull&&!isFriNull&&!isFriType" style="width: 100%;height:50px;line-height:50px;text-align: center;color: #999;">
+            已添加好友
+        </div>
 			<div class="vue_leftlist_close" @click="leftlistclose"><span></span></div>
 		</div>
 	    <div class="vue_leftlist_tan" v-if="tingList" v-show="sendfirendtan">   <!--加好友弹窗-->
@@ -213,7 +216,7 @@
           return false
         }
       },
-      
+
     },
   methods: {
     choosePeople: function(choosePeo){
@@ -330,7 +333,7 @@
 //  	}else{
 //  		$('.vu_m-chatmain').css('width','94.2%')
 //  	}
-        var realWidth=$("#myTabContent").width();        
+        var realWidth=$("#myTabContent").width();
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
     	resizeChart();
@@ -339,7 +342,7 @@
     	this.leftlisttu = true
     	this.leftlisttuxiao = false
     	$('#leftlist').css('width','17.8%')
-    	$('.room_homepage').css('width','82%')   	
+    	$('.room_homepage').css('width','82%')
     	$('#ascrail2004').show()
 //  	var widthn=$('#vu_friend').width()
 //  	if(widthn>200){
@@ -347,7 +350,7 @@
 //  	}else{
 //  		$('.vu_m-chatmain').css('width','77.2%')
 //  	}
-    	var realWidth=$("#myTabContent").width();        
+    	var realWidth=$("#myTabContent").width();
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
     }
