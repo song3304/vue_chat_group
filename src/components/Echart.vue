@@ -272,6 +272,103 @@
         </div>
       </div>
       <!--实时报价信息 end-->
+      
+      <!--我的大盘实时报价信息 start-->
+      <div class="vue-chart-newfoot">
+        <div class="vue-realtime">
+          <div class="vue-realtime-time">
+            <div class="vue-real-img">
+              <!--<p class="vue-real-img-img"></p>-->
+              <span @click="vue_myreal_imgyi" class="vue-real-img_active">实时报价</span>
+              <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_myreal_imger">撮合报价</span><i>（以下是盯盘的撮合员）</i></p>
+             	<span v-if="user.plat=='trade'" @click="vue_myreal_imgsan">贸易商报价</span>
+            </div>
+            <div class="vue-tealtime-time" v-show="mytealtime_time">  <!--实时报价数据-->
+            	<div class="vue-tealtime-timetitle">
+            		<span class="vue-realtime-auto-timeti">时间</span>
+            		<span class="vue-realtime-auto-companyti">撮合人员</span>
+            		<span class="vue-realtime-buyti">买/卖</span>
+            		<span class="vue-realtime-buy_priceti">价格</span>
+            		<span class="vue-realtime-auto-datati">交割期</span>
+            		<span class="vue-realtime-auto-numti">吨数</span>
+            	</div>
+              <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
+            </div>
+            <div class="vue-tealtime-timecuo" v-show="mytealtime_timecuo"> <!--撮合报价数据-->
+            	<div class="vue-tealtime-timecuotitle">
+            			<span class="tealtime-timecuotitleyi">时间</span>
+            			<span class="tealtime-timecuotitleer">公司</span>
+            			<span class="tealtime-timecuotitlesan">撮合员</span>
+            			<span class="tealtime-timecuotitlesi">报价信息</span>
+            	</div>
+            	<ul>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出：meg 明天上午交割 国际 500吨 7738 --新天<br clear="all"/>
+										接：meg 本周三前 国际 7649---博纳<br clear="all"/>
+										出：meg 下月底交割 国际 500吨 7551 --新天<br clear="all"/>
+										接：meg 下月底国际 7575---博纳<br clear="all"/>
+            			</span>
+            			<br clear="all"/>
+            		</li>
+            		<li>
+            			<span class="tealtime-timecuotitleyi">17:39</span>
+            			<span class="tealtime-timecuotitleer">东方化塑</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            			<span class="tealtime-timecuotitlesi">
+            				出8200
+            				<br clear="all"/>
+            				出7900
+            			</span>
+            			<br clear="all"/>
+            		</li>
+            	</ul>
+            </div>
+            <div class="vue-tealtime-timetrade" v-show="mytealtime_timetrade"> <!--贸易商报价数据-->
+            		<div class="vue-tealtime-timecuotitle">
+	            			<span class="tealtime-timecuotitleyi">时间</span>
+	            			<span class="tealtime-timecuotitleer">公司</span>
+	            			<span class="tealtime-timecuotitlesan">撮合员</span>
+	            			<span class="tealtime-timecuotitlesi">报价信息</span>
+	            	</div>
+	            	<ul>
+	            		<li>
+	            			<span class="tealtime-timecuotitleyi">17:39</span>
+	            			<span class="tealtime-timecuotitleer">东方化塑</span>
+	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+	            			<span class="tealtime-timecuotitlesi">
+	            				出8200
+	            				<br clear="all"/>
+	            				出7900
+	            			</span>
+	            			<br clear="all"/>
+	            		</li>
+	            	</ul>
+            </div>
+            <div class="vue-tealtime-right" v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
+	            	<div class="vue_right_yi">
+		            		<img src="../images/bj.png" alt="" />
+		            		<span>当前最多报价</span>
+	            	</div>
+	            	<div class="vue_right_er">
+		            		<span>卖：</span>
+		            		<ul class="bird_sell">
+		            		</ul>
+	            	</div>
+	            	<div class="vue_right_san">
+		            		<span>买：</span>
+		            		<ul class="bird_buy">
+		            		</ul>
+	            	</div>
+            </div>
+          </div>
+          <br clear="all"/>
+        </div>
+      </div>
+      <!--我的大盘实时报价信息 end-->
     </div>
 
     <!-- 群发框 -->
@@ -516,6 +613,9 @@
         tealtime_time:true,
         tealtime_timecuo:false,
         tealtime_timetrade:false,
+        mytealtime_time:true,
+        mytealtime_timecuo:false,
+        mytealtime_timetrade:false,
         vue_bianji:false,
         vue_linshi:false,
         bianji_linshi:false,
@@ -981,14 +1081,16 @@
       	this.chartusyi=false
       	this.chartuser=true
       	$('.vue_chart_usgai').show()
-      	$('#mypancontent').show()
+      	$('#mypancontent,.vue-chart-newfoot').show()
+      	$('.vue-chart-foot').hide()
 //    	this.cfuxiao();
       },
       chartus_er:function(){
       	this.chartusyi=true
       	this.chartuser=false
       	$('.vue_chart_usgai').hide()
-      	$('#mypancontent').hide()
+      	$('#mypancontent,.vue-chart-newfoot').hide()
+      	$('.vue-chart-foot').show()
 //    	this.cfuxiao();
       },
       chartus_yier:function(){
@@ -996,37 +1098,67 @@
       	this.chartuser=!this.chartuser
       	if(this.chartusyi==false){
       		$('.vue_chart_usgai').show()
-      		$('#mypancontent').show()
+      		$('#mypancontent,.vue-chart-newfoot').show()    
+      		$('.vue-chart-foot').hide()
       	}else{
       		$('.vue_chart_usgai').hide()
-      		$('#mypancontent').hide()
+      		$('#mypancontent,.vue-chart-newfoot').hide()
+      		$('.vue-chart-foot').show()
       	}
 //    	this.cfuxiao();
       },
+// 正常大盘
       vue_real_imgyi:function(){
-      	$('.vue-real-img span').removeClass('vue-real-img_active')
-				$('.vue-real-img span').eq(0).addClass('vue-real-img_active')
+      	$('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-chart-foot .vue-real-img span').eq(0).addClass('vue-real-img_active')
 				this.tealtime_time=true
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=false
-				$('.vue-real-img i').hide();
+				$('.vue-chart-foot .vue-real-img i').hide();
       },
       vue_real_imger:function(){
-      	$('.vue-real-img span').removeClass('vue-real-img_active')
-				$('.vue-real-img span').eq(1).addClass('vue-real-img_active')
+      	$('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-chart-foot .vue-real-img span').eq(1).addClass('vue-real-img_active')
 				this.tealtime_time=false
 				this.tealtime_timecuo=true
 				this.tealtime_timetrade=false
-				$('.vue-real-img i').css('display','inline-block');
+				$('.vue-chart-foot .vue-real-img i').css('display','inline-block');
 				this.matchtiao();
       },
       vue_real_imgsan:function(){
-      	$('.vue-real-img span').removeClass('vue-real-img_active')
-				$('.vue-real-img span').eq(1).addClass('vue-real-img_active')
+      	$('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-chart-foot .vue-real-img span').eq(1).addClass('vue-real-img_active')
 				this.tealtime_time=false
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=true
-				$('.vue-real-img i').hide();
+				$('.vue-chart-foot .vue-real-img i').hide();
+				this.tradetiao();
+      },
+//    我的大盘
+      vue_myreal_imgyi:function(){
+      	$('.vue-chart-newfoot .vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-chart-newfoot .vue-real-img span').eq(0).addClass('vue-real-img_active')
+				this.mytealtime_time=true
+				this.mytealtime_timecuo=false
+				this.mytealtime_timetrade=false
+				$('.vue-chart-newfoot .vue-real-img i').hide();
+      },
+      vue_myreal_imger:function(){
+      	$('.vue-chart-newfoot .vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-chart-newfoot .vue-real-img span').eq(1).addClass('vue-real-img_active')
+				this.mytealtime_time=false
+				this.mytealtime_timecuo=true
+				this.mytealtime_timetrade=false
+				$('.vue-chart-newfoot .vue-real-img i').css('display','inline-block');
+				this.matchtiao();
+      },
+      vue_myreal_imgsan:function(){
+      	$('.vue-chart-newfoot .vue-real-img span').removeClass('vue-real-img_active')
+				$('.vue-chart-newfoot .vue-real-img span').eq(1).addClass('vue-real-img_active')
+				this.mytealtime_time=false
+				this.mytealtime_timecuo=false
+				this.mytealtime_timetrade=true
+				$('.vue-chart-newfoot .vue-real-img i').hide();
 				this.tradetiao();
       },
       matchtiao:function(){
