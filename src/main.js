@@ -57,6 +57,8 @@ new Vue({
     delSessionList: serverData.delSessionList,
     // 最近聊天列表
     recentList: serverData.recentList,
+    // 竞价或者询价列表
+    bidList: serverData.bidList,
     // 历史记录列表
     historyList: serverData.historyList,
     // 当前历史记录用户id
@@ -109,7 +111,7 @@ new Vue({
   			<div class="room_homepage">
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" :recentList="recentList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend" @delSessionEvent="delSessionn" @todayMsgEvent="todayMsg"></friendList>
 		    <div id="vue_main_main">
-		    <echart :user="user" :userList="userList" :groupList="groupList" :companyLists="companyList" :match_hall_catalogs="match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"  @modifyGroupEvent="modifyGroupName"></echart>
+		    <echart :user="user" :userList="userList" :bidList="bidList" :groupList="groupList" :companyLists="companyList" :match_hall_catalogs="match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"  @modifyGroupEvent="modifyGroupName"></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat" @addFriendEvent="addFriend" ></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
@@ -159,6 +161,12 @@ new Vue({
       deep: true,
       handler () {
         store.update({recentList: this.recentList})
+      }
+    },
+    bidList: {
+      deep: true,
+      handler () {
+        store.update({bidList: this.bidList})
       }
     },
     qunList: {
@@ -386,6 +394,9 @@ new Vue({
       }
       if (data.hasOwnProperty('recentList')) {
         this.recentList = data.recentList
+      }
+      if (data.hasOwnProperty('bidList')) {
+        this.bidList = data.bidList
       }
       if (data.hasOwnProperty('onlineUserList')) {
         this.onlineUserList = data.onlineUserList
