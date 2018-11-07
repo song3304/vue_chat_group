@@ -345,8 +345,8 @@
 
     <!-- 群发框 -->
     <div class="c_qunBox" id="vu_div-qun" v-show="showQunFa" @mousedown="dragqun" @mouseup="dragqun_1">
-      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'">乙二醇-一键报盘<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
-      <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'">乙二醇-一键询价<span><img src="../images/closeQF.png" alt="" @click="closeQunFa"></span></div>
+      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'">乙二醇-一键报盘<span @click="closeQunFa"></span></div>
+      <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'">乙二醇-一键询价<span @click="closeQunFa"></span></div>
       <div class="c_imgntent">
       	<div class="vue_baojia" v-show="bianji_linshi">
 				      		<div class="vu_baojia_title"><span class="vu_m-na-na" v-show="vue_bianji">编辑</span><span class="vu_m-na-na" v-show="vue_linshi">临时加人</span>
@@ -358,7 +358,7 @@
 								      <div @click="search"></div>
 								      <!--<p><span ></span></p>-->
 								    </div>
-					          <div class="c_qunPeoTitle">所有成员</div>
+					          <div class="c_qunPeoTitle"><span :class="{every:everyone}" @click="everyOne($event,companyLists)"></span>所有成员</div>
 					          <!--搜索页面-->
 	    							<!--<searchDialog  :searchList="searchList" ></searchDialog>-->
 	    							<div class="vu_input-search" v-show="panelShow.searchShow">
@@ -414,7 +414,7 @@
 				                	<span class="c_qungaititle">(点击修改名称)</span>
 				                	<span class="c_qungainame" v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>
 				                	<div class="c_newQunBo">
-						                <div @click="saveZu" class="c_queren" >确认保存</div>
+						                <div @click="saveZu" class="c_queren" >保存</div>
 						                <!--<div class="c_sanchu" @click.stop="zuDel($event,groups.groupId)">删除组</div>-->
 						              </div>
 				                </li>
@@ -433,15 +433,18 @@
             <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->
             <!--<p v-show="formData.userIds.length==0">请从左侧选择人员</p>-->
             <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
-              <ul>
+              <ul v-if="cnewkai==true">
                 <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji"><div title="单击切换分组，双击打开编辑页">{{groups.groupName}}</div><span @click.stop="zuDel($event,groups.groupId)" title="点击删除分组"></span></li>               
               </ul>
+              <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
               <div class="c_newQunBox">
                 <!--<div @click="saveZu">保存群组</div>-->
-                <div @click="openSetZu">+创建群组</div>
+                <div class="c_newkai" @click.stop="c_newkai" v-show="cnewkai"></div>
+                <div class="c_newguan" @click.stop="c_newguan" v-show="cnewguan"></div>
+                <div @click="openSetZu" v-if="cnewkai==true">+创建群组</div>               
               </div>
             </div>
-            <ul class=" newQunFa D_xiugai">
+            <ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
               <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
               <div class="vu_fenzu_right_div" @click="add_temporarily">
               	<span>+</span>
@@ -456,9 +459,7 @@
             </form>
           </div>
           <div class="c_openBox">
-            <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'>
-              发送
-            </div>
+            <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'><span class="c_shiBieButton_yi" v-if="cnewkai==true">群发</span><span class="c_shiBieButton_er" v-if="cnewguan==true">报价</span></div>
             <div class="c_openShibie" v-if="user.plat=='match'"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
         </div>
@@ -599,6 +600,9 @@
         panelShow: {
 	        searchShow: false // 搜索面板是否显示
 	      },
+	      cnewkai:true,
+	      cnewguan:false,
+	      everyone:false, //默认不全选
       }
     },
     components: {searchDialog},
@@ -769,6 +773,21 @@
       chooseGou: function () {//是否勾选报价识别
         this.chooseG = !this.chooseG
       },
+      everyOne:function(event,companyLists){ //是否全选
+      	this.everyone=!this.everyone
+      	var el = event.currentTarget
+      	if(this.everyone==true){
+      		for (var i = 0, lg = companyLists.length; i < lg; i++) {
+      			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {     
+		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {		          	
+              	this.formData.userIds.push(companyLists[i].userIds[j])
+            	}
+	         	}
+        	}
+      	}else{      		
+      		this.formData.userIds = []
+      	}
+      },
       sendGroupMsg: function () {
         if (this.formData.userIds.length < 1 && !this.chooseG) {
           this.tipsTag = true
@@ -793,6 +812,7 @@
           $(el).html('-')
           for (var i = 0, lg = userIds.length; i < lg; i++) {
             if (!this.in_array(userIds[i], this.formData.userIds)) {
+            	console
               this.formData.userIds.push(userIds[i])
             }
           }
@@ -800,6 +820,7 @@
           // 删除formData.userIds
           $(el).html('+')
           this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
+          this.everyone=false
         }
       },
       in_array: function (search, array) {
@@ -1188,7 +1209,20 @@
       guan_bianji:function(){ //关闭编辑/临时加入框
       	this.bianji_linshi=false
       	this.Qunfen=false
-      }
+      },
+      c_newkai:function(){ //群发报价开
+      	this.cnewkai=false
+      	this.cnewguan=true
+      	$('.c_qunDiv').css('height','40px')
+      	$('#groupHairMsg').css('height','394px')
+      	this.bianji_linshi=false
+      },
+      c_newguan:function(){ //群发报价关
+      	this.cnewkai=true
+      	this.cnewguan=false
+      	$('.c_qunDiv').css('height','292px')
+      	$('#groupHairMsg').css('height','142px')
+      },
     },
     //qunNew部分内容
     filters: {
