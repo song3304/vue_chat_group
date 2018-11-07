@@ -192,12 +192,12 @@
               <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
             </div>
 
-            <div class="vue-tealtime-timecuo" v-show="tealtime_timecuo"> <!--撮合报价数据-->
+            <div class="vue-tealtime-timecuo" v-show="tealtime_timecuo"> <!--贸易商询价数据-->
             	<div class="vue-tealtime-timecuotitle">
             			<span class="tealtime-timecuotitleyi">时间</span>
             			<span class="tealtime-timecuotitleer">公司</span>
-            			<span class="tealtime-timecuotitlesan">撮合员</span>
-            			<span class="tealtime-timecuotitlesi">报价信息</span>
+            			<span class="tealtime-timecuotitlesan">贸易人员</span>
+            			<span class="tealtime-timecuotitlesi">询价信息</span>
             	</div>
             	<ul>
             		<li v-for='(bitem,bintex) in bidList'>
@@ -211,7 +211,7 @@
             		</li>
             	</ul>
             </div>
-            <div class="vue-tealtime-timetrade" v-show="tealtime_timetrade"> <!--贸易商报价数据-->
+            <div class="vue-tealtime-timetrade" v-show="tealtime_timetrade"> <!--撮合报价数据-->
             		<div class="vue-tealtime-timecuotitle">
 	            			<span class="tealtime-timecuotitleyi">时间</span>
 	            			<span class="tealtime-timecuotitleer">公司</span>
@@ -272,12 +272,12 @@
             	</div>
               <ul class="vue-realtime-auto"  v-for='(catalog,index) in my_match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'my_realtime_'+catalog.id"></ul>
             </div>
-            <div class="vue-tealtime-timecuo" v-show="mytealtime_timecuo"> <!--撮合报价数据-->
+            <div class="vue-tealtime-timecuo" v-show="mytealtime_timecuo"> <!--贸易商询价数据-->
             	<div class="vue-tealtime-timecuotitle">
             			<span class="tealtime-timecuotitleyi">时间</span>
             			<span class="tealtime-timecuotitleer">公司</span>
-            			<span class="tealtime-timecuotitlesan">撮合员</span>
-            			<span class="tealtime-timecuotitlesi">报价信息</span>
+            			<span class="tealtime-timecuotitlesan">贸易人员</span>
+            			<span class="tealtime-timecuotitlesi">询价信息</span>
             	</div>
             	<ul>
             		<li v-for='(bitem,bindex) in bidList'>
