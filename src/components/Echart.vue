@@ -177,8 +177,8 @@
             <div class="vue-real-img">
               <!--<p class="vue-real-img-img"></p>-->
               <span @click="vue_real_imgyi" class="vue-real-img_active">实时报价</span>
-              <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_real_imger">撮合报价</span><i>（以下是盯盘的撮合员）</i></p>
-             	<span v-if="user.plat=='trade'" @click="vue_real_imgsan">贸易商报价</span>
+              <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_real_imger">贸易商询价</span></p>
+             	<span v-if="user.plat=='trade'" @click="vue_real_imgsan">撮合报价</span>
             </div>
             <div class="vue-tealtime-time" v-show="tealtime_time">  <!--实时报价数据-->
             	<div class="vue-tealtime-timetitle">
@@ -191,6 +191,7 @@
             	</div>
               <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
             </div>
+
             <div class="vue-tealtime-timecuo" v-show="tealtime_timecuo"> <!--撮合报价数据-->
             	<div class="vue-tealtime-timecuotitle">
             			<span class="tealtime-timecuotitleyi">时间</span>
@@ -199,26 +200,12 @@
             			<span class="tealtime-timecuotitlesi">报价信息</span>
             	</div>
             	<ul>
-            		<li>
-            			<span class="tealtime-timecuotitleyi">17:39</span>
-            			<span class="tealtime-timecuotitleer">东方化塑</span>
-            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            		<li v-for='(bitem,bintex) in bidList'>
+            			<span class="tealtime-timecuotitleyi">{{bitem.last_time}}</span>
+            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
             			<span class="tealtime-timecuotitlesi">
-            				出：meg 明天上午交割 国际 500吨 7738 --新天<br clear="all"/>
-										接：meg 本周三前 国际 7649---博纳<br clear="all"/>
-										出：meg 下月底交割 国际 500吨 7551 --新天<br clear="all"/>
-										接：meg 下月底国际 7575---博纳<br clear="all"/>
-            			</span>
-            			<br clear="all"/>
-            		</li>
-            		<li>
-            			<span class="tealtime-timecuotitleyi">17:39</span>
-            			<span class="tealtime-timecuotitleer">东方化塑</span>
-            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
-            			<span class="tealtime-timecuotitlesi">
-            				出8200
-            				<br clear="all"/>
-            				出7900
+            				{{bitem.messages[0].text}}
             			</span>
             			<br clear="all"/>
             		</li>
@@ -232,14 +219,12 @@
 	            			<span class="tealtime-timecuotitlesi">报价信息</span>
 	            	</div>
 	            	<ul>
-	            		<li>
-	            			<span class="tealtime-timecuotitleyi">17:39</span>
-	            			<span class="tealtime-timecuotitleer">东方化塑</span>
-	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+	            		<li v-for='(bitem,bintex) in bidList'>
+	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time}}</span>
+	            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
+	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
 	            			<span class="tealtime-timecuotitlesi">
-	            				出8200
-	            				<br clear="all"/>
-	            				出7900
+	            				{{bitem.messages[0].text}}
 	            			</span>
 	            			<br clear="all"/>
 	            		</li>
@@ -274,7 +259,7 @@
             <div class="vue-real-img">
               <!--<p class="vue-real-img-img"></p>-->
               <span @click="vue_myreal_imgyi" class="vue-real-img_active">实时报价</span>
-              <p style="display: inline-block;"><span @click="vue_myreal_imger">撮合报价</span><i>（以下是盯盘的撮合员）</i></p>
+              <p style="display: inline-block;"><span @click="vue_myreal_imger">贸易商询价</span></p>
             </div>
             <div class="vue-tealtime-time" v-show="mytealtime_time">  <!--实时报价数据-->
             	<div class="vue-tealtime-timetitle">
@@ -295,29 +280,17 @@
             			<span class="tealtime-timecuotitlesi">报价信息</span>
             	</div>
             	<ul>
-            		<li>
-            			<span class="tealtime-timecuotitleyi">17:39</span>
-            			<span class="tealtime-timecuotitleer">东方化塑</span>
-            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
+            		<li v-for='(bitem,bindex) in bidList'>
+            			<span class="tealtime-timecuotitleyi">{{bitem.last_time}}</span>
+            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
+            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
             			<span class="tealtime-timecuotitlesi">
-            				出：meg 明天上午交割 国际 500吨 7738 --新天<br clear="all"/>
-            			</span>
-            			<br clear="all"/>
-            		</li>
-            		<li>
-            			<span class="tealtime-timecuotitleyi">17:39</span>
-            			<span class="tealtime-timecuotitleer">东方化塑</span>
-            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
-            			<span class="tealtime-timecuotitlesi">
-            				出8200
-            				<br clear="all"/>
-            				出7900
+            				{{bitem.messages[0].text}}
             			</span>
             			<br clear="all"/>
             		</li>
             	</ul>
             </div>
-
 
 
             <div class="vue-tealtime-right" v-for='(catalog,index) in my_match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'my_static_data_'+catalog.id">
@@ -1083,12 +1056,12 @@
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       chartus_yi:function(){
-        mypan(this.user.id);//显示我的大盘曲线
       	this.chartusyi=false
       	this.chartuser=true
       	$('.vue_chart_usgai').show()
       	$('#mypancontent,.vue-chart-newfoot').show()
       	$('.vue-chart-foot').hide()
+      	mypan(this.user.id);//显示我的大盘曲线
 //    	this.cfuxiao();
       },
       chartus_er:function(){
@@ -1104,10 +1077,10 @@
       	this.chartusyi=!this.chartusyi
       	this.chartuser=!this.chartuser
       	if(this.chartusyi==false){
-      	    mypan(this.user.id);//显示我的大盘曲线
       		$('.vue_chart_usgai').show()
       		$('#mypancontent,.vue-chart-newfoot').show()
       		$('.vue-chart-foot').hide()
+      		mypan(this.user.id);//显示我的大盘曲线
       	}else{
       		$('.vue_chart_usgai').hide()
       		$('#mypancontent,.vue-chart-newfoot').hide()
