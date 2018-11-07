@@ -4,7 +4,7 @@
       <!--切换选项-->
       <div class="vue_chart_yi">
       	<div class="vue_chart_usgai"></div>
-      	<div class="vue_chart_us">
+      	<div class="vue_chart_us" v-if="user.plat=='match'">
       		<p v-show="chartusyi" class="chart_usyi" @click="chartus_yi"></p>
       		<p v-show="chartuser" class="chart_user" @click="chartus_er">√</p>
       		<span @click="chartus_yier">我的大盘</span>
@@ -60,119 +60,113 @@
 
 
       <!----曲线图表 start-->
-			<div class="vue_chat_kind">  <!--//品种分类·-->
-        <!--<div class="vue_chat_div" @click="kindclick">
-          <span :class="{vue_chatkind_tubiao:true,chooseIco:chooseTag==1}"></span>
-          <span :class="{vue_chatkind_name:true,choose:chooseTag==1}">种类</span>
-          <span class="vue_chat_jiantou"></span>
-        </div>-->
-        <!--下拉表-->
-        <ul class="vue_kind_ul">  <!--v-show="kindshow"-->
-          <li v-for="(catalogItem,index) in match_hall_catalogs" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
-          <div class="qujia_state">
-	        	<p></p>
-	        	<span>取价说明</span>
-	        	<div class="qujia_state_main">
-	        			<span>该数据为您显示：<br>
-								通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
-								价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
-								百分数：相对于价格中线的涨跌幅</span>
-	        	</div>
-        	</div>
-        </ul>
-        <!--右边切换选项-->
-        <!--<ul class="vue_kind_species">
-          <li>
-            <span>{{selectCatalogName}}</span>
-          </li>
-        </ul>-->
+
+      <div class="vue_chat_kind">  <!--品种分类·-->
+          <!--下拉表-->
+          <ul class="vue_kind_ul">  <!--v-show="kindshow"-->
+              <li v-for="(catalogItem,index) in match_hall_catalogs" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
+              <div class="qujia_state">
+                   <p></p>
+                   <span>取价说明</span>
+                   <div class="qujia_state_main">
+                       <span>该数据为您显示：<br>
+                                通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
+                                价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
+                                百分数：相对于价格中线的涨跌幅
+                       </span>
+                   </div>
+        	  </div>
+          </ul>
       </div>
+
+      <!--首页大盘 start-->
       <div id="myTabContent" class="tab-content tab_mm" style="margin-top: 10px;">
-        <div v-for='(catalog,index) in match_hall_catalogs'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
-          <div class="col-xs-8 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
-          <div class="col-xs-3 col-md-3 col-sm-12 price-list">
-                <div class="">
-                   <div class="row trend-syn-table-title">
+          <div v-for='(catalog,index) in match_hall_catalogs'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
+              <div class="col-xs-8 chart-pane"  v-bind:id="'pan_data_'+catalog.id" ></div>
+              <div class="col-xs-3 col-md-3 col-sm-12 price-list">
+                  <div class="">
+                      <div class="row trend-syn-table-title">
                         <div class="col-md-4 col-xs-4 ">买/卖</div>
                         <div class="col-md-4 col-xs-4 base_font1">价格</div>
                         <div class="col-md-4 col-xs-4 base_font1">报价数</div>
-                    </div>
-                    <div v-bind:id="'bird_price_banner_'+catalog.id" class="vue_bird_price">
-                    		<div class="vue_chart_hight vue_chart_price">
-	                    			<span>最高</span>
-	                    			<span>7800</span>
-	                    			<span>1</span>
-                    		</div>
-                        <ul class="bird_sell brid_ul">
-
-                        </ul>
-                        <div class="current_price"></div>
-                        <ul class="bird_buy brid_ul">
-
-                        </ul>
-                        <div class="vue_chart_low vue_chart_price">
-	                    			<span>最低</span>
-	                    			<span>7800</span>
-	                    			<span>1</span>
-                    		</div>
-                    </div>
-                </div>
-            </div>
-          <div class="clear"></div>
-          <div class="ckdp_icon"><a href="javascript:;"></a></div>
-        </div>
+                      </div>
+                      <div v-bind:id="'bird_price_banner_'+catalog.id" class="vue_bird_price">
+                          <div class="vue_chart_hight vue_chart_price">
+                              <span>最高</span>
+                              <span>7800</span>
+                              <span>1</span>
+                          </div>
+                          <ul class="bird_sell brid_ul"></ul>
+                          <div class="current_price"></div>
+                          <ul class="bird_buy brid_ul"></ul>
+                          <div class="vue_chart_low vue_chart_price">
+                              <span>最低</span>
+                              <span>7800</span>
+                              <span>1</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="clear"></div>
+              <div class="ckdp_icon"><a href="javascript:;"></a></div>
+          </div>
       </div>
-			<div id="mypancontent">    <!--//我的大盘-->
-					<div class="vue_chat_kind mypan_kind_ul">  <!--//品种分类·-->
-		        <!--下拉表-->
-		        <ul class="vue_kind_ul">  <!--v-show="kindshow"-->
-		          <li v-for="(catalogItem,index) in match_hall_catalogs" @click="addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == activeIndex}">{{catalogItem.name}}</li>
-		          <div class="qujia_state">
-			        	<p></p>
-			        	<span>取价说明</span>
-			        	<div class="qujia_state_main">
-			        			<span>该数据为您显示：<br>
-										通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
-										价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
-										百分数：相对于价格中线的涨跌幅</span>
-			        	</div>
-		        	</div>
-		        </ul>
-		      </div>
-		      <!--<div v-for='(catalog,index) in match_hall_catalogs'  v-show="catalog.show==1?true:false" v-bind:id="'pan_'+catalog.id" >
-	          <div class="col-xs-8 chart-pane"  v-bind:id="'mypan_data_'+catalog.id" ></div>
-	          <div class="col-xs-3 col-md-3 col-sm-12 price-list">
-                <div class="">
-                   <div class="row trend-syn-table-title">
-                        <div class="col-md-4 col-xs-4 ">买/卖</div>
-                        <div class="col-md-4 col-xs-4 base_font1">价格</div>
-                        <div class="col-md-4 col-xs-4 base_font1">报价数</div>
-                    </div>
-                    <div v-bind:id="'bird1_price_banner_'+catalog.id" class="vue_bird_price">
-                    		<div class="vue_chart_hight vue_chart_price">
-	                    			<span>最高</span>
-	                    			<span>7800</span>
-	                    			<span>1</span>
-                    		</div>
-                        <ul class="bird_sell brid_ul">
+      <!--首页大盘 end-->
 
-                        </ul>
-                        <div class="current_price"></div>
-                        <ul class="bird_buy brid_ul">
 
-                        </ul>
-                        <div class="vue_chart_low vue_chart_price">
-	                    			<span>最低</span>
-	                    			<span>7800</span>
-	                    			<span>1</span>
-                    		</div>
-                    </div>
-                </div>
-            </div>
+      <!--我的大盘 start-->
+      <div id="mypancontent">
+          <!--下拉表-->
+          <div class="my_vue_chat_kind ">
+              <ul class="vue_kind_ul">
+                  <li v-for="(catalogItem,index) in my_match_hall_catalogs" @click="my_addcatalog(catalogItem,index)" :class="{'vue_kind-active':index == myActiveIndex}">{{catalogItem.name}}</li>
+                  <div class="qujia_state">
+                      <p></p>
+                      <span>取价说明</span>
+                      <div class="qujia_state_main">
+                          <span>该数据为您显示：<br>
+                                通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
+                                价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
+                                百分数：相对于价格中线的涨跌幅
+                          </span>
+                      </div>
+                  </div>
+              </ul>
+          </div>
+
+          <!--曲线及右侧切换-->
+          <div v-for='(catalog,index) in my_match_hall_catalogs'  v-show="catalog.show==1?true:false" v-bind:id="'my_pan_'+catalog.id">
+              <div class="col-xs-8 chart-pane"  v-bind:id="'my_pan_data_'+catalog.id" ></div>
+              <div class="col-xs-3 col-md-3 col-sm-12 my-price-list">
+                  <div class="">
+                      <div class="row trend-syn-table-title">
+                          <div class="col-md-4 col-xs-4 ">买/卖</div>
+                          <div class="col-md-4 col-xs-4 base_font1">价格</div>
+                          <div class="col-md-4 col-xs-4 base_font1">报价数</div>
+                      </div>
+                      <div v-bind:id="'my_bird_price_banner_'+catalog.id" class="vue_bird_price">
+                          <div class="vue_chart_hight vue_chart_price">
+                              <span>最高</span>
+                              <span>7800</span>
+                              <span>1</span>
+                          </div>
+                          <ul class="bird_sell brid_ul"></ul>
+                          <div class="current_price"></div>
+                          <ul class="bird_buy brid_ul"></ul>
+                          <div class="vue_chart_low vue_chart_price">
+                              <span>最低</span>
+                              <span>7800</span>
+                              <span>1</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 	          <div class="clear"></div>
 	          <div class="ckdp_icon"><a href="javascript:;"></a></div>
-	        </div>-->
-			</div>
+	      </div>
+	  </div>
+	  <!--我的大盘 end-->
+
       <!----曲线图表 end--->
 
 
@@ -274,14 +268,13 @@
       <!--实时报价信息 end-->
       
       <!--我的大盘实时报价信息 start-->
-      <div class="vue-chart-newfoot">
+      <div class="vue-chart-newfoot" style="display:none">
         <div class="vue-realtime">
           <div class="vue-realtime-time">
             <div class="vue-real-img">
               <!--<p class="vue-real-img-img"></p>-->
               <span @click="vue_myreal_imgyi" class="vue-real-img_active">实时报价</span>
-              <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_myreal_imger">撮合报价</span><i>（以下是盯盘的撮合员）</i></p>
-             	<span v-if="user.plat=='trade'" @click="vue_myreal_imgsan">贸易商报价</span>
+              <p style="display: inline-block;"><span @click="vue_myreal_imger">撮合报价</span><i>（以下是盯盘的撮合员）</i></p>
             </div>
             <div class="vue-tealtime-time" v-show="mytealtime_time">  <!--实时报价数据-->
             	<div class="vue-tealtime-timetitle">
@@ -292,7 +285,7 @@
             		<span class="vue-realtime-auto-datati">交割期</span>
             		<span class="vue-realtime-auto-numti">吨数</span>
             	</div>
-              <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
+              <ul class="vue-realtime-auto"  v-for='(catalog,index) in my_match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'my_realtime_'+catalog.id"></ul>
             </div>
             <div class="vue-tealtime-timecuo" v-show="mytealtime_timecuo"> <!--撮合报价数据-->
             	<div class="vue-tealtime-timecuotitle">
@@ -308,9 +301,6 @@
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
             			<span class="tealtime-timecuotitlesi">
             				出：meg 明天上午交割 国际 500吨 7738 --新天<br clear="all"/>
-										接：meg 本周三前 国际 7649---博纳<br clear="all"/>
-										出：meg 下月底交割 国际 500吨 7551 --新天<br clear="all"/>
-										接：meg 下月底国际 7575---博纳<br clear="all"/>
             			</span>
             			<br clear="all"/>
             		</li>
@@ -327,28 +317,10 @@
             		</li>
             	</ul>
             </div>
-            <div class="vue-tealtime-timetrade" v-show="mytealtime_timetrade"> <!--贸易商报价数据-->
-            		<div class="vue-tealtime-timecuotitle">
-	            			<span class="tealtime-timecuotitleyi">时间</span>
-	            			<span class="tealtime-timecuotitleer">公司</span>
-	            			<span class="tealtime-timecuotitlesan">撮合员</span>
-	            			<span class="tealtime-timecuotitlesi">报价信息</span>
-	            	</div>
-	            	<ul>
-	            		<li>
-	            			<span class="tealtime-timecuotitleyi">17:39</span>
-	            			<span class="tealtime-timecuotitleer">东方化塑</span>
-	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">华塑汇-小张</span>
-	            			<span class="tealtime-timecuotitlesi">
-	            				出8200
-	            				<br clear="all"/>
-	            				出7900
-	            			</span>
-	            			<br clear="all"/>
-	            		</li>
-	            	</ul>
-            </div>
-            <div class="vue-tealtime-right" v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
+
+
+
+            <div class="vue-tealtime-right" v-for='(catalog,index) in my_match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'my_static_data_'+catalog.id">
 	            	<div class="vue_right_yi">
 		            		<img src="../images/bj.png" alt="" />
 		            		<span>当前最多报价</span>
@@ -570,11 +542,12 @@
   //require('echarts/lib/component/title')
   export default {
     name: 'hello',
-    props: ['user', 'userList', 'groupList', 'companyLists','match_hall_catalogs','match_hall_companies', 'group_type'],
+    props: ['user', 'userList', 'bidList', 'groupList', 'companyLists','match_hall_catalogs','my_match_hall_catalogs','match_hall_companies', 'group_type'],
     data() {
       return {
       	groupId:0,
       	activeIndex:0,
+      	myActiveIndex:0,
         kindshow:false,
         companyshow:false,
         peopleshow:false,
@@ -958,6 +931,17 @@
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
 
+      my_addcatalog(catalogItem,index){
+        this.myActiveIndex = index
+        this.my_match_hall_catalogs.map((v,i)=>{
+            if(index!=i){
+                v.show=0
+            }else{
+                v.show=1;
+            }
+        });
+      },
+
       addcom(companyitem,index){//公司添加到右侧
           if(this.comsplist.length>4){
                 return;//最多选择五家公司
@@ -1078,6 +1062,7 @@
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       chartus_yi:function(){
+        mypan(this.user.id);//显示我的大盘曲线
       	this.chartusyi=false
       	this.chartuser=true
       	$('.vue_chart_usgai').show()
@@ -1091,19 +1076,22 @@
       	$('.vue_chart_usgai').hide()
       	$('#mypancontent,.vue-chart-newfoot').hide()
       	$('.vue-chart-foot').show()
+      	refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
 //    	this.cfuxiao();
       },
       chartus_yier:function(){
       	this.chartusyi=!this.chartusyi
       	this.chartuser=!this.chartuser
       	if(this.chartusyi==false){
+      	    mypan(this.user.id);//显示我的大盘曲线
       		$('.vue_chart_usgai').show()
-      		$('#mypancontent,.vue-chart-newfoot').show()    
+      		$('#mypancontent,.vue-chart-newfoot').show()
       		$('.vue-chart-foot').hide()
       	}else{
       		$('.vue_chart_usgai').hide()
       		$('#mypancontent,.vue-chart-newfoot').hide()
       		$('.vue-chart-foot').show()
+      		refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       	}
 //    	this.cfuxiao();
       },
