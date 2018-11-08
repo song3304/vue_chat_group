@@ -372,9 +372,9 @@
     </div>
 
     <!-- 群发框 -->
-    <div class="c_qunBox" id="vu_div-qun" v-show="showQunFa" @mousedown="dragqun" @mouseup="dragqun_1">
-      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'">乙二醇-一键报盘<span @click="closeQunFa"></span></div>
-      <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'">乙二醇-一键询价<span @click="closeQunFa"></span></div>
+    <div class="c_qunBox" id="vu_div-qun" v-show="showQunFa">
+      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'" @mousedown="dragqun" @mouseup="dragqun_1">乙二醇-一键报盘<span @click="closeQunFa"></span></div>
+      <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'" @mousedown="dragqun" @mouseup="dragqun_1">乙二醇-一键询价<span @click="closeQunFa"></span></div>
       <div class="c_imgntent">
       	<div class="vue_baojia" v-show="bianji_linshi">
 				      		<div class="vu_baojia_title"><span class="vu_m-na-na" v-show="vue_bianji">编辑</span><span class="vu_m-na-na" v-show="vue_linshi">临时加人</span>

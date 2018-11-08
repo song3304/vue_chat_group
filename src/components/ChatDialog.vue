@@ -213,12 +213,12 @@
 </script>
 
 <template>
-  <div class="vu_m-chatmain" id="vu_m-chatmainn" @mousedown="dragmain" @mouseup="dragmain_1">
+  <div class="vu_m-chatmain" id="vu_m-chatmainn">
     <div class="vu_m-chat">
       <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
       <div id="vu_chat" >
         <div class="vu_resizable">  <!--id="resizable"-->
-          <div class="vu_m-na" id="tuo"><span class="vu_m-na-na">聊天框</span>
+          <div class="vu_m-na" id="tuo" @mousedown="dragmain" @mouseup="dragmain_1"><span class="vu_m-na-na">聊天框</span>
 	        	<div class="vu_m-guan" @click="close"><p><span></span></p></div>
 	        </div>
         	<!--<div class="vu_m_tubiao" @click="duihuada" v-show="duihuaDa"></div>
