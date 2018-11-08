@@ -111,17 +111,44 @@ if (!localStorage.getItem(key)) {
     qunList: [
 
     ],
-    bidList: [// 报价或者询价
-      { id: 2,
-        type: 'user',
-        messages: [{
-          messageId: 3,
-          text: 'Hello',
-          date: now
-        }],
-        last_time: '2018-05-13 11:08:09'
-      }
-    ],
+    bidList: {
+        2: {
+            id: 2,
+            type: 'user',
+            nickname:'张三',
+            company:'蚂蚁金服',
+            messages: [{
+                messageId: 18,
+                text: 'Hello',
+                date: now
+            }],
+            last_time: '2018-05-13 11:08:09'
+        },
+        3:{
+            id: 3,
+            type: 'user',
+            nickname:'李四',
+            company:'中国移动',
+            messages: [{
+                messageId: 225,
+                text: 'world',
+                date: now
+            }],
+            last_time: '2018-10-13 13:08:09'
+        }
+
+    },
+    // bindList:[// 报价或者询价
+    //   { id: 2,
+    //     type: 'user',
+    //     messages: [{
+    //       messageId: 3,
+    //       text: 'Hello',
+    //       date: now
+    //     }],
+    //     last_time: '2018-05-13 11:08:09'
+    //   }
+    // ],
     // verify消息
     verifyMsg: [
       // {// 发送验证给别人

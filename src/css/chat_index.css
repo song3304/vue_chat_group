@@ -1592,6 +1592,14 @@ li{
 	/*width:73%;*/
 	height: 4%;
 }
+.my_vue_chat_kind{
+	position: absolute!important;
+	left: 0;
+	/*z-index: 100;*/
+	z-index: 98;
+	/*width:73%;*/
+	height: 4%;
+}
 .vue-chart-head>div ul{
 	margin-bottom: 0;
 }
