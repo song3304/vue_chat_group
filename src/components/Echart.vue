@@ -251,7 +251,7 @@
         </div>
       </div>
       <!--实时报价信息 end-->
-      
+
       <!--我的大盘实时报价信息 start-->
       <div class="vue-chart-newfoot" style="display:none">
         <div class="vue-realtime">
@@ -281,7 +281,7 @@
             	</div>
             	<ul>
             		<li v-for='(bitem,bindex) in bidList'>
-            			<span class="tealtime-timecuotitleyi">{{bitem.last_time}}</span>
+            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(12,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
             			<span class="tealtime-timecuotitlesi">
@@ -352,7 +352,7 @@
 										      <li class="vu_submenu-name vu_submenu-none">暂无信息,请重新搜索!</li>
 										    </ul>
 										</div>
-	    							
+
 					          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;position: relative;
 					    z-index: 3;">
 					            <div v-if="user.plat=='match'&&this.companyLists.length==0" class="c_dingTips">暂无盯盘</div>
@@ -407,14 +407,14 @@
             <!--<p v-show="formData.userIds.length==0">请从左侧选择人员</p>-->
             <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
               <ul v-if="cnewkai==true">
-                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji"><div title="单击切换分组，双击打开编辑页">{{groups.groupName}}</div><span @click.stop="zuDel($event,groups.groupId)" title="点击删除分组"></span></li>               
+                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji"><div title="单击切换分组，双击打开编辑页">{{groups.groupName}}</div><span @click.stop="zuDel($event,groups.groupId)" title="点击删除分组"></span></li>
               </ul>
               <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
               <div class="c_newQunBox">
                 <!--<div @click="saveZu">保存群组</div>-->
                 <div class="c_newkai" @click.stop="c_newkai" v-show="cnewkai"></div>
                 <div class="c_newguan" @click.stop="c_newguan" v-show="cnewguan"></div>
-                <div @click="openSetZu" v-if="cnewkai==true">+创建群组</div>               
+                <div @click="openSetZu" v-if="cnewkai==true">+创建群组</div>
               </div>
             </div>
             <ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
@@ -433,7 +433,7 @@
           </div>
           <div class="c_openBox">
             <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'><span class="c_shiBieButton_yi" v-if="cnewkai==true">群发</span><span class="c_shiBieButton_er" v-if="cnewguan==true">报价</span></div>
-            <div class="c_openShibie" v-if="user.plat=='match'"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
+            <div class="c_openShibie" v-if="user.plat=='match' && cnewguan!=true"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
         </div>
       </div>
@@ -645,7 +645,7 @@
 	      this.groupName = ''
 	      this.Qunfen = false
 	      $('.vu_m-phone-input').hide()
-	      
+
 	    },
       saveZu: function () {
         this.groupId = $('.c_active').val()
@@ -751,27 +751,38 @@
       	var el = event.currentTarget
       	if(this.everyone==true){
       		for (var i = 0, lg = companyLists.length; i < lg; i++) {
-      			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {     
-		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {		          	
+      			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {
+		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {
               	this.formData.userIds.push(companyLists[i].userIds[j])
             	}
 	         	}
         	}
-      	}else{      		
+      	}else{
       		this.formData.userIds = []
       	}
       },
       sendGroupMsg: function () {
-        if (this.formData.userIds.length < 1 && !this.chooseG) {
-          this.tipsTag = true
-          this.tipsMsg = '请先选择群发人员'
-          return
-        } else if (this.groupMsg === '') {
-          this.tipsTag = true
-          this.tipsMsg = '群发消息不能为空.'
-          return
+        var userIds = []
+        if(this.cnewkai) {
+          if (this.formData.userIds.length < 1 && !this.chooseG) {
+            this.tipsTag = true
+            this.tipsMsg = '请先选择群发人员'
+            return
+          }else if (this.groupMsg === '') {
+            this.tipsTag = true
+            this.tipsMsg = '群发消息不能为空.'
+            return
+          }
+          userIds = this.formData.userIds
+        }else{
+          if (this.groupMsg === '') {
+            this.tipsTag = true
+            this.tipsMsg = '报价信息不能为空.'
+            return
+          }
+          userIds = []
         }
-        this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg, this.chooseG)
+        this.$emit('sendGroupMsgEvent', userIds, this.groupMsg, this.chooseG || this.cnewguan)
         // this.formData.userIds = []
         // this.close() // 关闭窗口
         this.placeholderMsg = this.groupMsg
@@ -785,7 +796,6 @@
           $(el).html('-')
           for (var i = 0, lg = userIds.length; i < lg; i++) {
             if (!this.in_array(userIds[i], this.formData.userIds)) {
-            	console
               this.formData.userIds.push(userIds[i])
             }
           }
@@ -798,7 +808,7 @@
       },
       in_array: function (search, array) {
         for (var i in array) {
-        	
+
           if (array[i] === search) {
             return true
           }
