@@ -338,7 +338,7 @@
 										    <ul v-for="userItem in searchList" class="vu_submenu vu_submenu_ul vu_search_ul">
 										      <li :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem.id,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem.id,formData.userIds)}">
 										        <div class="vu_m-touxiang newQunFa">
-										          <img :src="userItem.img" :alt="userItem.name" :class="{'vu_gray':!userItem.isOnline}" />
+										          <img :src="userItem.img" :alt="userItem.name" :class="{'vu_gray': !userItem.isOnline}" />
 										          <!--class="gray"-->
 										          <!--//不在线，添加class=gray-->
 										        </div>
@@ -364,7 +364,7 @@
 					                <ul class="vu_submenu vu_submenu_ul">
 					                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
 					                    <div class="vu_m-touxiang newQunFa">
-					                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+					                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray': !userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
 					                    </div>
 					                    <a class="newQunFa">{{userList[userItem].name}}</a>
 					                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
@@ -395,7 +395,7 @@
 				            </div>
 				            <p class="vue_main_left" v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
 				            <ul class="vu_fenzu_right_ul newQunFa">
-				              <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+				              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':userList[uid]!=null && !userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
 				              <br clear="all"/>
 				            </ul>
 				          </div>
@@ -418,7 +418,7 @@
               </div>
             </div>
             <ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
-              <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
               <div class="vu_fenzu_right_div" @click="add_temporarily">
               	<span>+</span>
               	<p>临时加人</p>
