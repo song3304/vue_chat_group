@@ -406,7 +406,7 @@
           <div class="c_qunDiv">
             <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->
             <!--<p v-show="formData.userIds.length==0">请从左侧选择人员</p>-->
-            <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
+            <div class="c_zuBox">  <!--v-show="formData.userIds.length!=0||groupList.groupHair.length!=0"-->
               <ul v-if="cnewkai==true">
                 <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji"><div title="单击切换分组，双击打开编辑页">{{groups.groupName}}</div><span @click.stop="zuDel($event,groups.groupId)" title="点击删除分组"></span></li>
               </ul>
@@ -501,7 +501,12 @@
       </div>
     <!--<div v-if="user.plat=='match'" class="vue_cj_offer" @click="qunFa()"><p></p><span>成交报盘</span></div>-->
     <!--<div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>-->
-    <div v-if="user.plat=='trade'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键询价</span></div>
+    <div v-if="user.plat=='trade'"  class="vue_qun_offf" @click="qunFa()">
+    	<div class="vue_qun_offer">
+    		<p></p><span>一键询价</span>
+    	</div>
+    	
+    </div>
   </div>
 
 
@@ -699,6 +704,7 @@
         this.newZuTag = false
       },
       submitGroup: function () {
+      	alert(123)
           if (this.formData.userIds.length < 1) {
             // alert('请先选择人员，再创建组')
             // this.tipsTag = true
@@ -721,6 +727,7 @@
             this.groupTag++
             if(this.groupList.groupHair.length==0){
               this.groupTag=0
+              
             }
           }
           this.bianji_linshi=true

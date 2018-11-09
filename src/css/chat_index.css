@@ -961,7 +961,7 @@ ul {
 	vertical-align:middle;
 	opacity: 0;
 }
-.vu_first_title {font-size: 12px!important;max-width: 150px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.vu_first_title {font-size: 12px!important;max-width: 90px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 /*新群发样式*/
 .vu_input_style{
 	background: url(../images/green.png) no-repeat;
@@ -1831,22 +1831,22 @@ li{
 	margin: 5px 0 5px 2%;
 	float: left;
 }
-.vue-tealtime-time>ul,.vue-tealtime-timecuo>ul,.vue-tealtime-timetrade>ul{height:85%;margin: 0;}
-.vue-realtime-auto li{height: 26px;line-height: 26px;padding-left: 0.8%;margin: 0 0 8px 0;}
+.vue-tealtime-time>ul,.vue-tealtime-timecuo>ul,.vue-tealtime-timetrade>ul{height:100%;margin: 0;}
+.vue-realtime-auto li{height: 26px;line-height: 26px;margin: 0 0 8px 0;}
 .vue-realtime-auto li:nth-child(even){border-right: 0;}
 .vue-realtime-auto li span{text-align: center;color: #CCCCCC;display: inline-block;font-size: 14px;}
 .vue-realtime-auto-time{width:8%;}
 .vue-realtime-auto-company{width: 17%;}
 .vue-realtime-auto-data{width:39%;letter-spacing:1px;}
 .vue-realtime-auto-num{width: 12%;}
-.vue-realtime-buy_price,.vue-realtime-sell_price{width:15%!important;}
+.vue-realtime-buy_price,.vue-realtime-sell_price{width:12%!important;}
 .vue-realtime-buy{
 	color: #ff1400!important;
-	width: 4%;
+	width: 7%;
 }
 .vue-realtime-sell{
 	color: #00d700!important;
-	width: 4%;
+	width: 7%;
 }
 /*图表块设置end*/
 
@@ -2340,16 +2340,14 @@ li{
 }
 /*群发报价start*/
 .vue_qun_offer{
-  position: fixed;
-  left:4%;
-  bottom:23px;
+  float: right;
+  margin-top: 20px;
   /*width: 162px;*/
   width: 130px;
   height: 40px;
   line-height: 40px;
   background-color: #4385f5;
   border-radius: 5px;
-  z-index: 999;
   text-align: center;
   cursor: pointer;
 }
@@ -2924,7 +2922,7 @@ to {top: 0;}
   display:block;
   text-align: center;
 }
-.c_btn_box{
+.c_btn_box,.vue_qun_offf{
   position: fixed;
   left: 0;
   bottom:20px;
@@ -2943,8 +2941,8 @@ to {top: 0;}
 	float: left;
 	width: 27%;
 	border: 1px solid #2f3641;
-	margin: 8px 0 0 1%;
-	height: 79%;
+	margin: 10px 0 0 1%;
+	height: 82%;
 	overflow: hidden;
 }
 .vue_right_yi{

@@ -210,7 +210,7 @@ export default {
     	$('#vu_friend').css('width','5%')
     	$('#vue_main_main').css('width','94.2%')
     	$('.vu_m_lei').addClass('vu_m_leier')
-    	$('.c_btn_box').addClass('c_btn_boxer')
+    	$('.c_btn_box,.vue_qun_offf').addClass('c_btn_boxer')
     	$('#vu_qun-fen,#vu_accordion,.vu_liaotian_left').hide()
 //  	var widtnn=$('#leftlist').width()
 //  	if(widtnn>0){
@@ -228,7 +228,7 @@ export default {
     	$('#vu_friend').css('width','22.6%')
     	$('#vue_main_main').css('width','76.8%')
     	$('.vu_m_lei').removeClass('vu_m_leier')
-    	$('.c_btn_box').removeClass('c_btn_boxer')
+    	$('.c_btn_box,.vue_qun_offf').removeClass('c_btn_boxer')
     	this.activeIndex=0
 		this.panelShow.chatShow = true
         this.panelShow.companyShow = false
