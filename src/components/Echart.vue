@@ -282,7 +282,7 @@
             	</div>
             	<ul>
             		<li v-for='(bitem,bindex) in bidList'>
-            			<span class="tealtime-timecuotitleyi">{{bitem.last_time}}</span>
+            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(12,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
             			<span class="tealtime-timecuotitlesi">
@@ -339,7 +339,7 @@
 										    <ul v-for="userItem in searchList" class="vu_submenu vu_submenu_ul vu_search_ul">
 										      <li :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem.id,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem.id,formData.userIds)}">
 										        <div class="vu_m-touxiang newQunFa">
-										          <img :src="userItem.img" :alt="userItem.name" :class="{'vu_gray':!userItem.isOnline}" />
+										          <img :src="userItem.img" :alt="userItem.name" :class="{'vu_gray': !userItem.isOnline}" />
 										          <!--class="gray"-->
 										          <!--//不在线，添加class=gray-->
 										        </div>
@@ -365,7 +365,7 @@
 					                <ul class="vu_submenu vu_submenu_ul">
 					                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
 					                    <div class="vu_m-touxiang newQunFa">
-					                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray':!userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+					                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray': !userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
 					                    </div>
 					                    <a class="newQunFa">{{userList[userItem].name}}</a>
 					                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
@@ -396,7 +396,7 @@
 				            </div>
 				            <p class="vue_main_left" v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>
 				            <ul class="vu_fenzu_right_ul newQunFa">
-				              <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+				              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':userList[uid]!=null && !userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
 				              <br clear="all"/>
 				            </ul>
 				          </div>
@@ -419,7 +419,7 @@
               </div>
             </div>
             <ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
-              <li v-for="uid in formData.userIds" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
               <div class="vu_fenzu_right_div" @click="add_temporarily">
               	<span>+</span>
               	<p>临时加人</p>
@@ -434,7 +434,7 @@
           </div>
           <div class="c_openBox">
             <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'><span class="c_shiBieButton_yi" v-if="cnewkai==true">群发</span><span class="c_shiBieButton_er" v-if="cnewguan==true">报价</span></div>
-            <div class="c_openShibie" v-if="user.plat=='match'"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
+            <div class="c_openShibie" v-if="user.plat=='match' && cnewguan!=true"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
         </div>
       </div>
@@ -763,16 +763,27 @@
       	}
       },
       sendGroupMsg: function () {
-        if (this.formData.userIds.length < 1 && !this.chooseG) {
-          this.tipsTag = true
-          this.tipsMsg = '请先选择群发人员'
-          return
-        } else if (this.groupMsg === '') {
-          this.tipsTag = true
-          this.tipsMsg = '群发消息不能为空.'
-          return
+        var userIds = []
+        if(this.cnewkai) {
+          if (this.formData.userIds.length < 1 && !this.chooseG) {
+            this.tipsTag = true
+            this.tipsMsg = '请先选择群发人员'
+            return
+          }else if (this.groupMsg === '') {
+            this.tipsTag = true
+            this.tipsMsg = '群发消息不能为空.'
+            return
+          }
+          userIds = this.formData.userIds
+        }else{
+          if (this.groupMsg === '') {
+            this.tipsTag = true
+            this.tipsMsg = '报价信息不能为空.'
+            return
+          }
+          userIds = []
         }
-        this.$emit('sendGroupMsgEvent', this.formData.userIds, this.groupMsg, this.chooseG)
+        this.$emit('sendGroupMsgEvent', userIds, this.groupMsg, this.chooseG || this.cnewguan)
         // this.formData.userIds = []
         // this.close() // 关闭窗口
         this.placeholderMsg = this.groupMsg
@@ -786,7 +797,6 @@
           $(el).html('-')
           for (var i = 0, lg = userIds.length; i < lg; i++) {
             if (!this.in_array(userIds[i], this.formData.userIds)) {
-            	console
               this.formData.userIds.push(userIds[i])
             }
           }
