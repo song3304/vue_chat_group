@@ -505,7 +505,7 @@
     	<div class="vue_qun_offer">
     		<p></p><span>一键询价</span>
     	</div>
-    	
+
     </div>
   </div>
 
@@ -704,14 +704,6 @@
         this.newZuTag = false
       },
       submitGroup: function () {
-      	alert(123)
-          if (this.formData.userIds.length < 1) {
-            // alert('请先选择人员，再创建组')
-            // this.tipsTag = true
-            // this.tipsMsg = '请先选择人员，再创建组'
-            this.placeholder = '请先选择人员，再创建组'
-            return false
-          } else{
             if (this.createGroupName === '') {
               this.placeholder = '请输入分组名称，再提交'
               return false
@@ -727,9 +719,8 @@
             this.groupTag++
             if(this.groupList.groupHair.length==0){
               this.groupTag=0
-              
+
             }
-          }
           this.bianji_linshi=true
       		this.vue_bianji=true
       		this.vue_linshi=false
