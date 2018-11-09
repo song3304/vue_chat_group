@@ -127,7 +127,8 @@
                           <span>该数据为您显示：<br>
                                 通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
                                 价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
-                                百分数：相对于价格中线的涨跌幅
+                                百分数：相对于价格中线的涨跌幅<br>
+                                报价数：当前时刻当前报价的数量<br>
                           </span>
                       </div>
                   </div>
@@ -251,7 +252,7 @@
         </div>
       </div>
       <!--实时报价信息 end-->
-      
+
       <!--我的大盘实时报价信息 start-->
       <div class="vue-chart-newfoot" style="display:none">
         <div class="vue-realtime">
@@ -352,7 +353,7 @@
 										      <li class="vu_submenu-name vu_submenu-none">暂无信息,请重新搜索!</li>
 										    </ul>
 										</div>
-	    							
+
 					          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;position: relative;
 					    z-index: 3;">
 					            <div v-if="user.plat=='match'&&this.companyLists.length==0" class="c_dingTips">暂无盯盘</div>
@@ -407,14 +408,14 @@
             <!--<p v-show="formData.userIds.length==0">请从左侧选择人员</p>-->
             <div v-show="formData.userIds.length!=0||groupList.groupHair.length!=0" class="c_zuBox">
               <ul v-if="cnewkai==true">
-                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji"><div title="单击切换分组，双击打开编辑页">{{groups.groupName}}</div><span @click.stop="zuDel($event,groups.groupId)" title="点击删除分组"></span></li>               
+                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji"><div title="单击切换分组，双击打开编辑页">{{groups.groupName}}</div><span @click.stop="zuDel($event,groups.groupId)" title="点击删除分组"></span></li>
               </ul>
               <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
               <div class="c_newQunBox">
                 <!--<div @click="saveZu">保存群组</div>-->
                 <div class="c_newkai" @click.stop="c_newkai" v-show="cnewkai"></div>
                 <div class="c_newguan" @click.stop="c_newguan" v-show="cnewguan"></div>
-                <div @click="openSetZu" v-if="cnewkai==true">+创建群组</div>               
+                <div @click="openSetZu" v-if="cnewkai==true">+创建群组</div>
               </div>
             </div>
             <ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
@@ -645,7 +646,7 @@
 	      this.groupName = ''
 	      this.Qunfen = false
 	      $('.vu_m-phone-input').hide()
-	      
+
 	    },
       saveZu: function () {
         this.groupId = $('.c_active').val()
@@ -751,13 +752,13 @@
       	var el = event.currentTarget
       	if(this.everyone==true){
       		for (var i = 0, lg = companyLists.length; i < lg; i++) {
-      			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {     
-		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {		          	
+      			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {
+		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {
               	this.formData.userIds.push(companyLists[i].userIds[j])
             	}
 	         	}
         	}
-      	}else{      		
+      	}else{
       		this.formData.userIds = []
       	}
       },
@@ -798,7 +799,7 @@
       },
       in_array: function (search, array) {
         for (var i in array) {
-        	
+
           if (array[i] === search) {
             return true
           }
