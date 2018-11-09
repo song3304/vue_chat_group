@@ -336,7 +336,7 @@
         var realWidth=$("#myTabContent").width();
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
-    	resizeChart();
+//    	resizeChart();
     },
     leftlist_tubiaoxiao:function(){
     	this.leftlisttu = true
