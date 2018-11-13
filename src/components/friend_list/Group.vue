@@ -86,6 +86,14 @@ export default {
     openChat: function (uid) {
       this.$emit('openChartEvent', uid, 'user')
       $('.vu_m-list').show()
+      $(".vu_m-list ul").niceScroll({
+    	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+        background: "", // 轨道的背景颜色
+        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+    });
     },
     // 接收,拒绝好友
     receive: function (msgId, isAgree) {
@@ -157,6 +165,14 @@ export default {
       var _this = $(event.currentTarget)
       _this.next('ul').slideToggle()
       _this.parent('li').toggleClass('vu_open')
+//    $("#vu_qun-fen").niceScroll({
+//	    	cursorcolor: "#525159", // 改变滚动条颜色，使用16进制颜色值
+//	        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+//	        cursorwidth: "5px", // 滚动条的宽度，单位：便素
+//	        background: "", // 轨道的背景颜色
+//	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
+//	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+//	    });
     },
     // 切换当前
     changeCurrent: function (uid) {

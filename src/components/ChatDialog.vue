@@ -67,6 +67,12 @@
       },
       delSession: function (index) {
         this.$emit('delSessionEvent', index)
+        if($('.vu_m-list ul li').length==1){
+        	this.$emit('closeEvent', {
+		        is_dialog_show: false,
+		        is_history_show: false
+		      })
+        }
       },
       todayMsg: function (session) {
         this.$emit('todayMsgEvent', session)

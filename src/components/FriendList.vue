@@ -1,5 +1,5 @@
 <template>
-	<div id="vu_friend" @click="chuangjian"> 
+	<div id="vu_friend" @click="chuangjian" @mouseover="vue_frit" @mouseleave="vue_frie"> 
 			
 		
 	    <!--<div class="vu_m-search">
@@ -26,21 +26,34 @@
 	      </ul>
 	      <!--聊天-->
 	      <div v-show="panelShow.chatShow" class="vu_liaotian_left">
-	      	<hisPanel :session="session" :user="user" :userList="userList" :companyList="companyList" :recentList="recentList"  @todayMsgEvent="todayMsg" @openChartEvent="openChat" @delSessionEvent="delSession"></hisPanel>
+	      	<hisPanel :session="session" :user="user" :userList="userList" :companyList="companyList" :recentList="recentList"  @todayMsgEvent="todayMsg" @openChartEvent="openChat" @delSessionEvent="delSessionn"></hisPanel>
 	      </div>
 	      <!--//分组-->
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.companyShow">
-	      	<div class="vu_qunfen_new">
-	      		<div @click="createGroup('common')">+  新建分组</div>
+	      	<div class="vue_qun_fen_main">
+	      		<div class="vue_qun_fentitle">
+	      			<span class="vue_qun_fentitle_active" @click="qun_com_mon">普通组</span>
+	      			<span @click="qun_qun_fa">群发组</span>
+	      			<div @click="createGroup('common')"  v-show="vue_new_putong">+  新建普通组</div>
+	      			<div v-show="vue_new_qunfa">+  新建群发组</div>
+	      		</div>
+	      		<div class="vue_qun_common" v-show="qun_common"> <!--普通组-->
+	      			<!--<div class="vu_qunfen_new">
+			      		
+			      	</div>-->
+			        <div class="vu_qunfen_yi">
+			          <!--p>普通组</p-->
+			          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" :followList="followList" :verifyMsg="verifyMsg" @openChartEvent="openChat" @receiveFriendEvent="receiveFriend" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @moveFriendEvent="moveFriend"></groupPanel>
+			        </div>
+	      		</div>
+	      		<div class="vue_qun_qunfa" v-show="qun_qunfa"> <!--群发组-->
+	      			<div v-if="user.plat=='match'" class="vu_qunfen_er">
+			          <qungroupPanel group_type="groupHair" :user="user" :userList="userList" :groupList="groupList" :companyList="groupList.groupHair" :followList="followList" @modifyGroupEvent="modifyGroupName" @delGroupEvent="delGroup" ></qungroupPanel>
+			       </div>
+	      		</div>
+	      		
 	      	</div>
-	        <div class="vu_qunfen_yi">
-	          <!--p>普通组</p-->
-	          <groupPanel group_type="common" :user="user" :userList="userList" :companyList="groupList.common" :followList="followList" :verifyMsg="verifyMsg" @openChartEvent="openChat" @receiveFriendEvent="receiveFriend" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @moveFriendEvent="moveFriend"></groupPanel>
-	        </div>
-	        <!--div v-if="user.plat=='match'" class="vu_qunfen_er">
-	          <p>群发组</p>
-	          <groupPanel group_type="groupHair" :user="user" :userList="userList" :companyList="groupList.groupHair" @openChartEvent="openChat" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName"></groupPanel>
-	        </div-->
+	      	
 	      </div>
 	      <!--群组-->
 	      <companyPanel v-show="panelShow.groupShow" :user="user" :userList="userList" :companyList="companyList" @openChartEvent="openChat" @changeUserNameEvent="changeUserName"></companyPanel>
@@ -62,6 +75,7 @@ import companyPanel from './friend_list/Company'
 import groupPanel from './friend_list/Group'
 import searchDialog from './friend_list/Search'
 import hisPanel from './friend_list/His'
+import qungroupPanel from './friend_list/QunGroup'
 import $ from 'jquery'
 
 export default {
@@ -99,9 +113,13 @@ export default {
       createType: 'common',
       friendtubiao:true,
       friendtubiaoxiao:false,
+      qun_common:true,
+      qun_qunfa:false,
+      vue_new_putong:true,
+      vue_new_qunfa:false
     }
   },
-  components: {companyPanel, groupPanel, searchDialog, hisPanel},
+  components: {companyPanel, groupPanel, searchDialog, hisPanel,qungroupPanel},
   computed: {
       session: function () {
         return this.sessionList.hasOwnProperty(this.sessionIndex) ? this.sessionList[this.sessionIndex] : null
@@ -109,7 +127,7 @@ export default {
     },
   watch: {},
   methods: {
-  	delSession: function (index) {
+  	delSessionn: function (index) {
         this.$emit('delSessionEvent', index)
       },
   	todayMsg: function (session) {
@@ -244,7 +262,31 @@ export default {
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
-    }
+	},
+	vue_frit:function(){
+	   		$('#vu_friend').css('z-index','99')
+	},
+	vue_frie:function(){
+	   	$('#vu_friend').css({'z-index':'1','overflow':'hidden'})
+	},
+	qun_com_mon:function(event){ //普通组切换
+		var el = event.currentTarget
+		$('.vue_qun_fentitle span').removeClass('vue_qun_fentitle_active')
+		$(el).addClass('vue_qun_fentitle_active')
+		this.qun_common=true
+		this.qun_qunfa=false
+		this.vue_new_putong=true
+		this.vue_new_qunfa=false
+	},
+	qun_qun_fa:function(event){ //群发组切换
+		var el = event.currentTarget
+		$('.vue_qun_fentitle span').removeClass('vue_qun_fentitle_active')
+		$(el).addClass('vue_qun_fentitle_active')
+		this.qun_common=false
+		this.qun_qunfa=true
+		this.vue_new_putong=false
+		this.vue_new_qunfa=true
+	}
   },
   filters: {
     lastTime: function (recentItem) {

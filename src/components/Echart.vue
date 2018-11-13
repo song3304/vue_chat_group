@@ -11,7 +11,6 @@
       	</div>
 
         <div class="vue-chart-head">
-
           <div class="vue_chat_company">
             <div class="vue_chat_div" @mouseenter="companyclick" @mouseleave="companyleav">
               <span :class="{vue_company_tubiao:true,chooseIco:chooseTag==2}"></span>
@@ -72,7 +71,8 @@
                        <span>该数据为您显示：<br>
                                 通过撮合报价行为，实时统计当前时刻的买卖平均数<br>
                                 价格中线（白线）：上个工作日最后时刻的（买+卖）/ 2<br>
-                                百分数：相对于价格中线的涨跌幅
+                                百分数：相对于价格中线的涨跌幅<br>
+                              	 报价数：当前时刻当前报价的数量
                        </span>
                    </div>
         	  </div>
@@ -322,8 +322,8 @@
       <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'" @mousedown="dragqun" @mouseup="dragqun_1">乙二醇-一键报盘<span @click="closeQunFa"></span></div>
       <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'" @mousedown="dragqun" @mouseup="dragqun_1">乙二醇-一键询价<span @click="closeQunFa"></span></div>
       <div class="c_imgntent">
-      	<div class="vue_baojia" v-show="bianji_linshi">
-				      		<div class="vu_baojia_title"><span class="vu_m-na-na" v-show="vue_bianji">编辑</span><span class="vu_m-na-na" v-show="vue_linshi">临时加人</span>
+      	<div class="vue_baojia" id="vu_baojia" v-show="bianji_linshi">
+				      		<div class="vu_baojia_title" @mousedown="dragqun_bianji" @mouseup="dragqun_bianji_1"><span class="vu_m-na-na" v-show="vue_bianji">编辑</span><span class="vu_m-na-na" v-show="vue_linshi">临时加人</span>
 					        	<div class="vu_m-guan" @click="guan_bianji"><p><span></span></p></div>
 					       </div>
 					        <div class="c_qunPeo">
@@ -368,7 +368,7 @@
 					                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray': !userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
 					                    </div>
 					                    <a class="newQunFa">{{userList[userItem].name}}</a>
-					                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" ><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+					                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click="dange_xuan"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
 					                  </li>
 					                </ul>
 					              </li>
@@ -383,9 +383,9 @@
 				                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair"  :value="groups.groupId" >
 				                	<div class="c_qunname">
 				                		<span>{{groups.groupName}}</span>
-				                		<input class="vu_m-phone-input" :value="groups.groupName" type="text" :data-gid="groupList.groupHair[index].groupId" @keyup.enter="modifyGroupName" @blur="modifyGroupName"/>
+				                		<input class="vu_m-phone-input vu_m-new-input" :value="groups.groupName" type="text" :data-gid="groupList.groupHair[index].groupId" @keyup.enter="modifyGroupName" @blur="modifyGroupName"/>
 				                	</div>
-				                	<span class="c_qungaititle">(点击修改名称)</span>
+				                	<span class="c_qungaititle" v-show="tan_bianji">(点击修改名称)</span>
 				                	<span class="c_qungainame" v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>
 				                	<div class="c_newQunBo">
 						                <div @click="saveZu" class="c_queren" >保存</div>
@@ -413,13 +413,13 @@
               <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
               <div class="c_newQunBox">
                 <!--<div @click="saveZu">保存群组</div>-->
-                <div class="c_newkai" @click.stop="c_newkai" v-show="cnewkai"></div>
-                <div class="c_newguan" @click.stop="c_newguan" v-show="cnewguan"></div>
-                <div @click="openSetZu" v-if="cnewkai==true">+创建群组</div>
+                <div v-if="user.plat=='match'" class="c_newkai" @click.stop="c_newkai" v-show="cnewkai"></div>
+                <div v-if="user.plat=='match'" class="c_newguan" @click.stop="c_newguan" v-show="cnewguan"></div>
+                <div @click="openSetZu" v-if="cnewkai==true" v-show="opensetzhu">+创建群组</div>
               </div>
             </div>
             <ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
-              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/></div> <a>{{userList[uid].name}}</a> <span @click="delUser(uid)"></span></li>
+              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/><span @click="delUser(uid)"></span></div> <a>{{userList[uid].name}}</a> </li>
               <div class="vu_fenzu_right_div" @click="add_temporarily">
               	<span>+</span>
               	<p>临时加人</p>
@@ -456,7 +456,7 @@
         <span>提示</span>
         <p class="vu_fen_zu_tier"  @click="kongcancel"><span></span></p>
       </div>
-      <p>清空好友，分组将被删除</p>
+      <p>请先选择人员</p>
       <div class="vu_fenzu_name_footer"><button @click="kongOK">确认</button> <span class="vu_fen_zu_tier" @click="kongcancel">取消</span></div>
     </div>
 
@@ -522,7 +522,7 @@
   //require('echarts/lib/component/title')
   export default {
     name: 'hello',
-    props: ['user', 'userList', 'bidList', 'groupList', 'companyLists','match_hall_catalogs','my_match_hall_catalogs','match_hall_companies', 'group_type'],
+    props: ['user', 'userList', 'bidList', 'groupList', 'companyLists','match_hall_catalogs','my_match_hall_catalogs','match_hall_companies'],
     data() {
       return {
       	groupId:0,
@@ -582,6 +582,8 @@
 	      cnewkai:true,
 	      cnewguan:false,
 	      everyone:false, //默认不全选
+	      linshi_guan:0,
+	      opensetzhu:true,
       }
     },
     components: {searchDialog},
@@ -633,7 +635,7 @@
 	      event.stopPropagation()
 	      this.groupId = groupId
 //	      this.Qunfen = true
-				$('.vu_m-phone-input').show()
+				$('.vu_m-new-input').show()
 	    },
 	    quncancel: function () { // 关闭修改弹窗
 	      this.Qunfen = false
@@ -650,7 +652,7 @@
 	      this.activeTag = this.groupName
 	      this.groupName = ''
 	      this.Qunfen = false
-	      $('.vu_m-phone-input').hide()
+	      $('.vu_m-new-input').hide()
 
 	    },
       saveZu: function () {
@@ -665,6 +667,7 @@
             }
           }else{
             this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)
+            this.bianji_linshi=false
           }
         }
       },
@@ -673,11 +676,20 @@
         this.Qunpopup = false
         this.formData.userIds = []
         this.formData.groupName = ''
+        if($('.c_zuBox ul li').length==1){
+        	$('.vu_fenzu_right_div').hide()
+        }else{
+        	$('.vu_fenzu_right_div').show()
+        }
+        if(this.groupList.groupHair.length!=0&&this.formData.groupName!=""){
+          this.formData.userIds = this.groupList.groupHair[this.groupTag].userIds
+        }
+        $('.vu_fenzu_right_div').hide()
       },
       zuDel: function (event, groupId) {
         event.stopPropagation()
         this.Qunpopup = true
-        this.groupId = groupId
+        this.groupId = groupId        
       },
       popcancel: function () { // 关闭删除弹框
         this.Qunpopup = false
@@ -689,6 +701,8 @@
         this.formData.userIds = group.userIds
         this.groupTag = index
         this.bianji_linshi=false
+        this.opensetzhu=true
+        $('.vu_fenzu_right_div').show()
       },
       openSetZu: function () {
         if(!this.newZuTag){
@@ -708,6 +722,7 @@
               this.placeholder = '请输入分组名称，再提交'
               return false
             }
+            this.formData.userIds=[]
             this.formData.groupName = this.createGroupName
             this.newZuTag = false
             this.formData.groupType = 'group'
@@ -725,7 +740,10 @@
       		this.vue_bianji=true
       		this.vue_linshi=false
       		this.tan_bianji=true
-      		$('.c_queren').show()
+      		$('.c_queren').show()	      
+	        $('.vu_fenzu_right_div').show()
+	        this.opensetzhu=false
+	        
       },
       /* qunNew部分开始 */
       cjbj: function () {
@@ -737,7 +755,7 @@
       },
       kongOK: function(){ //确认清空
         this.kongTag = false
-        this.delConfirm()
+//      this.delConfirm()
       },
       tipscancel: function () {//关闭提示框
         this.tipsTag = false
@@ -745,13 +763,13 @@
       chooseGou: function () {//是否勾选报价识别
         this.chooseG = !this.chooseG
       },
-      everyOne:function(event,companyLists){ //是否全选
+      everyOne:function(event,companyLists,userIds){ //是否全选
       	this.everyone=!this.everyone
       	var el = event.currentTarget
       	if(this.everyone==true){
-      		for (var i = 0, lg = companyLists.length; i < lg; i++) {
+      		for (var i = 0, lg = companyLists.length; i < lg; i++) {     			
       			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {
-		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {
+		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {	          	
               	this.formData.userIds.push(companyLists[i].userIds[j])
             	}
 	         	}
@@ -786,6 +804,16 @@
         // this.close() // 关闭窗口
         this.placeholderMsg = this.groupMsg
         this.groupMsg = ''
+        this.placeholderMsg = '请您粘贴信息'
+      },
+      dange_xuan:function(event){
+      	var el = event.currentTarget
+      	if($(el).hasClass('vu_checkbox_bg_check')){
+      		this.everyone=false
+      	}else{
+      		
+      	}
+      	
       },
       checkAll: function (event, userIds) {
         var el = event.currentTarget
@@ -794,7 +822,7 @@
           // 添加formData.userIds
           $(el).html('-')
           for (var i = 0, lg = userIds.length; i < lg; i++) {
-            if (!this.in_array(userIds[i], this.formData.userIds)) {
+            if (!this.in_array(userIds[i], this.formData.userIds)) {           	
               this.formData.userIds.push(userIds[i])
             }
           }
@@ -807,7 +835,6 @@
       },
       in_array: function (search, array) {
         for (var i in array) {
-
           if (array[i] === search) {
             return true
           }
@@ -816,6 +843,7 @@
       },
       delUser: function (uid) {
         this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
+        this.everyone=false
       },
       dragqun: function (ev) {
         var oDiv = document.getElementById('vu_div-qun')
@@ -849,6 +877,39 @@
       dragqun_1:function(){
       	var oDiv = document.getElementById('vu_div-qun')
         oDiv.style.zIndex=1000
+      },
+      dragqun_bianji: function (ev) {
+        var oDiv = document.getElementById('vu_baojia')
+        oDiv.style.zIndex=999
+        var oEvt = ev || event
+        var disX = oEvt.clientX - oDiv.offsetLeft
+        var disY = oEvt.clientY - oDiv.offsetTop
+        document.onmousemove = function (ev) {
+          var oEvt = ev || event
+          var l = oEvt.clientX - disX
+          var t = oEvt.clientY - disY
+          // 限定
+          if (l < 5) l = 0
+          if (l > document.documentElement.clientWidth - oDiv.offsetWidth - 5) {
+            l = document.documentElement.clientWidth - oDiv.offsetWidth
+          }
+          if (t < 5) { t = 0 }
+          if (t > document.documentElement.clientHeight - oDiv.offsetHeight - 5) {
+            t = document.documentElement.clientHeight - oDiv.offsetHeight
+          }
+          oDiv.style.left = l + 'px'
+          oDiv.style.top = t + 'px'
+        }
+        document.onmouseup = function () {
+          document.onmouseup = document.onmousemove = null
+          oDiv.releaseCapture && oDiv.releaseCapture()
+        }
+        oDiv.setCapture && oDiv.setCapture()
+        return false
+      },
+      dragqun_bianji_1:function(){
+      	var oDiv = document.getElementById('vu_baojia')
+        oDiv.style.zIndex=0
       },
       jinzhi: function (event) {
         event.stopPropagation()
@@ -887,6 +948,8 @@
           this.formData.userIds = this.groupList.groupHair[this.groupTag].userIds
         }
         this.Qunfen=false
+        this.bianji_linshi=false
+        this.opensetzhu=true
       },
       /* qunNew部分结束 */
       kindclick: function (){
@@ -931,7 +994,7 @@
         this.selectCatalogName=catalogItem.name;
         this.selectPid=catalogItem.id;
         this.chooseCatalog = catalogItem.catalog_id;
-        refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+//      refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
 
       my_addcatalog(catalogItem,index){
@@ -1180,6 +1243,9 @@
       	this.vue_linshi=false
       	this.tan_bianji=true
       	$('.c_queren').show()
+      	this.linshi_guan=1
+      	this.opensetzhu=false
+      	$('.vu_fenzu_right_div').show()
       },
       add_temporarily:function(){
       	this.bianji_linshi=true
@@ -1187,10 +1253,23 @@
       	this.vue_linshi=true
       	this.tan_bianji=false
       	$('.c_queren').hide()
+      	this.linshi_guan=2
+      	if($('.c_zuBox ul').length<0){
+      		
+      	}
       },
       guan_bianji:function(){ //关闭编辑/临时加入框
       	this.bianji_linshi=false
       	this.Qunfen=false
+      	if(this.linshi_guan==2){
+      		
+      	}else{
+      		if(this.groupList.groupHair.length!=0&&this.formData.groupName!=""){
+	          this.formData.userIds = this.groupList.groupHair[this.groupTag].userIds
+	        }
+      	}
+      	this.opensetzhu=true
+      	
       },
       c_newkai:function(){ //群发报价开
       	this.cnewkai=false
@@ -1198,6 +1277,7 @@
       	$('.c_qunDiv').css('height','40px')
       	$('#groupHairMsg').css('height','394px')
       	this.bianji_linshi=false
+      	this.opensetzhu=true
       },
       c_newguan:function(){ //群发报价关
       	this.cnewkai=true

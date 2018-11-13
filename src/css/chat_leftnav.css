@@ -50,9 +50,10 @@ h1 a {
 }*/
 .vu_accordion {
   /*height: 310px;*/
-  width: 100%;
+  width: 98%;
+  max-height: 78%;
   /*margin-top: 20px;*/
-  /*overflow-y:scroll;*/
+  
 }
 .vu_accordion .vu_link {
   cursor: pointer;
