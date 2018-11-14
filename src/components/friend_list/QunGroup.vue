@@ -19,6 +19,9 @@ export default {
 	      	lookInfoTag:-1,//验证资料卡隐藏
 	      	tipsTag:false,//提示框
 	      	tipsMsg:'',//提示信息
+	      	panelShow: {
+		        searchShow: false // 搜索面板是否显示
+		    },
 	    }
 	},
 	props: ['user', 'userList', 'companyList', 'group_type', 'groupList','followList'],
@@ -50,30 +53,24 @@ export default {
 	      	this.Qunpopup = false
 	    },
 	    delConfirm: function () {
-		      if (this.delType === 'group') {
-		        for(var index in this.groups){
-		          if(this.groups[index].groupId==this.groupId){
-		            if(this.groups[index].userIds.length==0){
-		              this.$emit('delGroupEvent', this.groupId, this.group_type)
-		            }else{
-		              this.tipsMsg = '请先移出分组内的好友';
-		              this.tipsTag = true;
-		            }
-		          }
-		        }		        
-		      } else if (this.delType === 'person') {
-		        this.$emit('delPersonEvent', this.groupId, this.group_type, this.uid)
-		      }
-		      this.Qunpopup = false
+		    this.$emit('delGroupEvent', this.groupId, this.group_type)
+
+		    this.Qunpopup = false
 	    },
 	    changefenzhu(event,companyItem){//分组设置
 			event.stopPropagation();
 			var el = event.currentTarget
 			$('.vu_first_selt').hide()
 			$('.vu_first_selt', $(el)).show()
+			$('#vu_friend').css({'z-index':'99'})
+	   		$('#vu_qun-fen').addClass('vu_qun-fen1')
+	   		$('.vue_qun_fen_main').addClass('vue_qun_fen_main1')
     	},
 	 	closefenzhu:function(){
 	    	$('.vu_first_selt').hide()
+	    	$('#vu_friend').css({'z-index':'1'})
+		   	$('#vu_qun-fen').removeClass('vu_qun-fen1')
+		   	$('.vue_qun_fen_main').removeClass('vue_qun_fen_main1')
 	   	},
 	   	changeQunName: function (event, groupId) { // 点击修改群分组名称
 	      	event.stopPropagation()
@@ -102,7 +99,7 @@ export default {
 
 </script>
 <template>
-  	<div>
+  	<div class="vue_Qungroup">
   		<ul>
             <li v-for="(groups,index) in groupList.groupHair">
 		        <div class="vu_link" @click="accordion">
@@ -150,7 +147,8 @@ export default {
 	      	</div>
 	      	<p>是否确认删除？</p>
 	      	<div class="vu_fenzu_name_footer"><button @click="delConfirm">确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
-	    </div>
+	    </div>	    
+	    
   	</div>
 </template>
 

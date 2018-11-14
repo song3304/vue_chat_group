@@ -1,13 +1,11 @@
 <template>
-	<div id="vu_friend" @click="chuangjian" @mouseover="vue_frit" @mouseleave="vue_frie"> 
-			
-		
+	<div id="vu_friend" @click="chuangjian" > 		
 	    <!--<div class="vu_m-search">
 	      <input type="text" id="vu_search" placeholder="查找联系人" @keyup.enter="search" />
 	      <div @click="search"></div>
 	      <p><span ></span></p>
 	    </div>-->
-	    <div class="vu_account-l vu_fl">
+	    <div class="vu_account-l vu_fl" @mouseover="vue_frit" @mouseleave="vue_frie">
 	      <!--切换-->
 	      <ul class="vu_m_lei">
 	      	<li v-for="(item,index) in tabData" @click="clickTab(index)"  :class="{'vu_m-active':index == activeIndex}">
@@ -35,7 +33,7 @@
 	      			<span class="vue_qun_fentitle_active" @click="qun_com_mon">普通组</span>
 	      			<span @click="qun_qun_fa">群发组</span>
 	      			<div @click="createGroup('common')"  v-show="vue_new_putong">+  新建普通组</div>
-	      			<div v-show="vue_new_qunfa">+  新建群发组</div>
+	      			<div @click="creatQunfen" v-show="vue_new_qunfa">+  新建群发组</div>
 	      		</div>
 	      		<div class="vue_qun_common" v-show="qun_common"> <!--普通组-->
 	      			<!--<div class="vu_qunfen_new">
@@ -189,6 +187,9 @@ export default {
       this.$emit('openGroupEvent', type)
       this.groupShow = false
     },
+    creatQunfen:function(){//打开新建群分组框
+    	$('.vue_baojia1').show()
+    },
     openChat: function (uid, idType) {
     	this.activeIndex = 0
 	    this.panelShow.chatShow = true
@@ -264,10 +265,10 @@ export default {
     	$('.price-list').width(realWidth*0.3-30);
 	},
 	vue_frit:function(){
-	   		$('#vu_friend').css('z-index','99')
+	   		
 	},
 	vue_frie:function(){
-	   	$('#vu_friend').css({'z-index':'1','overflow':'hidden'})
+	   	
 	},
 	qun_com_mon:function(event){ //普通组切换
 		var el = event.currentTarget

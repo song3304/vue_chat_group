@@ -61,6 +61,9 @@ export default {
     	var el = event.currentTarget
     	$('.vu_m-phone-input', $(el)).hide()
     	$('.vue_name_sz').hide()
+    	$('#vu_friend').css({'z-index':'1'})
+	   	$('#vu_qun-fen').removeClass('vu_qun-fen1')
+	   	$('.vue_qun_fen_main').removeClass('vue_qun_fen_main1')
     },
     changeName: function (event) {
       var el = event.currentTarget
@@ -197,12 +200,18 @@ export default {
 				var el = event.currentTarget
 			  $('.vu_first_selt').hide()
 			  $('.vu_first_selt', $(el)).show()
+			  $('#vu_friend').css({'z-index':'99'})
+	   		$('#vu_qun-fen').addClass('vu_qun-fen1')
+	   		$('.vue_qun_fen_main').addClass('vue_qun_fen_main1')
     },
     nameSz:function(event){//划上头像出现弹窗
 			event.stopPropagation();
 			var el = event.currentTarget
 			$('.vue_name_sz').hide()
 			$('.vue_name_sz', $(el)).show()
+			$('#vu_friend').css({'z-index':'99'})
+   		$('#vu_qun-fen').addClass('vu_qun-fen1')
+   		$('.vue_qun_fen_main').addClass('vue_qun_fen_main1')
     },
     namemove:function (friendId, groupId, toGroupId) {
       this.$emit('moveFriendEvent', friendId, groupId, toGroupId)
@@ -223,6 +232,9 @@ export default {
     },
     closefenzhu:function(){
     	$('.vu_first_selt').hide()
+    	$('#vu_friend').css({'z-index':'1'})
+	   	$('#vu_qun-fen').removeClass('vu_qun-fen1')
+	   	$('.vue_qun_fen_main').removeClass('vue_qun_fen_main1')
     }
   },
   filters: {

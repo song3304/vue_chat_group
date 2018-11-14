@@ -48,13 +48,6 @@ h1 a {
     color: #f39800;
     font-size: 16px;
 }*/
-.vu_accordion {
-  /*height: 310px;*/
-  width: 98%;
-  max-height: 78%;
-  /*margin-top: 20px;*/
-  
-}
 .vu_accordion .vu_link {
   cursor: pointer;
   display: block;
@@ -125,7 +118,7 @@ h1 a {
     -o-transition: all 0.25s ease;
     transition: all 0.25s ease;
     margin:3px 0 0 10px;
-    max-width:63%;
+    max-width:62%;
     overflow: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;
@@ -140,6 +133,8 @@ h1 a {
   color:#666!important;
   width: 37%;
   text-decoration: none;
+  line-height: 25px;
+  padding-left: 3px;
 }
 .vu_submenu .vue_submen_company{
 	/*float: left;*/
@@ -374,42 +369,40 @@ h1 a {
 }
 /*新群发的新分组*/
 .c_zuBox{
-  height: 38px;
+  height: 95%;
   width: 100%;
   margin: 0 auto;
-  background: #f9fafb;
-  overflow: hidden;
+  /*background: #f9fafb;*/
+  overflow-y: auto;
 }
 .c_zuBox ul{
   display: block;
   float: left;
-  width: 70%;
+  width: 100%;
   /*overflow: hidden;*/
   white-space:nowrap;
   font-size: 18px;
   margin: 0;
-  margin-top: 5px;
 }
 .c_zuBox li{
   list-style: none;
   display: inline-block;
-  padding:4px 25px 4px 10px;
-  padding-left: 10px;
-  height: 30px;
-  margin-left:5px;
-  /*overflow: hidden;*/
-  /*min-width: 60px;*/
-  text-align: center;
+  height: 52px;
+  line-height: 52px;
   cursor: pointer;
   position: relative;
+  width: 100%;
+  float: left;
+  font-size: 14px;
+  color: #666666;
+  padding-left: 10px;
+  border-bottom: 1px solid #F6F6F6;
  }
 .c_zuBox li div{
   float: left;
 }
 .c_zuBox .c_active{
-  background: #4385F5;
-  border-radius: 5px;
-  color: #FFFFFF;
+  background: #e4edff;
 }
 .c_zuBox .c_active span{
   position: absolute;
@@ -438,10 +431,6 @@ h1 a {
 	margin-left: 5px;
 }
 .c_zuB .c_active .c_qunname{display: inline-block;position: relative;padding: 0 5px;}
-
-/*.c_zuBox .c_active:hover span{
-  background: url(../images/qie_tu.png) -4px -44px no-repeat;
-}*/
 .c_newQunBox{
   width: 30%;
   float: right;
