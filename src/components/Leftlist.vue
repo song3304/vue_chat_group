@@ -9,7 +9,7 @@
 	    </div>
 		<!--资讯列表-->
 		<div class="vue_leftlist">
-			<p>热点资讯</p>
+			<p class="c_newTitle"><span class="c_newIco"></span>资讯列表</p>
 			<ul class="vue_leftlist_ul">
 				<li v-for="(leftitem,$index) in match_hall_cms" v-bind:cms_id="leftitem.id" @click="wenxiang($index,leftitem.id)">
 					<!--<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" @click="wenxiang">-->
@@ -75,12 +75,12 @@
 		</div>
 		<!--大厅成员-->
 		<div class="vue_leftlist_people" v-if="searchData">
-	      <p>大厅成员 </p>
-	      <div>
-	      	<span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合人员</span>
-	      	<span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商人员</span>
+	      <p class="c_newTitle"><span class="c_newIco"></span>全部成员 </p>
+	      <div style="height: 50px;border-bottom: 1px solid #d8d6e8;">
+	      	<span :class="{peopleChooseCuo:true,'chooseCuo': chooseCuo}" @click="choosePeople('cuo')">撮合</span>
+	      	<span :class="{peopleChooseMao:true,'chooseMao': chooseMao}" @click="choosePeople('mao')">贸易商</span>
+          <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
 	      </div>
-	      <input class="vue_leftlist_search" v-model="searchKey" type="text" placeholder="搜索大厅成员"/>
 	      <ul class="leftlist_people_ul">
 	        <li v-for="item in searchData" @click="firendchat(item.id)" v-if="item.plat!='user'">
 	          <div class="leftlist_people_photo"> <!--头像-->

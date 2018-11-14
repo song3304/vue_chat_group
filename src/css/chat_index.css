@@ -62,7 +62,7 @@ ul {
 .vu_m-na{
 	height:40px;
 	border-bottom: 1px solid #DDDDDD;
-	background:#fff3ef;		
+	background:#fff3ef;
 }
 .vu_m-na-name{
 	display: inline-block;
@@ -350,7 +350,7 @@ ul {
     color: #666666;
     font-size: 12px;
     padding-left: 3px;
-    
+
 }
 .vu_m-phone-input{
 	display: none;
@@ -1950,7 +1950,7 @@ li{
 	background-color: #dddddd;
 	line-height: 40px;
 	padding-left: 10px;
-	font-size: 15px;
+	font-size: 16px;
 	color: #333333;
 	margin: 0;
 }
@@ -1958,9 +1958,13 @@ li{
 	height: 30px;
 	background-color: #d0cedb;
 	border: 0;
-	margin: 3% 0 0 7%;
-	padding-left: 10px;
-	width: 85%;
+	/*margin: 3% 0 0 7%;*/
+  float: right;
+	padding-left: 16px;
+	width: 123px;
+  border-radius: 30px;
+  margin-top: 8px;
+  margin-right: 2%;
 }
 .leftlist_people_ul li{
 	position: relative;
@@ -2444,7 +2448,7 @@ user-select: none;
 	margin:6px 3px 0 0;
 	width: 14px;
 	height: 14px;
-	background: url(../images/switch.png) -18px -42px;	
+	background: url(../images/switch.png) -18px -42px;
 }
 .c_qunPeoTitle .every{
 	background: url(../images/switch.png) 0 -42px;
@@ -2469,12 +2473,12 @@ user-select: none;
   height: 24px;
   cursor: pointer;
   margin-top:10px;
-  margin-right: 20px;  
+  margin-right: 20px;
   background: url(../images/yiding.png) -209px -65px no-repeat ;
 }
 .c_qunBaoJiaTitle span:hover{
 	background: url(../images/yiding.png) -210px -6px no-repeat ;
-	
+
 }
 
 .c_qunBaoJiaTitle img{
@@ -3135,9 +3139,9 @@ to {top: 0;}
 }
 .vue_leftlist_xiao{
 	position: absolute;
-	top:50%;	
+	top:50%;
 	width: 11px;
-	height: 77px;	
+	height: 77px;
 	transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
@@ -3152,9 +3156,9 @@ to {top: 0;}
   /*左边列表start*/
  .vu_friend_xiao{
  	position: absolute;
-	top:50%;	
+	top:50%;
 	width: 10px;
-	height: 77px;	
+	height: 77px;
 	transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
@@ -3277,7 +3281,7 @@ to {top: 0;}
   .vue-realtime-auto-datati{width: 40.5%;}
   .vue-realtime-auto-numti{width: 10%;}
   .vue-tealtime-timecuo{
-  	
+
   }
   .vue-tealtime-timecuotitle span{color: #CCCCCC;}
   .vue-tealtime-timetitle,.vue-tealtime-timecuotitle{display: block;border-bottom: 1px solid #323129;height:38px;line-height: 38px;}
@@ -3578,5 +3582,22 @@ to {top: 0;}
   	max-height:72%;
   	overflow-y: auto;
   }
-  /*群发组弹框end*/
- 
+  /*群发组群组部分切换end*/
+
+/*新右侧样式*/
+.vue_leftlist_people .c_newIco{
+  width: 4px;height:16px;background:#4385f5;margin-right: 6px;display: inline-block;
+  position: relative;
+  top: 2px;
+}
+.vue_leftlist_people .c_newTitle{
+  background: transparent;border-bottom: 1px solid #ccc;
+}
+.vue_leftlist .c_newIco{
+  width: 4px;height:16px;background:#4385f5;margin-right: 6px;display: inline-block;
+  position: relative;
+  top: 2px;
+}
+.vue_leftlist .c_newTitle{
+  background: transparent;border-bottom: 1px solid #ccc;
+}
