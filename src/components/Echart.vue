@@ -994,7 +994,7 @@
         this.selectCatalogName=catalogItem.name;
         this.selectPid=catalogItem.id;
         this.chooseCatalog = catalogItem.catalog_id;
-//      refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+      refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
 
       my_addcatalog(catalogItem,index){
