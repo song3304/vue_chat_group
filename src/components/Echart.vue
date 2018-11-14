@@ -202,7 +202,7 @@
             	</div>
             	<ul>
             		<li v-for='(bitem,bintex) in bidList'>
-            			<span class="tealtime-timecuotitleyi">{{bitem.last_time}}</span>
+            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
             			<span class="tealtime-timecuotitlesi">
@@ -221,7 +221,7 @@
 	            	</div>
 	            	<ul>
 	            		<li v-for='(bitem,bintex) in bidList'>
-	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time}}</span>
+	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
 	            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
 	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
 	            			<span class="tealtime-timecuotitlesi">
@@ -282,7 +282,7 @@
             	</div>
             	<ul>
             		<li v-for='(bitem,bindex) in bidList'>
-            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(12,5)}}</span>
+            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
             			<span class="tealtime-timecuotitlesi">
