@@ -201,7 +201,7 @@
             			<span class="tealtime-timecuotitlesi">询价信息</span>
             	</div>
             	<ul>
-            		<li v-for='(bitem,bintex) in bidList'>
+            		<li v-for='(bitem,bintex) in bidList' v-if="bitem.last_time>getTodayDate()">
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
@@ -220,7 +220,7 @@
 	            			<span class="tealtime-timecuotitlesi">报价信息</span>
 	            	</div>
 	            	<ul>
-	            		<li v-for='(bitem,bintex) in bidList'>
+	            		<li v-for='(bitem,bintex) in bidList' v-if="bitem.last_time>getTodayDate()">
 	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
 	            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
 	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
@@ -281,7 +281,7 @@
             			<span class="tealtime-timecuotitlesi">询价信息</span>
             	</div>
             	<ul>
-            		<li v-for='(bitem,bindex) in bidList'>
+            		<li v-for='(bitem,bindex) in bidList' v-if="bitem.last_time>getTodayDate()">
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
@@ -695,6 +695,19 @@
 	        this.panelShow.searchShow = true
 	      }
 	    },
+	    //今天日期，用于询价、报价
+	    getTodayDate () {
+            var date=new Date();
+            var sep='-';
+            var year=date.getFullYear();
+            var month=date.getMonth()+1;
+            if(month>=1 && month<=9){
+                month+='0'+month;
+            }
+            var day=date.getDate();
+            return year+sep+month+sep+day+' '+'00:00:00';
+        },
+
       //qunNew部分内容
       changePh:function(){
         this.placeholderMsg = '请您粘贴信息'
