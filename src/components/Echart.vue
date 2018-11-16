@@ -201,7 +201,7 @@
             			<span class="tealtime-timecuotitlesi">询价信息</span>
             	</div>
             	<ul>
-            		<li v-for='(bitem,bintex) in bidList'>
+            		<li v-for='(bitem,bintex) in bidList' v-if="bitem.last_time>getTodayDate()">
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
@@ -220,7 +220,7 @@
 	            			<span class="tealtime-timecuotitlesi">报价信息</span>
 	            	</div>
 	            	<ul>
-	            		<li v-for='(bitem,bintex) in bidList'>
+	            		<li v-for='(bitem,bintex) in bidList' v-if="bitem.last_time>getTodayDate()">
 	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
 	            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
 	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
@@ -281,7 +281,7 @@
             			<span class="tealtime-timecuotitlesi">询价信息</span>
             	</div>
             	<ul>
-            		<li v-for='(bitem,bindex) in bidList'>
+            		<li v-for='(bitem,bindex) in bidList' v-if="bitem.last_time>getTodayDate()">
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
@@ -597,6 +597,7 @@
         peosplist:[],
         selectCatalogName:this.match_hall_catalogs[0].name,
         selectPid:this.match_hall_catalogs[0].id,
+        selectPidMy:this.my_match_hall_catalogs[0].id,//我的大盘选中pid
         selectUid:0,
         selectCid:'',
         isActive:false,
@@ -697,6 +698,19 @@
 	      }
 	      $('#vu_search').animate({width:"130px"})
 	    },
+	    //今天日期，用于询价、报价
+	    getTodayDate () {
+            var date=new Date();
+            var sep='-';
+            var year=date.getFullYear();
+            var month=date.getMonth()+1;
+            if(month>=1 && month<=9){
+                month+='0'+month;
+            }
+            var day=date.getDate();
+            return year+sep+month+sep+day+' '+'00:00:00';
+        },
+
       //qunNew部分内容
       changePh:function(){
         this.placeholderMsg = '请您粘贴信息'
@@ -1051,6 +1065,8 @@
                 v.show=1;
             }
         });
+        this.selectPidMy=catalogItem.id;
+        myownpan(this.user.id,this.selectPidMy);
       },
 
       addcom(companyitem,index){//公司添加到右侧
@@ -1178,7 +1194,17 @@
       	$('.vue_chart_usgai').show()
       	$('#mypancontent,.vue-chart-newfoot').show()
       	$('.vue-chart-foot').hide()
-      	mypan(this.user.id);//显示我的大盘曲线
+
+
+      	this.my_match_hall_catalogs.map((v,i)=>{
+            if(this.myActiveIndex!=i){
+                v.show=0
+            }else{
+                v.show=1;
+            }
+        });
+
+      	myownpan(this.user.id,this.selectPidMy);
 //    	this.cfuxiao();
       },
       chartus_er:function(){
@@ -1187,6 +1213,15 @@
       	$('.vue_chart_usgai').hide()
       	$('#mypancontent,.vue-chart-newfoot').hide()
       	$('.vue-chart-foot').show()
+
+      	this.match_hall_catalogs.map((v,i)=>{
+            if(this.activeIndex!=i){
+                v.show=0
+            }else{
+                v.show=1;
+            }
+        });
+
       	refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
 //    	this.cfuxiao();
       },
@@ -1197,11 +1232,28 @@
       		$('.vue_chart_usgai').show()
       		$('#mypancontent,.vue-chart-newfoot').show()
       		$('.vue-chart-foot').hide()
-      		mypan(this.user.id);//显示我的大盘曲线
+
+      		this.my_match_hall_catalogs.map((v,i)=>{
+                if(this.myActiveIndex!=i){
+                    v.show=0
+                }else{
+                    v.show=1;
+                }
+            });
+
+      		myownpan(this.user.id,this.selectPidMy);
       	}else{
       		$('.vue_chart_usgai').hide()
       		$('#mypancontent,.vue-chart-newfoot').hide()
       		$('.vue-chart-foot').show()
+
+      		this.match_hall_catalogs.map((v,i)=>{
+                if(this.activeIndex!=i){
+                    v.show=0
+                }else{
+                    v.show=1;
+                }
+            });
       		refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       	}
 //    	this.cfuxiao();

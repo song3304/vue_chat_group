@@ -1964,7 +1964,7 @@ li{
 	/*margin: 3% 0 0 7%;*/
   float: right;
 	padding-left: 16px;
-	width: 123px;
+	width: 36%;
   border-radius: 30px;
   margin-top: 8px;
   margin-right: 2%;
@@ -3429,11 +3429,11 @@ to {top: 0;}
 	overflow: hidden;
 	width: 100%;
 }
-.vu_qun-fen1{	
+.vu_qun-fen1{
 	width: 190%!important;
 	overflow: hidden;
 }
-.vue_qun_fen_main{	
+.vue_qun_fen_main{
 	width: 108%;
 	height: 100%;
 	padding-right:1.5%;
@@ -3616,3 +3616,6 @@ to {top: 0;}
 	cursor:pointer;
 }
 .vue_qun_common,.vue_qun_qunfa{margin-top: 10px;}
+.vue_leftlist_people>div{
+  overflow: hidden;
+}
