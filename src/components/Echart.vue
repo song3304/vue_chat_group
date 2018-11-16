@@ -596,6 +596,7 @@
         peosplist:[],
         selectCatalogName:this.match_hall_catalogs[0].name,
         selectPid:this.match_hall_catalogs[0].id,
+        selectPidMy:this.my_match_hall_catalogs[0].id,//我的大盘选中pid
         selectUid:0,
         selectCid:'',
         isActive:false,
@@ -1073,6 +1074,8 @@
                 v.show=1;
             }
         });
+        this.selectPidMy=catalogItem.id;
+        myownpan(this.user.id,this.selectPidMy);
       },
 
       addcom(companyitem,index){//公司添加到右侧
@@ -1200,7 +1203,17 @@
       	$('.vue_chart_usgai').show()
       	$('#mypancontent,.vue-chart-newfoot').show()
       	$('.vue-chart-foot').hide()
-      	mypan(this.user.id);//显示我的大盘曲线
+
+
+      	this.my_match_hall_catalogs.map((v,i)=>{
+            if(this.myActiveIndex!=i){
+                v.show=0
+            }else{
+                v.show=1;
+            }
+        });
+
+      	myownpan(this.user.id,this.selectPidMy);
 //    	this.cfuxiao();
       },
       chartus_er:function(){
@@ -1209,6 +1222,15 @@
       	$('.vue_chart_usgai').hide()
       	$('#mypancontent,.vue-chart-newfoot').hide()
       	$('.vue-chart-foot').show()
+
+      	this.match_hall_catalogs.map((v,i)=>{
+            if(this.activeIndex!=i){
+                v.show=0
+            }else{
+                v.show=1;
+            }
+        });
+
       	refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
 //    	this.cfuxiao();
       },
@@ -1219,11 +1241,28 @@
       		$('.vue_chart_usgai').show()
       		$('#mypancontent,.vue-chart-newfoot').show()
       		$('.vue-chart-foot').hide()
-      		mypan(this.user.id);//显示我的大盘曲线
+
+      		this.my_match_hall_catalogs.map((v,i)=>{
+                if(this.myActiveIndex!=i){
+                    v.show=0
+                }else{
+                    v.show=1;
+                }
+            });
+
+      		myownpan(this.user.id,this.selectPidMy);
       	}else{
       		$('.vue_chart_usgai').hide()
       		$('#mypancontent,.vue-chart-newfoot').hide()
       		$('.vue-chart-foot').show()
+
+      		this.match_hall_catalogs.map((v,i)=>{
+                if(this.activeIndex!=i){
+                    v.show=0
+                }else{
+                    v.show=1;
+                }
+            });
       		refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       	}
 //    	this.cfuxiao();
