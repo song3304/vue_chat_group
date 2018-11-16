@@ -354,6 +354,12 @@
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
 //    	resizeChart();
+		if($('#vu_friend').width()<100){
+	   }else{
+	    	$('#vu_friend').css('width','18.5%')
+			$('#vue_main_main').css('width','80.5%')
+	    }
+		
     },
     leftlist_tubiaoxiao:function(){
     	this.leftlisttu = true
@@ -380,6 +386,12 @@
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
 	    });
+	    if($('#vu_friend').width()<100){	    	
+	    }else{
+	    	$('#vu_friend').css('width','22.5%')
+			$('#vue_main_main').css('width','77%')
+	    }
+	    
     }
   },
 	mounted() {

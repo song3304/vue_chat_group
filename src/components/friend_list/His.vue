@@ -10,7 +10,7 @@
 	            <div class="vu_m-list-del">
 	            	<p class="vu_m-list-del-time">{{recentItem|lastTime}}</p>
 	            	<!--<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{recentItem|noReadCnt}}</p>-->
-	            	<div class="vu_delet-li"  @click.stop="deletePerson(index)"></div>
+	            	<div class="vu_delet-li"  @click.stop="deletePersonn(index)"></div>
 	            </div>
 	             <span  v-if="userList[recentItem.id].friend_type!='friend'"></span>
 	        </li>
@@ -57,7 +57,7 @@ export default {
         autohidemode: false, // 隐藏滚动条的方式, 可用的值:
      });
     },
-	deletePerson: function (index) {
+	deletePersonn: function (index) {
       this.$emit('delSessionEvent', index)
       // this.sessionList.splice(index, 1)
     }

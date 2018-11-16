@@ -32,8 +32,8 @@
 	      		<div class="vue_qun_fentitle">
 	      			<span class="vue_qun_fentitle_active" @click="qun_com_mon">普通组</span>
 	      			<span @click="qun_qun_fa">群发组</span>
-	      			<div @click="createGroup('common')"  v-show="vue_new_putong">+  新建普通组</div>
-	      			<div @click="creatQunfen" v-show="vue_new_qunfa">+  新建群发组</div>
+	      			<div @click="createGroup('common')"  v-show="vue_new_putong">+  新建</div>
+	      			<div @click="creatQunfen" v-show="vue_new_qunfa">+  新建</div>
 	      		</div>
 	      		<div class="vue_qun_common" v-show="qun_common"> <!--普通组-->
 	      			<!--<div class="vu_qunfen_new">
@@ -45,7 +45,7 @@
 			        </div>
 	      		</div>
 	      		<div class="vue_qun_qunfa" v-show="qun_qunfa"> <!--群发组-->
-	      			<div v-if="user.plat=='match'" class="vu_qunfen_er">
+	      			<div class="vu_qunfen_er">
 			          <qungroupPanel group_type="groupHair" :user="user" :userList="userList" :groupList="groupList" :companyList="groupList.groupHair" :followList="followList" @modifyGroupEvent="modifyGroupName" @delGroupEvent="delGroup" ></qungroupPanel>
 			       </div>
 	      		</div>
@@ -157,7 +157,7 @@ export default {
     	$('#vu_friend').css('width','22.5%')
     	$('#vue_main_main').css('width','76.7%')
     	$('.vu_m_lei').removeClass('vu_m_leier')
-    	$('.c_btn_box').removeClass('c_btn_boxer')
+    	$('.c_btn_box,.vue_qun_offf').removeClass('c_btn_boxer')
 //		var widtnn=$('#leftlist').width()
 //      if(widtnn>0){
 //  		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})

@@ -329,7 +329,7 @@
 		      	</div>
 		      	<div class="c_zuBox" v-show="qunfazhu"> <!--//群发组-->
 	              <ul v-if="cnewkai==true">
-	                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId" @dblclick="vu_bianji">{{groups.groupName}}</li>
+	                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId">{{groups.groupName}}</li>
 	              </ul>
 	              <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
             </div>
@@ -341,7 +341,7 @@
 			            <div v-if="user.plat=='match'&&this.companyLists.length==0" class="c_dingTips">暂无盯盘</div>
 			            <div v-if="user.plat=='trade'&&this.companyLists.length==0" class="c_dingTips">您还没有对任何人进行盯盘<br/>请<a href="/trade/collect/create">[添加盯盘]</a>
 			            </div>
-			            <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height: 100%;">
+			            <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height: 93%;">
 			              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
 			                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
 			                <ul class="vu_submenu vu_submenu_ul">
@@ -369,6 +369,7 @@
 				                		<span>{{groups.groupName}}</span>
 				                		<!--<input class="vu_m-phone-input vu_m-new-input" :value="groups.groupName" type="text" :data-gid="groupList.groupHair[index].groupId" @keyup.enter="modifyGroupName" @blur="modifyGroupName"/>-->
 				                	</div>
+				                	<div class="vue_clear" title="清空所选人员" @click="vue_qunclear"></div>
 				                	<!--<span class="c_qungaititle" v-show="tan_bianji">(点击修改名称)</span>
 				                	<span class="c_qungainame" v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>-->
 				                	<!--<div class="c_newQunBo">
@@ -412,7 +413,7 @@
             </form>
           </div>
           <div class="c_openBox">
-            <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'><span class="c_shiBieButton_yi" v-if="cnewkai==true">群发</span><span class="c_shiBieButton_er" v-if="cnewguan==true">报价</span></div>
+            <div class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'><span class="c_shiBieButton_yi"  v-show="formData.userIds.length!=0">群发</span><span class="c_shiBieButton_er"  v-show="formData.userIds.length==0">报价</span></div>
             <div class="c_openShibie" v-if="user.plat=='match' && cnewguan!=true"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
         </div>
@@ -440,7 +441,7 @@
     </div>
 
     <!--设置组名称-->
-    <div class="vu_fenzu_name" style="z-index:1009;background: #fff;left: 47%;top:35%;box-shadow: 5px 18px 5px #ccc;" v-show="newZuTag">
+    <!--<div class="vu_fenzu_name" style="z-index:1009;background: #fff;left: 47%;top:35%;box-shadow: 5px 18px 5px #ccc;" v-show="newZuTag">
       <div class="vu_fen_zu_title">
         <span>设置组名称</span>
         <p class="vu_fen_zu_tier" @click="closeSetName"><span></span></p>
@@ -451,7 +452,7 @@
         <button @click="submitGroup">确认</button>
         <span class="vu_fen_zu_tier" @click="closeSetName">取消</span>
       </div>
-    </div>
+    </div>-->
     <!--删除确认弹窗-->
     <div class="vu_del-popup" v-show="Qunpopup" style="left: 45%;">
       <div class="vu_fen_zu_title">
@@ -462,7 +463,7 @@
       <div class="vu_fenzu_name_footer"><button @click="delConfirm">确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
     </div>
 
-		<div class="vue_qun_line" v-if="user.plat=='trade'"></div>
+		<!--<div class="vue_qun_line" v-if="user.plat=='trade'"></div>-->
     <!-- 群发报价 -->
     <div class="c_btn_box" v-if="user.plat=='match'">
       <div class="vue_bp_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>
@@ -510,7 +511,7 @@
 						    <ul v-for="userItem in searchList" class="vu_submenu vu_submenu_ul vu_search_ul">
 						      <li :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem.id,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem.id,formData.userIds)}">
 						        <div class="vu_m-touxiang newQunFa">
-						          <img :src="userItem.img" :alt="userItem.name" :class="{'vu_gray': !userItem.isOnline}" />
+						          <img :src="userItem.img"  :class="{'vu_gray': !userItem.isOnline}" />
 						          <!--class="gray"-->
 						          <!--//不在线，添加class=gray-->
 						        </div>
@@ -530,13 +531,13 @@
 	            <div v-if="user.plat=='match'&&this.companyLists.length==0" class="c_dingTips">暂无盯盘</div>
 	            <div v-if="user.plat=='trade'&&this.companyLists.length==0" class="c_dingTips">您还没有对任何人进行盯盘<br/>请<a href="/trade/collect/create">[添加盯盘]</a>
 	            </div>
-	            <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height: 100%;">
+	            <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height:100%;">
 	              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
 	                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,companyItem.userIds)">+</p></div>
 	                <ul class="vu_submenu vu_submenu_ul">
 	                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
 	                    <div class="vu_m-touxiang newQunFa">
-	                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray': !userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+	                      <img :src="userList[userItem].img"  :class="{ 'vu_gray': !userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
 	                    </div>
 	                    <a class="newQunFa">{{userList[userItem].name}}</a>
 	                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click="dange_xuan"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
@@ -694,6 +695,7 @@
 	        }
 	        this.panelShow.searchShow = true
 	      }
+	      $('#vu_search').animate({width:"130px"})
 	    },
       //qunNew部分内容
       changePh:function(){
@@ -783,36 +785,34 @@
         this.newZuTag = false
       },
       submitGroup: function () {
-            if (this.createGroupName === '') {
-              this.tipsTag = true
-		          this.tipsMsg = '请先创建组'
-            }else{
-            	
-            	if(this.formData.userIds.length==0){
-		            if(this.groupList.groupHair.length!=0){
-		              this.kongTag = true
-		            }
-		          }else{
-		          	console.log(this.formData.userIds)
-//		          	this.formData.userIds=[]
-		            this.formData.groupName = this.createGroupName
-		            this.newZuTag = false
-		            this.formData.groupType = 'group'
-		            this.$emit('createGroupEvent', this.formData)
-		            this.activeTag = this.formData.groupName
-		            // this.formData.userIds = []
-		            // this.formData.groupName = ''
-		            this.createGroupName = ''
-		            this.groupTag++
-		            if(this.groupList.groupHair.length==0){
-		              this.groupTag=0		
-		            }
-		            this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId
-		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)
-		            this.formData.userIds = []
-		            $('.vue_baojia1').hide()
+        if (this.createGroupName === '') {
+          this.tipsTag = true
+	          this.tipsMsg = '组名称未输入'	          
+        }else{            
+            this.formData.groupName = this.createGroupName
+            this.newZuTag = false
+            this.formData.groupType = 'group'
+           
+            this.activeTag = this.formData.groupName	            
+            // this.formData.userIds = []
+            // this.formData.groupName = ''	            
+            if(this.formData.userIds.length==0){
+	            this.kongTag = true			            
+	          }else{
+	          	this.$emit('createGroupEvent', this.formData)
+	          	this.createGroupName = ''
+            	this.groupTag++
+	          	if(this.groupList.groupHair.length==0){			            
+	            }else{
+		          	this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId		
+		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)		            
 		          }
-            }      
+	            this.formData.userIds = []
+		          $('.vue_baojia1').hide()
+	            this.everyone=false
+	            this.panelShow.searchShow=false
+	          }		            			          	         
+        }      
       },
       /* qunNew部分开始 */
       cjbj: function () {
@@ -860,26 +860,21 @@
             return
           }
           userIds = this.formData.userIds
-//      }else{
-//        if (this.groupMsg === '') {
-//          this.tipsTag = true
-//          this.tipsMsg = '报价信息不能为空.'
-//          return
-//        }
-//        userIds = []
-//      }
         this.$emit('sendGroupMsgEvent', userIds, this.groupMsg, this.chooseG || this.cnewguan)
         // this.formData.userIds = []
         // this.close() // 关闭窗口
-        this.placeholderMsg = this.groupMsg
-        this.groupMsg = ''
-        this.placeholderMsg = '请您粘贴信息'
+//      if(user.plat=='match'){
+//      	this.placeholderMsg = this.groupMsg
+//      }else{
+        	this.groupMsg = ''
+        	this.placeholderMsg = '请您粘贴信息'
+//      }                
       },
       dange_xuan:function(event){
-      	var el = event.currentTarget
-      	if($(el).hasClass('vu_checkbox_bg_check')){
-      		this.everyone=false
-      	}    	
+//    	var el = event.currentTarget
+//    	if($(el).hasClass('vu_checkbox_bg_check')){
+//    		this.everyone=false
+//    	}    	
       },
       checkAll: function (event, userIds) {
         var el = event.currentTarget
@@ -999,10 +994,6 @@
       },
       closeQunFa: function () {
         this.showQunFa = false
-
-        if(this.groupList.groupHair.length!=0&&this.formData.groupName!=""){
-          this.formData.userIds = this.groupList.groupHair[this.groupTag].userIds
-        }
         this.Qunfen=false
       },
       /* qunNew部分结束 */
@@ -1291,22 +1282,14 @@
 	        disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
 	      });
       },
-      vu_bianji:function(){
-//    	this.bianji_linshi=true
-      	this.vue_bianji=true
-      	this.vue_linshi=false
-      	this.tan_bianji=true
-      	$('.c_queren').show()
-      	this.linshi_guan=1
-//    	this.opensetzhu=false
-      	$('.vu_fenzu_right_div').show()
-      },
       guan_bianji:function(){ //关闭编辑/临时加入框
       	$('.vue_baojia1').hide()
       	this.Qunfen=false
       	this.formData.userIds = []
-//    	this.opensetzhu=true
-      	
+      	this.panelShow.searchShow=false
+      	this.kongTag=false
+      	this.tipsTag = false
+      	this.everyone=false
       },
       c_newkai:function(){ //群发报价开
       	this.cnewkai=false
@@ -1338,6 +1321,9 @@
 				$(el).addClass('c_qunquan_active')
       	this.qunfazhu=false
       	this.qunbuzhu=true
+      },
+      vue_qunclear:function(){
+      	this.formData.userIds = []
       },
     },
     //qunNew部分内容

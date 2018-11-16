@@ -123,9 +123,9 @@ ul {
 }
 .vu_history{
 	width:90px;
-	height:35px;
+	height:30px;
 	text-align: center;
-	line-height:35px;
+	line-height:30px;
 	font-size: 12px;
 	cursor: pointer;
 	float: right;
@@ -259,12 +259,16 @@ ul {
 }
 .c_qunPeo .vu_input-search{
 	position: absolute;
-	top:70px;
+	top:117px;
 	left: 0;
-	width:189px;
-	height: 340px;
+	width:49%;
+	height: 72%;
 	background: #FFFFFF;
 	z-index: 5;
+	padding-top: 10px;
+}
+.c_qunPeo .vu_input-search a{
+	color: #333333;
 }
 .vu_input-search{
 	position: absolute;
@@ -370,13 +374,13 @@ ul {
 	margin: 19px 0 0 3px;
 }
 #vu_search{
-	width: 130px;
+	width: 26px;
 	height: 22px;
 	border: solid 1px #eeeeee;
 	margin:0 3px 0 0;
 	padding-left: 25px;
 	/*background: #5c6d9d;*/
-	color: #999999;
+	color: #666666;
 	font-size: 12px;
 	float: right;
 }
@@ -415,16 +419,13 @@ ul {
 	margin-top: 6px;
 	width:15px;
 	height:15px;
-	background: url(../images/qie_tu.png) -4px -155px;
+	background: url(../images/zuinewqie.png) 0 -105px;
 }
 .vu_fa-chevron-down:before{
 	color: #a4a4a4;
 }
-.vu_m-guan:hover p,.vu_m-search:hover p {
-	background:#bc2424;
-}
 .vu_m-guan:hover p span,.vu_m-search:hover p span{
-	background: url(../images/qie_tu.png) -4px -244px no-repeat;
+	background: url(../images/zuinewqie.png) -20px -105px no-repeat;
 }
 .vu_m-list .vu_avatar,.vu_liaotian_left .vu_avatar{
 	width: 40px;
@@ -654,9 +655,12 @@ ul {
 	width: 222px;
 	height:500px;
 	background: #FFFFFF;
-	border-right: 1px solid #DDDDDD;
+	border-right: 1px solid #f6f6f6;
 	/*overflow-x: hidden;
     overflow-y: scroll;*/
+}
+.vu_m-list ul{
+	max-height:500px;
 }
 .vu_m_main_name{
 	height: 40px;
@@ -664,7 +668,7 @@ ul {
 	font-size: 14px;
 	color: #333333;
 	padding-left: 30px;
-	border-bottom: 1px solid #DDDDDD;
+	border-bottom: 1px solid #F6F6F6;
 	margin-bottom: 2px;
 }
 /* for Chrome */
@@ -721,9 +725,9 @@ ul {
 /*分组切换*/
 .vu_m_lei{
 	height: 40px;
-	border-bottom: 1px solid #ff3000;
-	/*margin: 0 10px;*/
+	border-bottom: 1px solid #4385F5;
 	position: relative;
+	margin: 0;
 }
 .vu_m_lei>li{
 	float: left;
@@ -737,7 +741,7 @@ ul {
 .vu_m_lei>li span{color: #999999;float: left;margin-left: 3px;}
 .vu_m-active{
 	/*border-bottom: 1px solid #1a517d;*/
-	background: #ff3000;
+	background: #4385f5;
 }
 .vu_m-active>span{color: #FFFFFF!important;}
 /*添加分组*/
@@ -832,7 +836,7 @@ ul {
  }
 .vu_fenzu_left>ul{
 	width: 270px;
-	overflow-y: scroll;
+	overflow-y:auto;
 	overflow-x:hidden;
 	height: 350px;
 }
@@ -844,7 +848,7 @@ ul {
 .vu_fenzu_right_ul.newQunFa li{
 	height: 30px!important;
 	float: left;
-	min-width: 113px;
+	max-width: 109px;
 	/*background: #eee;*/
 	border-radius: 5px;
 	margin-left:3px;
@@ -870,7 +874,7 @@ ul {
 .vu_fenzu_right_ul.newQunFa li span,.D_xiugai li span{
 	width: 18px;
 	height: 18px;
-	margin: 10px 10px 0 0;
+	margin: 10px 0 0 0;
 	background: url(../images/qie_tu.png) -4px -23px no-repeat;
 }
 .vu_fenzu_right_ul.newQunFa li:hover span,.D_xiugai li:hover span{
@@ -1035,7 +1039,7 @@ ul {
 	rgba(0, 0, 0, 0.21);
 	border-radius: 5px;
 	padding: 3px 0;
-	z-index: 100;
+	z-index: 1000;
 	display: none;
 }
 .vue_name_sz>li{
@@ -1094,7 +1098,7 @@ ul {
 	width: 450px;
 	top: 40px;
 	right: 148px;
-	border-right: 1px solid #DDDDDD;
+	border-right: 1px solid #F6F6F6;
 }
 #vu_chat .vu_m-text {
 	position: absolute;
@@ -1267,17 +1271,17 @@ li{
 .vu_m-text {
   /*height:20%;*/
   /*height:100%;*/
-	border-top: solid 1px #cccccc;
+	border-top: solid 1px #F6F6F6;
 	padding-left:1%;
-	padding-top: 8px;
+	padding-top: 0;
 }
 
 .vu_m-text textarea {
 	/*padding: 27px 10px 45px 10px;*/
 	/*margin:27px 0 0 10px;*/
-	height:105px;
+	height:42px;
 	line-height: 20px;
-	width:345px;
+	width:433px;
 	font-size: 14px;
 	/*overflow-y:scroll;*/
 	border: none;
@@ -1345,7 +1349,7 @@ li{
 	cursor: pointer;
 	position: absolute;
 	top:10px;
-	right:7px;
+	right:18px;
 	/*z-index: 10;*/
 }
 .vu_qun_fen>li>.vu_link:hover .vu_qun-name{display: block;}
@@ -1519,7 +1523,7 @@ li{
 	height: 56px;
 	background-color: #ffffff;
 	border-radius: 5px;
-	z-index: 10;
+	z-index: 1000;
 	padding: 3px 0;
 	display: none;
 }
@@ -1870,7 +1874,6 @@ li{
 	width: 148px;
 	position: relative;
 	background: #FFFFFF;
-	border-right: 1px solid #DDDDDD;
 	z-index: 1;
 }
 .vue_m_m_foot{
@@ -2407,23 +2410,21 @@ li{
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
-	position: fixed;
+	position: fixed!important;
 	top: 45px;
-	left: 30px;
+	left: 30%;
   width: 690px;
   /*height: 610px;*/
   height: 540px;
   overflow: hidden;
   background: #fff;
   z-index: 103;
-  border: 1px solid #EEEEEE;
 }
 .c_qunPeo{
   float: left;
   width: 100%;
   height:95%;
   background-color: #FFFFFF;
-  border-right: 1px solid #DDDDDD;
 }
 .c_qunBaoJia{
   float: left;
@@ -2432,7 +2433,7 @@ user-select: none;
   background-color: #fff;
   position: relative;
   z-index: 5;
- border-right: 1px solid #DDDDDD;
+ border-right: 1px solid #eeeeee;
 }
 .c_qunPeoTitle{
   width: 100%;
@@ -2469,15 +2470,15 @@ user-select: none;
 .c_qunBaoJiaTitle span{
   display: block;
   float: right;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   margin-top:10px;
   margin-right: 20px;
-  background: url(../images/yiding.png) -209px -65px no-repeat ;
+  background: url(../images/zuinewqie.png) -17px 0 no-repeat ;
 }
 .c_qunBaoJiaTitle span:hover{
-	background: url(../images/yiding.png) -210px -6px no-repeat ;
+	background: url(../images/zuinewqie.png) -17px -20px no-repeat ;
 
 }
 
@@ -2501,7 +2502,7 @@ user-select: none;
   /*height: 315px;*/
   /*height:292px;*/
   overflow: hidden;
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
   position: relative;
   z-index: 3;
 }
@@ -2512,12 +2513,14 @@ user-select: none;
 .vue_baojia1 .c_qunDi{
 	height:90%;
 	border: 0;
+	border-left: 1px solid #F6F6F6;
 }
 .c_qunContent{
   background: #fff;
   overflow: hidden;
 }
 .c_openBox{
+	border-top: 1px solid #F6F6F6;
   overflow: hidden;
 }
 .c_shiBieButton{
@@ -2539,7 +2542,7 @@ user-select: none;
 .c_shiBieButton .c_shiBieButton_yi:hover{
   background: #5292ff;
 }
-.c_shiBieButton_er{  background: #36b477;}
+.c_shiBieButton_er{  background: #4385F5;}
 .c_shiBieButton .c_shiBieButton_er:hover{
   background: #36b477;
 }
@@ -2558,15 +2561,15 @@ user-select: none;
 .c_openShibie span{
   display: block;
   float: left;
-  background: url(../images/green.png) -22px 0px no-repeat;
-  width: 20px;
-  height: 20px;
-  margin-top: 10px;
+  background: url(../images/zuinewqie.png) -18px -42px no-repeat;
+  width: 14px;
+  height: 14px;
+  margin-top: 13px;
   margin-right: 4px;
   cursor: pointer;
 }
 .c_openShibie span.gou{
-  background: url(../images/green.png) -46px 0px no-repeat;
+  background: url(../images/zuinewqie.png) 0 -42px no-repeat;
 }
 .c_dingTips{
   width: 100%;
@@ -3336,7 +3339,7 @@ to {top: 0;}
   font-size: 14px;
   text-align: center;
   position: absolute;
-  bottom:8px;
+  bottom:4px;
   right: 0;
 }
 .c_newQunBo div{
@@ -3450,6 +3453,7 @@ to {top: 0;}
  .vue_qun_fentitle{
  	height: 40px;
  	padding-left: 16px;
+ 	border-bottom: 1px solid #3c3b41;
  }
  .vue_qun_fentitle span{
  	display: inline-block;
@@ -3458,6 +3462,7 @@ to {top: 0;}
  	color: #CCCCCC;
  	border-radius: 5px;
  	cursor: pointer;
+ 	margin-top: 8px;
  }
   .vue_qun_fentitle .vue_qun_fentitle_active{
   	background: #4385F5;
@@ -3468,7 +3473,7 @@ to {top: 0;}
   	float: right;
   	color: #CCCCCC;
   	font-size: 14px;
-  	margin: 2px 5px 0 0;
+  	margin: 12px 12px 0 0;
   	cursor: pointer;
   }
   /*群发组群组部分切换end*/
@@ -3501,7 +3506,7 @@ to {top: 0;}
  	float: left;
  	border: 1px solid #eeeeee;
  	font-size: 12px;
- 	color: #CCCCCC;
+ 	color: #666666;
  	height:24px;
  	margin-top: 8px;
  	padding-left: 5px;
@@ -3527,7 +3532,7 @@ to {top: 0;}
  }
  .vue_baojia1 .c_qunDi .vu_fenzu_right_ul{
  	margin-top: 10px;
- 	height: 230px;
+ 	height: 246px;
  	overflow-y:auto;
  }
  .c_qun_qiehuan{
@@ -3601,3 +3606,13 @@ to {top: 0;}
 .vue_leftlist .c_newTitle{
   background: transparent;border-bottom: 1px solid #ccc;
 }
+.vue_clear{
+	display: inline-block;
+	width:16px;
+	height: 16px;
+	background: url(../images/zuinewqie.png) 0 0 ;
+	float: right;
+	margin: 10px 10px 0 0;
+	cursor:pointer;
+}
+.vue_qun_common,.vue_qun_qunfa{margin-top: 10px;}
