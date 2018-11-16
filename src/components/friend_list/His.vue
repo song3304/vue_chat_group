@@ -59,7 +59,6 @@ export default {
     },
 	deletePersonn: function (index) {
       this.$emit('delSessionEvent', index)
-      // this.sessionList.splice(index, 1)
     }
   },
   filters: {

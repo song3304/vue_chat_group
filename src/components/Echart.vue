@@ -869,8 +869,9 @@
             this.tipsMsg = '请先选择群发人员'
             return
           }else if (this.groupMsg === '') {
-            this.tipsTag = true
-            this.tipsMsg = '群发消息不能为空.'
+//          this.tipsTag = true
+//          this.tipsMsg = '群发消息不能为空.'
+            toastr.warning('群发消息不能为空.')
             return
           }
           userIds = this.formData.userIds

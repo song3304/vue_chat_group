@@ -455,7 +455,7 @@ ul {
 	float: left;
 }
 .vu_m-list-del{
-	float: left;
+	float: right;
 	position: relative;
 	margin-top:12px;
 	width:50px;
@@ -1963,7 +1963,7 @@ li{
 	border: 0;
 	/*margin: 3% 0 0 7%;*/
   float: right;
-	padding-left: 16px;
+	padding-left: 14px;
 	width: 36%;
   border-radius: 30px;
   margin-top: 8px;
