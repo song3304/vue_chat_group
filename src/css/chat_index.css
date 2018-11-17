@@ -50,7 +50,7 @@ ul {
 	height:540px;
 	/*height: 5.4%;*/
 	/*position:absolute;*/
-    position: fixed;
+    position: fixed!important;
 	bottom: 30px;
 	right:22%;
     z-index: 1000;
@@ -60,7 +60,7 @@ ul {
     /*display: none;*/
 }
 .vu_m-na{
-	height:40px;
+	height:7.3%;
 	border-bottom: 1px solid #DDDDDD;
 	background:#fff3ef;
 }
@@ -650,10 +650,10 @@ ul {
 }
 .vu_m-list {
 	position:absolute;
-	top:40px;
-	left:0;
-	width: 222px;
-	height:500px;
+	top:7.3%;
+	left:1px;
+	width: 27.01%;
+	height:92.5%;
 	background: #FFFFFF;
 	border-right: 1px solid #f6f6f6;
 	/*overflow-x: hidden;
@@ -1094,10 +1094,10 @@ ul {
 	position:absolute;
 	overflow: hidden;
 	background-color: #FFFFFF;
-	height: 500px;
-	width: 450px;
-	top: 40px;
-	right: 148px;
+	height: 92.5%;
+	width: 54.7%;
+	top: 7.3%;
+	right: 18.2%;
 	border-right: 1px solid #F6F6F6;
 }
 #vu_chat .vu_m-text {
@@ -1108,10 +1108,10 @@ ul {
 	z-index: 1;
 	background-color: #FFFFFF;
   padding-bottom: 6px;
-  height: 120px;
+  height: 23%;
 }
 #vu_chat .vu_m-message {
-	height:325px;
+	height:67%;
 	position: relative;
 	z-index: 1;
 	background-color: #FFFFFF;
@@ -1298,14 +1298,14 @@ li{
 /*新群发样式*/
 /*新群发样式*/
 .vu_submenu-newname .vu_m-touxiang.newQunFa{
-	top:2px!important;
-	width:20px!important;
-	height:20px!important;
+	top:9px!important;
+	width:34px!important;
+	height:34px!important;
 }
 .vu_submenu-newname .vu_checkbox_bg{
 	/*margin: 3px 27px 0 0!important;*/
 	/*新群发样式*/
-	margin-top:3px!important;
+	margin-top:15px!important;
 
 }
 .vu_qun_fen>li>.vu_link{position: relative;}
@@ -1870,8 +1870,8 @@ li{
 /*聊天对话框*/
 .tuo_tuo{
 	float: right;
-	height: 500px;
-	width: 148px;
+	height: 92.8%;
+	width: 18.1%;
 	position: relative;
 	background: #FFFFFF;
 	z-index: 1;
@@ -2419,6 +2419,7 @@ user-select: none;
   overflow: hidden;
   background: #fff;
   z-index: 103;
+  border:1px solid  #DDDDDD;
 }
 .c_qunPeo{
   float: left;
@@ -3024,7 +3025,7 @@ to {top: 0;}
   font-size: 12px;
   color: #999999;
 }
-.vu_resizable{height: 100%;}
+.vu_resizable{height: 100%;border: 1px solid #DDDDDD;}
 .vu_m-na-p{
 	text-align: center;
 	line-height: 47px;
@@ -3488,7 +3489,10 @@ to {top: 0;}
  	z-index: 100;
  	border: 1px solid #EEEEEE;
  }
- .vue_baojia1 .c_qunPeo{width: 240px;height: 90%!important;}
+ .vue_baojia1:hover{
+ 	z-index: 999999!important;
+ }
+ .vue_baojia1 .c_qunPeo{width: 49%;height: 90%!important;}
  .sz_qunfa{
  	height: 48px;
  	padding-top:6px ;
@@ -3618,4 +3622,19 @@ to {top: 0;}
 .vue_qun_common,.vue_qun_qunfa{margin-top: 10px;}
 .vue_leftlist_people>div{
   overflow: hidden;
+}
+.newqun_fa{
+	background: #E4EDFF!important;
+}
+.c_qun_qiehuan .vu_accordion{
+	max-height: 94%;
+}
+#vu_div-qun:hover{
+	z-index: 9999999!important;
+} 
+.new_qunfabeijing>li:hover,.new_qunfabeijing>li.vu_current{
+	background-color: #FFFFFF!important;
+}
+.new_qunfabei>li:hover,.new_qunfabei>li.vu_current{
+	background-color: #f8faff!important;
 }

@@ -207,13 +207,13 @@
 //        $('.vu_m_tubiaoxia').show()
 //      }
 //    })
-
-//  	var height=$("#resizable").height()
-//    $("#resizable").resizable({
-//      handles: "n",
-//      minHeight:height,
-//      maxHeight:770,
-//    });
+      $( "#vu_m-chatmainn" ).resizable({
+      		handles:'all',
+		      maxHeight: 540,
+		      maxWidth: 820,
+		      minHeight: 464,
+		      minWidth: 700
+	    });
     }
   }
 </script>

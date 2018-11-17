@@ -327,10 +327,24 @@
 		      	 	 <span @click="qun_qunfazhu" class="c_qunquan_active">群发组</span>
 		      	 	 <span @click="qun_qunbuzhu">全部成员</span>
 		      	</div>
-		      	<div class="c_zuBox" v-show="qunfazhu"> <!--//群发组-->
-	              <ul v-if="cnewkai==true">
-	                <li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId">{{groups.groupName}}</li>
-	              </ul>
+		      	<div class="vu_fenzu_left vu_accordion" v-show="qunfazhu"  style="width: 100%!important;height: 100%px!important;position: relative;
+			    z-index: 3;"> <!--//群发组-->
+	              <!--<ul v-if="cnewkai==true">-->
+	                <!--<li class="vue_qun_bianji" :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair" @click="onGroup(groups,index)" :value="groups.groupId">{{groups.groupName}}</li>-->
+	                <ul class="vu_fenzu_left_ul scrollCss vu_qunfenzhu_ul" style="width: 100%;height:100%;">
+			              <li  v-for="(groups,index) in groupList.groupHair"   @click="onGroup(groups,index,$event)" :value="groups.groupId">
+			                <div class="vu_link newQunFa" :class="{newqun_fa:groups.groupName==activeTag}"  :value="groups.groupId"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{groups.groupName}}</span><span>{{groups.userIds|online(userList)}}/{{groups.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click="checkAll($event,groups.userIds)">-</p></div>
+			                <ul class="vu_submenu vu_submenu_ul new_qunfabeijing" :class="{new_qunfabei:groups.groupName==activeTag}">
+			                  <li v-for="userItem in groups.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
+			                    <div class="vu_m-touxiang newQunFa">
+			                      <img :src="userList[userItem].img" alt=" " :class="{ 'vu_gray': !userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
+			                    </div>
+			                    <a class="newQunFa">{{userList[userItem].name}}</a>
+			                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click="dange_xua($event)"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+			                  </li>
+			                </ul>
+			              </li>
+			            </ul>
 	              <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
             </div>
             
@@ -501,7 +515,7 @@
 	        	<div class="vu_m-search">
 	        		<span>添加成员</span>
 				      <input type="text" id="vu_search" placeholder="查找人员" @keyup.enter="search" />
-				      <div @click="search"></div>
+				      <div @click="search($event)"></div>
 				      <!--<p><span ></span></p>-->
 				    </div>
 	          <div class="c_qunPeoTitle"><span :class="{every:everyone}" @click="everyOne($event,companyLists)"></span>全选</div>
@@ -656,7 +670,8 @@
         this.activeTag = this.groupList.groupHair[0].groupName
         this.groupId = this.groupList.groupHair[0].groupId
         this.formData.groupName = this.groupList.groupHair[0].groupName
-        this.formData.userIds = this.groupList.groupHair[0].userIds
+//      this.formData.userIds = this.groupList.groupHair[0].userIds
+        this.formData.userIds = []
       }
       $(".vue-tealtime-time>ul").niceScroll({
         cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
@@ -674,6 +689,7 @@
         $('#myTabContent>div').eq(index).css('height','auto')
       })
       $( "#vu_div-qun" ).resizable({
+      		handles:'all',
 		      maxHeight: 541,
 		      maxWidth: 690,
 		      minHeight: 464,
@@ -777,13 +793,22 @@
       popcancel: function () { // 关闭删除弹框
         this.Qunpopup = false
       },
-      onGroup: function (group,index) {
+      onGroup: function (group,index,event) {
         this.groupId = group.groupId
         this.activeTag = group.groupName
         this.formData.groupName = group.groupName
         this.formData.userIds = group.userIds
         this.groupTag = index
         $('.vu_fenzu_right_div').show()
+        
+        var _this = $(event.currentTarget)  
+//      $('.vu_qunfenzhu_ul>li').removeClass('vu_open')
+//      $('.vu_qunfenzhu_ul>li ul').css('display','none')
+        _this.children('ul').slideToggle()        
+        _this.toggleClass('vu_open')
+        $('.vu_open li i').removeClass('vu_input_style vu_checkbox_bg vu_checkbox_bg_check')
+        $('.vu_open li i').addClass('vu_input_style vu_checkbox_bg')
+        _this.children('ul').children('li').children('i').addClass('vu_input_style vu_checkbox_bg vu_checkbox_bg_check')
       },
       openSetZu: function () {
         if(!this.newZuTag){
@@ -816,10 +841,11 @@
 	          	this.$emit('createGroupEvent', this.formData)
 	          	this.createGroupName = ''
             	this.groupTag++
-	          	if(this.groupList.groupHair.length==0){			            
+	          	if(this.groupList.groupHair.length==0){			       
+	          		
 	            }else{
-		          	this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId		
-		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)		            
+//		          	this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId		
+//		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)		            
 		          }
 	            this.formData.userIds = []
 		          $('.vue_baojia1').hide()
@@ -890,6 +916,13 @@
 //    	if($(el).hasClass('vu_checkbox_bg_check')){
 //    		this.everyone=false
 //    	}    	
+      },
+      dange_xua:function(event,index){
+//    	var el = event.currentTarget
+//    	if($(el).hasClass('vu_checkbox_bg_check')){
+//    		$('.vu_open li i').removeClass('vu_input_style vu_checkbox_bg vu_checkbox_bg_check')
+//      	$('.vu_open li i').addClass('vu_input_style vu_checkbox_bg')
+//      	$(el).addClass('vu_input_style vu_checkbox_bg vu_checkbox_bg_check')
       },
       checkAll: function (event, userIds) {
         var el = event.currentTarget

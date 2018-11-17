@@ -231,15 +231,17 @@ export default {
     	$('.vu_m_lei').addClass('vu_m_leier')
     	$('.c_btn_box,.vue_qun_offf').addClass('c_btn_boxer')
     	$('#vu_qun-fen,#vu_accordion,.vu_liaotian_left').hide()
-//  	var widtnn=$('#leftlist').width()
-//  	if(widtnn>0){
-//  		$('.vu_m-chatmain').css({'width':'77.3%','min-width':'927.5px'})
-//  	}else if(widtnn==0){
-//  		$('.vu_m-chatmain').css({'width':'94.2%','min-width':'927.5px'})
-//  	}
+    	var widtnn=$('#leftlist').width()
+    	if(widtnn>0){
+    		$('#vu_friend').css({'width':'5%'})
+    	}else if(widtnn==0){
+    		$('#vu_friend').css({'width':'3%'})
+    		$('#vue_main_main').css('width','96.2%')
+    	}
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
-    	$('.price-list').width(realWidth*0.3-30);
+    	$('.price-list').width(realWidth*0.3-30); 
+    	$(window).trigger("resize");
     },
     friend_tubiaoxiao:function(){//点击伸
     	this.friendtubiao = true
@@ -254,15 +256,17 @@ export default {
         this.panelShow.groupShow = false
 //      this.panelShow.searchShow = false
         $('.vu_liaotian_left').show()
-//      var widtnn=$('#leftlist').width()
-//      if(widtnn>0){
-//  		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
-//  	}else if(widtnn==0){
-//  		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
-//  	}
+        var widtnn=$('#leftlist').width()
+        if(widtnn>0){
+    		$('#vu_friend').css({'width':'22.6%'})
+    	}else if(widtnn==0){
+    		$('#vu_friend').css({'width':'20%'})
+    		$('#vue_main_main').css('width','79.3%')
+    	}
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
+    	$(window).trigger("resize");
 	},
 	vue_frit:function(){
 	   		
