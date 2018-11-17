@@ -241,7 +241,7 @@ export default {
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30); 
-    	$(window).trigger("resize");
+    	$(window).resize()
     },
     friend_tubiaoxiao:function(){//点击伸
     	this.friendtubiao = true
@@ -266,7 +266,7 @@ export default {
     	var realWidth=$("#myTabContent").width();        
     	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
     	$('.price-list').width(realWidth*0.3-30);
-    	$(window).trigger("resize");
+    	$(window).resize()
 	},
 	vue_frit:function(){
 	   		

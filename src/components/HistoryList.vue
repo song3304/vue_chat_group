@@ -1,6 +1,6 @@
 <template>
 
-  <div id="vu_history" @mousedown="drag">
+  <div id="vu_history" @mousedown="drag" @mouseup="drag_1">
     <div class="vu_his-guan">
       <span>{{historyUid.type=='user'&&historyUid.id!=0?userList[historyUid.id].name:''}}</span>
       <p class="vu_his-hide" @click="close" @mousedown="jinzhi"><span></span></p>
@@ -68,6 +68,8 @@ export default {
     },
     drag: function (ev) {
       var oDiv = document.getElementById('vu_history')
+      localStorage.qunfak++
+      oDiv.style.zIndex=localStorage.qunfak
       var oEvt = ev || event
       var disX = oEvt.clientX - oDiv.offsetLeft
       var disY = oEvt.clientY - oDiv.offsetTop
@@ -93,6 +95,11 @@ export default {
       }
       oDiv.setCapture && oDiv.setCapture()
       return false
+    },
+    drag_1:function(){
+    	var oDiv = document.getElementById('vu_history')
+      	localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
     },
     jinzhi: function (ev) {
       ev.stopPropagation()

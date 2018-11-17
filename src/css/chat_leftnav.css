@@ -103,6 +103,12 @@ h1 a {
   font-size: 14px;
   display: none;
 }
+.vu_qunfenzhu_ul .vu_submenu{
+	display: block;
+	height: 0;
+	transition:height 0.5s;
+	overflow: hidden;
+}
 
 .vu_submenu>li {
   height:50px;

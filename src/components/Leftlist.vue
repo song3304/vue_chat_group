@@ -353,7 +353,7 @@
 	    	$('#vu_friend').css('width','18.5%')
 			$('#vue_main_main').css('width','80.5%')
 	   }
-	   $(window).trigger("resize");
+	   $(window).resize()
     },
     leftlist_tubiaoxiao:function(){
     	this.leftlisttu = true
@@ -379,7 +379,7 @@
 	    	$('#vu_friend').css('width','22.5%')
 			$('#vue_main_main').css('width','77%')
 	    }
-	    $(window).trigger("resize");
+	    $(window).resize()
     }
   },
 	mounted() {

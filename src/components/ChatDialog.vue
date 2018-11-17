@@ -106,7 +106,8 @@
       },
       dragmain: function (ev) {
         var oDiv = document.getElementById('vu_m-chatmainn')
-        oDiv.style.zIndex=999999
+        localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
         var oEvt = ev || event
         var disX = oEvt.clientX - oDiv.offsetLeft
         var disY = oEvt.clientY - oDiv.offsetTop
@@ -135,7 +136,8 @@
       },
       dragmain_1:function(){
       	var oDiv = document.getElementById('vu_m-chatmainn')
-        oDiv.style.zIndex=1000
+      	localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
       },
 //    duihuada:function(){
 //    	this.duihuaXiao=true
@@ -192,6 +194,7 @@
 //    }
     },
     mounted(){
+    	localStorage.qunfak=1000
 //    this.gerenXiao=false
 //    this.gerenDa=true
 //    $('.vu_resizable').attr('id','resizable')
