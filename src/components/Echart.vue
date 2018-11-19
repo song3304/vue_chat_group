@@ -638,6 +638,25 @@
             var day=date.getDate();
             return year+sep+month+sep+day+' '+'00:00:00';
        },
+       //我的大盘-直播间勾选切换时显示对应dom
+       showDom(){
+        this.match_hall_catalogs.map((v,i)=>{
+                    if(this.activeIndex!=i){
+                        v.show=0
+                    }else{
+                        v.show=1;
+                    }
+                });
+        },
+       showDomMy(){
+        this.my_match_hall_catalogs.map((v,i)=>{
+                        if(this.myActiveIndex!=i){
+                            v.show=0
+                        }else{
+                            v.show=1;
+                        }
+                    });
+        },
       //qunNew部分内容
       changePh:function(){
         this.placeholderMsg = '请您粘贴信息'
@@ -980,7 +999,7 @@
                       })
                 };
           }
-        refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+          refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       changecom(comspitem,comindex){//公司切换
         this.selectCid=comspitem.id;
@@ -1042,7 +1061,7 @@
                       })
                 };
             }
-        refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
+            refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       changepeo(peospitem,peoindex){//人员切换
           this.selectUid=peospitem.id;
@@ -1075,16 +1094,7 @@
       	$('.vue_chart_usgai').show()
       	$('#mypancontent,.vue-chart-newfoot').show()
       	$('.vue-chart-foot').hide()
-
-
-      	this.my_match_hall_catalogs.map((v,i)=>{
-            if(this.myActiveIndex!=i){
-                v.show=0
-            }else{
-                v.show=1;
-            }
-        });
-
+      	this.showDomMy();
       	myownpan(this.user.id,this.selectPidMy);
       },
       chartus_er:function(){
@@ -1093,15 +1103,7 @@
       	$('.vue_chart_usgai').hide()
       	$('#mypancontent,.vue-chart-newfoot').hide()
       	$('.vue-chart-foot').show()
-
-      	this.match_hall_catalogs.map((v,i)=>{
-            if(this.activeIndex!=i){
-                v.show=0
-            }else{
-                v.show=1;
-            }
-        });
-
+      	this.showDom();
       	refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
       chartus_yier:function(){
@@ -1111,26 +1113,13 @@
       		$('.vue_chart_usgai').show()
       		$('#mypancontent,.vue-chart-newfoot').show()
       		$('.vue-chart-foot').hide()
-      		this.my_match_hall_catalogs.map((v,i)=>{
-                if(this.myActiveIndex!=i){
-                    v.show=0
-                }else{
-                    v.show=1;
-                }
-            });
+      		this.showDomMy();
       		myownpan(this.user.id,this.selectPidMy);
       	}else{
       		$('.vue_chart_usgai').hide()
       		$('#mypancontent,.vue-chart-newfoot').hide()
       		$('.vue-chart-foot').show()
-
-      		this.match_hall_catalogs.map((v,i)=>{
-                if(this.activeIndex!=i){
-                    v.show=0
-                }else{
-                    v.show=1;
-                }
-            });
+      		this.showDom();
       		refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       	}
 //    	this.cfuxiao();
