@@ -359,7 +359,7 @@
 			            </div>
 			            <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height: 93%;">
 			              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
-			                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click.stop="checkAll_qun($event,companyItem.userIds)">+</p></div>
+			                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click.stop="checkAll($event,companyItem.userIds)">+</p></div>
 			                <ul class="vu_submenu vu_submenu_ul">
 			                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
 			                    <div class="vu_m-touxiang newQunFa">
@@ -505,7 +505,7 @@
 
     </div>
     
-    <echartQun :user='user' :userList='userList' :groupList='groupList' :companyLists='companyLists'  @createGroupEvent='createGroup'></echartQun>
+    <echartQun :user='user' :userList='userList' :groupList='groupList' :companyLists='companyLists'  @createGroupEvent='createGroup' @saveGroupEvent="saveGroup"></echartQun>
     
     
   </div>
@@ -547,6 +547,7 @@
         showQunFa:false,//显示群发
         //qunNew部分内容
         formData: {
+//      	groupId:0,
           userIds: [],
           groupName: ''
         },
@@ -593,11 +594,13 @@
       if(this.groupList.groupHair.length!=0){
         this.activeTag = this.groupList.groupHair[0].groupName
         this.groupId = this.groupList.groupHair[0].groupId
-        this.formData.groupName = this.groupList.groupHair[0].groupName
+//      this.formData.groupName = this.groupList.groupHair[0].groupName
 //      this.formData.userIds = this.groupList.groupHair[0].userIds
-        this.formData.userIds = []
+//      this.formData.userIds = []
       }
-      localStorage.qunfak=1000
+      	var oDiv = document.getElementById('vu_div-qun')
+        localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
       $(".vue-tealtime-time>ul").niceScroll({
         cursorcolor: "#173360", // 改变滚动条颜色，使用16进制颜色值
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
@@ -622,9 +625,11 @@
 	    });
     },
     methods: {
+    	saveGroup:function(groupId,groupType,uids){
+    		this.$emit('saveGroupEvent', groupId, 'groupHair',uids)
+    	},
     	createGroup:function(formData){
     		 this.$emit('createGroupEvent', formData)
-    		 alert()
     	},
 	    //今天日期，用于询价、报价
 	    getTodayDate () {
@@ -710,12 +715,7 @@
         this.groupTag = index
         $('.vu_fenzu_right_div').show()        
         var _this = $(event.currentTarget)  
-        $('.vu_qunfenzhu_ul>li').removeClass('vu_open')
-////      $('.vu_qunfenzhu_ul>li ul').css('display','none')
-// 				$('.vu_qunfenzhu_ul>li  ul li i').removeClass('vu_input_style vu_checkbox_bg vu_checkbox_bg_check')
-//      $('.vu_qunfenzhu_ul>li  ul li i').addClass('vu_input_style vu_checkbox_bg')
-//      _this.children('ul').children('li').children('i').addClass('vu_input_style vu_checkbox_bg vu_checkbox_bg_check')
-        
+        $('.vu_qunfenzhu_ul>li').removeClass('vu_open')        
         $(".vu_qunfenzhu_ul ul").css({height: '0px'});
 	      var obj = _this.children("ul");	      
 	      if (obj.height() == 0) {
@@ -723,7 +723,7 @@
 	        var arr = obj.children("li");
 	        var height = arr.height() * arr.length;
 	        obj.css({height: height + 'px'});
-		    }	                       
+		    }	 
       },
       openSetZu: function () {
         if(!this.newZuTag){
@@ -845,8 +845,6 @@
       },
       dragqun: function (ev) {
         var oDiv = document.getElementById('vu_div-qun')
-        localStorage.qunfak++
-        oDiv.style.zIndex=localStorage.qunfak
         var oEvt = ev || event
         var disX = oEvt.clientX - oDiv.offsetLeft
         var disY = oEvt.clientY - oDiv.offsetTop
@@ -874,9 +872,9 @@
         return false
       },
       dragqun_1:function(){
-      	var oDiv = document.getElementById('vu_div-qun')
-      	localStorage.qunfak++
-        oDiv.style.zIndex=localStorage.qunfak
+//    	var oDiv = document.getElementById('vu_div-qun')
+//    	localStorage.qunfak++
+//      oDiv.style.zIndex=localStorage.qunfak
       },      
       jinzhi: function (event) {
         event.stopPropagation()
@@ -1255,7 +1253,9 @@
       	this.formData.userIds = []
       },
       qunfakuang:function(){
-      	
+      	var oDiv = document.getElementById('vu_div-qun')
+        localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
       },
     },
     //qunNew部分内容

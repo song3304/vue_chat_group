@@ -104,10 +104,13 @@
       tipscancel: function () {//关闭提示框
         this.addTipsTag = false
       },
-      dragmain: function (ev) {
-        var oDiv = document.getElementById('vu_m-chatmainn')
+      duihua_kuang:function(){
+      	var oDiv = document.getElementById('vu_m-chatmainn')
         localStorage.qunfak++
         oDiv.style.zIndex=localStorage.qunfak
+      },
+      dragmain: function (ev) {
+        var oDiv = document.getElementById('vu_m-chatmainn')
         var oEvt = ev || event
         var disX = oEvt.clientX - oDiv.offsetLeft
         var disY = oEvt.clientY - oDiv.offsetTop
@@ -135,9 +138,7 @@
         return false
       },
       dragmain_1:function(){
-      	var oDiv = document.getElementById('vu_m-chatmainn')
-      	localStorage.qunfak++
-        oDiv.style.zIndex=localStorage.qunfak
+//    	var oDiv = document.getElementById('vu_m-chatmainn')
       },
 //    duihuada:function(){
 //    	this.duihuaXiao=true
@@ -194,7 +195,9 @@
 //    }
     },
     mounted(){
-    	localStorage.qunfak=1000
+    		var oDiv = document.getElementById('vu_m-chatmainn')
+        localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
 //    this.gerenXiao=false
 //    this.gerenDa=true
 //    $('.vu_resizable').attr('id','resizable')
@@ -222,7 +225,7 @@
 </script>
 
 <template>
-  <div class="vu_m-chatmain" id="vu_m-chatmainn">
+  <div class="vu_m-chatmain" id="vu_m-chatmainn" @click="duihua_kuang">
     <div class="vu_m-chat">
       <list :user-list="userList" :session="session" :sessionList="sessionList"  @updateIndexEvent="updateIndex" :search="search" @toReadEvent="toRead" @delSessionEvent="delSession" ></list>
       <div id="vu_chat" >

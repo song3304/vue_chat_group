@@ -312,7 +312,7 @@ export default {
         	<div class="vu_qun-name" @click="changefenzhu($event,companyItem)" @mouseleave="closefenzhu" v-if="companyItem.groupName!='我的好友'">
 		        	<ul class="vu_first_selt">
 			        		<li @click="Qundel($event,companyItem.groupId)">删除组</li>
-			        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>
+			        		<li @click="changeQunName($event,companyItem.groupId)">重命名</li>			        		
 		        	</ul>
         	</div>
 

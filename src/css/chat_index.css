@@ -200,11 +200,10 @@ ul {
 	position: relative;
 	width:22.6%;
 	max-width: 22.6%!important;
-	height:95.6%;
+	height:101.6%;
 	background-color: rgba(46, 46, 46, 0.8);
 	z-index: 99;
 	float:left;
-	margin-top: 40px;
 }
 .c_qunPeo .vu_input-search{
 	position: absolute;
@@ -347,9 +346,9 @@ ul {
 	position: absolute;
 	top: 4px;
 	right:5px;
-	width:20px;
-	height: 20px;
-	background:url(../images/qie_tu.png) -4px -102px  no-repeat;
+	width:17px;
+	height: 23px;
+	background:url(../images/zuinewqie.png) -2px -79px  no-repeat;
 	cursor: pointer;
 }
 .vu_m-search{
@@ -604,6 +603,7 @@ ul {
 }
 .vu_m-list ul{
 	max-height:500px;
+	border-top: 1px solid #dddddd;
 }
 .vu_m_main_name{
 	height: 40px;
@@ -612,6 +612,7 @@ ul {
 	color: #333333;
 	padding-left: 30px;
 	border-bottom: 1px solid #F6F6F6;
+	border-top: 1px solid #DDDDDD;
 	margin-bottom: 2px;
 }
 /* for Chrome */
@@ -693,7 +694,7 @@ ul {
 .vu_qunfen_yi{
 	max-height: 800px;
 }
-.vu_qunfen_yi .vu_qun_fen,.vue_Qungroup>ul{margin-bottom: 56px;}
+.vu_qunfen_yi .vu_qun_fen,.vue_Qungroup>ul{margin-bottom: 80px;}
 #vu_qun-fen>div>p{
 	color: #1a517d;
 	padding:5px 0 10px 12px;
@@ -1406,6 +1407,9 @@ li{
 	padding: 3px 0;
 	display: none;
 }
+.qungroup_selt{
+	height: 81px;
+}
 .vu_first_selt li{
 	height: 25px;
 	line-height: 25px;
@@ -1464,9 +1468,7 @@ li{
 }
 .vue-chart-foot,.vue-chart-newfoot{
 	width: 100%;
-	/*height: 47.7%;*/
-  	/*height: 44.7%;*/
-  	height: 44.8%;
+  	height: 46.1%;
 	background:#101a29;
 	/*margin-top: 10px;*/
 	position: relative;
@@ -1741,7 +1743,7 @@ li{
 .tuo_tuo{
 	float: right;
 	height: 92.8%;
-	width: 18.1%;
+	width: 18.12%;
 	position: relative;
 	background: #FFFFFF;
 	z-index: 1;
@@ -1765,18 +1767,14 @@ li{
 	width: 76.8%;
 	/*min-width: 76%;*/
 	/*max-width: 89%;*/
-	height:94%;
+	height:100%;
 	margin-left:4px;
-	margin-top: 40px;
+	overflow: hidden;
 }
 .comactive,.peoactive{color: #4385f5!important;border: 1px dashed #4385f5!important;}
 /*左边列表start*/
 #leftlist{
-	/*position: absolute;
-	top: 40px;
-	right: 0;*/
 	width: 17.8%;
-	/*width: 15%;*/
 	height:94%;
 	background-color: #e1dfee;
 	float: right;
@@ -2086,9 +2084,6 @@ li{
 	padding-left: 5px;
 	font-size: 12px;
 }
-/*.vu_m-new_phone span{
-	color: #4385f5!important;
-}*/
 .vu_m-new_friend{
 	width: 76px;
 	height: 24px;
@@ -2168,32 +2163,6 @@ li{
 	cursor: pointer;
 }
 /*确认删除好友弹窗end*/
-/*.vu_m_tubiao{
-	position:absolute;
-	top:-10px;
-	left:50%;
-	transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	width: 77px;
-	height: 11px;
-	background: url(../images/cutton.png) -56px -14px;
-	z-index: 10;
-	cursor: pointer;
-}*/
-/*.vu_m_tubiao:hover{background: url(../images/yiding.png) -270px -8px;}*/
-/*.vu_m_tubiaoxia{
-	position:absolute;
-	top:-10px;
-	left:50%;
-	transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	width: 77px;
-	height: 11px;
-	background: url(../images/cutton.png) -56px -40px;
-	z-index: 10;
-	cursor: pointer;
-}*/
-/*.vu_m_tubiaoxia:hover{background: url(../images/yiding.png) 0 -217px;}*/
 .vu_m_tubiao_er{
 	position:absolute;
 	top:0;
@@ -2384,7 +2353,6 @@ user-select: none;
 .vue_baojia1 .c_qunDi{
 	height:90%;
 	border: 0;
-	border-left: 1px solid #F6F6F6;
 }
 .c_qunContent{
   background: #fff;
@@ -2403,7 +2371,7 @@ user-select: none;
   color: #fff;
   font-size: 14px;
   margin-right: 18px;
-  margin-top: 5px;
+  margin-top: 10px;
   cursor: pointer;
 }
 .c_shiBieButton span{
@@ -2419,14 +2387,15 @@ user-select: none;
 }
 .c_openShibie{
   float: right;
-  width: 150px;
+  width: 100px;
   height: 40px;
   background: #fff;
   /*text-align: center;*/
   line-height: 40px;
   color: #fff;
   font-size: 12px;
-  margin-right: 20px;
+  margin-right: 14px;
+  margin-top: 6px;
   color: #666666;
 }
 .c_openShibie span{
@@ -2814,7 +2783,7 @@ to {top: 0;}
 .c_btn_box,.vue_qun_offf{
   position: fixed;
   left: 0;
-  bottom:20px;
+  bottom:25px;
   width: 18%;
   min-width: 216px;
   border-radius: 5px;
@@ -2832,7 +2801,7 @@ to {top: 0;}
 	width: 27%;
 	border: 1px solid #2f3641;
 	margin: 10px 0 0 1%;
-	height: 82%;
+	height: 80%;
 	overflow: hidden;
 }
 .vue_right_yi{
@@ -3001,9 +2970,10 @@ to {top: 0;}
 .room_homepage{
 	width: 82%;
     /* width: 15%; */
-    height: 100%;
+    height: 94%;
     float:left;
-    max-height: 941px;
+    max-height: 926px;
+    margin-top: 40px;
 }
 /*10月24日新增*/
   /*右边新闻资讯start*/
@@ -3190,7 +3160,7 @@ to {top: 0;}
 	color: #666666;
 }
 .c_zuB{
-	height:38px;
+	height:48px;
 	line-height: 38px;
 	text-align: center;
 	border-bottom: 1px solid #F6F6F6;
@@ -3357,13 +3327,15 @@ to {top: 0;}
  	height: 420px;
  	background: #FFFFFF;
  	z-index: 100;
- 	border: 1px solid #EEEEEE;
+ 	border: 1px solid #DDDDDD;
  }
- .vue_baojia1 .c_qunPeo{width: 49%;height: 90%!important;}
+ .vue_baojia1 .c_qunPeo{width: 49%;height: 90%!important;border-right: 1px solid #F6F6F6;}
  .sz_qunfa{
  	height: 48px;
  	padding-top:6px ;
  	border-bottom: 1px solid #EEEEEE;
+ 	background: #FFFFFF;
+ 	width: 101%;
  }
  .sz_qunfa p{
  	display:inline-block;

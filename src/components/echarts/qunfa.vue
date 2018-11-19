@@ -1,7 +1,10 @@
 <template>
 <!--群分组框-->
-    <div class="vue_baojia1" id="vu_baojia"  v-show="bianji_linshi">
-  		<div class="vu_baojia_title"  @mousedown="dragqun_bianji" @mouseup="dragqun_bianji_1"><span class="vu_m-na-na">新建群发组</span>
+<div>
+	
+
+    <div class="vue_baojia1" id="vu_baojia"  v-show="bianji_linshi" @click="creat_qunfenzu">
+  		<div class="vu_baojia_title"  @mousedown="dragqun_bianji" @mouseup="dragqun_bianji_1"><span class="vu_m-na-na" v-if="this.qunzuName==false">新建群发组</span><span class="vu_m-na-na" v-if="this.qunzuName==true">编辑群发组人员</span>
         	<div class="vu_m-guan" @click="guan_bianji"><p><span></span></p></div>
        </div>
         <div class="c_qunPeo">
@@ -12,7 +15,8 @@
         	<div class="vu_m-search">
         		<span>添加成员</span>
 			      <input type="text" id="vu_search" placeholder="查找人员" @keyup.enter="search" />
-			      <div @click="search($event)"></div>
+			      <div @click="search_yi"></div>
+			      <div class="search_tu" @click="search($event)" v-show="search_kong"></div>
 			      <!--<p><span ></span></p>-->
 			    </div>
           <div class="c_qunPeoTitle"><span :class="{every:everyone}" @click="everyOne($event,companyLists)"></span>全选</div>
@@ -44,7 +48,7 @@
             </div>
             <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height:100%;">
               <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
-                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click.stop="checkAll_qunfen($event,companyItem.userIds)">+</p></div>
+                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click.stop="checkAll($event,companyItem.userIds)">+</p></div>
                 <ul class="vu_submenu vu_submenu_ul">
                   <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
                     <div class="vu_m-touxiang newQunFa">
@@ -77,15 +81,37 @@
       </div>
 
 	</div>
+	
+	<!--提示框-->
+    <div class="vu_del-popup" v-show="tipsTag" style="left:45%;">
+      <div class="vu_fen_zu_title">
+        <span>提示</span>
+        <p class="vu_fen_zu_tier"  @click="tipscancel"><span></span></p>
+      </div>
+      <p>{{tipsMsg}}</p>
+      <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
+    </div>
+    <!--清空分组操作-->
+    <div class="vu_del-popup" v-show="kongTag" style="left:25%;">
+      <div class="vu_fen_zu_title">
+        <span>提示</span>
+        <p class="vu_fen_zu_tier"  @click="kongcancel"><span></span></p>
+      </div>
+      <p>请先选择人员</p>
+      <div class="vu_fenzu_name_footer"><button @click="kongOK">确认</button> <span class="vu_fen_zu_tier" @click="kongcancel">取消</span></div>
+    </div>
+</div>
 </template>
 
 <script>
 //	import searchDialog from './friend_list/Search'
+import qunzu from '../../js/qunzu.js'
 export default {
   props: ['user', 'userList', 'groupList', 'companyLists'],
   data: function () {
     return {
         formData: {
+//      	groupId:0,
 	        userIds: [],
 	        groupName: ''
         },
@@ -97,13 +123,22 @@ export default {
 	    bianji_linshi:false,
 	    everyone:false, //默认不全选
 	    placeholder: '请输入分组名称.',
+	    qunzuName:false,
+	    tipsTag:false,//提示框
+        tipsMsg:'',//提示信息
+        kongTag:false,//清空好友标识
+        search_kong:false,
     }
   },
   methods: {
-    dragqun_bianji: function (ev) {
-        var oDiv = document.getElementById('vu_baojia')
+  	creat_qunfenzu:function(){
+  		var oDiv = document.getElementById('vu_baojia')
         localStorage.qunfak++
         oDiv.style.zIndex=localStorage.qunfak
+  	},
+    dragqun_bianji: function (ev) {
+        var oDiv = document.getElementById('vu_baojia')
+        
         var oEvt = ev || event
         var disX = oEvt.clientX - oDiv.offsetLeft
         var disY = oEvt.clientY - oDiv.offsetTop
@@ -131,9 +166,9 @@ export default {
         return false
     },
     dragqun_bianji_1:function(){
-      	var oDiv = document.getElementById('vu_baojia')
-      	localStorage.qunfak++
-        oDiv.style.zIndex=localStorage.qunfak
+//    	var oDiv = document.getElementById('vu_baojia')
+//    	localStorage.qunfak++
+//      oDiv.style.zIndex=localStorage.qunfak
     },
     guan_bianji:function(){ //关闭编辑/临时加入框
       	$('.vue_baojia1').hide()
@@ -143,11 +178,20 @@ export default {
       	this.kongTag=false
       	this.tipsTag = false
       	this.everyone=false
+      	this.placeholder='请输入分组名称.'
+      	this.qunzuName = false
+      	this.createGroupName=''
     },
-    search: function (event) {
+    search_yi:function(){
+    	this.search_kong=true
+    	$('#vu_search').animate({width:"130px"})
+    },
+    search: function (event) {      
       var searchKey = $('#vu_search').val()
-      if (searchKey === '') {
-        this.panelShow.searchShow = false
+      if (searchKey === '') {  
+      	$('#vu_search').animate({width:"0"})
+      	this.search_kong=false
+        this.panelShow.searchShow = false        
       } else {
         this.searchList = []
         for (var uid in this.userList) {
@@ -158,7 +202,7 @@ export default {
         }
         this.panelShow.searchShow = true
       }
-      $('#vu_search').animate({width:"130px"})
+      
     },
     everyOne:function(event,companyLists,userIds){ //是否全选
       	this.everyone=!this.everyone
@@ -176,16 +220,44 @@ export default {
       	}
     },
     // 折叠
-  accordion: function (event) {
-    var _this = $(event.currentTarget)
-    _this.next('ul').slideToggle()
-    _this.parent('li').toggleClass('vu_open')
-  },
+	accordion: function (event) {
+	    var _this = $(event.currentTarget)
+	    _this.next('ul').slideToggle()
+	    _this.parent('li').toggleClass('vu_open')
+	},
+	checkAll: function (event, userIds) {
+	    var el = event.currentTarget
+	    var opt = $(el).html()
+	    if (opt === '+') {
+	      // 添加formData.userIds
+	      $(el).html('-')
+	      for (var i = 0, lg = userIds.length; i < lg; i++) {
+	        if (!this.in_array(userIds[i], this.formData.userIds)) {           	
+	          this.formData.userIds.push(userIds[i])
+	        }
+	      }
+	    } else {
+	      // 删除formData.userIds
+	      $(el).html('+')
+	      this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
+	      this.everyone=false
+	    }
+	},
+	tipscancel: function () {//关闭提示框
+        this.tipsTag = false
+      },
+      kongOK: function(){ //确认清空
+        this.kongTag = false
+//      this.delConfirm()
+      },
         dange_xuan:function(event){
 //    	var el = event.currentTarget
 //    	if($(el).hasClass('vu_checkbox_bg_check')){
 //    		this.everyone=false
 //    	}    	
+      },
+      kongcancel: function () {//关闭清空提示框
+        this.kongTag = false
       },
       in_array: function (search, array) {
         for (var i in array) {
@@ -195,35 +267,53 @@ export default {
         }
         return false
       },
-      submitGroup: function () {
+      submitGroup: function (groupId,groupType,uids) {
         if (this.createGroupName === '') {
           this.tipsTag = true
 	          this.tipsMsg = '组名称未输入'	          
-        }else{            
-            this.formData.groupName = this.createGroupName
-            this.newZuTag = false
-            this.formData.groupType = 'group'
-           
-            this.activeTag = this.formData.groupName	            
-            // this.formData.userIds = []
-            // this.formData.groupName = ''	            
-            if(this.formData.userIds.length==0){
-	            this.kongTag = true			            
-	          }else{
-	          	this.$emit('createGroupEvent', this.formData)
-	          	this.createGroupName = ''
-            	this.groupTag++
-	          	if(this.groupList.groupHair.length==0){			       
-	          		
-	            }else{
-//		          	this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId		
-//		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)		            
-		          }
-	            this.formData.userIds = []
-		          $('.vue_baojia1').hide()
-	            this.everyone=false
-	            this.panelShow.searchShow=false
-	          }		            			          	         
+        }else{ 
+        	if(this.qunzuName == true){   
+        		this.groupName=this.formData.groupName
+        		this.groupId=this.formData.groupId
+        		this.group_Type="groupHair"
+        		this.uids=this.formData.userIds
+        		if(this.formData.userIds.length==0){
+		            if(this.groupList.groupHair.length!=0){
+		              this.kongTag = true
+		            }
+		        }else{
+		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.uids)
+		            this.qunzuName = false
+		            this.formData.userIds = []
+			        $('.vue_baojia1').hide()
+		            this.everyone=false
+		            this.panelShow.searchShow=false		            
+		        }
+        	}else{
+        		this.formData.groupName = this.createGroupName       
+	            this.newZuTag = false
+	            this.formData.groupType = 'group'	           
+	            this.activeTag = this.formData.groupName	                       
+	            if(this.formData.userIds.length==0){
+		            this.kongTag = true			            
+		        }else{
+		          	this.$emit('createGroupEvent', this.formData)
+		          	this.createGroupName = ''
+	            	this.groupTag++
+		          	if(this.groupList.groupHair.length==0){			       
+		          		
+		            }else{
+	//		          	this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId		
+	//		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)		            
+			          }
+		            this.formData.userIds = []
+			          $('.vue_baojia1').hide()
+		            this.everyone=false
+		            this.panelShow.searchShow=false
+		        }	        		
+        	}
+        	this.placeholder='请输入分组名称.'  
+        	$('.vu_fenzu_name_input').val()
         }      
       },
       delUser: function (uid) {
@@ -237,6 +327,21 @@ export default {
         userIds.forEach(uid => { if (userList[uid].isOnline) onlineCnt++ })
         return onlineCnt
       }
+    },
+    mounted() {
+    	var oDiv = document.getElementById('vu_baojia')
+        localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
+    	var vm=this
+    	qunzu.$on('qunval',(data) =>{   		
+    		this.formData = data    	
+    		this.createGroupName=this.formData.groupName
+    		this.qunzuName=true
+    		$('.vu_fenzu_name_input').attr('disabled',true)  
+    	})
+    	if(this.qunzuName==false){
+    		this.createGroupName=''
+    	}
     },
 }
 </script>

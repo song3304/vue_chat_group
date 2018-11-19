@@ -1,6 +1,6 @@
 <script>
 import $ from 'jquery'
-
+import qunzu from '../../js/qunzu.js'
 export default {
 	data () {
 	    return {
@@ -22,6 +22,11 @@ export default {
 	      	panelShow: {
 		        searchShow: false // 搜索面板是否显示
 		    },
+		    formData_qunfa: {
+		    	groupId:0,
+		        userIds: [],
+		        groupName: ''
+	        },
 	    }
 	},
 	props: ['user', 'userList', 'companyList', 'group_type', 'groupList','followList'],
@@ -83,6 +88,16 @@ export default {
 	      	this.groupId = groupId
 	      	this.delType = 'group'
 	    },
+	    adddelpeople:function(event, groupId,groupName,userIds){//增减人员
+	    	event.stopPropagation()
+	     	this.groupId = groupId
+	     	this.groupName = groupName
+	     	$('.vue_baojia1').show()
+	     	this.formData_qunfa.groupId = groupId
+            this.formData_qunfa.groupName = groupName	
+            this.formData_qunfa.userIds = userIds           
+            qunzu.$emit('qunval',this.formData_qunfa)
+	    },
 	},
 	filters: {
 	
@@ -107,9 +122,10 @@ export default {
 		        	<span class="vu_first_title ">{{groups.groupName}}</span>
 		        	<span></span>
 		        	<div class="vu_qun-name" @click.stop="changefenzhu($event,groups)" @mouseleave="closefenzhu">
-			        	<ul class="vu_first_selt">
+			        	<ul class="vu_first_selt qungroup_selt">
 				        	<li @click="Qundel($event,groups.groupId)">删除组</li>
 		        			<li @click="changeQunName($event,groups.groupId)">重命名</li>
+		        			<li @click="adddelpeople($event,groups.groupId,groups.groupName,groups.userIds)">增减人员</li>
 			        	</ul>
 		        	</div>		
 		        </div>

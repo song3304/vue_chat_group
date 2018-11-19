@@ -46,7 +46,7 @@
 	      		</div>
 	      		<div class="vue_qun_qunfa" v-show="qun_qunfa"> <!--群发组-->
 	      			<div class="vu_qunfen_er">
-			          <qungroupPanel group_type="groupHair" :user="user" :userList="userList" :groupList="groupList" :companyList="groupList.groupHair" :followList="followList" @modifyGroupEvent="modifyGroupName" @delGroupEvent="delGroup" ></qungroupPanel>
+			          <qungroupPanel group_type="groupHair" :user="user" :userList="userList" :groupList="groupList" :companyList="groupList.groupHair" :followList="followList" @modifyGroupEvent="modifyGroupName" @delGroupEvent="delGroup"></qungroupPanel>
 			       </div>
 	      		</div>
 	      		
@@ -114,7 +114,12 @@ export default {
       qun_common:true,
       qun_qunfa:false,
       vue_new_putong:true,
-      vue_new_qunfa:false
+      vue_new_qunfa:false,
+      formData_qunfa: {
+      	    groupId:0,
+	        userIds: [],
+	        groupName: ''
+        },
     }
   },
   components: {companyPanel, groupPanel, searchDialog, hisPanel,qungroupPanel},
@@ -188,6 +193,7 @@ export default {
       this.groupShow = false
     },
     creatQunfen:function(){//打开新建群分组框
+    	$('.vu_fenzu_name_input').attr('disabled',false)
     	$('.vue_baojia1').show()
     },
     openChat: function (uid, idType) {
