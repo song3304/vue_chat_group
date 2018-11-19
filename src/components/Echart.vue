@@ -550,10 +550,6 @@
           userIds: [],
           groupName: ''
         },
-        formData_qunfa:{
-        	userIds: [],
-          groupName: ''
-        },
         groupName: '',
         placeholder: '请输入分组名称.',
         newZuTag:false,
@@ -582,10 +578,6 @@
         Qunfen:false,
         groupPlaceHolder: '请输入新分组名称',
         tan_bianji:false,
-//      searchList: [],
-//      panelShow: {
-//	        searchShow: false // 搜索面板是否显示
-//	      },
 	      cnewkai:true,
 	      cnewguan:false,
 	      everyone:false, //默认不全选
@@ -604,8 +596,6 @@
         this.formData.groupName = this.groupList.groupHair[0].groupName
 //      this.formData.userIds = this.groupList.groupHair[0].userIds
         this.formData.userIds = []
-        this.formData_qunfa.userIds=[]
-//      this.formData_qunfa.groupName = this.groupList.groupHair[0].groupName
       }
       localStorage.qunfak=1000
       $(".vue-tealtime-time>ul").niceScroll({
@@ -636,23 +626,6 @@
     		 this.$emit('createGroupEvent', formData)
     		 alert()
     	},
-    	// 搜索事件
-//	    search: function (event) {
-//	      var searchKey = $('#vu_search').val()
-//	      if (searchKey === '') {
-//	        this.panelShow.searchShow = false
-//	      } else {
-//	        this.searchList = []
-//	        for (var uid in this.userList) {
-//	          var item = this.userList[uid]
-//	          if (item.name.indexOf(searchKey) > -1) {
-//	            this.searchList.push(item)
-//	          }
-//	        }
-//	        this.panelShow.searchShow = true
-//	      }
-//	      $('#vu_search').animate({width:"130px"})
-//	    },
 	    //今天日期，用于询价、报价
 	    getTodayDate () {
             var date=new Date();
@@ -664,8 +637,7 @@
             }
             var day=date.getDate();
             return year+sep+month+sep+day+' '+'00:00:00';
-        },
-
+       },
       //qunNew部分内容
       changePh:function(){
         this.placeholderMsg = '请您粘贴信息'
@@ -736,8 +708,7 @@
         this.groupId = group.groupId
         this.activeTag = group.groupName
         this.groupTag = index
-        $('.vu_fenzu_right_div').show()
-        
+        $('.vu_fenzu_right_div').show()        
         var _this = $(event.currentTarget)  
         $('.vu_qunfenzhu_ul>li').removeClass('vu_open')
 ////      $('.vu_qunfenzhu_ul>li ul').css('display','none')
@@ -752,10 +723,7 @@
 	        var arr = obj.children("li");
 	        var height = arr.height() * arr.length;
 	        obj.css({height: height + 'px'});
-		    }
-	        
-        
-        
+		    }	                       
       },
       openSetZu: function () {
         if(!this.newZuTag){
@@ -770,37 +738,6 @@
       closeSetName: function () {
         this.newZuTag = false
       },
-//    submitGroup: function () {
-//      if (this.createGroupName === '') {
-//        this.tipsTag = true
-//	          this.tipsMsg = '组名称未输入'	          
-//      }else{            
-//          this.formData.groupName = this.createGroupName
-//          this.newZuTag = false
-//          this.formData.groupType = 'group'
-//         
-//          this.activeTag = this.formData.groupName	            
-//          // this.formData.userIds = []
-//          // this.formData.groupName = ''	            
-//          if(this.formData.userIds.length==0){
-//	            this.kongTag = true			            
-//	          }else{
-//	          	this.$emit('createGroupEvent', this.formData)
-//	          	this.createGroupName = ''
-//          	this.groupTag++
-//	          	if(this.groupList.groupHair.length==0){			       
-//	          		
-//	            }else{
-////		          	this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId		
-////		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)		            
-//		          }
-//	            this.formData.userIds = []
-//		          $('.vue_baojia1').hide()
-//	            this.everyone=false
-//	            this.panelShow.searchShow=false
-//	          }		            			          	         
-//      }      
-//    },
       /* qunNew部分开始 */
       cjbj: function () {
          $('#mytrade_form').show();
@@ -874,12 +811,7 @@
 //    	}    	
       },
       dange_xua:function(event,index){
-//    	var el = event.currentTarget
-//    	if($(el).hasClass('vu_checkbox_bg_check')){
-//    		$('.vu_open li i').removeClass('vu_input_style vu_checkbox_bg vu_checkbox_bg_check')
-//      	$('.vu_open li i').addClass('vu_input_style vu_checkbox_bg')
-//      	$(el).addClass('vu_input_style vu_checkbox_bg')
-//      }
+
       },
       checkAll: function (event, userIds) {
         var el = event.currentTarget
@@ -899,42 +831,6 @@
           this.everyone=false
         }
       },
-//    checkAll_qun: function (event, userIds) {
-//      var el = event.currentTarget
-//      var opt = $(el).html()
-//      if (opt === '+') {
-//        // 添加formData.userIds
-//        $(el).html('-')
-//        for (var i = 0, lg = userIds.length; i < lg; i++) {
-//          if (!this.in_array(userIds[i], this.formData.userIds)) {           	
-//            this.formData.userIds.push(userIds[i])
-//          }
-//        }
-//      } else {
-//        // 删除formData.userIds
-//        $(el).html('+')
-//        this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
-//        this.everyone=false
-//      }
-//    },
-//    checkAll_qunfen: function (event, userIds) {
-//      var el = event.currentTarget
-//      var opt = $(el).html()
-//      if (opt === '+') {
-//        // 添加formData.userIds
-//        $(el).html('-')
-//        for (var i = 0, lg = userIds.length; i < lg; i++) {
-//          if (!this.in_array(userIds[i], this.formData_qunfa.userIds)) {           	
-//            this.formData_qunfa.userIds.push(userIds[i])
-//          }
-//        }
-//      } else {
-//        // 删除formData.userIds
-//        $(el).html('+')
-//        this.formData_qunfa.userIds = this.formData_qunfa.userIds.filter(t => !this.in_array(t, userIds))
-//        this.everyone=false
-//      }
-//    },
       in_array: function (search, array) {
         for (var i in array) {
           if (array[i] === search) {
@@ -981,8 +877,7 @@
       	var oDiv = document.getElementById('vu_div-qun')
       	localStorage.qunfak++
         oDiv.style.zIndex=localStorage.qunfak
-      },
-      
+      },      
       jinzhi: function (event) {
         event.stopPropagation()
       },
@@ -995,14 +890,7 @@
       /* qunNew.vue部分结束 */
       //群发种类
       qunFa: function () {
-//      if(this.chooseCatalog!=0){
-//        if(!this.showQunFa){
-            this.showQunFa = true
-//        }
-//      }else{
-//        // alert('请选择种类');
-//      }
-//      $('.mytrade_main').hide()
+        this.showQunFa = true
       },
       closeQunFa: function () {
         this.showQunFa = false
@@ -1041,7 +929,6 @@
   		this.companyshow=false,
   		this.kindshow=false
     },
-
       addcatalog(catalogItem,index){//种类切换
       	this.activeIndex = index
         this.match_hall_catalogs.map((v,i)=>{
@@ -1057,7 +944,6 @@
         this.chooseCatalog = catalogItem.catalog_id;
       refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
-
       my_addcatalog(catalogItem,index){
         this.myActiveIndex = index
         this.my_match_hall_catalogs.map((v,i)=>{
@@ -1070,7 +956,6 @@
         this.selectPidMy=catalogItem.id;
         myownpan(this.user.id,this.selectPidMy);
       },
-
       addcom(companyitem,index){//公司添加到右侧
           if(this.comsplist.length>4){
                 return;//最多选择五家公司
@@ -1095,9 +980,7 @@
                       })
                 };
           }
-
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-//     this.cfuxiao();
       },
       changecom(comspitem,comindex){//公司切换
         this.selectCid=comspitem.id;
@@ -1107,7 +990,6 @@
         $('.vue_company_species>li').attr('class','');
         $('.vue_company_species>li').eq(comindex).attr('class','comactive');
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-//      this.cfuxiao();
       },
       delcom(comspitem,comindex){//公司删除
           var select_cid=this.selectCid;
@@ -1137,7 +1019,6 @@
           }
           refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
       },
-
       addpeo(peopleitem,index){//人员追加到右侧
             if(this.peosplist.length>4){
                  return;//最多选择五个人员
@@ -1162,14 +1043,12 @@
                 };
             }
         refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-//      this.cfuxiao();
       },
       changepeo(peospitem,peoindex){//人员切换
           this.selectUid=peospitem.id;
           $('.vue_people_species>li').attr('class','');
           $('.vue_people_species>li').eq(peoindex).attr('class','peoactive');
           refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-//        this.cfuxiao();
       },
       delpeo(peospitem,peoindex){//人员删除
         var select_uid=this.selectUid;
@@ -1207,7 +1086,6 @@
         });
 
       	myownpan(this.user.id,this.selectPidMy);
-//    	this.cfuxiao();
       },
       chartus_er:function(){
       	this.chartusyi=true
@@ -1225,7 +1103,6 @@
         });
 
       	refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线图
-//    	this.cfuxiao();
       },
       chartus_yier:function(){
       	this.chartusyi=!this.chartusyi
@@ -1234,7 +1111,6 @@
       		$('.vue_chart_usgai').show()
       		$('#mypancontent,.vue-chart-newfoot').show()
       		$('.vue-chart-foot').hide()
-
       		this.my_match_hall_catalogs.map((v,i)=>{
                 if(this.myActiveIndex!=i){
                     v.show=0
@@ -1242,7 +1118,6 @@
                     v.show=1;
                 }
             });
-
       		myownpan(this.user.id,this.selectPidMy);
       	}else{
       		$('.vue_chart_usgai').hide()
@@ -1396,100 +1271,5 @@
 </script>
 
 <style>
-  /*报价识别弹框样式*/
-  .roleindex_tittle {
-    height: 60px;
-  }
-  .tijia-jiaos {
-    display: inline-block;
-    margin: 14px 0 0 10px;
-    font-size: 18px;
-  }
-  .roleindex_tittle>div {
-    text-align: center;
-    line-height: 40px;
-  }
-  .cuohe_bao_que {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    width: 100%;
-    height: 72px;
-    background-color: #f6f6f6;
-  }
-  .cuohe_bao_que div {
-    width: 370px;
-    margin: 15px auto;
-  }
-  .cuohe_bao_que button {
-    width: 148px;
-    height: 40px;
-    background-color: #77a7fb;
-    border-radius: 5px;
-    border: 0;
-    font-family: MicrosoftYaHei-Bold;
-    font-size: 16px;
-    color: #ffffff;
-    float: left;
-    cursor: pointer;
-  }
-  .cuohe_bao_que p {
-    width: 148px;
-    height: 40px;
-    background-color: #cccccc;
-    border-radius: 5px;
-    font-family: MicrosoftYaHei-Bold;
-    font-size: 16px;
-    color: #666666;
-    float: left;
-    text-align: center;
-    line-height: 40px;
-    margin-left: 70px;
-    display: inline-block;
-    cursor: pointer;
-  }
-  .btn-danger {
-    right: 20%;
-  }
-  .cuohe_bao_tan {
-    width: 1100px;
-    height: 620px;
-    background-color: #ffffff;
-    box-shadow: 4px 2px 5px 0px rgba(51, 51, 51, 0.13);
-    border: solid 1px #cccccc;
-    /* margin: 10% auto; */
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-  }
-  .vu_fenzu_left_ul.scrollCss::-webkit-scrollbar
-  {
-    width: 6px;
-    height: 6px;
-    background-color: #eeedf6;
-  }
-
-  /*定义滚动条轨道 内阴影+圆角*/
-  .vu_fenzu_left_ul.scrollCss::-webkit-scrollbar-track
-  {
-    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
-    border-radius: 4px;
-    background-color: #eeedf6;
-  }
-
-  /*定义滑块 内阴影+圆角*/
-  .vu_fenzu_left_ul.scrollCss::-webkit-scrollbar-thumb
-  {
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2);
-    background-color: #e1e1e1;
-  }
+ 
 </style>
