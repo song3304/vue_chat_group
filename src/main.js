@@ -112,7 +112,7 @@ new Vue({
   			<div class="room_homepage">
 		    <friendList v-show="panel_show.is_friend_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" :followList="followList" :verifyMsg="verifyMsg" :recentList="recentList" @openGroupEvent="openGroup" @openTalkEvent="openTalk" @closeEvent="closePanel" @changeUserNameEvent="changeUserName" @delGroupEvent="delGroup" @delPersonEvent="delPerson" @modifyGroupEvent="modifyGroupName" @receiveFriendEvent="receiveFriend" @moveFriendEvent="moveFriend" @delSessionEvent="delSessionn" @todayMsgEvent="todayMsg"></friendList>
 		    <div id="vue_main_main">
-		    <echart :user="user" :userList="userList" :bidList="bidList" :groupList="groupList" :companyLists="companyList"  :match_hall_catalogs="match_hall_catalogs" :my_match_hall_catalogs="my_match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"  @modifyGroupEvent="modifyGroupName" @openTempTalkEvent="openTempTalk"></echart>
+		    <echart ref="echarts" :user="user" :userList="userList" :bidList="bidList" :groupList="groupList" :companyLists="companyList"  :match_hall_catalogs="match_hall_catalogs" :my_match_hall_catalogs="my_match_hall_catalogs" :match_hall_companies="match_hall_companies" @sendGroupMsgEvent="sendGroupMsg" @createGroupEvent="createGroup" @delGroupEvent="delGroup" @saveGroupEvent="saveGroup"  @modifyGroupEvent="modifyGroupName" @openTempTalkEvent="openTempTalk"></echart>
 		    <chatdialog v-show="panel_show.is_dialog_show" :user="user" :userList="userList" :sessionList="sessionList" :sessionIndex="sessionIndex" :groupList="groupList" @closeEvent="closePanel" @delSessionEvent="delSession" @toReadEvent="toRead" @openHistoryEvent="openHistory" @updateIndexEvent="updateIndex" @todayMsgEvent="todayMsg" @chatEvent="toChat" @addFriendEvent="addFriend" ></chatdialog>
 		    <historylist ref="childhistory" v-show="panel_show.is_history_show" :user="user" :userList="userList" :hList="historyList" :historyUid="historyUid" @closeEvent="closePanel" @getMoreMsgEvent="getMoreMsg"></historylist>
 				<groupdialog v-show="panel_show.is_group_show" :user="user" :userList="userList" :groupType="groupType" @createGroupEvent="createGroup" @closeEvent="closePanel"></groupdialog>
@@ -398,6 +398,7 @@ new Vue({
       }
       if (data.hasOwnProperty('bidList')) {
         this.bidList = data.bidList
+        this.$refs.echarts.$forceUpdate()
       }
       if (data.hasOwnProperty('onlineUserList')) {
         this.onlineUserList = data.onlineUserList
