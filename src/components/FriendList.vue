@@ -163,12 +163,17 @@ export default {
     	$('#vue_main_main').css('width','76.7%')
     	$('.vu_m_lei').removeClass('vu_m_leier')
     	$('.c_btn_box,.vue_qun_offf').removeClass('c_btn_boxer')
-//		var widtnn=$('#leftlist').width()
-//      if(widtnn>0){
-//  		$('.vu_m-chatmain').css({'width':'62.7%','min-width':'755px'})
-//  	}else if(widtnn==0){
-//  		$('.vu_m-chatmain').css({'width':'76.8%','min-width':'927.5px'})
-//  	}
+		var widtnn=$('#leftlist').width()
+    	if(widtnn>0){
+    		$('#vu_friend').css({'width':'22.6%'})
+    	}else if(widtnn==0){
+    		$('#vu_friend').css({'width':'18.5%'})
+    		$('#vue_main_main').css('width','80.5%')
+    	}
+    	var realWidth=$("#myTabContent").width();        
+    	$('.chart-pane,.chart-pane>div').width(realWidth*0.75-30);
+    	$('.price-list').width(realWidth*0.25-30);
+    	$(window).resize()
     },
     // 搜索事件
     search: function (event) {
@@ -195,6 +200,9 @@ export default {
     creatQunfen:function(){//打开新建群分组框
     	$('.vu_fenzu_name_input').attr('disabled',false)
     	$('.vue_baojia1').show()
+    	var oDiv = document.getElementById('vu_baojia')
+        localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak        
     },
     openChat: function (uid, idType) {
     	this.activeIndex = 0
@@ -245,8 +253,8 @@ export default {
     		$('#vue_main_main').css('width','96.2%')
     	}
     	var realWidth=$("#myTabContent").width();        
-    	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
-    	$('.price-list').width(realWidth*0.3-30); 
+    	$('.chart-pane,.chart-pane>div').width(realWidth*0.75-30);
+    	$('.price-list').width(realWidth*0.25-30); 
     	$(window).resize()
     },
     friend_tubiaoxiao:function(){//点击伸
@@ -270,8 +278,8 @@ export default {
     		$('#vue_main_main').css('width','79.3%')
     	}
     	var realWidth=$("#myTabContent").width();        
-    	$('.chart-pane,.chart-pane>div').width(realWidth*0.7-30);
-    	$('.price-list').width(realWidth*0.3-30);
+    	$('.chart-pane,.chart-pane>div').width(realWidth*0.75-30);
+    	$('.price-list').width(realWidth*0.25-30);
     	$(window).resize()
 	},
 	vue_frit:function(){

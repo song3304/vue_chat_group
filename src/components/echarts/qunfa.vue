@@ -10,11 +10,11 @@
         <div class="c_qunPeo">
         	<div class="sz_qunfa"> <!--设置群发组名称-->
         			<p class="vu_fenzu_name_na">设置群发组名称：</p>
-  					<input type="text" class="vu_fenzu_name_input" name="groupName" v-model="createGroupName" :placeholder="placeholder" maxlength="6" />
+  					<input type="text" class="vu_fenzu_name_input" name="groupName" v-model="createGroupName" :placeholder="placeholder" maxlength="6" />	
         	</div>
         	<div class="vu_m-search">
         		<span>添加成员</span>
-			      <input type="text" id="vu_search" placeholder="查找人员" @keyup.enter="search" />
+			      <input type="text" id="vu_search" :placeholder="search_people" @keyup.enter="search" />
 			      <div @click="search_yi"></div>
 			      <div class="search_tu" @click="search($event)" v-show="search_kong"></div>
 			      <!--<p><span ></span></p>-->
@@ -49,7 +49,7 @@
             <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height:100%;">
               <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
                 <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click.stop="checkAll($event,companyItem.userIds)">+</p></div>
-                <ul class="vu_submenu vu_submenu_ul">
+                <ul class="vu_submenu vu_submenu_ul qunfenzu_new">
                   <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
                     <div class="vu_m-touxiang newQunFa">
                       <img :src="userList[userItem].img"  :class="{ 'vu_gray': !userList[userItem].isOnline} "/><!--//不在线，添加class=vu_gray-->
@@ -67,7 +67,7 @@
           <ul>
             <li class="c_active">
             	<div class="c_newQunBo">
-	                <div @click="submitGroup" class="c_queren" >确认</div>
+	                <div @click.stop="submitGroup" class="c_queren" >确认</div>
 	                <!--<div class="c_sanchu" @click.stop="zuDel($event,groups.groupId)">删除组</div>-->
 	              </div>
             </li>
@@ -111,7 +111,6 @@ export default {
   data: function () {
     return {
         formData: {
-//      	groupId:0,
 	        userIds: [],
 	        groupName: ''
         },
@@ -128,6 +127,8 @@ export default {
         tipsMsg:'',//提示信息
         kongTag:false,//清空好友标识
         search_kong:false,
+        search_people:'查找人员',
+        ss:1
     }
   },
   methods: {
@@ -137,8 +138,7 @@ export default {
         oDiv.style.zIndex=localStorage.qunfak
   	},
     dragqun_bianji: function (ev) {
-        var oDiv = document.getElementById('vu_baojia')
-        
+        var oDiv = document.getElementById('vu_baojia')       
         var oEvt = ev || event
         var disX = oEvt.clientX - oDiv.offsetLeft
         var disY = oEvt.clientY - oDiv.offsetTop
@@ -181,10 +181,12 @@ export default {
       	this.placeholder='请输入分组名称.'
       	this.qunzuName = false
       	this.createGroupName=''
+      	$('#vu_search').val('')
+      	this.search_people = '查找人员'		
     },
     search_yi:function(){
     	this.search_kong=true
-    	$('#vu_search').animate({width:"130px"})
+    	$('#vu_search').animate({width:"130px"})   	
     },
     search: function (event) {      
       var searchKey = $('#vu_search').val()
@@ -205,14 +207,16 @@ export default {
       
     },
     everyOne:function(event,companyLists,userIds){ //是否全选
+    	this.formData.userIds=[] 
+    	this.formData.groupName=''
       	this.everyone=!this.everyone
       	var el = event.currentTarget
       	if(this.everyone==true){
       		for (var i = 0, lg = companyLists.length; i < lg; i++) {     			
       			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {
 		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {	          	
-              	this.formData.userIds.push(companyLists[i].userIds[j])
-            	}
+	              	this.formData.userIds.push(companyLists[i].userIds[j])
+	              }
 	         	}
         	}
       	}else{
@@ -226,16 +230,20 @@ export default {
 	    _this.parent('li').toggleClass('vu_open')
 	},
 	checkAll: function (event, userIds) {
+		var fort=this.formData.userIds
+		var for_test=[]		
 	    var el = event.currentTarget
 	    var opt = $(el).html()
 	    if (opt === '+') {
+	    	this.formData.userIds=[]
 	      // 添加formData.userIds
 	      $(el).html('-')
 	      for (var i = 0, lg = userIds.length; i < lg; i++) {
 	        if (!this.in_array(userIds[i], this.formData.userIds)) {           	
-	          this.formData.userIds.push(userIds[i])
+	          for_test.push(userIds[i])
 	        }
 	      }
+	      this.formData.userIds=for_test.concat(fort)
 	    } else {
 	      // 删除formData.userIds
 	      $(el).html('+')
@@ -250,11 +258,21 @@ export default {
         this.kongTag = false
 //      this.delConfirm()
       },
-        dange_xuan:function(event){
-//    	var el = event.currentTarget
-//    	if($(el).hasClass('vu_checkbox_bg_check')){
-//    		this.everyone=false
-//    	}    	
+      dange_xuan:function(event){
+      	var el = event.currentTarget
+      	var dan_long_yi
+      	if($(el).hasClass('vu_checkbox_bg_check')){
+      		this.everyone=false
+      		dan_long_yi=$('.qunfenzu_new .vu_checkbox_bg_check').length-1
+      	}else{
+      		dan_long_yi=$('.qunfenzu_new .vu_checkbox_bg_check').length+1
+      	}
+      	var dan_long=$('.qunfenzu_new .vu_input_style').length
+      	if(dan_long==dan_long_yi){
+      		this.everyone=true
+      	}else{
+      		this.everyone=false
+      	}
       },
       kongcancel: function () {//关闭清空提示框
         this.kongTag = false
@@ -269,8 +287,8 @@ export default {
       },
       submitGroup: function (groupId,groupType,uids) {
         if (this.createGroupName === '') {
-          this.tipsTag = true
-	          this.tipsMsg = '组名称未输入'	          
+        	this.tipsTag = true        	
+	        this.tipsMsg = '组名称未输入'	          
         }else{ 
         	if(this.qunzuName == true){   
         		this.groupName=this.formData.groupName
@@ -294,27 +312,23 @@ export default {
 	            this.newZuTag = false
 	            this.formData.groupType = 'group'	           
 	            this.activeTag = this.formData.groupName	                       
-	            if(this.formData.userIds.length==0){
-		            this.kongTag = true			            
+	            if(this.formData.userIds.length==0){	            	
+	            		this.kongTag = true			            
 		        }else{
 		          	this.$emit('createGroupEvent', this.formData)
 		          	this.createGroupName = ''
 	            	this.groupTag++
-		          	if(this.groupList.groupHair.length==0){			       
-		          		
-		            }else{
-	//		          	this.groupId=this.groupList.groupHair[this.groupList.groupHair.length-1].groupId		
-	//		            this.$emit('saveGroupEvent', this.groupId, 'groupHair', this.formData.userIds)		            
-			          }
 		            this.formData.userIds = []
 			          $('.vue_baojia1').hide()
 		            this.everyone=false
 		            this.panelShow.searchShow=false
-		        }	        		
-        	}
-        	this.placeholder='请输入分组名称.'  
-        	$('.vu_fenzu_name_input').val()
-        }      
+		        }
+        	}   
+        	$('#vu_search').val('')
+      		this.search_people = '查找人员'
+        	this.placeholder='请输入分组名称.' 
+        	this.createGroupName=''
+        }  
       },
       delUser: function (uid) {
         this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
@@ -329,15 +343,12 @@ export default {
       }
     },
     mounted() {
-    	var oDiv = document.getElementById('vu_baojia')
-        localStorage.qunfak++
-        oDiv.style.zIndex=localStorage.qunfak
     	var vm=this
-    	qunzu.$on('qunval',(data) =>{   		
-    		this.formData = data    	
+    	qunzu.$on('qunval',qundata =>{  
+    		vm.formData = qundata     		
     		this.createGroupName=this.formData.groupName
-    		this.qunzuName=true
-    		$('.vu_fenzu_name_input').attr('disabled',true)  
+    		vm.qunzuName=true
+    		$('.vu_fenzu_name_input').attr('disabled',true)
     	})
     	if(this.qunzuName==false){
     		this.createGroupName=''

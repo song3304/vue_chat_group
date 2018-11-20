@@ -96,7 +96,10 @@ export default {
         background: "", // 轨道的背景颜色
         cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
         autohidemode: false, // 隐藏滚动条的方式, 可用的值:
-    });
+	    });
+	    var oDiv = document.getElementById('vu_m-chatmainn')
+      localStorage.qunfak++
+      oDiv.style.zIndex=localStorage.qunfak
     },
     // 接收,拒绝好友
     receive: function (msgId, isAgree) {

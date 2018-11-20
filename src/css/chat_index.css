@@ -361,16 +361,16 @@ ul {
 .vu_m-search p,.vu_m-guan p{float:right;width: 23px;height: 23px;cursor: pointer;text-align: center;margin: 3px 10px 0 0;}
 .vu_m-guan span{
 	display: inline-block;
-	margin-top: 6px;
-	width:15px;
-	height:15px;
-	background: url(../images/zuinewqie.png) 0 -105px;
+	margin-top: 2px;
+	width:18px;
+	height:18px;
+	background: url(../images/zuinewqie.png) -19px -1px;
 }
 .vu_fa-chevron-down:before{
 	color: #a4a4a4;
 }
 .vu_m-guan:hover p span,.vu_m-search:hover p span{
-	background: url(../images/zuinewqie.png) -20px -105px no-repeat;
+	background: url(../images/zuinewqie.png) -19px -20px no-repeat;
 }
 .vu_m-list .vu_avatar,.vu_liaotian_left .vu_avatar{
 	width: 40px;
@@ -500,14 +500,11 @@ ul {
 	display: inline-block;
 	width: 14px;
 	height: 14px;
-	background: url(../images/qie_tu.png) -4px -154px no-repeat;
+	background: url(../images/zuinewqie.png) 0 -105px no-repeat;
 	margin:4px 0 0 0;
 }
-.vu_his-guan p:hover{background:#BC2424;}
 .vu_his-guan p:hover span{
-	width: 15px;
-	height: 15px;
-	background: url(../images/qie_tu.png) -4px -244px no-repeat;
+	background: url(../images/zuinewqie.png) -20px -106px no-repeat;
 }
 #vu_his-head{
 	height:640px;
@@ -718,9 +715,8 @@ ul {
 }
 .vu_fen_zu_title>span{font-size: 13px;color: #333333;display: inline-block;line-height: 30px;padding-left: 10px;}
 .vu_fen_zu_title p{float:right;width: 30px;height: 30px;cursor: pointer;margin: 0;text-align: center;}
-.vu_fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/qie_tu.png) -4px -155px;text-align: center;margin-top: 7px;}
-.vu_fen_zu_title p:hover{background: #BC2424;}
-.vu_fen_zu_title p:hover span{background: url(../images/qie_tu.png) -4px -242px;}
+.vu_fen_zu_title p span{display: inline-block; width: 12px;height: 12px;background: url(../images/zuinewqie.png) 0 -106px;text-align: center;margin-top: 7px;}
+.vu_fen_zu_title p:hover span{background: url(../images/zuinewqie.png) -21px -107px;}
 .vu_fenzu_left{
   width: 250px!important;
   height:100%;
@@ -850,7 +846,7 @@ ul {
 	position: absolute;
 	top:140px;
 	left:60px;
-	z-index: 12;
+	z-index:999999!important;
 }
 .vu_fenzu_name .vu_fenzu_name_na{color: #666666;padding: 10px 0 1px 25px;font-size: 12px;}
 .vu_fenzu_name input{
@@ -1253,7 +1249,7 @@ li{
 	position: absolute;
 	top: 140px;
 	right: -90px;
-	z-index: 1100;
+	z-index: 110099;
 }
 .vu_qunzu_name input{
 	margin: 8px 0 16px 15px;
@@ -1273,7 +1269,7 @@ li{
 	position: absolute;
 	top: 140px;
 	left:25px;
-	z-index: 1009;
+	z-index: 1009999;
 	background-color: #FFFFFF;
 	-webkit-box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
 	box-shadow: 0px 2px 2px 3px rgba(42, 42, 42, 0.2);
@@ -3129,16 +3125,24 @@ to {top: 0;}
   }
   .vue-tealtime-timecuotitle span{color: #CCCCCC;}
   .vue-tealtime-timetitle,.vue-tealtime-timecuotitle{display: block;border-bottom: 1px solid #323129;height:38px;line-height: 38px;}
-  .vue-tealtime-timecuo li,.vue-tealtime-timetrade li{border-bottom: 1px solid #192941;padding: 10px 0;}
+  .vue-tealtime-timecuo li,.vue-tealtime-timetrade li{border-bottom: 1px solid #192941;padding: 10px 0;position: relative;}
   .vue-tealtime-timecuo li span,.vue-tealtime-timetrade li span{float: left;text-align: center;color: #CCCCCC;line-height: 26px;}
   .vue-tealtime-timecuo div span,.vue-tealtime-timetrade div span{display: inline-block;text-align: center;}
   .tealtime-timecuotitleyi{width: 11%;}
   .tealtime-timecuotitleer{width: 13%;}
   .tealtime-timecuotitlesan{width: 17%;}
-  .tealtime-timecuotitlename:hover{color: #4385F5;cursor: pointer;}
-  .tealtime-timecuotitlesi{width: 56%;text-align: left!important;}
+  .tealtime-timecuotitlesi{width: 55%;text-align: left!important;}
   .vue-tealtime-timecuo li .tealtime-timecuotitlesi{text-align: left;padding-left:2%;}
   .nicescroll-rails{overflow: hidden;}
+  .chitchat_photo{
+  	position: absolute;
+  	top:15px;
+  	right:0;
+  	width: 22px;
+  	height: 22px;
+  	background: url(../images/yiding.png) -317px -140px no-repeat;
+  	cursor: pointer;
+  }
   /*中间图表end*/
 .vue_baojia{
 	position: fixed;

@@ -208,6 +208,7 @@
             			<span class="tealtime-timecuotitlesi">
             				{{bitem.messages[0].text}}
             			</span>
+            			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
             			<br clear="all"/>
             		</li>
             	</ul>
@@ -552,7 +553,6 @@
           groupName: ''
         },
         groupName: '',
-        placeholder: '请输入分组名称.',
         newZuTag:false,
         groupMsg:'',//群发内容
         chooseG:true,//默认开启报价识别
@@ -760,6 +760,9 @@
       /* qunNew部分开始 */
       cjbj: function () {
          $('#mytrade_form').show();
+         var oDiv= document.getElementById('mytrade_main_yi')
+        	localStorage.qunfak++
+	        oDiv.style.zIndex=localStorage.qunfak
 //        this.showQunFa = false
       },
       kongcancel: function () {//关闭清空提示框
@@ -775,21 +778,6 @@
       chooseGou: function () {//是否勾选报价识别
         this.chooseG = !this.chooseG
       },
-      everyOne:function(event,companyLists,userIds){ //是否全选
-      	this.everyone=!this.everyone
-      	var el = event.currentTarget
-      	if(this.everyone==true){
-      		for (var i = 0, lg = companyLists.length; i < lg; i++) {     			
-      			for (var j = 0, la = companyLists[i].userIds.length; j < la; j++) {
-		          if (!this.in_array(companyLists[i].userIds[j],this.formData.userIds)) {	          	
-              	this.formData.userIds.push(companyLists[i].userIds[j])
-            	}
-	         	}
-        	}
-      	}else{
-      		this.formData.userIds = []
-      	}
-      },
       sendGroupMsg: function () {
         var userIds = []
 //      if(this.cnewkai) {
@@ -804,7 +792,7 @@
             return
           }
           userIds = this.formData.userIds
-        this.$emit('sendGroupMsgEvent', userIds, this.groupMsg, this.chooseG || this.cnewguan)
+        	this.$emit('sendGroupMsgEvent', userIds, this.groupMsg, this.chooseG || this.cnewguan)
         	this.placeholderMsg = this.groupMsg   
         	this.groupMsg = ''
       },
@@ -908,6 +896,9 @@
       //群发种类
       qunFa: function () {
         this.showQunFa = true
+        var oDiv = document.getElementById('vu_div-qun')
+      	localStorage.qunfak++
+        oDiv.style.zIndex=localStorage.qunfak
       },
       closeQunFa: function () {
         this.showQunFa = false
@@ -1246,6 +1237,9 @@
         localStorage.qunfak++
         oDiv.style.zIndex=localStorage.qunfak
       },
+      openEchart:function(uid){ //打开对话框
+				this.$emit('openTempTalkEvent', uid)
+      }
     },
     //qunNew部分内容
     filters: {

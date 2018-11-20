@@ -22,7 +22,7 @@ export default {
 	      	panelShow: {
 		        searchShow: false // 搜索面板是否显示
 		    },
-		    formData_qunfa: {
+		    formDat_qunfa: {
 		    	groupId:0,
 		        userIds: [],
 		        groupName: ''
@@ -93,10 +93,13 @@ export default {
 	     	this.groupId = groupId
 	     	this.groupName = groupName
 	     	$('.vue_baojia1').show()
-	     	this.formData_qunfa.groupId = groupId
-            this.formData_qunfa.groupName = groupName	
-            this.formData_qunfa.userIds = userIds           
-            qunzu.$emit('qunval',this.formData_qunfa)
+	     	this.formDat_qunfa.groupId = groupId
+            this.formDat_qunfa.groupName = groupName	
+            this.formDat_qunfa.userIds = userIds           
+            qunzu.$emit('qunval',this.formDat_qunfa)
+            var oDiv = document.getElementById('vu_baojia')
+	        localStorage.qunfak++
+	        oDiv.style.zIndex=localStorage.qunfak
 	    },
 	},
 	filters: {
