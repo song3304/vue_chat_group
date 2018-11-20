@@ -3105,14 +3105,14 @@ to {top: 0;}
   	color: #FFFFFF;
 	line-height:20px;
   }
-  .vue-real-img i{
+  /*.vue-real-img i{
   	 font-style:normal;
   	 font-size: 12px;
   	 color: #CCCCCC!important;
   	 display: inline-block;
   	 padding-top: 8px;
   	 display: none;
-  }
+  }*/
   .vue-tealtime-timetitle span{display: inline-block;text-align: center;color:#CCCCCC;}
   .vue-realtime-auto-timeti{width: 8%;}
   .vue-realtime-auto-companyti{width: 17.5%;}

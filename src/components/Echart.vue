@@ -179,6 +179,7 @@
               <!--<p class="vue-real-img-img"></p>-->
               <span @click="vue_real_imgyi" class="vue-real-img_active">实时报价</span>
               <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_real_imger">贸易商询价</span></p>
+              <span class="vue_real_zhan" style="display: none;"></span>
              	<span v-if="user.plat=='trade'" @click="vue_real_imgsan">撮合报价</span>
             </div>
             <div class="vue-tealtime-time" v-show="tealtime_time">  <!--实时报价数据-->
@@ -228,6 +229,7 @@
 	            			<span class="tealtime-timecuotitlesi">
 	            				{{bitem.messages[0].text}}
 	            			</span>
+	            			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
 	            			<br clear="all"/>
 	            		</li>
 	            	</ul>
@@ -623,6 +625,27 @@
 		      minHeight: 464,
 		      minWidth: 562
 	    });
+	    $('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
+	    if(localStorage.realmain==undefined){
+	    	$('.vue-chart-foot .vue-real-img span').eq(0).addClass('vue-real-img_active')
+	    }else{
+	    	$('.vue-chart-foot .vue-real-img span').eq(localStorage.realmain).addClass('vue-real-img_active')
+	    	if(localStorage.realmain==1){
+		    	this.tealtime_time=false
+					this.tealtime_timecuo=true
+					this.tealtime_timetrade=false
+					this.matchtiao();
+		    }else if(localStorage.realmain==2){
+		    	this.tealtime_time=false
+					this.tealtime_timecuo=false
+					this.tealtime_timetrade=true
+					this.tradetiao();
+		    }else{
+		    	this.tealtime_time=true
+					this.tealtime_timecuo=false
+					this.tealtime_timetrade=false
+		    }
+	    }	    				    	          					
     },
     methods: {
     	saveGroup:function(groupId,groupType,uids){
@@ -1115,29 +1138,29 @@
       },
 // 正常大盘
       vue_real_imgyi:function(){
+      	localStorage.realmain=0
       	$('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
 				$('.vue-chart-foot .vue-real-img span').eq(0).addClass('vue-real-img_active')
 				this.tealtime_time=true
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=false
-				$('.vue-chart-foot .vue-real-img i').hide();
       },
       vue_real_imger:function(){
+      	localStorage.realmain=1
       	$('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
 				$('.vue-chart-foot .vue-real-img span').eq(1).addClass('vue-real-img_active')
 				this.tealtime_time=false
 				this.tealtime_timecuo=true
 				this.tealtime_timetrade=false
-				$('.vue-chart-foot .vue-real-img i').css('display','inline-block');
 				this.matchtiao();
       },
       vue_real_imgsan:function(){
+      	localStorage.realmain=2
       	$('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
-				$('.vue-chart-foot .vue-real-img span').eq(1).addClass('vue-real-img_active')
+				$('.vue-chart-foot .vue-real-img span').eq(2).addClass('vue-real-img_active')
 				this.tealtime_time=false
 				this.tealtime_timecuo=false
 				this.tealtime_timetrade=true
-				$('.vue-chart-foot .vue-real-img i').hide();
 				this.tradetiao();
       },
 //    我的大盘
