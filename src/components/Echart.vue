@@ -206,9 +206,7 @@
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-            			<span class="tealtime-timecuotitlesi">
-            				{{bitem.messages[0].text}}
-            			</span>
+            			<pre class="tealtime-timecuotitlesi">{{bitem.messages[0].text}}</pre>
             			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
             			<br clear="all"/>
             		</li>
@@ -226,9 +224,7 @@
 	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
 	            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
 	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-	            			<span class="tealtime-timecuotitlesi">
-	            				{{bitem.messages[0].text}}
-	            			</span>
+	            			<pre class="tealtime-timecuotitlesi">{{bitem.messages[0].text}}</pre>
 	            			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
 	            			<br clear="all"/>
 	            		</li>
@@ -352,8 +348,8 @@
 			            </ul>
 	              <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
             </div>
-            
-            <div class="c_qunPeo"  v-show="qunbuzhu">	<!--全部成员-->				        	
+
+            <div class="c_qunPeo"  v-show="qunbuzhu">	<!--全部成员-->
 			          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;position: relative;
 			    z-index: 3;">
 			          		<div style="font-size: 12px;color: #666666;padding-left:12px;line-height: 24px;">临时添加/删除人员</div>
@@ -377,10 +373,10 @@
 			          </div>
 			        </div>
       	 </div>
-					        
-					        
+
+
 					        <div class="c_qunDi">
-				            <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->				           
+				            <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->
 				            <div class="c_zuB">
 				              <ul style="height: 100%;">
 				                <li :class="{c_active:groups.groupName==activeTag}" v-for="(groups,index) in groupList.groupHair"  :value="groups.groupId" >
@@ -405,9 +401,9 @@
 				              	<div class="vu_m-touxiang">
 				              		<img :src="userList[uid].img" :class="{ 'vu_gray':userList[uid]!=null && !userList[uid].isOnline}"/>
 				              		<span @click="delUser(uid)"></span>
-				              	</div> 
-				              	<a>{{userList[uid].name}}</a> 
-				              	
+				              	</div>
+				              	<a>{{userList[uid].name}}</a>
+
 				              </li>
 				              <br clear="all"/>
 				            </ul>
@@ -416,7 +412,7 @@
           <div class="c_qunDiv">
             <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->
             <!--<p v-show="formData.userIds.length==0">请从左侧选择人员</p>-->
-            
+
             <!--<ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
               <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/><span @click="delUser(uid)"></span></div> <a>{{userList[uid].name}}</a> </li>
               <div class="vu_fenzu_right_div" @click="add_temporarily">
@@ -507,10 +503,10 @@
     	</div>
 
     </div>
-    
+
     <echartQun :user='user' :userList='userList' :groupList='groupList' :companyLists='companyLists'  @createGroupEvent='createGroup' @saveGroupEvent="saveGroup"></echartQun>
-    
-    
+
+
   </div>
 
 
@@ -585,7 +581,7 @@
 	      cnewguan:false,
 	      everyone:false, //默认不全选
 	      linshi_guan:0,
-//	      opensetzhu:true,	 
+//	      opensetzhu:true,
 				qunfazhu:true, //群发组默认显示
 				qunbuzhu:false,  //全部人员组
 				qunfa_kuang:1000
@@ -645,7 +641,7 @@
 //					this.tealtime_timecuo=false
 //					this.tealtime_timetrade=false
 //		    }
-//	    }	    				    	          					
+//	    }
     },
     methods: {
     	saveGroup:function(groupId,groupType,uids){
@@ -746,7 +742,7 @@
       zuDel: function (event, groupId) {
         event.stopPropagation()
         this.Qunpopup = true
-        this.groupId = groupId        
+        this.groupId = groupId
       },
       popcancel: function () { // 关闭删除弹框
         this.Qunpopup = false
@@ -755,17 +751,17 @@
         this.groupId = group.groupId
         this.activeTag = group.groupName
         this.groupTag = index
-        $('.vu_fenzu_right_div').show()        
-        var _this = $(event.currentTarget)  
-        $('.vu_qunfenzhu_ul>li').removeClass('vu_open')        
+        $('.vu_fenzu_right_div').show()
+        var _this = $(event.currentTarget)
+        $('.vu_qunfenzhu_ul>li').removeClass('vu_open')
         $(".vu_qunfenzhu_ul ul").css({height: '0px'});
-	      var obj = _this.children("ul");	      
+	      var obj = _this.children("ul");
 	      if (obj.height() == 0) {
 	      	_this.addClass('vu_open')
 	        var arr = obj.children("li");
 	        var height = arr.height() * arr.length;
 	        obj.css({height: height + 'px'});
-		    }	 
+		    }
       },
       openSetZu: function () {
         if(!this.newZuTag){
@@ -816,7 +812,7 @@
           }
           userIds = this.formData.userIds
         	this.$emit('sendGroupMsgEvent', userIds, this.groupMsg, this.chooseG || this.cnewguan)
-        	this.placeholderMsg = this.groupMsg   
+        	this.placeholderMsg = this.groupMsg
         	this.groupMsg = ''
       },
       sendGroupM: function () {
@@ -832,13 +828,13 @@
           userIds = this.formData.userIds
         this.$emit('sendGroupMsgEvent', userIds, this.groupMsg, this.chooseG || this.cnewguan)
         	this.groupMsg = ''
-        	this.placeholderMsg = '请您粘贴信息'               
+        	this.placeholderMsg = '请您粘贴信息'
       },
       dange_xuan:function(event){
 //    	var el = event.currentTarget
 //    	if($(el).hasClass('vu_checkbox_bg_check')){
 //    		this.everyone=false
-//    	}    	
+//    	}
       },
       dange_xua:function(event,index){
 
@@ -850,7 +846,7 @@
           // 添加formData.userIds
           $(el).html('-')
           for (var i = 0, lg = userIds.length; i < lg; i++) {
-            if (!this.in_array(userIds[i], this.formData.userIds)) {           	
+            if (!this.in_array(userIds[i], this.formData.userIds)) {
               this.formData.userIds.push(userIds[i])
             }
           }
@@ -905,7 +901,7 @@
 //    	var oDiv = document.getElementById('vu_div-qun')
 //    	localStorage.qunfak++
 //      oDiv.style.zIndex=localStorage.qunfak
-      },      
+      },
       jinzhi: function (event) {
         event.stopPropagation()
       },
@@ -1277,5 +1273,5 @@
 </script>
 
 <style>
- 
+
 </style>

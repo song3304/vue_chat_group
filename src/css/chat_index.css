@@ -3583,3 +3583,15 @@ to {top: 0;}
     background-color: #e1e1e1;
   }
   /*报价识别弹框样式end*/
+
+.vue-tealtime-timecuo li pre.tealtime-timecuotitlesi, .vue-tealtime-timetrade li pre.tealtime-timecuotitlesi{
+  float: left;
+  text-align: center;
+  color: #CCCCCC;
+  line-height: 26px;
+  background: #101a29;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
