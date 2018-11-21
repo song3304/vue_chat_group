@@ -206,8 +206,8 @@
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-            			<span class="tealtime-timecuotitlesi" v-html="textFormat(bitem.messages[0].text)"></span>
-            			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
+            			<pre class="tealtime-timecuotitlesi">{{bitem.messages[0].text}}</pre>
+                  		<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
             			<br clear="all"/>
             		</li>
             	</ul>
@@ -224,9 +224,8 @@
 	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
 	            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
 	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-	            			<span class="tealtime-timecuotitlesi" v-html="textFormat(bitem.messages[0].text)">
-	            			</span>
-	            			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
+	            			<pre class="tealtime-timecuotitlesi">{{bitem.messages[0].text}}</pre>
+                    		<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
 	            			<br clear="all"/>
 	            		</li>
 	            	</ul>
@@ -348,7 +347,6 @@
 			            </ul>
 	              <p v-if="cnewguan==true" style="display: inline-block;">只报价不群发</p>
             </div>
-
             <div class="c_qunPeo"  v-show="qunbuzhu">	<!--全部成员-->
 			          <div class="vu_fenzu_left vu_accordion" @mousedown="jinzhi" style="width: 100%!important;height: 100%px!important;position: relative;
 			    z-index: 3;">
@@ -373,8 +371,6 @@
 			          </div>
 			        </div>
       	 </div>
-
-
 					        <div class="c_qunDi">
 				            <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->
 				            <div class="c_zuB">
@@ -403,7 +399,6 @@
 				              		<span @click="delUser(uid)"></span>
 				              	</div>
 				              	<a>{{userList[uid].name}}</a>
-
 				              </li>
 				              <br clear="all"/>
 				            </ul>
@@ -412,7 +407,6 @@
           <div class="c_qunDiv">
             <!--<p v-show="formData.userIds.length!=0">已选择<span>{{formData.userIds.length}}</span>个联系人</p>-->
             <!--<p v-show="formData.userIds.length==0">请从左侧选择人员</p>-->
-
             <!--<ul class=" newQunFa D_xiugai" v-if="cnewkai==true" >
               <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname"><div class="vu_m-touxiang"><img :src="userList[uid].img" :class="{ 'vu_gray':!userList[uid].isOnline}"/><span @click="delUser(uid)"></span></div> <a>{{userList[uid].name}}</a> </li>
               <div class="vu_fenzu_right_div" @click="add_temporarily">
@@ -503,10 +497,7 @@
     	</div>
 
     </div>
-
     <echartQun :user='user' :userList='userList' :groupList='groupList' :companyLists='companyLists'  @createGroupEvent='createGroup' @saveGroupEvent="saveGroup"></echartQun>
-
-
   </div>
 
 
