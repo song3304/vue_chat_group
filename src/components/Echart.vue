@@ -206,9 +206,7 @@
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-            			<span class="tealtime-timecuotitlesi">
-            				{{bitem.messages[0].text}}
-            			</span>
+            			<span class="tealtime-timecuotitlesi" v-html="textFormat(bitem.messages[0].text)"></span>
             			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
             			<br clear="all"/>
             		</li>
@@ -226,8 +224,7 @@
 	            			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
 	            			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
 	            			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-	            			<span class="tealtime-timecuotitlesi">
-	            				{{bitem.messages[0].text}}
+	            			<span class="tealtime-timecuotitlesi" v-html="textFormat(bitem.messages[0].text)">
 	            			</span>
 	            			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
 	            			<br clear="all"/>
@@ -288,9 +285,8 @@
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-            			<span class="tealtime-timecuotitlesi">
-            				{{bitem.messages[0].text}}
-            			</span>
+            			<span class="tealtime-timecuotitlesi" v-html="textFormat(bitem.messages[0].text)"></span>
+            			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
             			<br clear="all"/>
             		</li>
             	</ul>
@@ -666,6 +662,9 @@
             var day=date.getDate();
             return year+sep+month+sep+day+' '+'00:00:00';
        },
+       textFormat: function (text) {
+             return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
+           },
        //我的大盘-直播间勾选切换时显示对应dom
        showDom(){
         this.match_hall_catalogs.map((v,i)=>{
