@@ -3043,6 +3043,11 @@ to {top: 0;}
   	left:0.5%;
   	border: 0;
   }
+  @media only screen and (max-width: 1400px) {
+  	.c_btn_boxer{
+	  	left:0;
+	}
+  }
   .c_btn_boxer>div{width: 100%;height: auto;background: transparent;line-height: none;}
   .c_btn_boxer>div:hover{background:#0F1627;border-radius: 0;}
   .c_btn_boxer>div span{font-size: 12px;}

@@ -433,7 +433,7 @@
           </div>
           <div class="c_openBox">
             <div v-if="user.plat=='match'" class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'><span class="c_shiBieButton_yi"  v-show="formData.userIds.length!=0">群发</span><span class="c_shiBieButton_er"  v-show="formData.userIds.length==0">报价</span></div>
-            <div v-if="user.plat=='trade'" class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupM()" id='quick_parse_creat'><span class="c_shiBieButton_yi"  v-show="formData.userIds.length!=0">群发</span><span class="c_shiBieButton_er"  v-show="formData.userIds.length==0">报价</span></div>
+            <div v-if="user.plat=='trade'" class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupM()" id='quick_parse_creat'><span class="c_shiBieButton_yi">群发</span></div>
             <div class="c_openShibie" v-if="user.plat=='match' && cnewguan!=true"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
         </div>
@@ -625,27 +625,30 @@
 		      minHeight: 464,
 		      minWidth: 562
 	    });
-//	    $('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
-//	    if(localStorage.realmain==undefined){
-//	    	$('.vue-chart-foot .vue-real-img span').eq(0).addClass('vue-real-img_active')
-//	    }else{
-//	    	$('.vue-chart-foot .vue-real-img span').eq(localStorage.realmain).addClass('vue-real-img_active')
-//	    	if(localStorage.realmain==1){
-//		    	this.tealtime_time=false
-//					this.tealtime_timecuo=true
-//					this.tealtime_timetrade=false
-//					this.matchtiao();
-//		    }else if(localStorage.realmain==2){
-//		    	this.tealtime_time=false
-//					this.tealtime_timecuo=false
-//					this.tealtime_timetrade=true
-//					this.tradetiao();
-//		    }else{
-//		    	this.tealtime_time=true
-//					this.tealtime_timecuo=false
-//					this.tealtime_timetrade=false
-//		    }
-//	    }	    				    	          					
+	    $('.vue-chart-foot .vue-real-img span').removeClass('vue-real-img_active')
+	    if(localStorage.realmain==undefined){
+	    	$('.vue-chart-foot .vue-real-img span').eq(0).addClass('vue-real-img_active')
+	    	this.tealtime_time=true
+				this.tealtime_timecuo=false
+				this.tealtime_timetrade=false
+	    }else{
+	    	$('.vue-chart-foot .vue-real-img span').eq(localStorage.realmain).addClass('vue-real-img_active')
+	    	if(localStorage.realmain==1){
+		    	this.tealtime_time=false
+					this.tealtime_timecuo=true
+					this.tealtime_timetrade=false
+					this.matchtiao();
+		    }else if(localStorage.realmain==2){
+		    	this.tealtime_time=false
+					this.tealtime_timecuo=false
+					this.tealtime_timetrade=true
+					this.tradetiao();
+		    }else{
+		    	this.tealtime_time=true
+					this.tealtime_timecuo=false
+					this.tealtime_timetrade=false
+		    }
+	    }	    				    	          					
     },
     methods: {
     	saveGroup:function(groupId,groupType,uids){
