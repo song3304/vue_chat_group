@@ -217,9 +217,9 @@ export default {
    		$('.vue_qun_fen_main').addClass('vue_qun_fen_main1')
     },
     namemove:function (friendId, groupId, toGroupId) {
-      this.$emit('moveFriendEvent', friendId, groupId, toGroupId)
     	$('.vue_name_sz').hide()
-    	this.groupNew=true
+    	this.groupNew=false
+      this.$emit('moveFriendEvent', friendId, groupId, toGroupId)    	
     },
     vueMove:function(){//划上移动，移动分组表显示
     	this.groupNew=true

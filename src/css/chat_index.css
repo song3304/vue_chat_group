@@ -372,7 +372,7 @@ ul {
 .vu_m-guan:hover p span,.vu_m-search:hover p span{
 	background: url(../images/zuinewqie.png) -19px -20px no-repeat;
 }
-.vu_m-list .vu_avatar,.vu_liaotian_left .vu_avatar{
+.vu_m-list .vu_avatar,.vu_liaotian_left .vu_m-touxiang{
 	width: 40px;
 	height: 40px;
 	border-radius: 5px;
@@ -402,7 +402,7 @@ ul {
 .vu_m-list-del{
 	float: right;
 	position: relative;
-	margin-top:12px;
+	margin-top:13px;
 	width:50px;
 	height:35px;
 	text-align: center;
@@ -411,14 +411,14 @@ ul {
 .vu_m-list-del .vu_m-list-del-num{
 	margin-top:8px;
 	display: inline-block;
-	border-radius: 50%;
+	border-radius: 45%;
 	/*padding:2px;*/
 	background-color: #e42b2b;
 	color: #FFFFFF;
 	font-size: 12px;
-	height: 16px;
-	width: 16px;
-	padding-left:1px ;
+	height: 15px;
+	width: 15px;
+	padding-left:0.5px;
 	text-align: center;
 	line-height: 15px;
 	overflow: hidden;
@@ -437,6 +437,7 @@ ul {
 	color: #666666;
 	font-size: 12px;
 }
+.vu_liaotian_left .vu_m-xiang{color: #999999;}
 .vu_m-time{
 	position: absolute;
 	right:10px;
@@ -1235,7 +1236,7 @@ li{
 	cursor: pointer;
 	position: absolute;
 	top:10px;
-	right:18px;
+	right:15px;
 	/*z-index: 10;*/
 }
 .vu_qun_fen>li>.vu_link:hover .vu_qun-name{display: block;}
@@ -3040,13 +3041,8 @@ to {top: 0;}
   	width:4%;
   	min-width: 50px;
   	padding-right: 0;
-  	left:0.5%;
+  	left:0;
   	border: 0;
-  }
-  @media only screen and (max-width: 1400px) {
-  	.c_btn_boxer{
-	  	left:0;
-	}
   }
   .c_btn_boxer>div{width: 100%;height: auto;background: transparent;line-height: none;}
   .c_btn_boxer>div:hover{background:#0F1627;border-radius: 0;}
@@ -3284,16 +3280,17 @@ to {top: 0;}
 	overflow: hidden;
 }
 .vue_qun_fen_main{
-	width: 108%;
+	width: 110%;
 	height: 100%;
-	padding-right:1.5%;
+	padding-right:4.5%;
 	overflow-y:scroll;
 	max-height:680px;
+	/*max-width: 300px;*/
 }
 .vue_qun_fen_main1{
 	width: 104%;
 	height: 100%;
-	padding-right: 48%;
+	padding-right: 48.5%;
 	overflow-y:scroll;
 	max-height:680px;
 }
@@ -3600,3 +3597,8 @@ to {top: 0;}
 	margin: 0;
 	font-size: 12px;
 }
+.vu_submenu_group{padding-right: 7px;}
+.vu_m-list-daytime{
+	width: 55px;
+}
+/*.vu_m-list-daytime p{color: #999999!important;}*/

@@ -1,19 +1,26 @@
 <template>
 	<div>
 		<ul >
+			<p style="height: 40px;line-height: 40px;margin: 0;color:#666666;font-size: 12px;text-align: center;">------最近3天的历史聊天列表------</p>
 		    <li v-for="(recentItem,index) in recentList"  v-if="recentItem !=null && userList.hasOwnProperty(recentItem.id) && recentItem.type=='user'" @click="openChat(recentItem.id)">
-	        	<img class="vu_avatar"  width="30" height="30" :alt="userList[recentItem.id].name" :src="userList[recentItem.id].img" :class="{'vu_gray':!userList[recentItem.id].isOnline}">
+		    	<div :class="{'vu_m-touxiang':!userList[recentItem.id].isCalling,'vu_m-touxiang vu_touxiang':userList[recentItem.id].isCalling}"> <!--有新消息就添加vu_touxiang抖动-->
+		    		<img class="vu_avatar"  width="30" height="30" :alt="userList[recentItem.id].name" :src="userList[recentItem.id].img" :class="{'vu_gray':!userList[recentItem.id].isOnline}">
+		    	</div>
+	        	
 	        	<div class="vu_m-cs-cs">
 	            	<p class="vu_name">{{userList[recentItem.id].name}}</p>
-	            	<p class="vu_m-xiang"></p>
+	            	<p class="vu_m-xiang"><span>{{recentItem|firstMsg}}</span></p> <!--最新消息-->
 	            </div>
-	            <div class="vu_m-list-del">
-	            	<p class="vu_m-list-del-time">{{recentItem|lastTime}}</p>
-	            	<!--<p class="vu_m-list-del-num" v-show="item.messages.some(function(i) { return !i.is_read})">{{recentItem|noReadCnt}}</p>-->
-	            	<div class="vu_delet-li"  @click.stop="deletePersonn(index)"></div>
+	            <div class="vu_m-list-del vu_m-list-daytime">
+	            	<p class="vu_m-list-del-time">{{recentItem|lastTime}}</p>  <!--最新消息时间-->	   
+	            	<div v-for="item in searchData" v-if="item.id==recentItem.id">
+	            		<p class="vu_m-list-del-num" v-if="item.messages.some(function(i) { return !i.is_read})">{{item|noReadCnt}}</p>    <!--//未读消息-->	  
+	            	</div>
+	            	          	
+	            	<!--<div class="vu_delet-li"  @click.stop="deletePersonn(index)"></div>-->   <!--删除记录-->
 	            </div>
 	             <span  v-if="userList[recentItem.id].friend_type!='friend'"></span>
-	        </li>
+	       </li>
 		 </ul>
 	</div>
 </template>
@@ -38,10 +45,16 @@ export default {
       lookInfoTag:-1,//验证资料卡隐藏
       tipsTag:false,//提示框
       tipsMsg:'',//提示信息
+      search: '',
     }
   },
   props: ['session','user', 'userList', 'companyList', 'groupList', 'followList','verifyMsg','recentList','sessionList'],
   computed: {
+  	searchData: function () {
+  		var sec={}
+  		sec=this.sessionList
+        return sec
+   },
   },
   methods: {
     openChat: function (uid) {
@@ -65,20 +78,42 @@ export default {
     }
   },
   filters: {
-    lastTime: function (recentItem) {
-		return recentItem.last_time.substring(11, 16)
+    lastTime: function (recentItem) {  //设置聊天日期
+        var endTime = new Date();
+        var year=endTime.getFullYear()
+        var month=endTime.getMonth()+1
+        var tian=endTime.getDate()
+        if (month < 10) {month = "0" + month;}
+		if (tian < 10) {tian = "0" + tian;}
+        var endDay=month+'-'+tian
+        var startDay = recentItem.last_time.substring(5, 10)
+        if(startDay===endDay){
+        	return recentItem.last_time.substring(11, 16)
+        }else{
+        	return recentItem.last_time.substring(5, 10)
+        }
+//		return recentItem.last_time.substring(11, 16)
 	},
 	firstMsg: function (recentItem) {
-      if (recentItem.messages.length > 0) {
-        return recentItem.messages[recentItem.messages.length - 1].text
+      if (recentItem.message) {
+        return recentItem.message.text
       } else {
-        return ''
+        return false
       }
     },
- },
+    noReadCnt: function (item) {
+    	var i = 0
+	      for (var j = 0, lg = item.messages.length; j < lg; j++) {
+	        i += item.messages[j].is_read ? 0 : 1
+	      }
+	      return i
+     },
+	},
+	mounted() {
+		
+	}
 }
 
 </script>
-
 <style>
 </style>

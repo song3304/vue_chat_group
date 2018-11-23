@@ -93,16 +93,16 @@
                       <div v-bind:id="'bird_price_banner_'+catalog.id" class="vue_bird_price">
                           <div class="vue_chart_hight vue_chart_price">
                               <span>最高</span>
-                              <span>7800</span>
-                              <span>1</span>
+                              <span>--</span>
+                              <span>--</span>
                           </div>
                           <ul class="bird_sell brid_ul"></ul>
                           <div class="current_price"></div>
                           <ul class="bird_buy brid_ul"></ul>
                           <div class="vue_chart_low vue_chart_price">
                               <span>最低</span>
-                              <span>7800</span>
-                              <span>1</span>
+                              <span>--</span>
+                              <span>--</span>
                           </div>
                       </div>
                   </div>
@@ -148,16 +148,16 @@
                       <div v-bind:id="'my_bird_price_banner_'+catalog.id" class="vue_bird_price">
                           <div class="vue_chart_hight vue_chart_price">
                               <span>最高</span>
-                              <span>7800</span>
-                              <span>1</span>
+                              <span>--</span>
+                              <span>--</span>
                           </div>
                           <ul class="bird_sell brid_ul"></ul>
                           <div class="current_price"></div>
                           <ul class="bird_buy brid_ul"></ul>
                           <div class="vue_chart_low vue_chart_price">
                               <span>最低</span>
-                              <span>7800</span>
-                              <span>1</span>
+                              <span>--</span>
+                              <span>--</span>
                           </div>
                       </div>
                   </div>
@@ -423,7 +423,7 @@
           </div>
           <div class="c_openBox">
             <div v-if="user.plat=='match'" class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupMsg()" id='quick_parse_create'><span class="c_shiBieButton_yi"  v-show="formData.userIds.length!=0">群发</span><span class="c_shiBieButton_er"  v-show="formData.userIds.length==0">报价</span></div>
-            <div v-if="user.plat=='trade'" class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupM()" id='quick_parse_creat'><span class="c_shiBieButton_yi"  v-show="formData.userIds.length!=0">群发</span><span class="c_shiBieButton_er"  v-show="formData.userIds.length==0">报价</span></div>
+            <div v-if="user.plat=='trade'" class="c_shiBieButton" data-cnt="0" ref="btn" @click="sendGroupM()" id='quick_parse_creat'><span class="c_shiBieButton_yi">群发</span></div>
             <div class="c_openShibie" v-if="user.plat=='match' && cnewguan!=true"><span :class={gou:chooseG} @click="chooseGou"></span>开启报价识别</div>
           </div>
         </div>
@@ -587,6 +587,7 @@
 //      this.formData.userIds = this.groupList.groupHair[0].userIds
 //      this.formData.userIds = []
       }
+      localStorage.qunfak=1000
       	var oDiv = document.getElementById('vu_div-qun')
         localStorage.qunfak++
         oDiv.style.zIndex=localStorage.qunfak
