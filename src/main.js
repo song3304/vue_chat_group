@@ -56,7 +56,7 @@ new Vue({
     // 保存已删除会话列表
     delSessionList: serverData.delSessionList,
     // 最近聊天列表
-    recentList: serverData.recentList,
+    recentList: [],
     // 竞价或者询价列表
     bidList: serverData.bidList,
     // 历史记录列表
