@@ -255,7 +255,7 @@
       this.$emit('openTempTalkEvent', otherUid)
       this.firendtan = false;
       this.sendfirendtan = false;
-      $(".vu_m-list ul").niceScroll({
+      $(".vu_m-list ul,.vu_liaotian_left ul").niceScroll({
     	cursorcolor: "#cccccc", // 改变滚动条颜色，使用16进制颜色值
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
         cursorwidth: "5px", // 滚动条的宽度，单位：便素
@@ -266,7 +266,6 @@
 	    var oDiv = document.getElementById('vu_m-chatmainn')
         localStorage.qunfak++
         oDiv.style.zIndex=localStorage.qunfak
-    
     },
     addFriend: function (otherUid, msg) {
       this.$emit('addFriendEvent', otherUid, msg)
