@@ -3264,7 +3264,8 @@ to {top: 0;}
 	margin: 0
 }
 .D_xiugai li:hover{background-color:transparent!important;}
-.vu_liaotian_left{color: #FFFFFF;}
+.vu_liaotian_left{color: #FFFFFF;height: 79%;width: 98%;}
+.vu_liaotian_left ul{max-height: 710px;}
 .vu_liaotian_left li{height: 55px;position: relative;}
 .c_quntitle{line-height: 30px;margin: 0;font-size: 12px;color:#999999;text-align: center;line-height:60px;}
 .vu_submenu_ul .vu_checkbox_bg{margin-top: 5px;}
