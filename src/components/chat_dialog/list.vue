@@ -102,6 +102,9 @@ export default {
       for (var j = 0, lg = item.messages.length; j < lg; j++) {
         i += item.messages[j].is_read ? 0 : 1
       }
+      if(i>99){
+	      	i=99+'+'
+	    }
       return i
     },
     online (userIds, userList) {

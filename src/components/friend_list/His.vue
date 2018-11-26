@@ -2,7 +2,7 @@
 	<div>
 		<ul >
 			<p style="height: 40px;line-height: 40px;margin: 0;color:#666666;font-size: 12px;text-align: center;">------最近3天的历史聊天列表------</p>
-		    <li v-for="(recentItem,index) in recentList"  v-if="recentItem !=null && userList.hasOwnProperty(recentItem.id) && recentItem.type=='user'" @click="openChat(recentItem.id)">
+		    <li v-for="(recentItem,index) in recentList"  v-if="recentItem !=null && userList.hasOwnProperty(recentItem.id) && recentItem.type=='user'" @click="openChat(recentItem.id,recentItem)">
 		    	<div :class="{'vu_m-touxiang':!userList[recentItem.id].isCalling,'vu_m-touxiang vu_touxiang':userList[recentItem.id].isCalling}"> <!--有新消息就添加vu_touxiang抖动-->
 		    		<img class="vu_avatar"  width="30" height="30" :alt="userList[recentItem.id].name" :src="userList[recentItem.id].img" :class="{'vu_gray':!userList[recentItem.id].isOnline}">
 		    	</div>
@@ -57,8 +57,9 @@ export default {
    },
   },
   methods: {
-    openChat: function (uid) {
+    openChat: function (uid,recentItem) {
       this.$emit('openChartEvent', uid, 'user')
+      this.$emit('toReadEvent', recentItem)
       this.current_uerId = uid
       $('.vu_m-list').show()
       $(".vu_m-list ul").niceScroll({
@@ -105,6 +106,9 @@ export default {
     	var i = 0
 	      for (var j = 0, lg = item.messages.length; j < lg; j++) {
 	        i += item.messages[j].is_read ? 0 : 1
+	      }
+	      if(i>99){
+	      	i=99+'+'
 	      }
 	      return i
      },

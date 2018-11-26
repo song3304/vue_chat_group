@@ -411,13 +411,14 @@ ul {
 .vu_m-list-del .vu_m-list-del-num{
 	margin-top:8px;
 	display: inline-block;
-	border-radius: 45%;
+	border-radius: 35%;
 	/*padding:2px;*/
 	background-color: #e42b2b;
 	color: #FFFFFF;
 	font-size: 12px;
 	height: 15px;
-	width: 15px;
+	min-width: 15px;
+    max-width: 25px;
 	padding-left:0.5px;
 	text-align: center;
 	line-height: 15px;
@@ -1106,6 +1107,19 @@ li{
 	border-radius: 3px;
 	border-radius: 5px;
 }
+.vu_m-message .vue_av_father{
+	display: inline-block;
+	float: left;
+	height: 100%;
+}
+.vu_m-message .vu_self .vue_av_father{
+	display: inline-block;
+	float: right;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
 .vu_m-message .vu_text {
 	display: inline-block;
 	position: relative;
@@ -1133,10 +1147,11 @@ li{
 
 .vu_m-message .vu_self {
 	text-align: right;
+	position: relative;
 }
 .vu_m-message .vu_self .vu_avatar {
 	float: right;
-	margin: 5px 5px 0 10px;
+	margin: 0 5px 0 10px;
 	display: block;
 }
 .vu_m-message .vu_main .vu_avatar1 {
@@ -1148,6 +1163,7 @@ li{
 .vu_main>span{display: none;}
 .vu_m-message .vu_self .vu_text {
 	background-color: #ff5027;
+	margin-right: 45px;
 }
 .vu_m-message .vu_self .vu_text:before {
 	right: inherit;
