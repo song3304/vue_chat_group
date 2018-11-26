@@ -24,7 +24,7 @@
 	      </ul>
 	      <!--聊天-->
 	      <div v-show="panelShow.chatShow" class="vu_liaotian_left">
-	      	<hisPanel :session="session" :user="user" :userList="userList" :companyList="companyList" :recentList="recentList" :sessionList="sessionList" @todayMsgEvent="todayMsg" @openChartEvent="openChat" @delSessionEvent="delSessionn"></hisPanel>
+	      	<hisPanel :session="session" :user="user" :userList="userList" :companyList="companyList" :recentList="recentList" :sessionList="sessionList" @todayMsgEvent="todayMsg" @openChartEvent="openChat" @delSessionEvent="delSessionn" @toReadEvent="toRead"></hisPanel>
 	      </div>
 	      <!--//分组-->
 	      <div id="vu_qun-fen" class="vu_accordion vu_qie_div" v-show="panelShow.companyShow">
@@ -305,7 +305,12 @@ export default {
 		this.qun_qunfa=true
 		this.vue_new_putong=false
 		this.vue_new_qunfa=true
-	}
+	},
+	toRead: function(recentItem) { //已读
+		var msgIds = []
+		msgIds.push(recentItem.message.messageId)
+		this.$emit('toReadEvent',msgIds, recentItem.id, recentItem.type)
+	},
   },
   filters: {
     lastTime: function (recentItem) {
