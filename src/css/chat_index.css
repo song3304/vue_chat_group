@@ -2086,11 +2086,14 @@ li{
 .vu_m-new_com{
 	color: #666666;
 	margin: 30px 0 0 5px;
-    height: 19px;
+    /*height: 19px;*/
     font-size: 12px;
-    overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
+    /*overflow: hidden;*/
+	/*text-overflow:ellipsis;*/
+	/*white-space: nowrap;*/
+  margin-left: 40px;
+  text-indent: -36px;
+  padding-right: 10px;
 }
 .vu_m-new_phone{
 	color: #666666;
