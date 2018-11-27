@@ -362,7 +362,7 @@ export default {
           cursorwidth: "5px", // 滚动条的宽度，单位：便素
           background: "", // 轨道的背景颜色
           cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-          autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+          autohidemode: "leave", // 仅在指针离开内容时隐藏
           disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
       });
       $('#myTabContent>div').eq(0).css('height','auto')
@@ -700,7 +700,7 @@ export default {
                 cursorwidth: "5px", // 滚动条的宽度，单位：便素
                 background: "", // 轨道的背景颜色
                 cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-                autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+                autohidemode: "leave", // 仅在指针离开内容时隐藏
                 disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
           });
       },
@@ -711,7 +711,7 @@ export default {
                 cursorwidth: "5px", // 滚动条的宽度，单位：便素
                 background: "", // 轨道的背景颜色
                 cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-                autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+                autohidemode: "leave", // 仅在指针离开内容时隐藏
                 disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
           });
       },
