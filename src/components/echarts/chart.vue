@@ -18,18 +18,18 @@
               <span :class="{vue_chatkind_name:true,choose:chooseTag==2}">公司</span>
               <span class="vue_chat_jiantou"></span>
               <!--下拉表-->
-	            <ul class="vue_company_ul" v-show="companyshow">
-	            	<li class="vue_company_ul_test">最多显示五个公司</li>
-	                <li v-for="(companyitem,index) in match_hall_companies" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
-	            </ul>
-	            <br clear="all"/>
+	          <ul class="vue_company_ul" v-show="companyshow">
+	              <li class="vue_company_ul_test">最多显示五个公司</li>
+	              <li v-for="(companyitem,index) in match_hall_companies" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+	          </ul>
+	          <br clear="all"/>
             </div>
             <!--右边切换选项-->
             <ul class="vue_company_species">
-              <li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" v-bind:cid="comspitem.id">
-                <span @click="changecom(comspitem,comindex)">{{comspitem.name}}</span>
-                <p @click="delcom(comspitem,comindex)"><span></span></p>
-              </li>
+                <li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" v-bind:cid="comspitem.id">
+                    <span @click="changecom(comspitem,comindex)">{{comspitem.name}}</span>
+                    <p @click="delcom(comspitem,comindex)"><span></span></p>
+                </li>
             </ul>
           </div>
           <!--公司选择e-->
@@ -41,18 +41,18 @@
               <span :class="{vue_chatkind_name:true,choose:chooseTag==3}">人员</span>
               <span class="vue_chat_jiantou"></span>
               <!--下拉表-->
-	            <ul class="vue_people_ul" v-show="peopleshow">
+	          <ul class="vue_people_ul" v-show="peopleshow">
 	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
 	                <span><img v-bind:src="peopleitem.pic_url" alt="" v-if="peopleitem.hasOwnProperty('pic_url')"/></span>
 	                <p>{{peopleitem.nickname}}</p>
 	              </li>
-	            </ul>
+	          </ul>
             </div>
             <!--右边切换选项-->
             <ul class="vue_company_species vue_people_species">
               <li v-for="(peospitem,peoindex) in peosplist" :class="{'peoactive': peospitem.isActive}">
-                <span @click="changepeo(peospitem,peoindex)">{{peospitem.nickname}}</span>
-                <p @click="delpeo(peospitem,peoindex)"><span></span></p>
+                  <span @click="changepeo(peospitem,peoindex)">{{peospitem.nickname}}</span>
+                  <p @click="delpeo(peospitem,peoindex)"><span></span></p>
               </li>
             </ul>
           </div>
@@ -193,7 +193,7 @@
             		<span class="vue-realtime-auto-datati">交割期</span>
             		<span class="vue-realtime-auto-numti">吨数</span>
             	</div>
-              <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
+                <ul class="vue-realtime-auto"  v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'realtime_'+catalog.id"></ul>
             </div>
             <!--实时报价e-->
 
@@ -332,7 +332,6 @@ export default {
   data: function () {
       return {
           chooseTag:1,//选择标识
-          kindshow:false,
           companyshow:false,
           peopleshow:false,
           activeIndex:0,
@@ -340,13 +339,11 @@ export default {
           peopleList:[{nickname:'请先选择公司'}],
           comsplist:[],
           peosplist:[],
-          selectCatalogName:this.match_hall_catalogs[0].name,
           selectPid:this.match_hall_catalogs[0].id,      //普通大盘选中的pid
           selectPidMy:this.my_match_hall_catalogs[0].id, //我的大盘选中的pid
           selectUid:0,
           selectCid:'',
           isActive:false,
-          chooseCatalog:this.match_hall_catalogs[0].catalog_id,//选中种类
           chartusyi:true,
           chartuser:false,
           tealtime_time:true,
@@ -365,7 +362,7 @@ export default {
           cursorwidth: "5px", // 滚动条的宽度，单位：便素
           background: "", // 轨道的背景颜色
           cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-          autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+          autohidemode: "leave", // 仅在指针离开内容时隐藏
           disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
       });
       $('#myTabContent>div').eq(0).css('height','auto')
@@ -420,10 +417,6 @@ export default {
           var day=date.getDate();
           return year+sep+month+sep+day+' '+'00:00:00';
       },
-      //询价报价信息显示
-      textFormat: function (text) {
-          return typeof text !== 'undefined' ? text.replace(/\n/g, '<br/>') : text
-      },
       //我的大盘-普通大盘,勾选切换时显示对应dom
       showDom(){
           this.match_hall_catalogs.map((v,i)=>{
@@ -443,36 +436,25 @@ export default {
               }
           });
       },
-      //种类点击事件
-      kindclick: function (){
-          this.kindshow=!this.kindshow,
-          this.companyshow=false,
-          this.peopleshow=false,
-          this.chooseTag=1
-      },
       //公司点击事件
       companyclick: function (){
       	  this.companyshow=true,
-          this.kindshow=false,
           this.peopleshow=false,
           this.chooseTag=2
       },
       companyleav: function(){
           this.companyshow=false,
-          this.kindshow=false,
           this.peopleshow=false
       },
       //人员点击事件
       peopleclick: function (){
           this.peopleshow=true,
           this.companyshow=false,
-          this.kindshow=false,
           this.chooseTag=3
       },
       peopleleave:function(){
           this.peopleshow=false,
-          this.companyshow=false,
-          this.kindshow=false
+          this.companyshow=false
       },
       //普通大盘-切换种类
       addcatalog(catalogItem,index){
@@ -484,10 +466,7 @@ export default {
                   v.show=1;
               }
           });
-          this.kindshow=false;
-          this.selectCatalogName=catalogItem.name;
           this.selectPid=catalogItem.id;
-          this.chooseCatalog = catalogItem.catalog_id;
           refresh(this.selectPid,this.selectUid,this.selectCid);//刷新曲线
       },
       //我的大盘-切换种类
@@ -721,7 +700,7 @@ export default {
                 cursorwidth: "5px", // 滚动条的宽度，单位：便素
                 background: "", // 轨道的背景颜色
                 cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-                autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+                autohidemode: "leave", // 仅在指针离开内容时隐藏
                 disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
           });
       },
@@ -732,9 +711,13 @@ export default {
                 cursorwidth: "5px", // 滚动条的宽度，单位：便素
                 background: "", // 轨道的背景颜色
                 cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
-                autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+                autohidemode: "leave", // 仅在指针离开内容时隐藏
                 disableoutline: true, // 当选中一个使用nicescroll的div时，chrome浏览器中禁用outline
           });
+      },
+      //打开对话框
+      openEchart:function(uid){
+          this.$emit('openTempTalkEvent', uid)
       },
   },
 }
