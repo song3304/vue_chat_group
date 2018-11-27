@@ -4,8 +4,6 @@
     <!--echart模块--start-->
     <chartModule :user='user' :match_hall_companies='match_hall_companies' :bidList='bidList' :match_hall_catalogs='match_hall_catalogs' :my_match_hall_catalogs='my_match_hall_catalogs'></chartModule>
     <!--echart模块--end-->
-
-
     <!-- 群发框 -->
     <div class="c_qunBox" id="vu_div-qun" v-show="showQunFa" @click="qunfakuang">
       <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'" @mousedown="dragqun" @mouseup="dragqun_1">乙二醇-一键报盘<span @click="closeQunFa"></span></div>
@@ -123,48 +121,14 @@
     </div>
 
     <!--提示框-->
-    <div class="vu_del-popup" v-show="tipsTag" style="left:45%;">
-      <div class="vu_fen_zu_title">
-        <span>提示</span>
-        <p class="vu_fen_zu_tier"  @click="tipscancel"><span></span></p>
-      </div>
-      <p>{{tipsMsg}}</p>
-      <div class="vu_fenzu_name_footer"><button @click="tipscancel">确认</button> <span class="vu_fen_zu_tier" @click="tipscancel">取消</span></div>
-    </div>
+    <tipDialog v-show="tipsTag" @confirmEvent='tipscancel' @cancleEvent='tipscancel' :tipsMsg='tipsMsg'></tipDialog>
     <!--清空分组操作-->
-    <div class="vu_del-popup" v-show="kongTag" style="left:25%;">
-      <div class="vu_fen_zu_title">
-        <span>提示</span>
-        <p class="vu_fen_zu_tier"  @click="kongcancel"><span></span></p>
-      </div>
-      <p>请先选择人员</p>
-      <div class="vu_fenzu_name_footer"><button @click="kongOK">确认</button> <span class="vu_fen_zu_tier" @click="kongcancel">取消</span></div>
-    </div>
-
-    <!--设置组名称-->
-    <!--<div class="vu_fenzu_name" style="z-index:1009;background: #fff;left: 47%;top:35%;box-shadow: 5px 18px 5px #ccc;" v-show="newZuTag">
-      <div class="vu_fen_zu_title">
-        <span>设置组名称</span>
-        <p class="vu_fen_zu_tier" @click="closeSetName"><span></span></p>
-      </div>
-      <p class="vu_fenzu_name_na">请输入组名称(最多六个字)：</p>
-      <input type="text" class="vu_fenzu_name_input" name="groupName" v-model="createGroupName" :placeholder="placeholder" maxlength="6" />
-      <div class="vu_fenzu_name_footer">
-        <button @click="submitGroup">确认</button>
-        <span class="vu_fen_zu_tier" @click="closeSetName">取消</span>
-      </div>
-    </div>-->
+    <truncateDialog  v-show="kongTag" @confirmEvent='kongOK' @cancleEvent='kongcancel'></truncateDialog>
     <!--删除确认弹窗-->
-    <div class="vu_del-popup" v-show="Qunpopup" style="left: 45%;">
-      <div class="vu_fen_zu_title">
-        <span>删除</span>
-        <p class="vu_fen_zu_tier"  @click="popcancel"><span></span></p>
-      </div>
-      <p>是否确认删除？</p>
-      <div class="vu_fenzu_name_footer"><button @click="delConfirm">确认</button> <span class="vu_fen_zu_tier" @click="popcancel">取消</span></div>
-    </div>
+    <removeDialog v-show="Qunpopup" @confirmEvent='delConfirm' @cancleEvent='popcancel'></removeDialog>
 
-	<!--<div class="vue_qun_line" v-if="user.plat=='trade'"></div>-->
+
+    <!--<div class="vue_qun_line" v-if="user.plat=='trade'"></div>-->
     <!-- 群发报价 -->
     <div class="c_btn_box" v-if="user.plat=='match'">
       <div class="vue_bp_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>
@@ -192,9 +156,12 @@
 </template>
 
 <script>
-	import searchDialog from './friend_list/Search'
-	import chartModule from './echarts/chart'
-	import echartQun from './echarts/qunfa'
+import searchDialog from './friend_list/Search'
+import chartModule from './echarts/chart'
+import echartQun from './echarts/qunfa'
+import tipDialog from './echarts/dialog/tip'
+import truncateDialog from './echarts/dialog/truncate'
+import removeDialog from './echarts/dialog/remove'
   //let echarts = require('echarts/lib/echarts')
   // 引入折线图组件
   //require('echarts/lib/chart/line')
@@ -244,7 +211,7 @@
             qunfa_kuang:1000
       }
     },
-    components: {searchDialog,chartModule,echartQun},
+    components: {searchDialog,chartModule,echartQun,tipDialog,truncateDialog,removeDialog},
     mounted() {
           if(this.groupList.groupHair.length!=0){
             this.activeTag = this.groupList.groupHair[0].groupName
