@@ -372,8 +372,25 @@ import removeDialog from './echarts/dialog/remove'
             this.groupMsg = ''
             this.placeholderMsg = '请您粘贴信息'
       },
-
-
+			checkAll: function (event, userIds) {
+        var el = event.currentTarget
+        var opt = $(el).html()
+        if (opt === '+') {
+          // 添加formData.userIds
+          $(el).html('-')
+          for (var i = 0, lg = userIds.length; i < lg; i++) {
+            if (!this.in_array(userIds[i], this.formData.userIds)) {
+              this.formData.userIds.push(userIds[i])
+            }
+          }
+        } else {
+          // 删除formData.userIds
+          $(el).html('+')
+          this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
+          this.everyone=false
+        }
+      },
+		
       in_array: function (search, array) {
             for (var i in array) {
               if (array[i] === search) {

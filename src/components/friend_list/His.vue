@@ -87,8 +87,13 @@ export default {
         if (month < 10) {month = "0" + month;}
 		if (tian < 10) {tian = "0" + tian;}
         var endDay=month+'-'+tian
-        var startDay = recentItem.last_time.substring(5, 10)
-        if(startDay===endDay){
+        if(recentItem.last_time==null){
+        	var startDay = ''
+        	recentItem.last_time=''
+        }else{
+        	var startDay = recentItem.last_time.substring(5, 10)
+        }        
+        if(startDay==endDay){
         	return recentItem.last_time.substring(11, 16)
         }else{
         	return recentItem.last_time.substring(5, 10)

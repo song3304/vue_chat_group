@@ -219,8 +219,10 @@ export default {
 	              }
 	         	}
         	}
+      		$('.vu_check-all').html('-')
       	}else{
       		this.formData.userIds = []
+      		$('.vu_check-all').html('+')
       	}
     },
     // 折叠

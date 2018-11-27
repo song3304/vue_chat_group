@@ -238,8 +238,12 @@
         this.sendfirendtan = !this.sendfirendtan
       }
     },
-    firendchat: function (key) {
-      this.firendtan = !this.firendtan
+    firendchat: function (key) {     
+      if(key==this.infoId){
+      	this.firendtan = !this.firendtan
+      }else{
+      	this.firendtan=true
+      }
       this.infoId = key
       for(var index in this.chat_hall_members){
         if(this.chat_hall_members[index].id==this.infoId){
@@ -247,6 +251,7 @@
           break;
         }
       }
+      this.sendfirendtan = false
     },
     leftlistclose: function () {
       this.firendtan = false
@@ -362,7 +367,7 @@
 		if($('#vu_friend').width()<100){
 	   }else{
 	    	$('#vu_friend').css('width','18.5%')
-			$('#vue_main_main').css('width','80.5%')
+			$('#vue_main_main').css('width','80.9%')
 	   }
 	   $(window).resize()
     },
