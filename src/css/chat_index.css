@@ -235,6 +235,15 @@ ul {
 .vu_submenu .vu_m-touxiang{
 	float: left;
 }
+#new_firenfd_peo .vu_m-touxiang{
+	width: 40px;
+    height: 40px;
+}
+#new_firenfd_peo .vu_submenu>li:hover,#new_firenfd_peo .vu_submenu>li.vu_current{
+	background-color:#4A4A51!important ;
+}
+#new_firenfd_peo .vu_submenu_com{margin-top: 2px;}
+#new_firenfd_peo .vu_submenu_com a{margin-left:7px;color: #FFFFFF!important;}
 .vu_m-touxiang{
 	position: relative;
 	top:3px;

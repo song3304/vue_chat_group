@@ -515,7 +515,11 @@ import removeDialog from './echarts/dialog/remove'
       },
       openEchart:function(uid){ //打开对话框
 	        this.$emit('openTempTalkEvent', uid)
-      }
+      },
+      delUser: function (uid) {
+        this.formData.userIds = this.formData.userIds.filter(t => t !== uid)
+        this.everyone=false
+      },
     },
     //qunNew部分内容
     filters: {

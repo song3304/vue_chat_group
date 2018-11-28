@@ -292,7 +292,7 @@
             			<span class="tealtime-timecuotitleyi">{{bitem.last_time.substr(11,5)}}</span>
             			<span class="tealtime-timecuotitleer">{{bitem.company}}</span>
             			<span class="tealtime-timecuotitlesan tealtime-timecuotitlename">{{bitem.nickname}}</span>
-            			<span class="tealtime-timecuotitlesi" v-html="textFormat(bitem.messages[0].text)"></span>
+            			<pre class="tealtime-timecuotitlesi">{{bitem.messages[0].text}}</pre>
             			<span class="chitchat_photo" @click="openEchart(bitem.id)"></span>
             			<br clear="all"/>
             		</li>
