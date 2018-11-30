@@ -239,7 +239,7 @@
             <!--最多报价s-->
             <div class="vue-tealtime-right" v-for='(catalog,index) in match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'static_data_'+catalog.id">
 	            	<div class="vue_right_yi">
-		            		<img src="/images/bj.png" alt="" /><span>当前最多报价</span>
+		            		<img src="../../images/bj.png" alt="" /><span>当前最多报价</span>
 	            	</div>
 	            	<div class="vue_right_er">
 		            		<span>卖：</span><ul class="bird_sell"></ul>
@@ -303,7 +303,7 @@
             <!--最多报价s-->
             <div class="vue-tealtime-right" v-for='(catalog,index) in my_match_hall_catalogs' v-show="catalog.show==1?true:false" v-bind:id="'my_static_data_'+catalog.id">
 	            	<div class="vue_right_yi">
-		            		<img src="/images/bj.png" alt="" /><span>当前最多报价</span>
+		            		<img src="../../images/bj.png" alt="" /><span>当前最多报价</span>
 	            	</div>
 	            	<div class="vue_right_er">
 		            		<span>卖：</span><ul class="bird_sell"></ul>

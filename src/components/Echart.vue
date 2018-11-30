@@ -2,7 +2,7 @@
   <div id="vue_echart">
 
     <!--echart模块--start-->
-    <chartModule :user='user' :match_hall_companies='match_hall_companies' :bidList='bidList' :match_hall_catalogs='match_hall_catalogs' :my_match_hall_catalogs='my_match_hall_catalogs'></chartModule>
+    <chartModule :user='user' :match_hall_companies='match_hall_companies' :bidList='bidList' :match_hall_catalogs='match_hall_catalogs' :my_match_hall_catalogs='my_match_hall_catalogs' @openTempTalkEvent="openEchart"></chartModule>
     <!--echart模块--end-->
     <!-- 群发框 -->
     <div class="c_qunBox" id="vu_div-qun" v-show="showQunFa" @click="qunfakuang">
@@ -529,7 +529,6 @@ import removeDialog from './echarts/dialog/remove'
             return onlineCnt
         }
     },
-
   }
 </script>
 
