@@ -154,7 +154,6 @@
 	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)" v-if="tingList.plat=='trade'" data-click-log="700007">临时会话</span>
 	        <span v-if="tingList.plat=='match'" class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)" data-click-log="600008">临时会话</span>
 	        <span class="vue_leftlist_companysz_er" @click="openVerify()">{{relation()}}</span>
-	        <span v-if="tingList.plat=='match'" class="vue_leftlist_companysz_er" @click="openVerify()" data-click-log="600007">{{relation()}}</span>
 	        <!--<p>聊天</p>-->
 	      </div>
         <div v-show="!isNull&&!isFriNull&&!isFriType" style="width: 100%;height:50px;line-height:50px;text-align: center;color: #999;">
@@ -173,7 +172,7 @@
 	      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
 	      <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
 	      <div class="vue_leftlist_companysz">
-	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
+	        <span v-if="tingList.plat=='trade'" class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)" data-click-log="700007">临时会话</span>
 	        <span v-if="tingList.plat=='match'" class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)" data-click-log="600008">临时会话</span>
 	        <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,verifymsg)" style="color: #4385F5;">发送</span>
 	        <!--<p>聊天</p>-->
@@ -296,21 +295,33 @@
           if(this.user.plat=='trade'){
             $('.vue_leftlist_companysz_er').removeAttr("data-click-log")
           }
+          if(this.user.plat=='match'){
+	          $('.vue_leftlist_companysz_er').removeAttr("data-click-log")
+	        }
         }else if(this.userList[this.infoId].friend_type=='verify'){
           // return '已发验证'
           if(this.user.plat=='trade'){
             $('.vue_leftlist_companysz_er').removeAttr("data-click-log")
           }
+          if(this.user.plat=='match'){
+	          $('.vue_leftlist_companysz_er').removeAttr("data-click-log")
+	        }
         }else {
           // return '添加好友'
           if(this.user.plat=='trade'){
             $('.vue_leftlist_companysz_er').attr("data-click-log","700006")
           }
+          if(this.user.plat=='match'){
+	          $('.vue_leftlist_companysz_er').attr("data-click-log","600007")
+	        }
         }
       }else{
         // return '添加好友'
         if(this.user.plat=='trade'){
           $('.vue_leftlist_companysz_er').attr("data-click-log","700006")
+        }
+        if(this.user.plat=='match'){
+          $('.vue_leftlist_companysz_er').attr("data-click-log","600007")
         }
       }
     },
@@ -354,6 +365,7 @@
         }else if(this.userList[this.infoId].friend_type=='verify'){
           return '已发验证'
         }else {
+        	alert(123)
           return '添加好友'
         }
       }else{

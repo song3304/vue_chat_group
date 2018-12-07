@@ -139,7 +139,7 @@
     <!--<div class="vue_qun_line" v-if="user.plat=='trade'"></div>-->
     <!-- 群发报价 -->
     <div class="c_btn_box" v-if="user.plat=='match'">
-      <div class="vue_bp_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>
+      <div class="vue_bp_offer" @click="qunFa()" data-click-log="600004"><p></p><span>一键报盘</span></div>
       <div class="vue_cj_offer" @click="cjbj()"><p></p><span>成交报价</span></div>
     </div>
     <!--//修改群分名字-->
