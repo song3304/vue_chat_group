@@ -2,7 +2,7 @@
 	<div id="leftlist">
 		<div id="leftlist_nowdate">
 	      <a v-if="user.plat=='match'" target="_blank" href='/match/profile/index'><img :src="user.img" alt="" /></a>
-	      <a v-if="user.plat=='trade'" target="_blank" href='/trade/profile/index'><img :src="user.img" alt="" /></a>
+	      <a v-if="user.plat=='trade'" target="_blank" href='/trade/profile/index' data-persistentaccess-log="700001"><img :src="user.img" alt="" /></a>
 				<span>{{user.name}}</span>
 				<a v-if="user.plat=='match'" href='/match/auth/logout.html'>[退出]</a>
 	      <a v-if="user.plat=='trade'" href='/trade/auth/logout.html'>[退出]</a>
@@ -11,7 +11,7 @@
 		<div class="vue_leftlist">
 			<p class="c_newTitle"><span class="c_newIco"></span>资讯列表</p>
 			<ul class="vue_leftlist_ul">
-				<li v-for="(leftitem,$index) in match_hall_cms" v-bind:cms_id="leftitem.id" @click="wenxiang($index,leftitem.id)">
+				<li v-for="(leftitem,$index) in match_hall_cms" v-bind:cms_id="leftitem.id" @click="wenxiang($index,leftitem.id)" v-if="user.plat=='trade'" data-click-log="7000010">
 					<!--<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" @click="wenxiang">-->
 						<!--<span>{{leftitem.time}}</span>
 						<p>{{leftitem.title}}</p>-->
@@ -116,7 +116,7 @@
 	      <p class="vue_leftlist_companyname">所属公司：{{tingList.company_name}}</p>
 	      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
 	      <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
-	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)">临时会话</span>
+	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)" v-if="tingList.plat=='trade'" data-click-log="700007">临时会话</span>
 	        <span class="vue_leftlist_companysz_er" @click="openVerify()">{{relation()}}</span>
 	        <!--<p>聊天</p>-->
 	      </div>
@@ -238,7 +238,7 @@
         this.sendfirendtan = !this.sendfirendtan
       }
     },
-    firendchat: function (key) {     
+    firendchat: function (key) {
       if(key==this.infoId){
       	this.firendtan = !this.firendtan
       }else{
@@ -252,6 +252,29 @@
         }
       }
       this.sendfirendtan = false
+      if(this.userList.hasOwnProperty(this.infoId)){
+        if(this.userList[this.infoId].friend_type=='friend'){
+          // return '已是好友'
+          if(this.user.plat=='trade'){
+            $('.vue_leftlist_companysz_er').removeAttr("data-click-log")
+          }
+        }else if(this.userList[this.infoId].friend_type=='verify'){
+          // return '已发验证'
+          if(this.user.plat=='trade'){
+            $('.vue_leftlist_companysz_er').removeAttr("data-click-log")
+          }
+        }else {
+          // return '添加好友'
+          if(this.user.plat=='trade'){
+            $('.vue_leftlist_companysz_er').attr("data-click-log","700006")
+          }
+        }
+      }else{
+        // return '添加好友'
+        if(this.user.plat=='trade'){
+          $('.vue_leftlist_companysz_er').attr("data-click-log","700006")
+        }
+      }
     },
     leftlistclose: function () {
       this.firendtan = false
@@ -390,7 +413,7 @@
 	        cursorborder: "0 solid #fff", // CSS方式定义滚动条边框
 	        aautohidemode: "leave", // 仅在指针离开内容时隐藏
 	    });
-	    if($('#vu_friend').width()<100){	    	
+	    if($('#vu_friend').width()<100){
 	    }else{
 	    	$('#vu_friend').css('width','22.5%')
 			$('#vue_main_main').css('width','77%')

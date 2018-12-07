@@ -20,7 +20,7 @@
               <!--下拉表-->
 	          <ul class="vue_company_ul" v-show="companyshow">
 	              <li class="vue_company_ul_test">最多显示五个公司</li>
-	              <li v-for="(companyitem,index) in match_hall_companies" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+	              <li v-for="(companyitem,index) in match_hall_companies" @click="addcom(companyitem,index)" v-if="user.plat=='trade'" data-click-log="700008"><span></span>{{companyitem.name}}</li>
 	          </ul>
 	          <br clear="all"/>
             </div>
@@ -42,7 +42,7 @@
               <span class="vue_chat_jiantou"></span>
               <!--下拉表-->
 	          <ul class="vue_people_ul" v-show="peopleshow">
-	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)">
+	              <li v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)" v-if="user.plat=='trade'" data-click-log="700008">
 	                <span><img v-bind:src="peopleitem.pic_url" alt="" v-if="peopleitem.hasOwnProperty('pic_url')"/></span>
 	                <p>{{peopleitem.nickname}}</p>
 	              </li>
@@ -178,10 +178,10 @@
         <div class="vue-realtime">
           <div class="vue-realtime-time">
             <div class="vue-real-img">
-              <span @click="vue_real_imgyi" class="vue-real-img_active">实时报价</span>
+              <span @click="vue_real_imgyi" class="vue-real-img_active" v-if="user.plat=='trade'" data-click-log="700002">实时报价</span>
               <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_real_imger">贸易商询价</span></p>
               <span class="vue_real_zhan" style="display: none;"></span>
-              <span v-if="user.plat=='trade'" @click="vue_real_imgsan">撮合报价</span>
+              <span v-if="user.plat=='trade'" @click="vue_real_imgsan" data-click-log="700003">撮合报价</span>
             </div>
             <!--实时报价s-->
             <div class="vue-tealtime-time" v-show="tealtime_time">
