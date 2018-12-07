@@ -90,7 +90,8 @@
 				              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname">
 				              	<div class="vu_m-touxiang">
 				              		<img :src="userList[uid].img" :class="{ 'vu_gray':userList[uid]!=null && !userList[uid].isOnline}"/>
-				              		<span @click="delUser(uid)" data-click-log="600005"></span>
+				              		<span v-if="user.plat=='match'" @click="delUser(uid)" data-click-log="600005"></span>
+				              		<span @click="delUser(uid)" v-if="user.plat=='trade'" data-click-log="700004"></span>
 				              	</div>
 				              	<a>{{userList[uid].name}}</a>
 				              </li>
@@ -151,7 +152,7 @@
       </div>
     <!--<div v-if="user.plat=='match'" class="vue_cj_offer" @click="qunFa()"><p></p><span>成交报盘</span></div>-->
     <!--<div v-if="user.plat=='match'" class="vue_qun_offer" @click="qunFa()"><p></p><span>一键报盘</span></div>-->
-    <div v-if="user.plat=='trade'"  class="vue_qun_offf" @click="qunFa()">
+    <div v-if="user.plat=='trade'"  class="vue_qun_offf" @click="qunFa()" data-click-log="700009">
     	<div class="vue_qun_offer">
     		<p></p><span>一键询价</span>
     	</div>
@@ -391,6 +392,9 @@ import removeDialog from './echarts/dialog/remove'
           if(this.user.plat=='match'){
             $(el).attr('data-click-log','600005')
           }
+          if(this.user.plat=='trade'){
+            $(el).attr("data-click-log","700005")
+          }
         } else {
           // 删除formData.userIds
           $(el).html('+')
@@ -399,9 +403,12 @@ import removeDialog from './echarts/dialog/remove'
           if(this.user.plat=='match'){
             $(el).attr('data-click-log','600006')
           }
+          if(this.user.plat=='trade'){
+            $(el).attr("data-click-log","700004")
+          }
         }
       },
-		
+
       in_array: function (search, array) {
             for (var i in array) {
               if (array[i] === search) {

@@ -94,13 +94,25 @@
 			relationNew: function() { // 关系
 				if(this.userList.hasOwnProperty(this.session.id)) {
 					if(this.userList[this.session.id].friend_type == 'friend') {
+            if(this.user.plat=='trade'){
+              $('.vu_m-new_friend').removeAttr("data-click-log")
+            }
 						return '已是好友'
 					} else if(this.userList[this.session.id].friend_type == 'verify') {
+            if(this.user.plat=='trade'){
+              $('.vu_m-new_friend').removeAttr("data-click-log")
+            }
 						return '已发验证'
 					} else {
+            if(this.user.plat=='trade'){
+              $('.vu_m-new_friend').attr("data-click-log","700006")
+            }
 						return '加为好友'
 					}
 				} else {
+          if(this.user.plat=='trade'){
+            $('.vu_m-new_friend').attr("data-click-log","700006")
+          }
 					return '加为好友'
 				}
 			},
@@ -158,7 +170,7 @@
 			//    	if(echaheight>0){
 			//    		$('.vue-chart-foot').css('height','29.4%')
 			//    	}
-			//    	
+			//
 			//    	$('.vu_resizable').attr('id','resizable')
 			//    	var height=$("#resizable").height()
 			//	      $("#resizable").resizable({
@@ -193,7 +205,7 @@
 			//    	if(echaheight>0){
 			//    		$('.vue-chart-foot').css('height','45.7%')
 			//    	}
-			//    	
+			//
 			//    	$('.vu_resizable').removeAttr('id','resizable')
 			//    	$('.ui-resizable-handle').hide()
 			//      $('#mytrade_form').css('height','86.6%')
