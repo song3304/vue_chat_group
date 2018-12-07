@@ -7,7 +7,7 @@
       	<div class="vue_chart_us" v-if="user.plat=='match'">
       		<p v-show="chartusyi" class="chart_usyi" @click="chartus_yi"></p>
       		<p v-show="chartuser" class="chart_user" @click="chartus_er">√</p>
-      		<span @click="chartus_yier">我的大盘</span>
+      		<span @click="chartus_yier" data-click-log="600010">我的大盘</span>
       	</div>
 
         <div class="vue-chart-head">
@@ -21,6 +21,7 @@
 	          <ul class="vue_company_ul" v-show="companyshow">
 	              <li class="vue_company_ul_test">最多显示五个公司</li>
 	              <li v-for="(companyitem,index) in match_hall_companies" @click="addcom(companyitem,index)"><span></span>{{companyitem.name}}</li>
+                <li v-if="user.plat=='match'" v-for="(companyitem,index) in match_hall_companies" @click="addcom(companyitem,index)" data-click-log="600009"><span></span>{{companyitem.name}}</li>
 	          </ul>
 	          <br clear="all"/>
             </div>
@@ -28,6 +29,7 @@
             <ul class="vue_company_species">
                 <li v-for="(comspitem,comindex) in comsplist" :class="{'comactive': comspitem.isActive}" v-bind:cid="comspitem.id">
                     <span @click="changecom(comspitem,comindex)">{{comspitem.name}}</span>
+                    <span v-if="user.plat=='match'" @click="changecom(comspitem,comindex)" data-click-log="600009">{{comspitem.name}}</span>
                     <p @click="delcom(comspitem,comindex)"><span></span></p>
                 </li>
             </ul>
@@ -46,12 +48,17 @@
 	                <span><img v-bind:src="peopleitem.pic_url" alt="" v-if="peopleitem.hasOwnProperty('pic_url')"/></span>
 	                <p>{{peopleitem.nickname}}</p>
 	              </li>
+                <li v-if="user.plat=='match'" v-for="(peopleitem,index) in peopleList" @click="addpeo(peopleitem,index)" data-click-log="600009">
+                  <span><img v-bind:src="peopleitem.pic_url" alt="" v-if="peopleitem.hasOwnProperty('pic_url')"/></span>
+                  <p>{{peopleitem.nickname}}</p>
+                </li>
 	          </ul>
             </div>
             <!--右边切换选项-->
             <ul class="vue_company_species vue_people_species">
               <li v-for="(peospitem,peoindex) in peosplist" :class="{'peoactive': peospitem.isActive}">
                   <span @click="changepeo(peospitem,peoindex)">{{peospitem.nickname}}</span>
+                  <span v-if="user.plat=='match'" @click="changepeo(peospitem,peoindex)" data-click-log="600009">{{peospitem.nickname}}</span>
                   <p @click="delpeo(peospitem,peoindex)"><span></span></p>
               </li>
             </ul>
@@ -179,7 +186,8 @@
           <div class="vue-realtime-time">
             <div class="vue-real-img">
               <span @click="vue_real_imgyi" class="vue-real-img_active">实时报价</span>
-              <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_real_imger">贸易商询价</span></p>
+              <span v-if="user.plat=='match'" @click="vue_real_imgyi" class="vue-real-img_active" data-click-log="600002">实时报价</span>
+              <p v-if="user.plat=='match'" style="display: inline-block;"><span @click="vue_real_imger" data-click-log="600003">贸易商询价</span></p>
               <span class="vue_real_zhan" style="display: none;"></span>
               <span v-if="user.plat=='trade'" @click="vue_real_imgsan">撮合报价</span>
             </div>

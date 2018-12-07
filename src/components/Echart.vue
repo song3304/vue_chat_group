@@ -6,7 +6,7 @@
     <!--echart模块--end-->
     <!-- 群发框 -->
     <div class="c_qunBox" id="vu_div-qun" v-show="showQunFa" @click="qunfakuang">
-      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'" @mousedown="dragqun" @mouseup="dragqun_1">乙二醇-一键报盘<span @click="closeQunFa"></span></div>
+      <div class="c_qunBaoJiaTitle" v-if="user.plat=='match'" @mousedown="dragqun" @mouseup="dragqun_1" data-click-log="600004">乙二醇-一键报盘<span @click="closeQunFa"></span></div>
       <div class="c_qunBaoJiaTitle" v-if="user.plat=='trade'" @mousedown="dragqun" @mouseup="dragqun_1">乙二醇-一键询价<span @click="closeQunFa"></span></div>
       <div class="c_imgntent">
       	 <div class="c_qun_qiehuan">
@@ -22,6 +22,7 @@
 			              <li  v-for="(groups,index) in groupList.groupHair"   @click="onGroup(groups,index,$event)" :value="groups.groupId">
 			                <div class="vu_link newQunFa" :class="{newqun_fa:groups.groupName==activeTag}"  :value="groups.groupId"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{groups.groupName}}</span><span>{{groups.userIds|online(userList)}}/{{groups.userIds.length}}</span>
 			                	<p class="vu_check-all" title="点击全选" @click.stop="checkAll($event,groups.userIds)">+</p>
+                        <p v-if="user.plat=='match'" class="vu_check-all" title="点击全选" @click.stop="checkAll($event,groups.userIds)" data-click-log="600006">+</p>
 			                </div>
 			                <ul class="vu_submenu vu_submenu_ul new_qunfabeijing" :class="{new_qunfabei:groups.groupName==activeTag}">
 			                  <li v-for="userItem in groups.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
@@ -30,6 +31,8 @@
 			                    </div>
 			                    <a class="newQunFa">{{userList[userItem].name}}</a>
 			                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click.stop="dange_xua($event)"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                          <i v-if="user.plat=='match'&&in_array(userItem,formData.userIds)" :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click.stop="dange_xua($event)" data-click-log="600005"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id"></i>
+                          <i v-if="user.plat=='match'&&!in_array(userItem,formData.userIds)" :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click.stop="dange_xua($event)" data-click-log="600006"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id"></i>
 			                  </li>
 			                </ul>
 			              </li>
@@ -45,7 +48,7 @@
 			            </div>
 			            <ul class="vu_fenzu_left_ul scrollCss" style="width: 100%;height: 93%;">
 			              <li v-for="companyItem in companyLists" :class="{'vu_accordion_li': companyItem.isCalling}">
-			                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click.stop="checkAll($event,companyItem.userIds)">+</p></div>
+			                <div class="vu_link newQunFa" @click="accordion"><i class="fa fa-caret-right"></i><span class="vu_first_title ">{{companyItem.orgName}}</span><span>{{companyItem.userIds|online(userList)}}/{{companyItem.userIds.length}}</span><p class="vu_check-all" title="点击全选" @click.stop="checkAll($event,companyItem.userIds)">+</p><p v-if="user.plat=='match'" class="vu_check-all" title="点击全选" @click.stop="checkAll($event,companyItem.userIds)" data-click-log="600006">+</p></div>
 			                <ul class="vu_submenu vu_submenu_ul">
 			                  <li v-for="userItem in companyItem.userIds " :class="{'vu_submenu-name vu_submenu-newname':!in_array(userItem,formData.userIds),'vu_submenu-name vu_submenu-newname vu_current newQunFa':in_array(userItem,formData.userIds)}" >
 			                    <div class="vu_m-touxiang newQunFa">
@@ -53,6 +56,8 @@
 			                    </div>
 			                    <a class="newQunFa">{{userList[userItem].name}}</a>
 			                    <i :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click.stop="dange_xuan"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id" ></i>
+                          <i v-if="user.plat=='match'&&in_array(userItem,formData.userIds)" :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click.stop="dange_xuan" data-click-log="600005"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id"></i>
+                          <i v-if="user.plat=='match'&&!in_array(userItem,formData.userIds)" :class="{'vu_input_style vu_checkbox_bg vu_checkbox_bg_check':in_array(userItem,formData.userIds),'vu_input_style vu_checkbox_bg':!in_array(userItem,formData.userIds)}" @click.stop="dange_xuan" data-click-log="600006"><input type="checkbox" name="groupUserIds" v-model="formData.userIds" :value="userList[userItem].id"></i>
 			                  </li>
 			                </ul>
 			              </li>
@@ -69,7 +74,7 @@
 				                		<span>{{groups.groupName}}</span>
 				                		<!--<input class="vu_m-phone-input vu_m-new-input" :value="groups.groupName" type="text" :data-gid="groupList.groupHair[index].groupId" @keyup.enter="modifyGroupName" @blur="modifyGroupName"/>-->
 				                	</div>
-				                	<div class="vue_clear" title="清空所选人员" @click="vue_qunclear"></div>
+				                	<div class="vue_clear" title="清空所选人员" @click="vue_qunclear" data-click-log="600005"></div>
 				                	<!--<span class="c_qungaititle" v-show="tan_bianji">(点击修改名称)</span>
 				                	<span class="c_qungainame" v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>-->
 				                	<!--<div class="c_newQunBo">
@@ -85,7 +90,7 @@
 				              <li v-for="uid in formData.userIds" v-if="userList[uid]!=null" class="vu_submenu-name vu_submenu-newname">
 				              	<div class="vu_m-touxiang">
 				              		<img :src="userList[uid].img" :class="{ 'vu_gray':userList[uid]!=null && !userList[uid].isOnline}"/>
-				              		<span @click="delUser(uid)"></span>
+				              		<span @click="delUser(uid)" data-click-log="600005"></span>
 				              	</div>
 				              	<a>{{userList[uid].name}}</a>
 				              </li>
@@ -383,11 +388,17 @@ import removeDialog from './echarts/dialog/remove'
               this.formData.userIds.push(userIds[i])
             }
           }
+          if(this.user.plat=='match'){
+            $(el).attr('data-click-log','600005')
+          }
         } else {
           // 删除formData.userIds
           $(el).html('+')
           this.formData.userIds = this.formData.userIds.filter(t => !this.in_array(t, userIds))
           this.everyone=false
+          if(this.user.plat=='match'){
+            $(el).attr('data-click-log','600006')
+          }
         }
       },
 		

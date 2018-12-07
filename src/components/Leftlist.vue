@@ -46,6 +46,41 @@
 					     	</div>
 					    </div>
 				</li>
+				<li v-if="user.plat=='match'" v-for="(leftitem,$index) in match_hall_cms" v-bind:cms_id="leftitem.id" @click="wenxiang($index,leftitem.id)" data-click-log="600011">
+					<!--<a :href="'https://www.xiwanghulian.com/index/cms/info/id/'+leftitem.id" target="_blank" @click="wenxiang">-->
+						<!--<span>{{leftitem.time}}</span>
+						<p>{{leftitem.title}}</p>-->
+						<p v-if="$index>0" class="redian_news">
+							<span class="redian_news_span" v-if="match_hall_cms[$index].time!==match_hall_cms[$index-1].time">{{leftitem|lastDate}}</span>
+						</p>
+						<p v-if="$index==0" class="redian_news">
+							<span class="redian_news_span">{{leftitem|lastDate}}</span>
+						</p>
+						<div class="vue_leftlist_left">
+							<!--<p>{{leftitem|lastDate}}</p>-->
+							<span>{{leftitem|lastTime}}</span>
+						</div>
+						<div class="vue_leftlist_center">
+							<span></span>
+							<p></p>
+						</div>
+						<p class="vue_leftlist_main">{{leftitem.title}}</p>
+						<!--热点资讯弹框-->
+					    <div class="vueleft_left_main" v-show="$index === lefttan" v-if="currentCms!=null">
+					     	<div class="vue_left_main">
+					     		<img src="../images/shanchu.png" alt="" @click.stop="leftshan()"/>
+					     		<div class="vue_left_main_yi">
+						     		<h2>{{leftitem.title}}</h2>
+						     		<div class="vueleft-center-title">
+										<span>作者：{{currentCms.author}}</span>
+										<span>来源：{{currentCms.origin}}</span>
+										<span>发布时间：{{leftitem.create_time}}</span>
+									</div>
+									<div class="vueleft-center-main" v-html="currentCms.contents"></div>
+								</div>
+					     	</div>
+					    </div>
+				</li>
 			</ul>
 			<div class="vue_left_message" id="vue-message" @click="vuenew(popCms.id)" v-if="popCms!=null"> <!--新消息-->
 				<div class="vue_left_message_time">
@@ -117,7 +152,9 @@
 	      <p class="vue_leftlist_companyname">手机号：{{tingList.phone||'无'}}</p>
 	      <div class="vue_leftlist_companysz" v-if="tingList.id!=user.id" v-show="isNull||isFriNull||isFriType">
 	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)">临时会话</span>
+	        <span v-if="tingList.plat=='match'" class="vue_leftlist_companysz_yi" @click="openTempTalk(tingList.id)" data-click-log="600008">临时会话</span>
 	        <span class="vue_leftlist_companysz_er" @click="openVerify()">{{relation()}}</span>
+	        <span v-if="tingList.plat=='match'" class="vue_leftlist_companysz_er" @click="openVerify()" data-click-log="600007">{{relation()}}</span>
 	        <!--<p>聊天</p>-->
 	      </div>
         <div v-show="!isNull&&!isFriNull&&!isFriType" style="width: 100%;height:50px;line-height:50px;text-align: center;color: #999;">
@@ -137,6 +174,7 @@
 	      <textarea v-model="verifymsg" placeholder="验证信息："></textarea>
 	      <div class="vue_leftlist_companysz">
 	        <span class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)">临时会话</span>
+	        <span v-if="tingList.plat=='match'" class="vue_leftlist_companysz_yi" @click="openTempTalk(infoId)" data-click-log="600008">临时会话</span>
 	        <span class="vue_leftlist_companysz_er" @click="addFriend(infoId,verifymsg)" style="color: #4385F5;">发送</span>
 	        <!--<p>聊天</p>-->
 	      </div>
