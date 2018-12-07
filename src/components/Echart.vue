@@ -76,7 +76,8 @@
 				                		<span>{{groups.groupName}}</span>
 				                		<!--<input class="vu_m-phone-input vu_m-new-input" :value="groups.groupName" type="text" :data-gid="groupList.groupHair[index].groupId" @keyup.enter="modifyGroupName" @blur="modifyGroupName"/>-->
 				                	</div>
-				                	<div class="vue_clear" title="清空所选人员" @click="vue_qunclear" data-click-log="600005"></div>
+                          <div v-if="user.plat=='trade'" class="vue_clear" title="清空所选人员" @click="vue_qunclear" data-click-log="700004"></div>
+				                	<div v-if="user.plat=='match'" class="vue_clear" title="清空所选人员" @click="vue_qunclear" data-click-log="600005"></div>
 				                	<!--<span class="c_qungaititle" v-show="tan_bianji">(点击修改名称)</span>
 				                	<span class="c_qungainame" v-show="tan_bianji" title="点击修改群名称" @click.stop="changeQunName($event,groups.groupId)"></span>-->
 				                	<!--<div class="c_newQunBo">
