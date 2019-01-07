@@ -365,7 +365,6 @@
         }else if(this.userList[this.infoId].friend_type=='verify'){
           return '已发验证'
         }else {
-        	alert(123)
           return '添加好友'
         }
       }else{
