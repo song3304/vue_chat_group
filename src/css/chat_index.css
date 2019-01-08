@@ -3643,3 +3643,53 @@ to {top: 0;}
 	width: 55px;
 }
 /*.vu_m-list-daytime p{color: #999999!important;}*/
+/*登录失效弹框 start*/
+.c_logoutBox{
+  width: 300px;
+  height: 114px;
+  background: #fff;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  margin-top: -57px;
+  margin-left: -150px;
+  font-size: 16px;
+  display: none;
+}
+.c_logoutBoxHang{
+  overflow: hidden;
+  margin-left: 50px;
+  margin-top: 26px;
+  height: 16px;
+}
+.c_logoutBoxHang img{
+  display: block;
+  float: left;
+  margin-right: 12px;
+  font-size: 16px;
+}
+.c_logoutBoxHang span{
+  display: block;
+  float: left;
+  color: #333;
+  font-size: 16px;
+  line-height: 16px;
+  font-family: "Microsoft Yahei";
+}
+.c_logoutButton{
+  width: 80px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: 24px;
+  background: #4385F5;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+.c_logoutButton:hover{
+  background-color: #5292ff;
+}
+/*登录失效弹框 end*/
